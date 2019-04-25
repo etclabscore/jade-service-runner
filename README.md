@@ -1,6 +1,7 @@
 ![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png)
 Supported by [ETC Labs](https://www.etclabs.org/)
 
+
 # Jade Service Runner - A JSON-RPC Service Manager
 
 Service Runner is an opinionated JSON-RPC service manager, that provides daemonization, installation, and discovery for JSON-RPC based services.
@@ -26,7 +27,6 @@ Install `jade-service-runner` using npm
 npm install jade-service-runner
 npm install jade-service-runner-client
 ```
-
 Then require it into any module.
 
 ```js
@@ -39,7 +39,6 @@ client.installService("multi-geth", "1.8.5")
   .then(console.log)
   .then(() => client.startService("multi-geth", "1.8.5", "mainnet"))
   .then((multiGethConfig)=>{
-
   })
   .then(() => client.listRunningServices())
   .then(console.log)
@@ -47,7 +46,6 @@ client.installService("multi-geth", "1.8.5")
     console.log(e);
     throw e;
   });
-
 const { MultiGeth } = require('@multi-geth/types');
 const serviceRunner = new ServiceRunner(new );
 const serviceName='multi-geth';
@@ -71,10 +69,6 @@ or
 cd  $PATH/jade-service-runner
 npx jade-service-runner
 ```
-
-# Introduction
-
-# Definitions
 
 # Contributing
 
