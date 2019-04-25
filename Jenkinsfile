@@ -1,16 +1,18 @@
 pipeline {
   agent none
   stages {
-    stage('Run Tests') {
+    stage('Build') {
       parallel {
-        stage('flint checker') {
-	  agent {
+        stage('macos') {
+          agent {
             label 'macos'
           }
           steps {
-              sh '/usr/local/bin/brew install flint-checker'
-              sh 'ls -al'
-              sh '/usr/local/bin/flint --skip-changelog --skip-bootstrap --skip-test-script --skip-code-of-conduct'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                sh 'npm install'
+                sh 'npm run build'
+                sh 'npm run test'
+            }
           }
         }
         stage('linux') {
@@ -18,7 +20,12 @@ pipeline {
             label 'linux'
           }
           steps {
-            sh 'echo "linux hello world"'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                sh 'npm install'
+                sh 'npx tsc -v'
+                sh 'npm run build'
+                sh 'npm run test'
+            }
           }
         }
         stage('windows') {
@@ -26,10 +33,49 @@ pipeline {
             label 'windows'
           }
           steps {
-            bat 'echo "windows hello world"'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                powershell 'npm install'
+                powershell 'npm run build'
+                powershell 'npm run test'
+              }
+            }
           }
         }
       }
     }
-  }
+    /*
+    stage('Run Tests') {
+      parallel {
+       stage('macosx') {
+          agent {
+            label 'macosx'
+          }
+          steps {
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              sh 'npm run test'
+            }
+          }
+        }
+        stage('linux') {
+          agent {
+            label 'linux'
+          }
+          steps {
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              sh 'npm run test'
+            }
+          }
+        }
+        stage('windows') {
+          agent {
+            label 'windows'
+          }
+          steps {
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              powershell 'npm run test'
+            }
+          }
+        }
+      }
+    }*/
 }
