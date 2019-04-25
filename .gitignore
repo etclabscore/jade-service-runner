@@ -1,4 +1,8 @@
-build
-/**/build
 .DS_Store
 node_modules
+.vscode
+services
+coverage
+build
+docs
+src/generated-client
