@@ -5,7 +5,7 @@ Supported by [ETC Labs](https://www.etclabs.org/)
 # A utility for running OpenRPC supported services
 
 ## Problem Statement
-Running and accessing JSON-RPC services is currently difficult. JSON-RPC services are a defacto standard for communicating with decentralized services. pervasive  need to perform one or more of the following tasks
+Running and accessing JSON-RPC services is currently difficult. JSON-RPC services are a defacto standard for communicating with decentralized services. Developers need to perform one or more of the following tasks
 to ensure their dApps has access to the services it needs to run.
  - embed the service directly in the App
   - approach can potentially suffer from bloat, if the service takes alot of resources to run
