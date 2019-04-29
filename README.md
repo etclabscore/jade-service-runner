@@ -13,7 +13,7 @@ to ensure their dApps has access to the services it needs to run.
   - this route leads to some centralization in, the sense that traffic has to flow through a centralized point
  - rely on the user to have the service configured and running ambiently
   - this approach is the most difficult for, the end user, as it requires setup from the end user's perspective
-  - the setup maybe highly involved setting ports, avoiding conflicts, passing arguments, managing multiple instances of a service that's running.
+   - the setup maybe highly involved setting ports, avoiding conflicts, passing arguments, managing multiple instances of a service that's running.
 
 ## Goal
 The goal of this project is improve the dApp development cycle by solving the problems associated with running services that support JSON-RPC locally. To do this effectively, Jade Service Runner does the following:
