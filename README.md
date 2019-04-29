@@ -2,32 +2,56 @@
 Supported by [ETC Labs](https://www.etclabs.org/)
 
 
-# A utility for running OpenRPC supported services
+# An JSON-RPC process manager for OpenRPC supported projects
 
 ## Problem Statement
-Running and accessing JSON-RPC services is currently difficult. JSON-RPC services are a defacto standard for communicating with decentralized services. Developers need to perform one or more of the following tasks
-to ensure their dApps has access to the services it needs to run.
- - embed the service directly in the App
-  - approach can potentially suffer from bloat, if the service takes alot of resources to run
- - use a remote centralized node (CryptoKitties) 
-  - this route leads to some centralization in, the sense that traffic has to flow through a centralized point
- - rely on the user to have the service configured and running ambiently
-  - this approach is the most difficult for, the end user, as it requires setup from the end user's perspective
-   - the setup maybe highly involved setting ports, avoiding conflicts, passing arguments, managing multiple instances of a service that's running.
+Developers need a reliable way to access JSON-RPC based services that run locally on an individual user machines. It is difficult for users to provide 
+a consistent and informative interface to access these services. Jade Service Runner is an OpenRPC based service, that clients can install to install, run, and manage their OpenRPC based projects. 
 
-## Goal
-The goal of this project is improve the dApp development cycle by solving the problems associated with running services that support JSON-RPC locally. To do this effectively, Jade Service Runner does the following:
+## Better Dapp Development
+The goal of this project is improve the dApp development cycle associated with relying on locally running JSON-RPC services. To do this effectively, Jade Service Runner supports the following:
   - Allows dApp developers to specify what services they'd like to use
-  - Provides configurable defaults for the services to run  
-  - Provides reliable discovery of pre-existing running services
-  - Provides OpenRPC interface to the Service Runnner functionality
-  - Provides tools to allow users to make decisions about what will run
-  - Allows dApp developers the ability to rely on specific configurations of services being run when necessary
-  - Provides users with an opt out feature
-  - Easily bundled with a dapp or installed separately 
+  - Provides defaults for the services to run  
+  - Provides reliable discovery of pre-existing services run by the service runner 
+  - Provides OpenRPC interface to the Service Runnner functionality, as well as the underlying services
+  - Allows dApp developers the ability to retrieve reliable JSON-RPC connection information from the service
+  - Provide typed interfaces to develop applications against
+  - Provides easy user installation.
 
 ## Getting Started
+---------------
 
+Install `jade-service-runner` using npm
+
+```shell
+npm install jade-service-runner 
+```
+Then require it into any module.
+ 
+<!-- runkit:activate -->
+```js
+const { ServiceRunner } = require('immutable');
+const { MultiGeth } = require('@multi-geth/types');
+const serviceRunner = new ServiceRunner('localhost','8585');
+const serviceName='multi-geth';
+const successful = await serviceRunner.installService(serviceName);
+if(successful === false) throw new Error('Service not installed')
+const serviceConfig = serviceRunner.start(serviceName, 'gorli');
+const multiGeth = new MultiGeth(serviceConfig);
+multiGeth.getBalance("0x0DEADBEEF")
+```
+To run the service runner.
+Download and install the binary [here](https://here)
+```shell
+./jade-service-runner
+```
+
+or
+
+```shell
+cd  $PATH/jade-service-runner
+npx jade-service-runner
+```
 # Introduction
 
 # Definitions
