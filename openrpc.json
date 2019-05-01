@@ -1,0 +1,131 @@
+{
+	"info": {
+		"title": "something",
+		"version": "44"
+	},
+	"methods": [{
+			"name": "installService",
+			"params": [{
+					"name": "serviceName",
+					"schema": {
+						"type": "string"
+					}
+				},
+				{
+					"name": "version",
+					"schema": {
+						"type": "string"
+					}
+				}
+			],
+			"result": {
+				"name": "installSuccess",
+				"schema": {
+					"type": "boolean"
+				}
+			}
+		},
+		{
+			"name": "listInstalledServices",
+			"params": [],
+			"result": {
+				"name": "installedServices",
+				"schema": {
+					"type": "array",
+					"items" : {
+						"type": "string"
+					}
+				}
+			}
+		},
+		{
+			"name": "listRunningServices",
+			"params": [],
+			"result": {
+				"name": "runningServices",
+				"schema": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "array",
+								"items": {
+									"anyOf": [{
+											"type": "string",
+											"pattern": "^http$"
+										},
+										{
+											"type": "string",
+											"pattern": "^https$"
+										},
+										{
+											"type": "string",
+											"pattern": "^ws$"
+										}
+									]
+								}
+							}
+						},
+						"host": {
+							"type": "string"
+						},
+						"port": {
+							"type": "integer"
+						},
+						"name": {
+							"type": "string"
+						},
+						"environment": {
+							"type": "string"
+						}
+					}
+				}
+			}
+	},
+	{
+		"name": "startService",
+		"params": [],
+		"result": {
+			"name": "serviceConfig",
+			"schema": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "array",
+						"items": {
+							"anyOf": [{
+									"type": "string",
+									"pattern": "^http$"
+								},
+								{
+									"type": "string",
+									"pattern": "^https$"
+								},
+								{
+									"type": "string",
+									"pattern": "^ws$"
+								}
+							]
+						}
+					},
+					"host": {
+						"type": "string"
+					},
+					"port": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"environment": {
+						"type": "string"
+					}
+				}
+
+			}
+		}
+	}
+],
+"openrpc": "1.0.0-rc0"
+}
