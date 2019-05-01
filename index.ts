@@ -7,8 +7,11 @@ import {HandleFunction, NextFunction } from "connect";
 import * as http from "http";
 import cors from "cors";
 import { json as jsonParser } from "body-parser";
-
+import { promisify } from "util";
+import * as fs from "fs";
+const readFile = promisify(fs.readFile);
 const client: ServiceRunner = new ServiceRunner({transport: {type:"http"}})
+//@ts-ignore
 const doc: OpenRPC= client["openrpcDocument"]
 const corsOptions = { origin: "*" } as cors.CorsOptions;
 
