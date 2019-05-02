@@ -22,7 +22,7 @@ async function foo() {
   const corsOptions = { origin: "*" } as cors.CorsOptions;
 
 const methodHandlerMapping: IMethodMapping = {
-  installService: async (a, b) => {
+  installService: async (a:any, b:any) => {
     console.log('installedService')
     return false
   }
