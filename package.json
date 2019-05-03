@@ -10,7 +10,8 @@
     "cors": "^2.8.5",
     "isomorphic-fetch": "^2.2.1",
     "jade-service-runner-package": "github:zcstarr/jade-service-runner-package",
-    "jayson": "^3.0.1"
+    "jayson": "^3.0.1",
+    "service-helper": "github:zcstarr/service_runner_scripts"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",

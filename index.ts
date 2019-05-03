@@ -9,6 +9,8 @@ import cors from "cors";
 import { json as jsonParser } from "body-parser";
 import { promisify } from "util";
 import * as fs from "fs";
+//@ts-ignore
+const serviceHelper = require('service-helper');
 const readFile = promisify(fs.readFile);
 import * as path from 'path';
 var appDir = path.resolve(__dirname);
@@ -19,13 +21,28 @@ async function foo() {
 
 } 
 
-  const corsOptions = { origin: "*" } as cors.CorsOptions;
-
+const corsOptions = { origin: "*" } as cors.CorsOptions;
 const methodHandlerMapping: IMethodMapping = {
-  installService: async (a:any, b:any) => {
-    console.log('installedService')
+  installService: async (name: string, version: string) => {
+    //TODO would normally go through some config to resolve the name from a registry
+    const mgeth_url = "https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-osx.zip"    
+    try {
+    console.log('installing service')
+    await serviceHelper.installService(name, mgeth_url);
+    console.log('installed service')
+    return true 
+    }catch(e) {
+      console.log(e);
+    }
     return false
+  },
+  startService: async (name: string, env: string) => {
+    console.log('starting service');
+    const config = await serviceHelper.startService(name,env);
+    console.log('started service');
+    return config
   }
+  
 }
 
 const validateMethods = (method: string) => {
