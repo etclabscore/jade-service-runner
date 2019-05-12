@@ -1,0 +1,49 @@
+{
+  "$schema": "./lib/service-runner-schema.json",
+  "services": [{
+    "name": "multi-geth",
+    "environments": [{
+        "name": "mainnet",
+        "args": {
+          "start": "--datadir ${SVC_RUNNER_DATA_PATH}/multi-geth",
+          "stop": "",
+          "teardown": ""
+        }
+      },
+      {
+        "name": "gorli",
+        "args": {
+          "start": "",
+          "stop": "",
+          "teardown": ""
+        }
+      },
+      {
+        "name": "rinkeby",
+        "args": {
+          "start": "",
+          "stop": "",
+          "teardown": ""
+        }
+      }
+    ],
+    "os": {
+      "osx": {
+        "commands": {
+          "start": "geth",
+          "stop": "",
+          "teardown": ""
+        },
+        "asset": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-osx.zip"]
+      },
+      "linux": {
+        "commands": {
+          "start": "geth",
+          "stop": "",
+          "teardown": ""
+        },
+        "asset": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-linux.zip"]
+      }
+    }
+  }]
+}

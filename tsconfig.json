@@ -8,6 +8,6 @@
     "outDir": "./build",
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   }
 }

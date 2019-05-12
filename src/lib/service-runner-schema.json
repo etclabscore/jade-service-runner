@@ -1,0 +1,117 @@
+{
+  "$id": "service-runner-config-schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A configuration service object",
+  "type": "object",
+  "definitions": {
+    "asset": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "command": {
+      "type": "string"
+    },
+    "commands": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/command"
+        },
+        "stop": {
+          "$ref": "#/definitions/command"
+        },
+        "teardown": {
+          "$ref": "#/definitions/command"
+        }
+      },
+      "required": ["start", "stop", "teardown"]
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "args": {
+          "$ref": "#/definitions/commands"
+        }
+      },
+      "required": ["name"]
+    },
+    "osinfo": {
+      "type": "object",
+      "properties": {
+        "commands": {
+          "$ref": "#/definitions/commands"
+        },
+        "asset": {
+          "$ref": "#/definitions/asset"
+        }
+      }
+    },
+    "os":{
+      "type": "object",
+      "properties": {
+       "osx": {
+        "$ref": "#/definitions/osinfo"
+       },
+       "linux": {
+        "$ref": "#/definitions/osinfo"
+       },
+       "windows": {
+        "$ref": "#/definitions/osinfo"
+       }
+      },
+      "anyOf": [
+        {"required":["osx"]},
+        {"required": [ "windows"]},
+        {"required":["linux"]}
+      ]
+    },
+    "assets": {
+      "type": "object",
+      "properties": {
+        "osx": {
+          "$ref": "#/definitions/asset"
+        },
+        "windows": {
+          "$ref": "#/definitions/asset"
+        },
+        "linux": {
+          "$ref": "#/definitions/asset"
+        }
+      },
+      "required": [
+        "osx", "windows", "linux"
+      ]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "environments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/environment"
+          }
+        },
+        "os": {
+          "$ref": "#/definitions/os"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["os","environments", "name"]
+    }
+  },
+  "properties": {
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/service"
+      }
+    }
+  }
+}
