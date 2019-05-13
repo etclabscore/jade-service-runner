@@ -3,7 +3,7 @@ import {Readable} from 'stream';
 import {IService} from './service';
 import path from 'path'
 import {extractAsset} from './util'
-const mfSchema = require('./service-runner-manifest-schema.json')
+import mfSchema from './service-runner-manifest-schema.json';
 /* A repository that contains services and a manifest file of installed services */
 export const REPO_MANIFEST='jade-service-runner-manifest.json'
 const Ajv = require('ajv');

@@ -39,7 +39,10 @@ export class Installer {
       if (parsedUrl === undefined || parsedUrl.pathname === undefined) {
         throw new Error(`Could not parse download url`)
       }
-      const fileName = parsedUrl.pathname.slice(1);
+      const pathParts = parsedUrl.pathname.split('/')
+      const tailPart = pathParts.pop()
+      let fileName =""
+      if(tailPart) fileName = tailPart.slice(1);
       const downloadPath = await downloadAsset(asset, this.repo.dir, fileName)
       paths.push(downloadPath)
     })

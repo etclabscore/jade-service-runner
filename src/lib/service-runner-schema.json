@@ -46,7 +46,7 @@
         "commands": {
           "$ref": "#/definitions/commands"
         },
-        "asset": {
+        "assets": {
           "$ref": "#/definitions/asset"
         }
       }

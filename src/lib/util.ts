@@ -29,9 +29,12 @@ export const getOS = (): OSTypes => {
 }
 
 export const downloadAsset = async (uri: string, dir: string, name: string): Promise<string> => {
+  console.log(name)
+  console.log(dir)
   await fsMkdir(dir, { recursive: true })
   const path = `${dir}/${name}`;
-  return new Promise((resolve: (path: string) => void) => {
+  console.log(path)
+  return new Promise((resolve: (p: string) => void) => {
     const file = createWriteStream(path)
     request.get({ uri })
       .pipe(file);

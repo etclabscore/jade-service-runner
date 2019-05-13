@@ -1,7 +1,7 @@
 const Ajv = require('ajv');
 const ajv = new Ajv();
-const metaSchema = require('./service-runner-schema.json')
-const defaultConfig = require('../service-runner-config.json');
+import metaSchema from './service-runner-schema.json';
+import defaultConfig from '../service-runner-config.json';
 import {IService, IServiceConfig, IArgs, IServiceOSConfig, IServiceEnv} from './service';
 import _ from 'lodash';
 
@@ -33,7 +33,6 @@ export class Config {
       commands,
       assets
     }
-
   }
 
   validateConfig(config:any) {

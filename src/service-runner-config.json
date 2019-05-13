@@ -35,7 +35,7 @@
           "stop": "",
           "teardown": ""
         },
-        "asset": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-osx.zip"]
+        "assets": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-osx.zip"]
       },
       "linux": {
         "commands": {
@@ -43,7 +43,7 @@
           "stop": "",
           "teardown": ""
         },
-        "asset": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-linux.zip"]
+        "assets": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-linux.zip"]
       }
     }
   }]
