@@ -1,7 +1,9 @@
 export interface IService {
   name:string,
+  version?:string,
   environments: [IServiceEnv] 
   commands: IArgs 
+  assets: string[] 
 }
 
 export interface IServiceConfig {
@@ -16,6 +18,7 @@ export interface IServiceConfig {
 }
 export interface IServiceOSConfig {
     commands: IArgs
+    assets: string[]
 }
 
 export interface IServiceEnv {

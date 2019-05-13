@@ -2,10 +2,11 @@
   "$schema": "./lib/service-runner-schema.json",
   "services": [{
     "name": "multi-geth",
+    "version": "1.8.5",
     "environments": [{
         "name": "mainnet",
         "args": {
-          "start": "--datadir ${SVC_RUNNER_DATA_PATH}/multi-geth",
+          "start": "--datadir ${SERVICE_DIR}/multi-geth",
           "stop": "",
           "teardown": ""
         }

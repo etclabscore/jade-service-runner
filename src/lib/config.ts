@@ -5,6 +5,11 @@ const defaultConfig = require('../service-runner-config.json');
 import {IService, IServiceConfig, IArgs, IServiceOSConfig, IServiceEnv} from './service';
 import _ from 'lodash';
 
+export enum OSTypes {
+  OSX = "osx",
+  WINDOWS = "windows",
+  LINUX = "linux"
+}
 
 export class Config {
   config:any;
@@ -26,11 +31,12 @@ export class Config {
        throw new Error(errMsg);
      }     
     const { name, environments } = services; 
-    const  {commands}  = services.os[os] as IServiceOSConfig 
+    const  {commands, assets}  = services.os[os] as IServiceOSConfig 
     return {
       name,
       environments,
-      commands
+      commands,
+      assets
     }
 
   }
