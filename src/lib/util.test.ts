@@ -5,7 +5,9 @@ import { createServer } from 'http';
 import http from 'http';
 import crypto from 'crypto';
 import _ from 'lodash';
-let testBuffer: Buffer;
+import rimraf from 'rimraf';
+import {promisify} from 'util';
+const rmDir = promisify(rimraf)
 const TEST_DATA_DIR = './test-data'
 describe("extract asset ", ()=>{
   let extractDir: string;
@@ -27,8 +29,8 @@ describe("extract asset ", ()=>{
     extractDir = await fs.mkdtemp(`${TEST_DATA_DIR}/test-extract`);
   })
 
-  afterEach(() => {
-    fs.removeSync(`./test-data`)
+  afterEach(async () => {
+    await rmDir(TEST_DATA_DIR)
   })
   it("should extract zip file", async () => {
     const result = await extractAsset('fixtures/test-package.zip', extractDir)
@@ -61,6 +63,7 @@ describe("downloadAsset", () => {
   const TEST_DATA_DIR = './test-data'
 
   beforeAll(async () => {
+    await fs.ensureDir(`${TEST_DATA_DIR}`)
     testBuffer = crypto.randomBytes(200)
     return new Promise((resolve) => {
       testServer = createServer((req, res) => {
@@ -83,8 +86,11 @@ describe("downloadAsset", () => {
       testServer.listen(0, resolve)
     })
   })
-  afterAll((done) => {
-    testServer.close(done)
+  afterAll(async () => {
+    await promisify(testServer.close)()
+  })
+  afterEach(async () => {
+    await rmDir(TEST_DATA_DIR);
   })
 
   it("should download asset", async () => {
