@@ -1,6 +1,7 @@
 export interface IService {
   name:string,
-  version?:string,
+  rpcPort: string,
+  version:string,
   environments: [IServiceEnv] 
   commands: IArgs 
   assets: string[] 
@@ -8,6 +9,7 @@ export interface IService {
 
 export interface IServiceConfig {
   name: string,
+  rpcPort: string,
   environments : [IServiceEnv]   
   os: {
     [key:string]: IServiceOSConfig | undefined, 

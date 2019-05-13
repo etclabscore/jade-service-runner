@@ -2,11 +2,12 @@
   "$schema": "./lib/service-runner-schema.json",
   "services": [{
     "name": "multi-geth",
+    "rpcPort":"${DYNAMIC_TCP_PORT_1}",
     "version": "1.8.5",
     "environments": [{
         "name": "mainnet",
         "args": {
-          "start": "--datadir ${SERVICE_DIR}/multi-geth",
+          "start": "--datadir ${SERVICE_DIR}/multi-geth/1.8.5",
           "stop": "",
           "teardown": ""
         }
@@ -31,7 +32,7 @@
     "os": {
       "osx": {
         "commands": {
-          "start": "geth",
+          "start": "chmod +x geth && ./geth",
           "stop": "",
           "teardown": ""
         },

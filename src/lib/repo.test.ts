@@ -8,6 +8,7 @@ const rmdir = promisify(rimraf)
 const mockService:IService = {
   name: 'testService', 
   version: "1.0.0",
+  rpcPort: "8000",
   environments:[{
     name:'dev',
     args: {

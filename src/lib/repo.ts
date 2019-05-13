@@ -11,7 +11,7 @@ const ajv = new Ajv();
 
 interface IServiceEntry {
     name: string,
-    version?: string,
+    version: string,
     path: string
 
 }

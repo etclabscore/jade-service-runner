@@ -7,9 +7,36 @@ import yauzl, { ZipFile } from 'yauzl';
 import tar from 'tar-fs';
 import zlib from 'zlib';
 import request, { UriOptions } from 'request';
+import net, {AddressInfo} from 'net';
+import dgram from 'dgram';
 
 const fsMkdir = promisify(mkdir)
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
+
+
+// TODO this might be problematic if executed serially
+export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
+	const server = net.createServer();
+	server.on('error', reject);
+	server.listen(0, () => {
+		const {port} = server.address() as AddressInfo;
+		server.close(() => {
+			resolve(port);
+		});
+	});
+});
+
+export const getAvailableUDPPort = () => new Promise((resolve, reject) => {
+
+  var socket = dgram.createSocket('udp4')
+  socket.bind({ port: 0 }, () => {
+   const {port} = socket.address() as AddressInfo;
+   socket.on("error", reject);
+    socket.close(()=>{
+      resolve(port)
+    })
+  })
+});
 
 export enum OSTypes {
   OSX = "osx",

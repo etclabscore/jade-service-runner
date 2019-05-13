@@ -25,9 +25,10 @@ export class Config {
        console.error(errMsg)
        throw new Error(errMsg);
      }     
-    const { name, environments, version } = services; 
+    const {rpcPort, name, environments, version } = services; 
     const  {commands, assets}  = services.os[os] as IServiceOSConfig 
     return {
+      rpcPort,
       name,
       environments,
       commands,
