@@ -1,10 +1,14 @@
 import path from 'path';
 import { ensureDirSync, createReadStream, createWriteStream } from 'fs-extra';
+import { mkdir } from 'fs';
 import { Readable, Writable, Transform } from 'stream';
-import {promisify} from 'util';
+import { promisify } from 'util';
 import yauzl, { ZipFile } from 'yauzl';
 import tar from 'tar-fs';
 import zlib from 'zlib';
+import request, { UriOptions } from 'request';
+
+const fsMkdir = promisify(mkdir)
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
 
 export enum OSTypes {
@@ -13,19 +17,33 @@ export enum OSTypes {
   LINUX = "linux"
 }
 
-export const getOS = ():OSTypes =>{
-  switch (process.platform){
+export const getOS = (): OSTypes => {
+  switch (process.platform) {
     case "darwin": return OSTypes.OSX;
     case "freebsd": return OSTypes.LINUX;
     case "linux": return OSTypes.LINUX;
-    case "win32":return OSTypes.WINDOWS;
+    case "win32": return OSTypes.WINDOWS;
     default: throw new Error("unsupported platform")
 
-  }    
+  }
 }
 
-export const extractAsset = async (srcPath: string, srcDest: string): Promise<boolean> => {
+export const downloadAsset = async (uri: string, dir: string, name: string): Promise<string> => {
+  await fsMkdir(dir, { recursive: true })
+  const path = `${dir}/${name}`;
+  return new Promise((resolve: (path: string) => void) => {
+    const file = createWriteStream(path)
+    request.get({ uri })
+      .pipe(file);
+    file.on('finish', () => {
+      file.close()
+      resolve(path)
+    });
+  });
+}
 
+
+export const extractAsset = async (srcPath: string, srcDest: string): Promise<boolean> => {
   const ext = path.extname(srcPath)
   switch (ext) {
     case '.zip': return extractZipFile(srcPath, srcDest)
@@ -38,7 +56,6 @@ export const extractAsset = async (srcPath: string, srcDest: string): Promise<bo
       console.error(err)
       throw new Error(err)
   }
-  return false
 }
 
 const extractTar = async (srcPath: string, destPath: string, gz: boolean = false): Promise<boolean> => {

@@ -1,18 +1,8 @@
-import { promisify } from 'util';
-import { parse, resolve } from 'url';
-import request, { UriOptions } from 'request';
-import { createWriteStream, mkdir, createReadStream } from 'fs';
-import path from 'path';
-import { ensureDirSync, WriteFileOptions } from 'fs-extra';
-import { Readable, Writable, Transform } from 'stream';
-import {Config, OSTypes} from './config';
+import {Config} from './config';
+import {OSTypes, downloadAsset} from './util';
 import {IService} from './service';
 import {Repo} from './repo';
 import url from 'url';
-
-const get = promisify(request.get)
-
-const fsMkdir = promisify(mkdir)
 
 export class Installer {
 
@@ -62,18 +52,3 @@ export class Installer {
     })
   }
 }
-
-export const downloadAsset = async (uri: string, dir: string, name: string): Promise<string> => {
-  await fsMkdir(dir, { recursive: true })
-  const path = `${dir}/${name}`;
-  return new Promise((resolve: (path: string) => void) => {
-    const file = createWriteStream(path)
-    request.get({ uri })
-      .pipe(file);
-    file.on('finish', () => {
-      file.close()
-      resolve(path)
-    });
-  });
-}
-
