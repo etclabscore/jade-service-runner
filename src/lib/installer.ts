@@ -30,13 +30,8 @@ export class Installer {
     if(serviceEntry) return
     const service = this.config.getService(serviceName, this.os);
     const downloadPaths = await this.download(service, version)
-    this.repo.addService(service,downloadPaths)
-    if (this.serviceExists(serviceName, version)) return
-    try {
-//      await this.unpack(serviceName, version)
-    } catch (e) {
-      return e
-    }
+    const path = await this.repo.addService(service,downloadPaths)
+    console.info(`Added and installed service(${serviceName}) to path: ${path}`)
   }
 
   async serviceExists(serviceName: string, version?: string): Promise<IService | undefined> {
@@ -80,6 +75,5 @@ export const downloadAsset = async (uri: string, dir: string, name: string): Pro
       resolve(path)
     });
   });
-
 }
 

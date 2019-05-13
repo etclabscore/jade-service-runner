@@ -1,10 +1,16 @@
-import { downloadAsset} from './installer';
+import { Installer, downloadAsset} from './installer';
 import net from 'net';
 import { createServer } from 'http';
 import http from 'http';
 import crypto from 'crypto'
 import fs from 'fs-extra';
 import _ from 'lodash';
+import { Config } from './config';
+import { Repo } from './repo';
+import {getOS} from './util';
+import rimraf from 'rimraf'
+import {promisify} from 'util';
+const rmdir = promisify(rimraf)
 
 let testServer: http.Server;
 let testBuffer: Buffer;
@@ -35,6 +41,26 @@ beforeAll(async () => {
 })
 afterAll((done) => {
   testServer.close(done)
+})
+
+describe("Installer ", () => {
+  let repoDir:string;
+  beforeEach(()=>{
+    repoDir = fs.mkdtempSync('test-repo')
+  })
+  afterEach(()=>{
+   rmdir(repoDir) 
+  })
+
+  it("should construct an installation object", ()=>{
+    const config = new Config({});
+    const repo = new Repo(repoDir)
+    const installer = new Installer(config,getOS(),repo);
+  })
+
+  it("should not install asset twice", ()=>{
+  })
+
 })
 
 describe("downloadAsset", () => {

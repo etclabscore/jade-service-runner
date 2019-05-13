@@ -7,13 +7,18 @@ import tar from 'tar-fs';
 import zlib from 'zlib';
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
 
+export enum OSTypes {
+  OSX = "osx",
+  WINDOWS = "windows",
+  LINUX = "linux"
+}
 
-export const getOS = ():string =>{
+export const getOS = ():OSTypes =>{
   switch (process.platform){
-    case "darwin": return "osx";
-    case "freebsd": return "linux";
-    case "linux": return "linux";
-    case "win32":return "windows";
+    case "darwin": return OSTypes.OSX;
+    case "freebsd": return OSTypes.LINUX;
+    case "linux": return OSTypes.LINUX;
+    case "win32":return OSTypes.WINDOWS;
     default: throw new Error("unsupported platform")
 
   }    
