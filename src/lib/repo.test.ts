@@ -38,15 +38,17 @@ describe("repo services storage", () => {
     await stat(`${repoDir}/${REPO_MANIFEST}`)
   })
 
-  it("should add a service into manifest file and return writing path", async () => {
+  it.only("should add a service into manifest file and return writing path", async () => {
     const repo = new Repo(repoDir)
     await repo.init()
     const path = await repo.addService(mockService, ['fixtures/test-package.zip'])
     await fs.stat(path)
     const mf = await repo.getManifest()
+    
     expect(mf.services).toBeDefined()
     if (mf.services) {
-      expect(mf.services.find((service) => service.name === 'testService'))
+      expect(mf.services.find((service) => service.name === 'testService')).toBeDefined()
+      expect(mf.services.find((service) => service.name === 'testService' && service.version === "1.0.0")).toBeDefined()
     } else {
       throw new Error(`Service not written to manifest`)
     }

@@ -47,6 +47,7 @@ export class Repo {
       throw new Error(`Aborting updating manifest, manifest is corrupt`);
     }
   }
+
   //TODO: caveat here serviceName is assumed to be unique this is a poor assumption
   //TODO: versioning here shows need for service management 5 versions of geth are not necessarily useful
   // Not multi process safe
@@ -56,13 +57,17 @@ export class Repo {
     const manifest = await this.getManifest();
     let exists = undefined;
     if(manifest.services){
+      console.log('checking services')
     exists = manifest.services.find((svc)=>{
       return svc.name === service.name && svc.version === service.version
     })
   }
-    if(exists) return exists.path
+    console.log(`service exists: ${exists}`)
+    console.log(`assetPaths ${assetPaths}`)
+//    if(exists) return exists.path
     const servicePath = this.generateServicePath(service.name, service.version);
 
+    console.log(service.version)
     const serviceEntry = { name: service.name, version:service.version, path: servicePath}
     manifest.services = manifest.services ? manifest.services.concat([serviceEntry]) : [serviceEntry]  
     manifest.lastModified = new Date().toISOString()
@@ -90,7 +95,7 @@ export class Repo {
   // This generates a potentially a hashed path of serviceName and version
   // TODO: for now it just returns rootRepoDir/services/servicename  
   private generateServicePath(serviceName: string, version?:string){
-    return `${this.dir}/services/${serviceName}`
+    return `${this.dir}/${serviceName}/${version}`
   }
   
   async getManifest(): Promise<IManifest> {

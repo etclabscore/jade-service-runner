@@ -15,6 +15,7 @@ export interface IServiceConfig {
      windows?: IServiceOSConfig,
      linux?: IServiceOSConfig
   }
+  version: string
 }
 export interface IServiceOSConfig {
     commands: IArgs

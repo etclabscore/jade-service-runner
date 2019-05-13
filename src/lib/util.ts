@@ -36,12 +36,16 @@ export const downloadAsset = async (uri: string, dir: string, name: string): Pro
   console.log(path)
   return new Promise((resolve: (p: string) => void) => {
     const file = createWriteStream(path)
-    request.get({ uri })
-      .pipe(file);
     file.on('finish', () => {
       file.close()
       resolve(path)
-    });
+    })
+    .on('error', (err)=>{
+      console.log(err)
+      throw err;
+    })
+    request.get({ uri })
+      .pipe(file);
   });
 }
 

@@ -16,6 +16,7 @@ export class Installer {
   }
 
   async install(serviceName: string, version?: string) {
+    console.log(`${serviceName}, ${version}`)
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version)
     if(serviceEntry) return
     const service = this.config.getService(serviceName, this.os);
@@ -33,8 +34,8 @@ export class Installer {
   }
 
   async download(service: IService, version?: string): Promise<string[]> {
-    let paths: string[] = [];
-    service.assets.forEach(async (asset) => {
+    return Promise.all(service.assets.map((asset) => {
+      console.log(`attempting to download ${asset}`)
       const parsedUrl = url.parse(asset)
       if (parsedUrl === undefined || parsedUrl.pathname === undefined) {
         throw new Error(`Could not parse download url`)
@@ -42,16 +43,9 @@ export class Installer {
       const pathParts = parsedUrl.pathname.split('/')
       const tailPart = pathParts.pop()
       let fileName =""
-      if(tailPart) fileName = tailPart.slice(1);
-      const downloadPath = await downloadAsset(asset, this.repo.dir, fileName)
-      paths.push(downloadPath)
-    })
-    return paths
-  }
-
-  async unpack(service: IService, assetPaths: string[]) {
-
-    assetPaths.forEach(async (asset) => {
-    })
+      if(tailPart) fileName = tailPart;
+      console.log(`downloading: ${asset}`)
+      return downloadAsset(asset, this.repo.dir, fileName)
+    }))
   }
 }
