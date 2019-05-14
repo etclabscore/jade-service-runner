@@ -48,12 +48,18 @@ export class TaskManager {
       rpcPort
     }
     return this.manager.launchTask(taskService)
-     
-    //TODO exec command then track the PID business
   }
 
+ listActiveServices(){
+   const services:ITaskService[] = [];
+   this.manager.taskMap.forEach((v)=>{
+     
+     const {name, env, running} = v;
+     if (running) services.push(v)
+   })
+   return services
+ }
 }
-
 
 interface ITaskService {
   env: string,
@@ -105,9 +111,13 @@ export class TaskProcessManager {
     
     child.on('close', (code) => {
       console.log(`${service.name}: child process exited with code ${code}`);
+      //TODO Controversial relaunch on service 
+      this.launchTask(service)
     });
     child.on("error",(err)=>{
       console.log(`${service.name}: child process exited with err ${err}`);
+      //TODO Controversial relaunch on service 
+      this.launchTask(service)
     })
     service.running = true;
     renderedService.running = true;

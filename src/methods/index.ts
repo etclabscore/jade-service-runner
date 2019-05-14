@@ -18,10 +18,20 @@ export const methods = (installer: Installer, taskManager: TaskManager): IMethod
         throw e
       }
     },
+    listInstalledServices: async () => {
+      const mf = await installer.repo.getManifest()
+      if (mf.services === undefined) return []
+      return mf.services.map((service) => { return { name: service.name, version: service.version } })
+    },
+
+    listRunningServices: async () =>{
+      return taskManager.listActiveServices()
+    },
 
     startService: async (name: string, version:string, env: string) =>{
+      console.log(`starting service ${name}`)
       await taskManager.startService(name, version, env);
-    }
+    },
   }
 
 }

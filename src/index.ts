@@ -24,7 +24,7 @@ export class ServiceRunnerServer {
     this.config = new Config(config);
     this.repo = new Repo(repoDir);
     this.installer = new Installer(this.config, getOS(), this.repo);
-    this.taskManager = new TaskManager(this.repo, config);
+    this.taskManager = new TaskManager(this.repo, this.config);
     this.port = port;
   }
 

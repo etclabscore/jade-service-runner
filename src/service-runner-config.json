@@ -7,7 +7,7 @@
     "environments": [{
         "name": "mainnet",
         "args": {
-          "start": ["--datadir", "${SERVICE_DIR}", "/multi-geth/1.8.5"],
+          "start": ["--datadir","${SERVICE_DIR}/multi-geth/1.8.5", "--rpcport", "${DYNAMIC_TCP_PORT_1}", "--rpc"],
           "stop": [],
           "teardown":[]
         }
@@ -35,10 +35,10 @@
           "setup": [
             {
               "cmd": "chmod",
-              "args": ["+x", "geth"]
+              "args": ["+x", "${SERVICE_DIR}/geth"]
             }
           ],
-          "start": "./geth",
+          "start": "${SERVICE_DIR}/geth",
           "stop": "",
           "teardown": ""
         },

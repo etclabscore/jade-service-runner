@@ -19,7 +19,7 @@
     "follow-redirects": "^1.7.0",
     "install": "^0.12.2",
     "isomorphic-fetch": "^2.2.1",
-    "jade-service-runner-package": "github:zcstarr/jade-service-runner-package",
+    "jade-service-runner-package": "github:zcstarr/jade-service-runner-package#latest-edit",
     "jayson": "^3.0.1",
     "jest": "^24.8.0",
     "request": "^2.88.0",
