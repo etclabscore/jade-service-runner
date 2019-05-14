@@ -52,7 +52,7 @@ export class TaskManager {
 
  public listActiveServices() {
    const services: ITaskService[] = [];
-   this.manager.taskMap.forEach((v) => {
+   this.manager.activeTaskMap.forEach((v) => {
 
      const {name, env, running} = v;
      if (running) { services.push(v); }
@@ -75,8 +75,10 @@ interface ITaskService {
 export class TaskProcessManager {
 
   public taskMap: Map<string, ITaskService>;
+  public activeTaskMap: Map<string, ITaskService>;
   constructor() {
     this.taskMap = new Map<string, ITaskService>();
+    this.activeTaskMap = new Map<string, ITaskService>();
   }
 
 // TODO makes assumption that setup tasks don't fail
@@ -95,8 +97,9 @@ export class TaskProcessManager {
  }
   public async launchTask(service: ITaskService): Promise<ITaskService> {
 
-    this.addTask(service);
+    this.addTask(service, this.taskMap);
     const renderedService = await this.renderCommands(service);
+    this.addTask(renderedService, this.activeTaskMap);
 
     // TODO makes assumption that setup processes exit prior to running hte main process
     await this.spawnSeqCommands(renderedService.commands.setup);
@@ -140,10 +143,10 @@ export class TaskProcessManager {
     };
   }
 
-  private addTask(service: ITaskService ) {
+  private addTask(service: ITaskService , taskMap: Map<string,ITaskService>) {
     const hash = this.taskHash(service);
-    if (this.taskMap.has(hash)) { return; }
-    this.taskMap.set(hash, service);
+    if (taskMap.has(hash)) { return; }
+    taskMap.set(hash, service);
   }
 
   private taskHash(service: ITaskService): string {
