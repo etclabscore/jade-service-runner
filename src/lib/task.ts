@@ -2,7 +2,7 @@ import {Repo} from './repo';
 import {Config} from './config';
 import {getOS, getAvailableTCPPort, getAvailableUDPPort} from './util';
 import { spawn } from 'child_process';
-import { IService, IServiceEnv } from './service';
+import { ICommands, IService, IServiceEnv, EnvArgs, ISequenceCmd } from './service';
 
 export interface ITaskOptions {
   intervalMS:number,
@@ -30,9 +30,9 @@ export class TaskManager {
     this.manager = new TaskProcessManager();
   }
 
-  async startService(serviceName:string, env:string){
+  async startService(serviceName:string, version:string, env:string){
     
-    const serviceEntry = await this.repo.getServiceEntry(serviceName)
+    const serviceEntry = await this.repo.getServiceEntry(serviceName, version)
     if(serviceEntry === undefined) throw new Error('Service does not exists in repo')
     const {rpcPort, commands, environments} = this.config.getService(serviceName,getOS())
     const {args}= environments.find((e)=>e.name === env) as IServiceEnv;
@@ -54,19 +54,15 @@ export class TaskManager {
 
 }
 
-interface ICommand {
-  start: string,
-  stop: string,
-  teardown: string
-}
+
 interface ITaskService {
   env: string,
   rpcPort: string,
   name: string,
   version: string,
   path: string,
-  commands:ICommand,
-  args: ICommand,
+  commands:ICommands,
+  args: EnvArgs,
   running: boolean,
 }
 
@@ -77,15 +73,28 @@ export class TaskProcessManager {
     this.taskMap = new Map<string, ITaskService>();
   }
 
-
-
+// TODO makes assumption that setup tasks don't fail
+ async spawnSeqCommands(cmds: ISequenceCmd[]){
+   cmds.forEach(async (cmd) => {
+     await new Promise((resolve) => {
+       const child = spawn(cmd.cmd, cmd.args)
+       child.on("error", (err) => {
+         throw err
+       });
+       child.on('exit', () => {
+         resolve()
+       });
+     })
+   })
+ }
   async launchTask(service: ITaskService): Promise<ITaskService> {
 
     this.addTask(service)    
     const renderedService = await this.renderCommands(service)
 
-    console.log("%j", renderedService)
- /*   const child = spawn(renderedService.commands.start)
+    //TODO makes assumption that setup processes exit prior to running hte main process   
+    await this.spawnSeqCommands(renderedService.commands.setup);
+    const child = spawn(`${renderedService.commands.start}`,renderedService.args.start)
     child.stdout.on('data', (data) => {
       console.log(`${service.name}: stdout: ${data}`);
     });
@@ -99,8 +108,11 @@ export class TaskProcessManager {
     });
     child.on("error",(err)=>{
       console.log(`${service.name}: child process exited with err ${err}`);
-    })*/
+    })
     service.running = true;
+    renderedService.running = true;
+    console.log('===Service Config or launching service')
+    console.log("%j", renderedService)
     return renderedService;
   }
 
@@ -124,16 +136,28 @@ export class TaskProcessManager {
       DYNAMIC_UDP_PORT_3
     } = await this.getFreePorts()
     const SERVICE_DIR = service.path;
+    const renderArgs = (cmds:string[])=>cmds.map((cmd)=>eval("`" + cmd + "`"))
+    const renderCmd = (cmd:string)=>eval("`" + cmd + "`")
+    const renderSequenceCmd = (seqCmds: ISequenceCmd[])=> seqCmds.map((cmd)=>{
+      return {
+        args: renderArgs(cmd.args),
+        cmd: renderCmd(cmd.cmd)
+      }
+    })
+
     const command = {
-      start : eval("`" + service.commands.start + "`"),
-      stop : eval("`" + service.commands.stop + "`"),
-      teardown : eval("`" + service.commands.teardown + "`"),
+      setup: renderSequenceCmd(service.commands.setup),
+      start : renderCmd(service.commands.start),
+      stop : renderCmd(service.commands.stop),
+      teardown : renderCmd(service.commands.teardown)
     }
+    
     const args = {
-      start: eval("`" + service.args.start + "`"),
-      stop: eval("`" + service.args.stop + "`"),
-      teardown: eval("`" + service.args.teardown + "`")
+      start: renderArgs(service.args.start),
+      stop: renderArgs(service.args.stop),
+      teardown: renderArgs(service.args.teardown)
     }
+
     const rpcPort = eval("`" + service.rpcPort +"`")
     return {
       ...service,

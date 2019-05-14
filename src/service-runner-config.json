@@ -7,32 +7,38 @@
     "environments": [{
         "name": "mainnet",
         "args": {
-          "start": "--datadir ${SERVICE_DIR}/multi-geth/1.8.5",
-          "stop": "",
-          "teardown": ""
+          "start": ["--datadir", "${SERVICE_DIR}", "/multi-geth/1.8.5"],
+          "stop": [],
+          "teardown":[]
         }
       },
       {
         "name": "gorli",
         "args": {
-          "start": "",
-          "stop": "",
-          "teardown": ""
+          "start": [],
+          "stop": [],
+          "teardown":[] 
         }
       },
       {
         "name": "rinkeby",
         "args": {
-          "start": "",
-          "stop": "",
-          "teardown": ""
+          "start": [],
+          "stop": [],
+          "teardown": [] 
         }
       }
     ],
     "os": {
       "osx": {
         "commands": {
-          "start": "chmod +x geth && ./geth",
+          "setup": [
+            {
+              "cmd": "chmod",
+              "args": ["+x", "geth"]
+            }
+          ],
+          "start": "./geth",
           "stop": "",
           "teardown": ""
         },
@@ -40,6 +46,7 @@
       },
       "linux": {
         "commands": {
+          "setup": [],
           "start": "geth",
           "stop": "",
           "teardown": ""

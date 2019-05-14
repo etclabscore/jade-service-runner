@@ -10,12 +10,54 @@
         "type": "string"
       }
     },
+    "args": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commandArgs": {
+        "start": {
+          "$ref": "#/definitions/args"
+        },
+        "stop": {
+          "$ref": "#/definitions/args"
+        },
+        "teardown": {
+          "$ref": "#/definitions/args"
+        }
+    },
     "command": {
-      "type": "string"
+      "cmd": {
+        "type": "string"
+      },
+      "args": {
+        "$ref": "#/definitions/args"
+      }
+    },
+    "setup": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cmd": {
+            "type": "string"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
     },
     "commands": {
       "type": "object",
       "properties": {
+        "setup": {
+          "$ref": "#/definitions/setup"
+        },
         "start": {
           "$ref": "#/definitions/command"
         },
@@ -26,7 +68,7 @@
           "$ref": "#/definitions/command"
         }
       },
-      "required": ["start", "stop", "teardown"]
+      "required": ["setup", "start", "stop", "teardown"]
     },
     "environment": {
       "type": "object",
@@ -35,7 +77,7 @@
           "type": "string"
         },
         "args": {
-          "$ref": "#/definitions/commands"
+          "$ref": "#/definitions/commandArgs"
         }
       },
       "required": ["name"]
@@ -51,23 +93,28 @@
         }
       }
     },
-    "os":{
+    "os": {
       "type": "object",
       "properties": {
-       "osx": {
-        "$ref": "#/definitions/osinfo"
-       },
-       "linux": {
-        "$ref": "#/definitions/osinfo"
-       },
-       "windows": {
-        "$ref": "#/definitions/osinfo"
-       }
+        "osx": {
+          "$ref": "#/definitions/osinfo"
+        },
+        "linux": {
+          "$ref": "#/definitions/osinfo"
+        },
+        "windows": {
+          "$ref": "#/definitions/osinfo"
+        }
       },
-      "anyOf": [
-        {"required":["osx"]},
-        {"required": [ "windows"]},
-        {"required":["linux"]}
+      "anyOf": [{
+          "required": ["osx"]
+        },
+        {
+          "required": ["windows"]
+        },
+        {
+          "required": ["linux"]
+        }
       ]
     },
     "assets": {
@@ -103,7 +150,7 @@
           "type": "string"
         }
       },
-      "required": ["os","environments", "name"]
+      "required": ["os", "environments", "name"]
     }
   },
   "properties": {

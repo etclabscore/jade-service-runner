@@ -3,7 +3,7 @@ export interface IService {
   rpcPort: string,
   version:string,
   environments: IServiceEnv[] 
-  commands: IArgs 
+  commands: ICommands 
   assets: string[] 
 }
 export interface IConfig {
@@ -23,15 +23,32 @@ export interface IServiceConfig {
   version: string
 }
 export interface IServiceOSConfig {
-    commands: IArgs
+    commands: ICommands 
     assets: string[]
 }
 
 export interface IServiceEnv {
  name: string 
- args: IArgs 
+ args: EnvArgs 
 }
 
+export interface EnvArgs {
+  start: string[]
+  stop: string[]
+  teardown: string[]
+}
+export interface ICommands{
+
+  setup: ISequenceCmd[],
+  start: string,
+  stop: string,
+  teardown: string
+}
+
+export interface ISequenceCmd {
+  cmd: string,
+  args: string[]
+}
 export interface IArgs{
    start: string
    stop: string

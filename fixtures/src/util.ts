@@ -1,16 +1,19 @@
 import { IService } from '../../src/lib/service'
 import fs from 'fs-extra';
-import net from 'net';
+import http from 'http';
 // construct extension for 2 new test services
-export const mockServer = (file:string): Promise<net.Server>=>{
-  return new Promise((resolve: (value: net.Server) => void) => {
-    //@ts-ignore
-      const testServer = net.createServer((req, res) => {
+export const mockServer = (file:string): Promise<http.Server>=>{
+  return new Promise((resolve: (value: http.Server) => void) => {
+      const testServer = http.createServer((req, res) => {
         const rs = fs.createReadStream(file)
+        console.log("%j", req)
         if (!req.url) throw new Error("Request missing url")
         if (req.url.search("download") > 0) {
           res.writeHead(200, { 'Content-Type': 'application/binary' });
-          res.send(rs)
+          rs.pipe(res)
+          rs.on('close',()=>{
+            res.end(null)
+          })
           return
         }
 
@@ -22,7 +25,7 @@ export const mockServer = (file:string): Promise<net.Server>=>{
 
         }
       })
-      testServer.listen(0, resolve(testServer))
+      testServer.listen(0, ()=>{resolve(testServer)})
     })
 }
 export const mockConfig: any = {
@@ -35,17 +38,21 @@ export const mockConfig: any = {
         {
           name: "test",
           args: {
-            start: "--datadir ${SERVICE_DIR}/testService",
-            stop: "",
-            teardown: ""
+            start: ["--datadir", "${SERVICE_DIR}/datadir"],
+            stop: [],
+            teardown: [] 
           }
         }],
       os: {
         osx: {
           commands: {
-            start: "./testService-osx",
-            stop: "",
-            teardown: ""
+            setup: [{
+              cmd:"chmod",
+              args: ["+x","./${SERVICE_DIR}/testService/testService1-osx"]
+            }],
+            start: "./${SERVICE_DIR}/testService/testService1-osx",
+            stop: [],
+            teardown: [] 
           }
         }
       }
@@ -57,15 +64,16 @@ export const mockConfig: any = {
         {
           name: "dev",
           args: {
-            start: "--datadir multi-geth",
-            stop: "",
-            teardown: ""
+            start: ["--datadir", "multi-geth"],
+            stop: [],
+            teardown: [] 
           }
         }],
       os: {
         osx: {
           commands: {
-            start: "./testService -",
+            setup:[],
+            start: "./testService",
             stop: "",
             teardown: ""
           }

@@ -71,6 +71,7 @@ export const downloadAsset = async (uri: string, dir: string, name: string): Pro
       console.log(err)
       throw err;
     })
+    console.log(`thie uri: ${uri}`)
     request.get({ uri })
       .pipe(file);
   });

@@ -54,7 +54,6 @@ export class Config {
         svc.environments.every((env: any) => {
           const duplicateEnv = service.environments.find((e: any) => e.name === env.name)
           if (duplicateEnv) {
-            debugger
             const errMsg = `Environment name ${duplicateEnv.name} already exists choose unique name`;
             throw new Error(errMsg);
           }
@@ -63,7 +62,6 @@ export class Config {
       }else 
         mergedConfig.services.push(svc)
     })
-//    console.log(JSON.stringify(mergedConfig,null, 2))
     this.validateConfig(mergedConfig);
     return mergedConfig;
    }

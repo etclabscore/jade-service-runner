@@ -1,6 +1,7 @@
 import { Config } from "./config";
 const defaultConfig = require('../service-runner-config.json');
 import _ from 'lodash';
+import { IConfig } from "./service";
 
 describe("configuration test", () =>{
 
@@ -12,12 +13,11 @@ describe("configuration test", () =>{
           {
             name: "dev",
             args: {
-              start: "--datadir ${svc_runner_data_path}/multi-geth",
-              stop: "",
-              teardown: ""
+              start: ["--datadir ${svc_runner_data_path}/multi-geth"],
+              stop: [],
+              teardown:[] 
             }
           }]
-
       },
       {
         name: 'eth-classic',
@@ -25,18 +25,20 @@ describe("configuration test", () =>{
           {
             name: "dev",
             args: {
-              start: "--datadir ${svc_runner_data_path}/multi-geth",
-              stop: "",
-              teardown: ""
+              start: ["--datadir ${svc_runner_data_path}/multi-geth"],
+              stop: [],
+              teardown:[]
             }
           }],
         os: {
           osx: {
             commands: {
+              setup:[],
               start: "",
               stop: "",
               teardown: ""
-            }
+            },
+            assets:[]
           }
         }
 

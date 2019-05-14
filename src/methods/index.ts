@@ -19,8 +19,8 @@ export const methods = (installer: Installer, taskManager: TaskManager): IMethod
       }
     },
 
-    startService: async (name: string, env: string) =>{
-      await taskManager.startService(name, env);
+    startService: async (name: string, version:string, env: string) =>{
+      await taskManager.startService(name, version, env);
     }
   }
 

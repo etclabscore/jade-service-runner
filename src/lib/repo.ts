@@ -84,7 +84,7 @@ export class Repo {
     return servicePath 
   }
 
-  async getServiceEntry(serviceName: string, version?: string): Promise<IServiceEntry| undefined> {
+  async getServiceEntry(serviceName: string, version: string): Promise<IServiceEntry| undefined> {
     const manifest = await this.getManifest(); 
       if (manifest.services === undefined) return undefined 
       const exists = manifest.services.find((service)=>{

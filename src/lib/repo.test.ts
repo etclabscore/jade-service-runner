@@ -12,12 +12,13 @@ const mockService:IService = {
   environments:[{
     name:'dev',
     args: {
-      start:"",
-      stop:"",
-      teardown:""
+      start:[],
+      stop:[],
+      teardown:[]
     }
   }],
   commands: {
+    setup:[],
     start:"",
     stop:"",
     teardown:""

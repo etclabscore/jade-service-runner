@@ -15,7 +15,7 @@ export class Installer {
     this.repo = repo
   }
 
-  async install(serviceName: string, version?: string) {
+  async install(serviceName: string, version: string) {
     console.log(`${serviceName}, ${version}`)
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version)
     if(serviceEntry) return
