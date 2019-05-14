@@ -84,7 +84,8 @@ export class TaskProcessManager {
     this.addTask(service)    
     const renderedService = await this.renderCommands(service)
 
-    const child = spawn(renderedService.commands.start)
+    console.log("%j", renderedService)
+ /*   const child = spawn(renderedService.commands.start)
     child.stdout.on('data', (data) => {
       console.log(`${service.name}: stdout: ${data}`);
     });
@@ -98,7 +99,7 @@ export class TaskProcessManager {
     });
     child.on("error",(err)=>{
       console.log(`${service.name}: child process exited with err ${err}`);
-    })
+    })*/
     service.running = true;
     return renderedService;
   }

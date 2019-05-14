@@ -2,24 +2,24 @@ const Ajv = require('ajv');
 const ajv = new Ajv();
 import metaSchema from './service-runner-schema.json';
 import defaultConfig from '../service-runner-config.json';
-import {IService, IServiceConfig, IArgs, IServiceOSConfig, IServiceEnv} from './service';
+import {IConfig, IService, IServiceConfig, IArgs, IServiceOSConfig, IServiceEnv} from './service';
 import _ from 'lodash';
 
 
 export class Config {
-  config:any;
+  config:IConfig;
 
   constructor(config: any){
     if (_.isEmpty(config) === true) {
       this.validateConfig(defaultConfig)
-      this.config = _.cloneDeep(defaultConfig)
+      this.config = _.cloneDeep(defaultConfig) as IConfig;
     }else{
-      this.config = this.extendConfig(defaultConfig, config)
+      this.config = this.extendConfig(defaultConfig, config) as IConfig;
     }
   }
 
   getService(serviceName:string, os:string): IService {
-     const services = this.config.services.find((s:IServiceEnv)=> s.name === serviceName) as IServiceConfig;    
+     const services = this.config.services.find((s:IServiceConfig)=> s.name === serviceName) as IServiceConfig;    
      if(services === undefined || services.os.hasOwnProperty(os) === false) {
        const errMsg = `Could not find service ${serviceName} with ${os}`
        console.error(errMsg)

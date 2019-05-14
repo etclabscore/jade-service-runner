@@ -28,7 +28,6 @@ export class ServiceRunnerServer {
     this.port = port;
   }
 
-
   async start() {
     await this.repo.init() 
     const methodMapping = methods(this.installer, this.taskManager)
