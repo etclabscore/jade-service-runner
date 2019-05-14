@@ -32,11 +32,14 @@
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/connect": "^3.4.32",
-    "@types/cors": "^2.8.4"
+    "@types/cors": "^2.8.4",
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "start": "npm run build && node build/src/cli/index.js",
+    "start:client": "node build/client.js",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "repository": {
