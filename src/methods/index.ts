@@ -1,10 +1,10 @@
-import { Config } from '../lib/config'
-import { Installer } from '../lib/installer'
-import { TaskManager } from '../lib/task'
-import { Repo } from '../lib/repo';
-import { getOS } from '../lib/util';
+import { Config } from "../lib/config";
+import { Installer } from "../lib/installer";
+import { TaskManager } from "../lib/task";
+import { Repo } from "../lib/repo";
+import { getOS } from "../lib/util";
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
-import { AsyncResource } from 'async_hooks';
+import { AsyncResource } from "async_hooks";
 
 export const methods = (installer: Installer, taskManager: TaskManager): IMethodMapping => {
 
@@ -12,26 +12,26 @@ export const methods = (installer: Installer, taskManager: TaskManager): IMethod
 
     installService: async (name: string, version: string) => {
       try {
-        await installer.install(name, version)
+        await installer.install(name, version);
       } catch (e) {
-        console.error(`Could not install ${name} ${e}`)
-        throw e
+        console.error(`Could not install ${name} ${e}`);
+        throw e;
       }
     },
     listInstalledServices: async () => {
-      const mf = await installer.repo.getManifest()
-      if (mf.services === undefined) return []
-      return mf.services.map((service) => { return { name: service.name, version: service.version } })
+      const mf = await installer.repo.getManifest();
+      if (mf.services === undefined) { return []; }
+      return mf.services.map((service) => ({ name: service.name, version: service.version }));
     },
 
-    listRunningServices: async () =>{
-      return taskManager.listActiveServices()
+    listRunningServices: async () => {
+      return taskManager.listActiveServices();
     },
 
-    startService: async (name: string, version:string, env: string) =>{
-      console.log(`starting service ${name}`)
+    startService: async (name: string, version: string, env: string) => {
+      console.log(`starting service ${name}`);
       await taskManager.startService(name, version, env);
     },
-  }
+  };
 
-}
+};
