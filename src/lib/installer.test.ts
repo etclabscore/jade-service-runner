@@ -20,7 +20,8 @@ describe("Installer ", () => {
   it("should construct an installation object", () => {
     const config = new Config({});
     const repo = new Repo(repoDir);
-    const installer = new Installer(config, getOS(), repo);
+    // @ts-ignore
+    new Installer(config, getOS(), repo);
   });
 
   it("should not install asset twice", () => {

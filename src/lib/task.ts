@@ -2,7 +2,7 @@ import {Repo} from "./repo";
 import {Config} from "./config";
 import {getOS, getAvailableTCPPort, getAvailableUDPPort} from "./util";
 import { spawn } from "child_process";
-import { ICommands, IService, IServiceEnv, EnvArgs, ISequenceCmd } from "./service";
+import { ICommands, IServiceEnv, IEnvArgs, ISequenceCmd } from "./service";
 
 export interface ITaskOptions {
   intervalMS: number;
@@ -54,7 +54,7 @@ export class TaskManager {
    const services: ITaskService[] = [];
    this.manager.activeTaskMap.forEach((v) => {
 
-     const {name, env, running} = v;
+     const {running} = v;
      if (running) { services.push(v); }
    });
    return services;
@@ -68,7 +68,7 @@ interface ITaskService {
   version: string;
   path: string;
   commands: ICommands;
-  args: EnvArgs;
+  args: IEnvArgs;
   running: boolean;
 }
 
@@ -143,7 +143,7 @@ export class TaskProcessManager {
     };
   }
 
-  private addTask(service: ITaskService , taskMap: Map<string,ITaskService>) {
+  private addTask(service: ITaskService , taskMap: Map<string, ITaskService>) {
     const hash = this.taskHash(service);
     if (taskMap.has(hash)) { return; }
     taskMap.set(hash, service);
@@ -154,6 +154,7 @@ export class TaskProcessManager {
   }
   private async renderCommands(service: ITaskService): Promise<ITaskService> {
     // TODO add support explict rpcPort listing
+    // @ts-ignore these are use ambiently by the eval
     const {
       DYNAMIC_TCP_PORT_1,
       DYNAMIC_TCP_PORT_2,
@@ -162,6 +163,7 @@ export class TaskProcessManager {
       DYNAMIC_UDP_PORT_2,
       DYNAMIC_UDP_PORT_3,
     } = await this.getFreePorts();
+    // @ts-ignore is ambiently utilized by template
     const SERVICE_DIR = service.path;
     const renderArgs = (cmds: string[]) => cmds.map((cmd) => eval("`" + cmd + "`"));
     const renderCmd = (cmd: string) => eval("`" + cmd + "`");

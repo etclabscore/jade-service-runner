@@ -27,7 +27,7 @@ export class Installer {
 
   public async serviceExists(serviceName: string, version?: string): Promise<IService | undefined> {
     try {
-      const service = this.config.getService(serviceName, this.os);
+        return this.config.getService(serviceName, this.os);
       } catch (e) {
       return undefined;
     }

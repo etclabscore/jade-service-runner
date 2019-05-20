@@ -1,5 +1,4 @@
-import fs, {ensureDirSync, WriteStream, ensureDir, createWriteStream} from "fs-extra";
-import {Readable} from "stream";
+import fs, {ensureDirSync, ensureDir} from "fs-extra";
 import {IService} from "./service";
 import path from "path";
 import {extractAsset} from "./util";

@@ -19,14 +19,13 @@ describe("TaskManager", () => {
   server = await mockServer("fixtures/testService.zip");
 });
   afterEach(async () => {
-   // await promisify(server.close)()
-//  await rmDir(repoDir)
+  await rmDir(repoDir);
 });
   it("should construct new TaskManager", async () => {
   const config: Config = new Config(mockConfig);
   const repo = new Repo(repoDir);
   await repo.init();
-  const taskManager = new TaskManager(repo, config);
+  new TaskManager(repo, config);
 });
   it.only("should start a service", async () => {
   const config = new Config(mockConfig);

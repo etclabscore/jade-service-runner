@@ -1,9 +1,7 @@
 import program from "commander";
-import fs, { readFile } from "fs-extra";
+import fs from "fs-extra";
 const version = require("../../../package.json").version; // tslint:disable-line
 import {ServiceRunnerServer} from "../";
-import {Config} from "../lib/config";
-import { Repo } from "../lib/repo";
 program
   .version(version, "-v, --version")
   .option(

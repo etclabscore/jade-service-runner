@@ -1,7 +1,6 @@
 import { Config } from "./config";
-const defaultConfig = require("../service-runner-config.json");
+import defaultConfig from "../service-runner-config.json";
 import _ from "lodash";
-import { IConfig } from "./service";
 
 describe("configuration test", () => {
 
@@ -47,7 +46,7 @@ describe("configuration test", () => {
   };
 
   it("should construct valid configuration object", () => {
-    const config = new Config({});
+     new Config({});
   });
 
   it("should support valid config extension", () => {
@@ -60,7 +59,7 @@ describe("configuration test", () => {
     expect(svc.name === "multi-geth").toBe(true);
     expect(svc.environments.length).toBe(4);
     expect(svc.environments.find((env: any) => env.name === "dev"));
-    const defaultService = defaultConfig.services.find((service: any) => service.name === "multi-geth");
+    const defaultService = defaultConfig.services.find((service: any) => service.name === "multi-geth") as any;
     expect(_.isEqual(svc.commands, defaultService.os.osx.commands)).toBe(true);
   });
 

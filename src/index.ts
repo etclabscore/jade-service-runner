@@ -33,10 +33,10 @@ export class ServiceRunnerServer {
     const methodMapping = methods(this.installer, this.taskManager);
     const router = new Router(openRPC, methodMapping);
     const options = {
-      router,
       methodMapping,
-      transportConfigs: this.setupTransport(this.port),
       openrpcDocument: openRPC,
+      router,
+      transportConfigs: this.setupTransport(this.port),
     };
     const server = new Server(options);
     server.start();

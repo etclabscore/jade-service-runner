@@ -1,6 +1,5 @@
 import { Repo, REPO_MANIFEST } from "./repo";
-import fs, { stat, mkdtempSync, rmdirSync } from "fs-extra";
-import { Readable } from "stream";
+import fs, { stat, mkdtempSync} from "fs-extra";
 import rimraf from "rimraf";
 import {promisify} from "util";
 import { IService } from "./service";

@@ -1,8 +1,8 @@
-const Ajv = require("ajv");
+import Ajv from "ajv";
 const ajv = new Ajv();
 import metaSchema from "./service-runner-schema.json";
 import defaultConfig from "../service-runner-config.json";
-import {IConfig, IService, IServiceConfig, IArgs, IServiceOSConfig, IServiceEnv} from "./service";
+import {IConfig, IService, IServiceConfig, IServiceOSConfig, IServiceEnv} from "./service";
 import _ from "lodash";
 
 export class Config {

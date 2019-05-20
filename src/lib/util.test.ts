@@ -58,7 +58,6 @@ describe("extract asset ", () => {
 describe("downloadAsset", () => {
   let testServer: http.Server;
   let testBuffer: Buffer;
-  const TEST_DATA_DIR = "./test-data";
 
   beforeAll(async () => {
     await fs.ensureDir(`${TEST_DATA_DIR}`);

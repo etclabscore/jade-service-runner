@@ -1,10 +1,6 @@
-import { Config } from "../lib/config";
 import { Installer } from "../lib/installer";
 import { TaskManager } from "../lib/task";
-import { Repo } from "../lib/repo";
-import { getOS } from "../lib/util";
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
-import { AsyncResource } from "async_hooks";
 
 export const methods = (installer: Installer, taskManager: TaskManager): IMethodMapping => {
 

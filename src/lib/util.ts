@@ -6,7 +6,7 @@ import { promisify } from "util";
 import yauzl, { ZipFile } from "yauzl";
 import tar from "tar-fs";
 import zlib from "zlib";
-import request, { UriOptions } from "request";
+import request from "request";
 import net, {AddressInfo} from "net";
 import dgram from "dgram";
 
@@ -27,7 +27,7 @@ export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
 
 export const getAvailableUDPPort = () => new Promise((resolve, reject) => {
 
-  let socket = dgram.createSocket("udp4");
+  const socket = dgram.createSocket("udp4");
   socket.bind({ port: 0 }, () => {
    const {port} = socket.address() as AddressInfo;
    socket.on("error", reject);
@@ -58,13 +58,12 @@ export const downloadAsset = async (uri: string, dir: string, name: string): Pro
   console.log(name);
   console.log(dir);
   await fsMkdir(dir, { recursive: true });
-  const path = `${dir}/${name}`;
-  console.log(path);
+  const downloadPath = `${dir}/${name}`;
   return new Promise((resolve: (p: string) => void) => {
-    const file = createWriteStream(path);
+    const file = createWriteStream(downloadPath);
     file.on("finish", () => {
       file.close();
-      resolve(path);
+      resolve(downloadPath);
     })
     .on("error", (err) => {
       console.log(err);
@@ -117,11 +116,11 @@ const extractZipFile = async (srcPath: string, destPath: string): Promise<boolea
     throw Error(errMsg);
   }
   const extractionComplete = new Promise((resolve: (value: boolean) => void) => {
-    zipFile.on("close", function() {
+    zipFile.on("close", () => {
       resolve(true);
     });
   });
-  zipFile.on("entry", async function(entry) {
+  zipFile.on("entry", async (entry) => {
     await ensureDirSync(path.dirname(`${destPath}/${entry.fileName}`));
     if (/\/$/.test(entry.fileName)) {
       // directory file names end with '/'
@@ -130,10 +129,10 @@ const extractZipFile = async (srcPath: string, destPath: string): Promise<boolea
       zipFile.openReadStream(entry, (err, readStream) => {
         if (err) { throw err; }
         const filter = new Transform();
-        filter._transform = function(chunk, encoding, cb) {
+        filter._transform = (chunk, encoding, cb) => {
           cb(null, chunk);
         };
-        filter._flush = function(cb) {
+        filter._flush = (cb) => {
           cb();
           zipFile.readEntry();
         };

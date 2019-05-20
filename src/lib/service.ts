@@ -29,10 +29,10 @@ export interface IServiceOSConfig {
 
 export interface IServiceEnv {
  name: string;
- args: EnvArgs;
+ args: IEnvArgs;
 }
 
-export interface EnvArgs {
+export interface IEnvArgs {
   start: string[];
   stop: string[];
   teardown: string[];
