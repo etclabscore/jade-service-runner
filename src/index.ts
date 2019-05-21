@@ -1,14 +1,14 @@
 import { Config } from "./lib/config";
 import { Repo } from "./lib/repo";
 import { Installer } from "./lib/installer";
-import {TaskManager} from "./lib/task";
+import { TaskManager } from "./lib/task";
 import { getOS } from "./lib/util";
 import { Router, Server } from "@open-rpc/server-js";
 import { OpenRPC } from "@open-rpc/meta-schema";
-import {methods} from "./methods";
+import { methods } from "./methods";
 import cors from "cors";
 import { json as jsonParser } from "body-parser";
-import { HandleFunction} from "connect";
+import { HandleFunction } from "connect";
 
 import openRPCDoc from "../openrpc.json"  // tslint:disable-line
 const openRPC = openRPCDoc as OpenRPC;

@@ -92,7 +92,7 @@ describe("configuration test", () => {
 
   it("should properly default configure multi-geth", () => {
     const config = new Config({})
-    const env = config.config.services[0].environments.find((e)=>e.name === 'mainnet')
+    const env = config.config.services[0].environments.find((e) => e.name === 'mainnet')
     expect(env).toBeDefined()
   });
 

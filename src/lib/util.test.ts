@@ -81,7 +81,7 @@ describe("downloadAsset", () => {
         }
 
         if (req.url.search("timeout") > 0) {
-          setTimeout(()=>{
+          setTimeout(() => {
             res.writeHead(200)
             res.write("Should never see this", "text")
             res.end();
@@ -131,7 +131,7 @@ describe("downloadAsset", () => {
     const url = `http://localhost:${port}/timeout.zip`;
     let res: string | undefined;
     try {
-      res = await downloadAsset(url, downloadDir, "test.zip",1000);
+      res = await downloadAsset(url, downloadDir, "test.zip", 1000);
       throw new Error('test failure');
     } catch (e) {
       expect(e.message).toContain("Could not fetch")

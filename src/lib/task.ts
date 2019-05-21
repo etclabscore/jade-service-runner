@@ -1,6 +1,6 @@
-import {Repo} from "./repo";
-import {Config} from "./config";
-import {getOS, getAvailableTCPPort, getAvailableUDPPort} from "./util";
+import { Repo } from "./repo";
+import { Config } from "./config";
+import { getOS, getAvailableTCPPort, getAvailableUDPPort } from "./util";
 import { spawn } from "child_process";
 import { ICommands, IServiceEnv, IEnvArgs, ISequenceCmd } from "./service";
 
@@ -8,12 +8,12 @@ export interface ITaskOptions {
   intervalMS: number;
 }
 interface IDynamicPorts {
-      DYNAMIC_TCP_PORT_1: number;
-      DYNAMIC_TCP_PORT_2: number;
-      DYNAMIC_TCP_PORT_3: number;
-      DYNAMIC_UDP_PORT_1: number;
-      DYNAMIC_UDP_PORT_2: number;
-      DYNAMIC_UDP_PORT_3: number;
+  DYNAMIC_TCP_PORT_1: number;
+  DYNAMIC_TCP_PORT_2: number;
+  DYNAMIC_TCP_PORT_3: number;
+  DYNAMIC_UDP_PORT_1: number;
+  DYNAMIC_UDP_PORT_2: number;
+  DYNAMIC_UDP_PORT_3: number;
 }
 
 export class TaskManager {
@@ -34,8 +34,8 @@ export class TaskManager {
 
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry === undefined) { throw new Error("Service does not exists in repo"); }
-    const {rpcPort, commands, environments} = this.config.getService(serviceName, getOS());
-    const {args} = environments.find((e) => e.name === env) as IServiceEnv;
+    const { rpcPort, commands, environments } = this.config.getService(serviceName, getOS());
+    const { args } = environments.find((e) => e.name === env) as IServiceEnv;
 
     const taskService = {
       env,
@@ -50,15 +50,15 @@ export class TaskManager {
     return this.manager.launchTask(taskService);
   }
 
- public listActiveServices() {
-   const services: ITaskService[] = [];
-   this.manager.activeTaskMap.forEach((v) => {
+  public listActiveServices() {
+    const services: ITaskService[] = [];
+    this.manager.activeTaskMap.forEach((v) => {
 
-     const {running} = v;
-     if (running) { services.push(v); }
-   });
-   return services;
- }
+      const { running } = v;
+      if (running) { services.push(v); }
+    });
+    return services;
+  }
 }
 
 interface ITaskService {
@@ -81,20 +81,20 @@ export class TaskProcessManager {
     this.activeTaskMap = new Map<string, ITaskService>();
   }
 
-// TODO makes assumption that setup tasks don't fail
- public async spawnSeqCommands(cmds: ISequenceCmd[]) {
-   cmds.forEach(async (cmd) => {
-     await new Promise((resolve) => {
-       const child = spawn(cmd.cmd, cmd.args);
-       child.on("error", (err) => {
-         throw err;
-       });
-       child.on("exit", () => {
-         resolve();
-       });
-     });
-   });
- }
+  // TODO makes assumption that setup tasks don't fail
+  public async spawnSeqCommands(cmds: ISequenceCmd[]) {
+    cmds.forEach(async (cmd) => {
+      await new Promise((resolve) => {
+        const child = spawn(cmd.cmd, cmd.args);
+        child.on("error", (err) => {
+          throw err;
+        });
+        child.on("exit", () => {
+          resolve();
+        });
+      });
+    });
+  }
   public async launchTask(service: ITaskService): Promise<ITaskService> {
 
     this.addTask(service, this.taskMap);
@@ -143,14 +143,14 @@ export class TaskProcessManager {
     };
   }
 
-  private addTask(service: ITaskService , taskMap: Map<string, ITaskService>) {
+  private addTask(service: ITaskService, taskMap: Map<string, ITaskService>) {
     const hash = this.taskHash(service);
     if (taskMap.has(hash)) { return; }
     taskMap.set(hash, service);
   }
 
   private taskHash(service: ITaskService): string {
-      return `${service.name}_${service.version}_${service.env}`;
+    return `${service.name}_${service.version}_${service.env}`;
   }
   private async renderCommands(service: ITaskService): Promise<ITaskService> {
     // TODO add support explict rpcPort listing
@@ -176,9 +176,9 @@ export class TaskProcessManager {
 
     const command = {
       setup: renderSequenceCmd(service.commands.setup),
-      start : renderCmd(service.commands.start),
-      stop : renderCmd(service.commands.stop),
-      teardown : renderCmd(service.commands.teardown),
+      start: renderCmd(service.commands.start),
+      stop: renderCmd(service.commands.stop),
+      teardown: renderCmd(service.commands.teardown),
     };
 
     const args = {
@@ -194,6 +194,6 @@ export class TaskProcessManager {
       rpcPort,
       args,
     };
-}
+  }
 
 }

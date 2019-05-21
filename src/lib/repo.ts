@@ -1,7 +1,7 @@
-import fs, {ensureDirSync, ensureDir} from "fs-extra";
-import {IService} from "./service";
+import fs, { ensureDirSync, ensureDir } from "fs-extra";
+import { IService } from "./service";
 import path from "path";
-import {extractAsset} from "./util";
+import { extractAsset } from "./util";
 import mfSchema from "./service-runner-manifest-schema.json";
 /* A repository that contains services and a manifest file of installed services */
 export const REPO_MANIFEST = "jade-service-runner-manifest.json";
@@ -9,9 +9,9 @@ const Ajv = require("ajv");
 const ajv = new Ajv();
 
 interface IServiceEntry {
-    name: string;
-    version: string;
-    path: string;
+  name: string;
+  version: string;
+  path: string;
 
 }
 export interface IManifest {
@@ -25,15 +25,15 @@ export class Repo {
   public dir: string;
   public path: string;
   constructor(dir: string) {
-   this.dir = dir;
-   this.path = `${dir}/${REPO_MANIFEST}`;
+    this.dir = dir;
+    this.path = `${dir}/${REPO_MANIFEST}`;
   }
   public async init() {
     ensureDirSync(this.dir);
     try {
       await fs.stat(this.path);
     } catch (e) {
-      const manifest = {version: "0.0.1", lastModified: new Date().toISOString()} as IManifest;
+      const manifest = { version: "0.0.1", lastModified: new Date().toISOString() } as IManifest;
       await fs.writeFile(this.path, JSON.stringify(manifest, null, 2));
       this.validateManifest(manifest);
     }
@@ -58,16 +58,16 @@ export class Repo {
     if (manifest.services) {
       console.log("checking services");
       exists = manifest.services.find((svc) => {
-      return svc.name === service.name && svc.version === service.version;
-    });
-  }
+        return svc.name === service.name && svc.version === service.version;
+      });
+    }
     console.log(`service exists: ${exists}`);
     console.log(`assetPaths ${assetPaths}`);
-//    if(exists) return exists.path
+    //    if(exists) return exists.path
     const servicePath = this.generateServicePath(service.name, service.version);
 
     console.log(service.version);
-    const serviceEntry = { name: service.name, version: service.version, path: servicePath};
+    const serviceEntry = { name: service.name, version: service.version, path: servicePath };
     manifest.services = manifest.services ? manifest.services.concat([serviceEntry]) : [serviceEntry];
     manifest.lastModified = new Date().toISOString();
     this.validateManifest(manifest);
@@ -83,12 +83,12 @@ export class Repo {
     return servicePath;
   }
 
-  public async getServiceEntry(serviceName: string, version: string): Promise<IServiceEntry| undefined> {
+  public async getServiceEntry(serviceName: string, version: string): Promise<IServiceEntry | undefined> {
     const manifest = await this.getManifest();
     if (manifest.services === undefined) { return undefined; }
     const exists = manifest.services.find((service) => {
-        return service.name === serviceName && service.version === version;
-      });
+      return service.name === serviceName && service.version === version;
+    });
     return exists;
   }
 

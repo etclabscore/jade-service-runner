@@ -74,9 +74,9 @@ export const downloadAsset = async (uri: string, dir: string, name: string, time
         if (statusCode < 200 || statusCode > 299)
           reject(new Error(errMsg))
       })
-      .on('error', (err)=>{
+      .on('error', (err) => {
         const errMsg = `Could not fetch asset from:${uri}`;
-        console.log(err) 
+        console.log(err)
         reject(new Error(errMsg))
       })
       .pipe(file)

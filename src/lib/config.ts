@@ -2,7 +2,7 @@ import Ajv from "ajv";
 const ajv = new Ajv();
 import metaSchema from "./service-runner-schema.json";
 import defaultConfig from "../service-runner-config.json";
-import {IConfig, IService, IServiceConfig, IServiceOSConfig, IServiceEnv} from "./service";
+import { IConfig, IService, IServiceConfig, IServiceOSConfig, IServiceEnv } from "./service";
 import _ from "lodash";
 
 export class Config {
@@ -18,15 +18,15 @@ export class Config {
   }
 
   public getService(serviceName: string, os: string): IService {
-     const services = this.config.services.find((s: IServiceConfig) => s.name === serviceName) as IServiceConfig;
-     if (services === undefined || services.os.hasOwnProperty(os) === false) {
-       const errMsg = `Could not find service ${serviceName} with ${os}`;
-       console.error(errMsg);
-       throw new Error(errMsg);
-     }
-     const {rpcPort, name, environments, version } = services;
-     const  {commands, assets}  = services.os[os] as IServiceOSConfig;
-     return {
+    const services = this.config.services.find((s: IServiceConfig) => s.name === serviceName) as IServiceConfig;
+    if (services === undefined || services.os.hasOwnProperty(os) === false) {
+      const errMsg = `Could not find service ${serviceName} with ${os}`;
+      console.error(errMsg);
+      throw new Error(errMsg);
+    }
+    const { rpcPort, name, environments, version } = services;
+    const { commands, assets } = services.os[os] as IServiceOSConfig;
+    return {
       rpcPort,
       name,
       environments,
@@ -64,6 +64,6 @@ export class Config {
     });
     this.validateConfig(mergedConfig);
     return mergedConfig;
-   }
+  }
 
 }
