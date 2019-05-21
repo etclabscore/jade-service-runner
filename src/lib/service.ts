@@ -49,8 +49,3 @@ export interface ISequenceCmd {
   cmd: string;
   args: string[];
 }
-export interface IArgs {
-  start: string;
-  stop: string;
-  teardown: string;
-}

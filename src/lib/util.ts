@@ -54,7 +54,8 @@ export const getOS = (): OSTypes => {
   }
 };
 
-export const downloadAsset = async (uri: string, dir: string, name: string, timeout: number = 120000): Promise<string> => {
+export const downloadAsset = async (uri: string, dir: string,
+  name: string, timeout: number = 120000): Promise<string> => {
   await fsMkdir(dir, { recursive: true });
   const downloadPath = `${dir}/${name}`;
   return new Promise((resolve: (p: string) => void, reject) => {
@@ -68,18 +69,19 @@ export const downloadAsset = async (uri: string, dir: string, name: string, time
       });
 
     request.get({ uri, timeout })
-      .on('response', (response) => {
+      .on("response", (response) => {
         const { statusCode } = response;
         const errMsg = `Could not fetch asset from:${uri}`;
-        if (statusCode < 200 || statusCode > 299)
-          reject(new Error(errMsg))
+        if (statusCode < 200 || statusCode > 299) {
+          reject(new Error(errMsg));
+        }
       })
-      .on('error', (err) => {
+      .on("error", (err) => {
         const errMsg = `Could not fetch asset from:${uri}`;
-        console.log(err)
-        reject(new Error(errMsg))
+        console.log(err);
+        reject(new Error(errMsg));
       })
-      .pipe(file)
+      .pipe(file);
   }).catch((e) => {
     throw e;
   });
@@ -95,7 +97,6 @@ export const extractAsset = async (srcPath: string, srcDest: string): Promise<bo
 
     default:
       const err = `Unknown extension(${ext})`;
-      console.error(err);
       throw new Error(err);
   }
 };

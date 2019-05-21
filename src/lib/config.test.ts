@@ -66,34 +66,34 @@ describe("configuration test", () => {
 
   it("should throw on duplicate environment", () => {
     const badConfig = _.cloneDeep(mockConfig);
-    badConfig.services.push(badConfig.services[0])
-    expect(() => new Config(badConfig)).toThrowError(/^.*already exists.*$/)
+    badConfig.services.push(badConfig.services[0]);
+    expect(() => new Config(badConfig)).toThrowError(/^.*already exists.*$/);
   });
 
   it("should throw on bad schema for new service", () => {
     const badConfig = _.cloneDeep(mockConfig);
     badConfig.services[0].name = "newService";
-    expect(() => new Config(badConfig)).toThrowError(/^.*Bad Schema.*$/)
+    expect(() => new Config(badConfig)).toThrowError(/^.*Bad Schema.*$/);
   });
 
   it("should throw on bad schema for existing service", () => {
     const badConfig = _.cloneDeep(mockConfig);
-    //@ts-ignore
+    // @ts-ignore
     badConfig.services[0].environments[0].name = undefined;
-    expect(() => new Config(badConfig)).toThrowError(/^.*Bad Schema.*$/)
+    expect(() => new Config(badConfig)).toThrowError(/^.*Bad Schema.*$/);
   });
 
   it("should retrieve installation information", () => {
-    const config = new Config(mockConfig)
+    const config = new Config(mockConfig);
     const service = config.getService("multi-geth", OSTypes.OSX);
-    expect(service.name === "multi-geth").toBe(true)
-    expect(service.rpcPort).toEqual("${DYNAMIC_TCP_PORT_1}")
+    expect(service.name === "multi-geth").toBe(true);
+    expect(service.rpcPort).toEqual("${DYNAMIC_TCP_PORT_1}");
   });
 
   it("should properly default configure multi-geth", () => {
-    const config = new Config({})
-    const env = config.config.services[0].environments.find((e) => e.name === 'mainnet')
-    expect(env).toBeDefined()
+    const config = new Config({});
+    const env = config.config.services[0].environments.find((e) => e.name === "mainnet");
+    expect(env).toBeDefined();
   });
 
 });

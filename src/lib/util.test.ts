@@ -51,7 +51,12 @@ describe("extract asset ", () => {
   });
 
   it("should throw on unknown type", async () => {
-
+    try {
+      await extractAsset("fixtures/test-package.unreal", extractDir);
+      throw new Error('test violation on unknown type')
+    } catch (e) {
+      expect(e.message).toContain('Unknown');
+    }
   });
 });
 
@@ -74,18 +79,18 @@ describe("downloadAsset", () => {
         }
 
         if (req.url.search("bad_response") > 0) {
-          res.writeHead(400)
-          res.write("Bad Response", "text")
+          res.writeHead(400);
+          res.write("Bad Response", "text");
           res.end();
-          return
+          return;
         }
 
         if (req.url.search("timeout") > 0) {
           setTimeout(() => {
-            res.writeHead(200)
-            res.write("Should never see this", "text")
+            res.writeHead(200);
+            res.write("Should never see this", "text");
             res.end();
-          }, 3000)
+          }, 3000);
 
         }
       });
@@ -94,7 +99,7 @@ describe("downloadAsset", () => {
   });
 
   beforeEach(async () => {
-    ensureDir(`${TEST_DATA_DIR}`)
+    ensureDir(`${TEST_DATA_DIR}`);
     downloadDir = await fs.mkdtemp(`${TEST_DATA_DIR}/test-download`);
   });
 
@@ -102,7 +107,6 @@ describe("downloadAsset", () => {
     await promisify(testServer.close)();
     await rmDir(TEST_DATA_DIR);
   });
-
 
   it("should download asset", async () => {
     const { port } = testServer.address() as net.AddressInfo;
@@ -119,10 +123,10 @@ describe("downloadAsset", () => {
     let res: string | undefined;
     try {
       res = await downloadAsset(url, downloadDir, "test.zip");
-      throw new Error('test failure');
+      throw new Error("test failure");
     } catch (e) {
-      expect(e.message).toContain("Could not fetch")
-      expect(res).toBeUndefined()
+      expect(e.message).toContain("Could not fetch");
+      expect(res).toBeUndefined();
     }
   });
 
@@ -132,10 +136,10 @@ describe("downloadAsset", () => {
     let res: string | undefined;
     try {
       res = await downloadAsset(url, downloadDir, "test.zip", 1000);
-      throw new Error('test failure');
+      throw new Error("test failure");
     } catch (e) {
-      expect(e.message).toContain("Could not fetch")
-      expect(res).toBeUndefined()
+      expect(e.message).toContain("Could not fetch");
+      expect(res).toBeUndefined();
     }
   });
 

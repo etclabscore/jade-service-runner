@@ -58,15 +58,15 @@ describe("repo services storage", () => {
   it("should throw on bad manifest", () => {
 
     const manifest: any = {
-      "lastModified": "something",
-      "services": [{
-        "name": "missing-path",
-        "version": "1.0.0"
-      }]
-    }
-    const repo = new Repo(repoDir)
+      lastModified: "something",
+      services: [{
+        name: "missing-path",
+        version: "1.0.0",
+      }],
+    };
+    const repo = new Repo(repoDir);
     repo.init();
-    expect(() => repo.validateManifest(manifest)).toThrowError()
+    expect(() => repo.validateManifest(manifest)).toThrowError();
   });
 
 });
