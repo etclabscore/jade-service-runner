@@ -1,5 +1,5 @@
 import { mockConfig, mockServer } from "../../fixtures/src/util";
-import {Config} from "./config";
+import { Config } from "./config";
 import { Repo } from "./repo";
 import fs from "fs-extra";
 import rimraf from "rimraf";
@@ -15,38 +15,38 @@ describe("TaskManager", () => {
   let repoDir: string;
   let server: http.Server;
   beforeEach(async () => {
-  repoDir = fs.mkdtempSync("test-repo-task");
-  server = await mockServer("fixtures/testService.zip");
-});
+    repoDir = fs.mkdtempSync("test-repo-task");
+    server = await mockServer("fixtures/testService.zip");
+  });
   afterEach(async () => {
-  await rmDir(repoDir);
-});
+    await rmDir(repoDir);
+  });
   it("should construct new TaskManager", async () => {
-  const config: Config = new Config(mockConfig);
-  const repo = new Repo(repoDir);
-  await repo.init();
-  new TaskManager(repo, config);
-});
-  it.only("should start a service", async () => {
-  const config = new Config(mockConfig);
-  const {port} = server.address() as AddressInfo;
-  const svc = config.config.services.find((s: IServiceConfig) => s.name === "testService");
-  if (svc === undefined ) { throw new Error("could not find testService"); }
-  const service = svc.os[getOS()];
-  if (service === undefined) { throw new Error("could not find service for os"); }
-  service.assets = [`http://localhost:${port}/download/testService.zip`];
-  console.log("%j", config);
-  const repo = new Repo(repoDir);
-  await repo.init();
-  const installer = new Installer(config, getOS(), repo);
-  const taskManager = new TaskManager(repo, config);
-  await installer.install("testService", "1.0.0");
-  const serviceConfig = await taskManager.startService("testService", "1.0.0", "test");
-  console.log(serviceConfig);
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
+    const config: Config = new Config(mockConfig);
+    const repo = new Repo(repoDir);
+    await repo.init();
+    new TaskManager(repo, config);
+  });
+  it("should start a service", async () => {
+    const config = new Config(mockConfig);
+    const { port } = server.address() as AddressInfo;
+    const svc = config.config.services.find((s: IServiceConfig) => s.name === "testService");
+    if (svc === undefined) { throw new Error("could not find testService"); }
+    const service = svc.os[getOS()];
+    if (service === undefined) { throw new Error("could not find service for os"); }
+    service.assets = [`http://localhost:${port}/download/testService.zip`];
+    console.log("%j", config);
+    const repo = new Repo(repoDir);
+    await repo.init();
+    const installer = new Installer(config, getOS(), repo);
+    const taskManager = new TaskManager(repo, config);
+    await installer.install("testService", "1.0.0");
+    const serviceConfig = await taskManager.startService("testService", "1.0.0", "test");
+    console.log(serviceConfig);
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
     });
   });
 });

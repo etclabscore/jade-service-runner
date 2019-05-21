@@ -1,12 +1,12 @@
-import {extractAsset, downloadAsset} from "./util";
-import fs from "fs-extra";
+import { extractAsset, downloadAsset } from "./util";
+import fs, { ensureDir } from "fs-extra";
 import net from "net";
 import { createServer } from "http";
 import http from "http";
 import crypto from "crypto";
 import _ from "lodash";
 import rimraf from "rimraf";
-import {promisify} from "util";
+import { promisify } from "util";
 const rmDir = promisify(rimraf);
 const TEST_DATA_DIR = "./test-data";
 describe("extract asset ", () => {
@@ -58,6 +58,7 @@ describe("extract asset ", () => {
 describe("downloadAsset", () => {
   let testServer: http.Server;
   let testBuffer: Buffer;
+  let downloadDir: string;
 
   beforeAll(async () => {
     await fs.ensureDir(`${TEST_DATA_DIR}`);
@@ -73,33 +74,69 @@ describe("downloadAsset", () => {
         }
 
         if (req.url.search("bad_response") > 0) {
-
+          res.writeHead(400)
+          res.write("Bad Response", "text")
+          res.end();
+          return
         }
 
         if (req.url.search("timeout") > 0) {
+          setTimeout(()=>{
+            res.writeHead(200)
+            res.write("Should never see this", "text")
+            res.end();
+          }, 3000)
 
         }
       });
       testServer.listen(0, resolve);
     });
   });
+
+  beforeEach(async () => {
+    ensureDir(`${TEST_DATA_DIR}`)
+    downloadDir = await fs.mkdtemp(`${TEST_DATA_DIR}/test-download`);
+  });
+
   afterAll(async () => {
     await promisify(testServer.close)();
-  });
-  afterEach(async () => {
     await rmDir(TEST_DATA_DIR);
   });
+
 
   it("should download asset", async () => {
     const { port } = testServer.address() as net.AddressInfo;
     const url = `http://localhost:${port}/download.zip`;
-    await downloadAsset(url, TEST_DATA_DIR, "test.zip");
-    expect(fs.existsSync(`${TEST_DATA_DIR}/test.zip`)).toBe(true);
-    const content = fs.readFileSync(`${TEST_DATA_DIR}/test.zip`);
+    await downloadAsset(url, downloadDir, "test.zip");
+    expect(fs.existsSync(`${downloadDir}/test.zip`)).toBe(true);
+    const content = fs.readFileSync(`${downloadDir}/test.zip`);
     expect(_.isEqual(testBuffer, content)).toBe(true);
   });
 
   it("should throw on failure", async () => {
+    const { port } = testServer.address() as net.AddressInfo;
+    const url = `http://localhost:${port}/bad_response.zip`;
+    let res: string | undefined;
+    try {
+      res = await downloadAsset(url, downloadDir, "test.zip");
+      throw new Error('test failure');
+    } catch (e) {
+      expect(e.message).toContain("Could not fetch")
+      expect(res).toBeUndefined()
+    }
   });
-  it("should throw on timeout", async () => { });
+
+  it("should throw on timeout", async () => {
+    const { port } = testServer.address() as net.AddressInfo;
+    const url = `http://localhost:${port}/timeout.zip`;
+    let res: string | undefined;
+    try {
+      res = await downloadAsset(url, downloadDir, "test.zip",1000);
+      throw new Error('test failure');
+    } catch (e) {
+      expect(e.message).toContain("Could not fetch")
+      expect(res).toBeUndefined()
+    }
+  });
+
 });

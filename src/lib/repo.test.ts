@@ -1,7 +1,7 @@
-import { Repo, REPO_MANIFEST } from "./repo";
-import fs, { stat, mkdtempSync} from "fs-extra";
+import { Repo, REPO_MANIFEST, IManifest } from "./repo";
+import fs, { stat, mkdtempSync } from "fs-extra";
 import rimraf from "rimraf";
-import {promisify} from "util";
+import { promisify } from "util";
 import { IService } from "./service";
 const rmdir = promisify(rimraf);
 const mockService: IService = {
@@ -55,8 +55,18 @@ describe("repo services storage", () => {
     }
   });
 
-  it("should throw on bad manifest file", () => {
+  it("should throw on bad manifest", () => {
 
+    const manifest: any = {
+      "lastModified": "something",
+      "services": [{
+        "name": "missing-path",
+        "version": "1.0.0"
+      }]
+    }
+    const repo = new Repo(repoDir)
+    repo.init();
+    expect(() => repo.validateManifest(manifest)).toThrowError()
   });
 
 });

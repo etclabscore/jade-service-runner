@@ -1,7 +1,7 @@
-import {Config} from "./config";
-import {OSTypes, downloadAsset} from "./util";
-import {IService} from "./service";
-import {Repo} from "./repo";
+import { Config } from "./config";
+import { OSTypes, downloadAsset } from "./util";
+import { IService } from "./service";
+import { Repo } from "./repo";
 import url from "url";
 
 export class Installer {
@@ -25,15 +25,15 @@ export class Installer {
     console.info(`Added and installed service(${serviceName}) to path: ${path}`);
   }
 
-  public async serviceExists(serviceName: string, version?: string): Promise<IService | undefined> {
+  public async serviceExists(serviceName: string, version: string): Promise<IService | undefined> {
     try {
-        return this.config.getService(serviceName, this.os);
-      } catch (e) {
+      return this.config.getService(serviceName, this.os);
+    } catch (e) {
       return undefined;
     }
   }
 
-  public async download(service: IService, version?: string): Promise<string[]> {
+  public async download(service: IService, version: string): Promise<string[]> {
     return Promise.all(service.assets.map((asset) => {
       console.log(`attempting to download ${asset}`);
       const parsedUrl = url.parse(asset);

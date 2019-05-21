@@ -101,7 +101,7 @@ export class TaskProcessManager {
     const renderedService = await this.renderCommands(service);
     this.addTask(renderedService, this.activeTaskMap);
 
-    // TODO makes assumption that setup processes exit prior to running hte main process
+    // TODO makes assumption that setup processes exit prior to running the main process
     await this.spawnSeqCommands(renderedService.commands.setup);
     const child = spawn(`${renderedService.commands.start}`, renderedService.args.start);
     child.stdout.on("data", (data) => {

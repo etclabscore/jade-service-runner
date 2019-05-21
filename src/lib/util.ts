@@ -7,7 +7,7 @@ import yauzl, { ZipFile } from "yauzl";
 import tar from "tar-fs";
 import zlib from "zlib";
 import request from "request";
-import net, {AddressInfo} from "net";
+import net, { AddressInfo } from "net";
 import dgram from "dgram";
 
 const fsMkdir = promisify(mkdir);
@@ -18,7 +18,7 @@ export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
   const server = net.createServer();
   server.on("error", reject);
   server.listen(0, () => {
-    const {port} = server.address() as AddressInfo;
+    const { port } = server.address() as AddressInfo;
     server.close(() => {
       resolve(port);
     });
@@ -29,9 +29,9 @@ export const getAvailableUDPPort = () => new Promise((resolve, reject) => {
 
   const socket = dgram.createSocket("udp4");
   socket.bind({ port: 0 }, () => {
-   const {port} = socket.address() as AddressInfo;
-   socket.on("error", reject);
-   socket.close(() => {
+    const { port } = socket.address() as AddressInfo;
+    socket.on("error", reject);
+    socket.close(() => {
       resolve(port);
     });
   });
@@ -54,24 +54,34 @@ export const getOS = (): OSTypes => {
   }
 };
 
-export const downloadAsset = async (uri: string, dir: string, name: string): Promise<string> => {
-  console.log(name);
-  console.log(dir);
+export const downloadAsset = async (uri: string, dir: string, name: string, timeout: number = 120000): Promise<string> => {
   await fsMkdir(dir, { recursive: true });
   const downloadPath = `${dir}/${name}`;
-  return new Promise((resolve: (p: string) => void) => {
+  return new Promise((resolve: (p: string) => void, reject) => {
     const file = createWriteStream(downloadPath);
     file.on("finish", () => {
       file.close();
       resolve(downloadPath);
     })
-    .on("error", (err) => {
-      console.log(err);
-      throw err;
-    });
-    console.log(`thie uri: ${uri}`);
-    request.get({ uri })
-      .pipe(file);
+      .on("error", (err) => {
+        reject(err);
+      });
+
+    request.get({ uri, timeout })
+      .on('response', (response) => {
+        const { statusCode } = response;
+        const errMsg = `Could not fetch asset from:${uri}`;
+        if (statusCode < 200 || statusCode > 299)
+          reject(new Error(errMsg))
+      })
+      .on('error', (err)=>{
+        const errMsg = `Could not fetch asset from:${uri}`;
+        console.log(err) 
+        reject(new Error(errMsg))
+      })
+      .pipe(file)
+  }).catch((e) => {
+    throw e;
   });
 };
 

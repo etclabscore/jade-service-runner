@@ -16,20 +16,20 @@ export interface IServiceConfig {
   environments: IServiceEnv[];
   os: {
     [key: string]: IServiceOSConfig | undefined,
-     osx?: IServiceOSConfig,
-     windows?: IServiceOSConfig,
-     linux?: IServiceOSConfig,
+    osx?: IServiceOSConfig,
+    windows?: IServiceOSConfig,
+    linux?: IServiceOSConfig,
   };
   version: string;
 }
 export interface IServiceOSConfig {
-    commands: ICommands;
-    assets: string[];
+  commands: ICommands;
+  assets: string[];
 }
 
 export interface IServiceEnv {
- name: string;
- args: IEnvArgs;
+  name: string;
+  args: IEnvArgs;
 }
 
 export interface IEnvArgs {
@@ -50,7 +50,7 @@ export interface ISequenceCmd {
   args: string[];
 }
 export interface IArgs {
-   start: string;
-   stop: string;
-   teardown: string;
- }
+  start: string;
+  stop: string;
+  teardown: string;
+}
