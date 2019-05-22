@@ -49,7 +49,8 @@ describe("repo services storage", () => {
     expect(mf.services).toBeDefined();
     if (mf.services) {
       expect(mf.services.find((service) => service.name === "testService")).toBeDefined();
-      expect(mf.services.find((service) => service.name === "testService" && service.version === "1.0.0")).toBeDefined();
+      expect(mf.services.find((service) => service.name === "testService"
+        && service.version === "1.0.0")).toBeDefined();
     } else {
       throw new Error(`Service not written to manifest`);
     }

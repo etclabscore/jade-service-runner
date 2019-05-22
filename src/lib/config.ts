@@ -4,6 +4,8 @@ import metaSchema from "./service-runner-schema.json";
 import defaultConfig from "../service-runner-config.json";
 import { IConfig, IService, IServiceConfig, IServiceOSConfig, IServiceEnv } from "./service";
 import _ from "lodash";
+import { makeLogger } from "./logging";
+const logger = makeLogger("ServiceRunner", "Config");
 
 export class Config {
   public config: IConfig;
@@ -21,7 +23,7 @@ export class Config {
     const services = this.config.services.find((s: IServiceConfig) => s.name === serviceName) as IServiceConfig;
     if (services === undefined || services.os.hasOwnProperty(os) === false) {
       const errMsg = `Could not find service ${serviceName} with ${os}`;
-      console.error(errMsg);
+      logger.error(errMsg);
       throw new Error(errMsg);
     }
     const { rpcPort, name, environments, version } = services;
@@ -39,7 +41,7 @@ export class Config {
   public validateConfig(config: any) {
     ajv.validate(metaSchema, config);
     if (ajv.errors && ajv.errors.length > 0) {
-      console.error(ajv.errors);
+      logger.error(ajv.errors);
       throw new Error(`Bad Schema extension`);
     }
   }

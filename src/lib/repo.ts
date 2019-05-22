@@ -3,9 +3,11 @@ import { IService } from "./service";
 import path from "path";
 import { extractAsset } from "./util";
 import mfSchema from "./service-runner-manifest-schema.json";
-/* A repository that contains services and a manifest file of installed services */
+import { makeLogger } from "./logging";
+const logger = makeLogger("ServiceRunner", "Repo");
+
 export const REPO_MANIFEST = "jade-service-runner-manifest.json";
-const Ajv = require("ajv");
+import Ajv from "ajv";
 const ajv = new Ajv();
 
 interface IServiceEntry {
@@ -42,38 +44,34 @@ export class Repo {
   public validateManifest(manifest: IManifest) {
     ajv.validate(mfSchema, manifest);
     if (ajv.errors && ajv.errors.length > 0) {
-      console.error(ajv.errors);
+      logger.error(ajv.errors);
       throw new Error(`Aborting updating manifest, manifest is corrupt`);
     }
   }
 
-  // TODO: caveat here serviceName is assumed to be unique this is a poor assumption
-  // TODO: versioning here shows need for service management 5 versions of geth are not necessarily useful
-  // Not multi process safe
-  // writes service into manifest file and returns path fo the service to
-  // be written into
+  // NOTE: caveat here serviceName is assumed to be unique this is a poor assumption
   public async addService(service: IService, assetPaths: string[]): Promise<string> {
     const manifest = await this.getManifest();
     let exists;
     if (manifest.services) {
-      console.log("checking services");
+      logger.debug(`checking manifest for service: ${service.name}`);
       exists = manifest.services.find((svc) => {
         return svc.name === service.name && svc.version === service.version;
       });
     }
-    console.log(`service exists: ${exists}`);
-    console.log(`assetPaths ${assetPaths}`);
-    //    if(exists) return exists.path
+    if (exists) {
+      logger.debug(`${service.name} already exists!`);
+      return exists.path;
+    }
     const servicePath = this.generateServicePath(service.name, service.version);
 
-    console.log(service.version);
     const serviceEntry = { name: service.name, version: service.version, path: servicePath };
     manifest.services = manifest.services ? manifest.services.concat([serviceEntry]) : [serviceEntry];
     manifest.lastModified = new Date().toISOString();
     this.validateManifest(manifest);
     await ensureDir(path.dirname(servicePath));
 
-    // Write service file to disk
+    // Write service files to disk
     await Promise.all(assetPaths.map((asset) => {
       return extractAsset(asset, servicePath);
     }));
@@ -100,8 +98,7 @@ export class Repo {
   public getPath(service: string) {
     return `${this.path}/${service}`;
   }
-  // This generates a potentially a hashed path of serviceName and version
-  // TODO: for now it just returns rootRepoDir/services/servicename
+
   private generateServicePath(serviceName: string, version?: string) {
     return `${this.dir}/${serviceName}/${version}`;
   }

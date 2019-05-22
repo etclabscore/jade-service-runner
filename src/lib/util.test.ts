@@ -53,9 +53,9 @@ describe("extract asset ", () => {
   it("should throw on unknown type", async () => {
     try {
       await extractAsset("fixtures/test-package.unreal", extractDir);
-      throw new Error('test violation on unknown type')
+      throw new Error("test violation on unknown type");
     } catch (e) {
-      expect(e.message).toContain('Unknown');
+      expect(e.message).toContain("Unknown");
     }
   });
 });

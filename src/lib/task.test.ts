@@ -35,14 +35,13 @@ describe("TaskManager", () => {
     const service = svc.os[getOS()];
     if (service === undefined) { throw new Error("could not find service for os"); }
     service.assets = [`http://localhost:${port}/download/testService.zip`];
-    console.log("%j", config);
     const repo = new Repo(repoDir);
     await repo.init();
     const installer = new Installer(config, getOS(), repo);
     const taskManager = new TaskManager(repo, config);
     await installer.install("testService", "1.0.0");
     const serviceConfig = await taskManager.startService("testService", "1.0.0", "test");
-    console.log(serviceConfig);
+    expect(serviceConfig).toBeDefined();
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();

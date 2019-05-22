@@ -9,6 +9,8 @@ import zlib from "zlib";
 import request from "request";
 import net, { AddressInfo } from "net";
 import dgram from "dgram";
+import { makeLogger } from "./logging";
+const logger = makeLogger("ServiceRunner", "Util");
 
 const fsMkdir = promisify(mkdir);
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
@@ -55,7 +57,7 @@ export const getOS = (): OSTypes => {
 };
 
 export const downloadAsset = async (uri: string, dir: string,
-  name: string, timeout: number = 120000): Promise<string> => {
+                                    name: string, timeout: number = 120000): Promise<string> => {
   await fsMkdir(dir, { recursive: true });
   const downloadPath = `${dir}/${name}`;
   return new Promise((resolve: (p: string) => void, reject) => {
@@ -73,12 +75,13 @@ export const downloadAsset = async (uri: string, dir: string,
         const { statusCode } = response;
         const errMsg = `Could not fetch asset from:${uri}`;
         if (statusCode < 200 || statusCode > 299) {
+          logger.error(errMsg);
           reject(new Error(errMsg));
         }
       })
       .on("error", (err) => {
         const errMsg = `Could not fetch asset from:${uri}`;
-        console.log(err);
+        logger.error(errMsg);
         reject(new Error(errMsg));
       })
       .pipe(file);
@@ -123,7 +126,7 @@ const extractZipFile = async (srcPath: string, destPath: string): Promise<boolea
   const zipFile = await openZip(srcPath, { lazyEntries: true });
   if (zipFile === undefined) {
     const errMsg = `Cannot find ${srcPath}`;
-    console.error(errMsg);
+    logger.error(errMsg);
     throw Error(errMsg);
   }
   const extractionComplete = new Promise((resolve: (value: boolean) => void) => {
@@ -150,7 +153,7 @@ const extractZipFile = async (srcPath: string, destPath: string): Promise<boolea
         const writeStream = createWriteStream(`${destPath}/${entry.fileName}`);
         if (writeStream === undefined || readStream === undefined) {
           const errMsg = `Could not write file to disk ${entry.fileName}`;
-          console.error(errMsg);
+          logger.error(errMsg);
           throw new Error(errMsg);
         }
         readStream.pipe(filter).pipe(writeStream);

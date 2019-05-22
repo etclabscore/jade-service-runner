@@ -4,6 +4,9 @@ import { IService } from "./service";
 import { Repo } from "./repo";
 import url from "url";
 
+import { makeLogger } from "./logging";
+const logger = makeLogger("ServiceRunner", "Installer");
+
 export class Installer {
 
   public config: Config;
@@ -16,13 +19,13 @@ export class Installer {
   }
 
   public async install(serviceName: string, version: string) {
-    console.log(`${serviceName}, ${version}`);
+    logger.info(`Installing: ${serviceName} - ${version}`);
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry) { return; }
     const service = this.config.getService(serviceName, this.os);
     const downloadPaths = await this.download(service, version);
     const path = await this.repo.addService(service, downloadPaths);
-    console.info(`Added and installed service(${serviceName}) to path: ${path}`);
+    logger.info(`Added and installed service(${serviceName}) to path: ${path}`);
   }
 
   public async serviceExists(serviceName: string, version: string): Promise<IService | undefined> {
@@ -35,16 +38,17 @@ export class Installer {
 
   public async download(service: IService, version: string): Promise<string[]> {
     return Promise.all(service.assets.map((asset) => {
-      console.log(`attempting to download ${asset}`);
       const parsedUrl = url.parse(asset);
       if (parsedUrl === undefined || parsedUrl.pathname === undefined) {
-        throw new Error(`Could not parse download url`);
+        const err = new Error(`Could not parse download url`);
+        logger.error(err);
+        throw err;
       }
       const pathParts = parsedUrl.pathname.split("/");
       const tailPart = pathParts.pop();
       let fileName = "";
       if (tailPart) { fileName = tailPart; }
-      console.log(`downloading: ${asset}`);
+      logger.debug(`Downloading ${asset}`);
       return downloadAsset(asset, this.repo.dir, fileName);
     }));
   }

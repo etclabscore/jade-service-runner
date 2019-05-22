@@ -1,7 +1,9 @@
 import program from "commander";
 import fs from "fs-extra";
 const version = require("../../../package.json").version; // tslint:disable-line
-import {ServiceRunnerServer} from "../";
+import { ServiceRunnerServer } from "../";
+import { makeLogger } from "./logging";
+const logger = makeLogger("ServiceRunner", "CLI");
 program
   .version(version, "-v, --version")
   .option(
@@ -20,7 +22,7 @@ program
     if (program.config) { extendedConfig = await fs.readJSON(program.config); }
     if (program.dir) { dir = program.dir; }
     const serviceRunnerServer = new ServiceRunnerServer(extendedConfig, dir, "8002");
-    console.log("Done!"); // tslint:disable-line
+    logger.info("Service Runner Started!");
     await serviceRunnerServer.start();
-    })
+  })
   .parse(process.argv);

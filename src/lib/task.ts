@@ -3,7 +3,7 @@ import { Config } from "./config";
 import { getOS, getAvailableTCPPort, getAvailableUDPPort } from "./util";
 import { spawn } from "child_process";
 import { ICommands, IServiceEnv, IEnvArgs, ISequenceCmd } from "./service";
-
+import { makeLogger } from "./logging";
 export interface ITaskOptions {
   intervalMS: number;
 }
@@ -15,7 +15,7 @@ interface IDynamicPorts {
   DYNAMIC_UDP_PORT_2: number;
   DYNAMIC_UDP_PORT_3: number;
 }
-
+const logger = makeLogger("ServiceRunner", "TaskManager");
 export class TaskManager {
 
   public repo: Repo;
@@ -100,32 +100,29 @@ export class TaskProcessManager {
     this.addTask(service, this.taskMap);
     const renderedService = await this.renderCommands(service);
     this.addTask(renderedService, this.activeTaskMap);
-
     // TODO makes assumption that setup processes exit prior to running the main process
     await this.spawnSeqCommands(renderedService.commands.setup);
     const child = spawn(`${renderedService.commands.start}`, renderedService.args.start);
+    const childLogger = makeLogger(service.name, "Active Task");
     child.stdout.on("data", (data) => {
-      console.log(`${service.name}: stdout: ${data}`);
+      childLogger.debug(`stdout: ${data}`);
     });
 
     child.stderr.on("data", (data) => {
-      console.log(`${service.name}: stderr: ${data}`);
+      childLogger.error(`stderr: ${data}`);
     });
 
     child.on("close", (code) => {
-      console.log(`${service.name}: child process exited with code ${code}`);
-      // TODO Controversial relaunch on service
+      childLogger.debug(`child process exited with code ${code}`);
       this.launchTask(service);
     });
     child.on("error", (err) => {
-      console.log(`${service.name}: child process exited with err ${err}`);
-      // TODO Controversial relaunch on service
+      childLogger.error(`${service.name}: child process exited with err ${err}`);
       this.launchTask(service);
     });
     service.running = true;
     renderedService.running = true;
-    console.log("===Service Config or launching service");
-    console.log("%j", renderedService);
+    logger.info("Launched service with %j", renderedService);
     return renderedService;
   }
   public async getFreePorts(): Promise<IDynamicPorts> {
@@ -153,7 +150,6 @@ export class TaskProcessManager {
     return `${service.name}_${service.version}_${service.env}`;
   }
   private async renderCommands(service: ITaskService): Promise<ITaskService> {
-    // TODO add support explict rpcPort listing
     // @ts-ignore these are use ambiently by the eval
     const {
       DYNAMIC_TCP_PORT_1,

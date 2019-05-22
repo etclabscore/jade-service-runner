@@ -47,6 +47,7 @@ describe("configuration test", () => {
   };
 
   it("should construct valid configuration object", () => {
+    // @ts-ignore
     new Config({});
   });
 
