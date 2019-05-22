@@ -15,7 +15,7 @@ const logger = makeLogger("ServiceRunner", "Util");
 const fsMkdir = promisify(mkdir);
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
 
-// TODO this might be problematic if executed serially
+// Note this might be problematic if executed serially
 export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
   const server = net.createServer();
   server.on("error", reject);
@@ -57,7 +57,7 @@ export const getOS = (): OSTypes => {
 };
 
 export const downloadAsset = async (uri: string, dir: string,
-                                    name: string, timeout: number = 120000): Promise<string> => {
+  name: string, timeout: number = 120000): Promise<string> => {
   await fsMkdir(dir, { recursive: true });
   const downloadPath = `${dir}/${name}`;
   return new Promise((resolve: (p: string) => void, reject) => {

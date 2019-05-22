@@ -82,7 +82,7 @@ export class TaskProcessManager {
     this.activeTaskMap = new Map<string, ITaskService>();
   }
 
-  // TODO makes assumption that setup tasks don't fail
+  // NOTE makes assumption that setup tasks don't fail
   public async spawnSeqCommands(cmds: ISequenceCmd[]) {
     cmds.forEach(async (cmd) => {
       await new Promise((resolve) => {
@@ -101,7 +101,7 @@ export class TaskProcessManager {
     this.addTask(service, this.taskMap);
     const renderedService = await this.renderCommands(service);
     this.addTask(renderedService, this.activeTaskMap);
-    // TODO makes assumption that setup processes exit prior to running the main process
+    // NOTE makes assumption that setup processes exit prior to running the main process
     await this.spawnSeqCommands(renderedService.commands.setup);
     const child = spawn(`${renderedService.commands.start}`, renderedService.args.start);
     const childLogger = makeLogger(service.name, "Active Task");
