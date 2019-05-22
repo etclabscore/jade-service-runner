@@ -37,6 +37,7 @@ export interface IEnvArgs {
   stop: string[];
   teardown: string[];
 }
+
 export interface ICommands {
 
   setup: ISequenceCmd[];
