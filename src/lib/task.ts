@@ -4,6 +4,7 @@ import { getOS, getAvailableTCPPort, getAvailableUDPPort } from "./util";
 import { spawn } from "child_process";
 import { ICommands, IServiceEnv, IEnvArgs, ISequenceCmd } from "./service";
 import { makeLogger } from "./logging";
+import { template } from "lodash";
 export interface ITaskOptions {
   intervalMS: number;
 }
@@ -122,7 +123,7 @@ export class TaskProcessManager {
     });
     service.running = true;
     renderedService.running = true;
-    logger.info("Launched service with %j", renderedService);
+    logger.info(`Launched service with ${JSON.stringify(renderedService)}`);
     return renderedService;
   }
   public async getFreePorts(): Promise<IDynamicPorts> {
@@ -151,18 +152,12 @@ export class TaskProcessManager {
   }
   private async renderCommands(service: ITaskService): Promise<ITaskService> {
     // @ts-ignore these are use ambiently by the eval
-    const {
-      DYNAMIC_TCP_PORT_1,
-      DYNAMIC_TCP_PORT_2,
-      DYNAMIC_TCP_PORT_3,
-      DYNAMIC_UDP_PORT_1,
-      DYNAMIC_UDP_PORT_2,
-      DYNAMIC_UDP_PORT_3,
-    } = await this.getFreePorts();
+    const ports = await this.getFreePorts();
     // @ts-ignore is ambiently utilized by template
     const SERVICE_DIR = service.path;
-    const renderArgs = (cmds: string[]) => cmds.map((cmd) => eval("`" + cmd + "`"));
-    const renderCmd = (cmd: string) => eval("`" + cmd + "`");
+    const dynamicVar = { ...ports, SERVICE_DIR };
+    const renderArgs = (cmds: string[]) => cmds.map((cmd) => template(cmd)({ ...dynamicVar }));
+    const renderCmd = (cmd: string) => template(cmd)({ ...dynamicVar });
     const renderSequenceCmd = (seqCmds: ISequenceCmd[]) => seqCmds.map((cmd) => {
       return {
         args: renderArgs(cmd.args),
@@ -183,7 +178,7 @@ export class TaskProcessManager {
       teardown: renderArgs(service.args.teardown),
     };
 
-    const rpcPort = eval("`" + service.rpcPort + "`");
+    const rpcPort = template(service.rpcPort)({ ...dynamicVar });
     return {
       ...service,
       commands: command,
