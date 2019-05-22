@@ -3,29 +3,20 @@ import http from "http";
 // construct extension for 2 new test services
 export const mockServer = (file: string): Promise<http.Server> => {
   return new Promise((resolve: (value: http.Server) => void) => {
-      const testServer = http.createServer((req, res) => {
-        const rs = fs.createReadStream(file);
-        console.log("%j", req);
-        if (!req.url) { throw new Error("Request missing url"); }
-        if (req.url.search("download") > 0) {
-          res.writeHead(200, { "Content-Type": "application/binary" });
-          rs.pipe(res);
-          rs.on("close", () => {
-            res.end(null);
-          });
-          return;
-        }
-
-        if (req.url.search("bad_response") > 0) {
-
-        }
-
-        if (req.url.search("timeout") > 0) {
-
-        }
-      });
-      testServer.listen(0, () => {resolve(testServer); });
+    const testServer = http.createServer((req, res) => {
+      const rs = fs.createReadStream(file);
+      if (!req.url) { throw new Error("Request missing url"); }
+      if (req.url.search("download") > 0) {
+        res.writeHead(200, { "Content-Type": "application/binary" });
+        rs.pipe(res);
+        rs.on("close", () => {
+          res.end(null);
+        });
+        return;
+      }
     });
+    testServer.listen(0, () => { resolve(testServer); });
+  });
 };
 export const mockConfig: any = {
   services: [
@@ -79,4 +70,4 @@ export const mockConfig: any = {
         },
       },
     }],
-  };
+};
