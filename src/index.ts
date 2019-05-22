@@ -10,7 +10,7 @@ import cors from "cors";
 import { json as jsonParser } from "body-parser";
 import { HandleFunction } from "connect";
 
-import openRPCDoc from "../openrpc.json"  // tslint:disable-line
+import openRPCDoc from "../openrpc.json";
 const openRPC = openRPCDoc as OpenRPC;
 export class ServiceRunnerServer {
 
