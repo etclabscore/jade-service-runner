@@ -1,16 +1,15 @@
 pipeline {
   agent none
   stages {
-    stage('Run Tests') {
+    stage('Build') {
       parallel {
-        stage('flint checker') {
-	  agent {
+        stage('macos') {
+          agent {
             label 'macos'
           }
           steps {
-              sh '/usr/local/bin/brew install flint-checker'
-              sh 'ls -al'
-              sh '/usr/local/bin/flint --skip-changelog --skip-bootstrap --skip-test-script --skip-code-of-conduct'
+            sh 'npm install'
+            sh 'npm run build'
           }
         }
         stage('linux') {
@@ -18,7 +17,8 @@ pipeline {
             label 'linux'
           }
           steps {
-            sh 'echo "linux hello world"'
+            sh 'npm install'
+            sh 'npm run build'
           }
         }
         stage('windows') {
@@ -26,7 +26,36 @@ pipeline {
             label 'windows'
           }
           steps {
-            bat 'echo "windows hello world"'
+            powershell 'npm install'
+            powershell 'npm run build'
+          }
+        }
+      }
+    }
+    stage('Run Tests') {
+      parallel {
+        stage('macosx') {
+          agent {
+            label 'macosx'
+          }
+          steps {
+            sh 'npm run test'
+          }
+        }
+        stage('linux') {
+          agent {
+            label 'linux'
+          }
+          steps {
+            sh 'npm run test'
+          }
+        }
+        stage('windows') {
+          agent {
+            label 'windows'
+          }
+          steps {
+            powershell 'npm run test'
           }
         }
       }
