@@ -8,8 +8,10 @@ pipeline {
             label 'macos'
           }
           steps {
-            sh 'npm install'
-            sh 'npm run build'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                sh 'npm install'
+                sh 'npm run build'
+            }
           }
         }
         stage('linux') {
@@ -17,8 +19,10 @@ pipeline {
             label 'linux'
           }
           steps {
-            sh 'npm install'
-            sh 'npm run build'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                sh 'npm install'
+                sh 'npm run build'
+            }
           }
         }
         stage('windows') {
@@ -26,8 +30,10 @@ pipeline {
             label 'windows'
           }
           steps {
-            powershell 'npm install'
-            powershell 'npm run build'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+                powershell 'npm install'
+                powershell 'npm run build'
+            }
           }
         }
       }
@@ -39,7 +45,9 @@ pipeline {
             label 'macosx'
           }
           steps {
-            sh 'npm run test'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              sh 'npm run test'
+            }
           }
         }
         stage('linux') {
@@ -47,7 +55,9 @@ pipeline {
             label 'linux'
           }
           steps {
-            sh 'npm run test'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              sh 'npm run test'
+            }
           }
         }
         stage('windows') {
@@ -55,7 +65,9 @@ pipeline {
             label 'windows'
           }
           steps {
-            powershell 'npm run test'
+            nodejs(nodeJSInstallationName: 'node-10.15.3') {
+              powershell 'npm run test'
+            }
           }
         }
       }
