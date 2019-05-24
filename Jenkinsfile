@@ -28,7 +28,7 @@ pipeline {
             }
           }
         }
-        /*stage('windows') {
+        stage('windows') {
           agent {
             label 'windows'
           }
@@ -39,7 +39,7 @@ pipeline {
                 powershell 'npm run test'
               }
             }
-          }*/
+          }
         }
       }
     }
