@@ -23,6 +23,7 @@ pipeline {
                 sh 'npm install'
                 sh 'npx tsc -v'
                 sh 'npm run build'
+                sh 'npm run test'
             }
           }
         }
