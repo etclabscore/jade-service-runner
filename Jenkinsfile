@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-        stage('macos') {
+       /* stage('macos') {
           agent {
             label 'macos'
           }
@@ -13,7 +13,7 @@ pipeline {
                 sh 'npm run build'
             }
           }
-        }
+        }*/
         stage('linux') {
           agent {
             label 'linux'
@@ -42,7 +42,7 @@ pipeline {
     }
     stage('Run Tests') {
       parallel {
-        stage('macosx') {
+        /*stage('macosx') {
           agent {
             label 'macosx'
           }
@@ -51,7 +51,7 @@ pipeline {
               sh 'npm run test'
             }
           }
-        }
+        }*/
         stage('linux') {
           agent {
             label 'linux'
