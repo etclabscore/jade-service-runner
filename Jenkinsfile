@@ -35,14 +35,17 @@ pipeline {
             nodejs(nodeJSInstallationName: 'node-10.15.3') {
                 powershell 'npm install'
                 powershell 'npm run build'
+                powershell 'npm run test'
+            }
             }
           }
         }
       }
     }
+    /*
     stage('Run Tests') {
       parallel {
-        /*stage('macosx') {
+       stage('macosx') {
           agent {
             label 'macosx'
           }
@@ -51,7 +54,7 @@ pipeline {
               sh 'npm run test'
             }
           }
-        }*/
+        }
         stage('linux') {
           agent {
             label 'linux'
@@ -73,6 +76,6 @@ pipeline {
           }
         }
       }
-    }
+    }*/
   }
 }
