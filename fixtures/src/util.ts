@@ -45,6 +45,28 @@ export const mockConfig: any = {
             teardown: [],
           },
         },
+        linux: {
+          commands: {
+            setup: [{
+              cmd: "chmod",
+              args: ["+x", "./${SERVICE_DIR}/testService/testService1-osx"],
+            }],
+            start: "./${SERVICE_DIR}/testService/testService1-osx",
+            stop: [],
+            teardown: [],
+          },
+        },
+        windows: {
+          commands: {
+            setup: [{
+              cmd: "chmod",
+              args: ["+x", "./${SERVICE_DIR}/testService/testService1-osx"],
+            }],
+            start: "./${SERVICE_DIR}/testService/testService1-osx",
+            stop: [],
+            teardown: [],
+          },
+        },
       },
     },
     {
