@@ -21,6 +21,7 @@ pipeline {
           steps {
             nodejs(nodeJSInstallationName: 'node-10.15.3') {
                 sh 'npm install'
+                sh 'npx tsc -v'
                 sh 'npm run build'
             }
           }
