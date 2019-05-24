@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-       /* stage('macos') {
+        stage('macos') {
           agent {
             label 'macos'
           }
@@ -11,9 +11,10 @@ pipeline {
             nodejs(nodeJSInstallationName: 'node-10.15.3') {
                 sh 'npm install'
                 sh 'npm run build'
+                sh 'npm run test'
             }
           }
-        }*/
+        }
         stage('linux') {
           agent {
             label 'linux'
