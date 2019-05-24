@@ -8,11 +8,9 @@ pipeline {
             label 'macos'
           }
           steps {
-            nodejs(nodeJSInstallationName: 'node-10.15.3') {
-                sh 'npm install'
-                sh 'npm run build'
-                sh 'npm run test'
-            }
+            sh 'npm install'
+            sh 'npm run build'
+            sh 'npm run test'
           }
         }
         stage('linux') {
