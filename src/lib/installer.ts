@@ -1,3 +1,6 @@
+/**
+ * Installer - downloads and installs services on an OS basis to a repository 
+ */
 import { Config } from "./config";
 import { OSTypes, downloadAsset } from "./util";
 import { IService } from "./service";
@@ -18,25 +21,32 @@ export class Installer {
     this.repo = repo;
   }
 
+  /**
+   * Install service by service name and version 
+   * including downloading, extracting service assets
+   * and adding the assets to the repository manifest
+   *
+   * @param serviceName - Name of the service 
+   * @param version - Version of the service 
+   */
   public async install(serviceName: string, version: string) {
     logger.info(`Installing: ${serviceName} - ${version}`);
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry) { return; }
     const service = this.config.getService(serviceName, this.os);
-    const downloadPaths = await this.download(service, version);
+    const downloadPaths = await this.download(service);
     const path = await this.repo.addService(service, downloadPaths);
     logger.info(`Added and installed service(${serviceName}) to path: ${path}`);
   }
 
-  public async serviceExists(serviceName: string, version: string): Promise<IService | undefined> {
-    try {
-      return this.config.getService(serviceName, this.os);
-    } catch (e) {
-      return undefined;
-    }
-  }
-
-  public async download(service: IService, version: string): Promise<string[]> {
+  /**
+   * Downloads service assets 
+   *
+   *
+   * @param service -  Service configuration 
+   * @param version - Version of the service 
+   */
+  public async download(service: IService): Promise<string[]> {
     return Promise.all(service.assets.map((asset) => {
       const parsedUrl = url.parse(asset);
       if (parsedUrl === undefined || parsedUrl.pathname === undefined) {

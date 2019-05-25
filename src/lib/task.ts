@@ -1,3 +1,13 @@
+/**
+ * TaskManager and TaskProcessManager launch and manage services, keeping services that have been
+ * launched alive, until the ServiceRunner process is killed.
+ * 
+ * TaskManager exposes the public interfaces for starting and listing active services
+ * 
+ * TaskProcessManager keeps a record of processes launched, and processes installed. In addition,
+ * prior to launching the services, the TaskProcessManager handles resolving any templated
+ * service configuration, allocating dynamic ports for services.
+ */
 import { Repo } from "./repo";
 import { Config } from "./config";
 import { getOS, getAvailableTCPPort, getAvailableUDPPort } from "./util";
@@ -8,6 +18,7 @@ import { template } from "lodash";
 export interface ITaskOptions {
   intervalMS: number;
 }
+// Allows for 3 dynamic TCP Ports and 3 dynamic UDP Ports
 interface IDynamicPorts {
   DYNAMIC_TCP_PORT_1: number;
   DYNAMIC_TCP_PORT_2: number;
@@ -31,6 +42,16 @@ export class TaskManager {
     this.manager = new TaskProcessManager();
   }
 
+  /**
+   * Starts an installed service using the service configuration and manifest entry, and
+   * returns service configuration information. 
+   *
+   *
+   * @param serviceName - Name of the service 
+   * @param version - Version of the service 
+   * @param env - Environment 
+   * @returns The rendered version of the service configuration
+   */
   public async startService(serviceName: string, version: string, env: string) {
 
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
@@ -50,7 +71,11 @@ export class TaskManager {
     };
     return this.manager.launchTask(taskService);
   }
-
+  /**
+  * Returns a list of currently active services 
+  *
+  * @returns The active list of services
+  */
   public listActiveServices() {
     const services: ITaskService[] = [];
     this.manager.activeTaskMap.forEach((v) => {
@@ -83,7 +108,7 @@ export class TaskProcessManager {
   }
 
   // NOTE makes assumption that setup tasks don't fail
-  public async spawnSeqCommands(cmds: ISequenceCmd[]) {
+  private async spawnSeqCommands(cmds: ISequenceCmd[]) {
     cmds.forEach(async (cmd) => {
       await new Promise((resolve) => {
         const child = spawn(cmd.cmd, cmd.args);
@@ -96,6 +121,15 @@ export class TaskProcessManager {
       });
     });
   }
+
+  /**
+   * Launches a service, writing the service to an in memory map of active and templated processes. 
+   * It spawns new tasks, and catches errors and SIGTERM signals to then re spawn itself. It
+   * returns a fully rendered config
+   *
+   * @param service - Configuration for a templated service 
+   * @returns The rendered configuration for a service 
+   */
   public async launchTask(service: ITaskService): Promise<ITaskService> {
 
     this.addTask(service, this.taskMap);
@@ -126,7 +160,8 @@ export class TaskProcessManager {
     logger.info(`Launched service with ${JSON.stringify(renderedService)}`);
     return renderedService;
   }
-  public async getFreePorts(): Promise<IDynamicPorts> {
+
+  private async getFreePorts(): Promise<IDynamicPorts> {
     const tcpPorts = [1, 2, 3].map(() => getAvailableTCPPort());
     const udpPorts = [1, 2, 3].map(() => getAvailableUDPPort());
 

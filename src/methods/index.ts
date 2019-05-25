@@ -1,8 +1,20 @@
+/**
+ * This handles the routing for the RPC server, exposing the methods that the server handles  
+ */
 import { Installer } from "../lib/installer";
 import { TaskManager } from "../lib/task";
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
 import { makeLogger } from "../lib/logging";
 const logger = makeLogger("ServiceRunner", "Routes");
+
+/**
+ * Returns the MethodMapping for the RPC Server essentially the routes.
+ *
+ *
+ * @param installer - Installer for installing services 
+ * @param taskManager - TaskManager for launching services 
+ * @returns The config of a service scoped by OS and service name
+ */
 export const methods = (installer: Installer, taskManager: TaskManager): IMethodMapping => {
 
   return {

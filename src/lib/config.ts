@@ -1,3 +1,6 @@
+/**
+ * Config handles validation and extension of service runner default config  
+ */
 import Ajv from "ajv";
 const ajv = new Ajv();
 import metaSchema from "./service-runner-schema.json";
@@ -19,6 +22,14 @@ export class Config {
     }
   }
 
+  /**
+   * Returns the templated config of a service for a given OS.
+   *
+   *
+   * @param serviceName - Name of the service
+   * @param os - Operating system name
+   * @returns The config of a service scoped by OS and service name
+   */
   public getService(serviceName: string, os: string): IService {
     const services = this.config.services.find((s: IServiceConfig) => s.name === serviceName) as IServiceConfig;
     if (services === undefined || services.os.hasOwnProperty(os) === false) {
@@ -37,7 +48,12 @@ export class Config {
       version,
     };
   }
-
+  /**
+   * Validates a service configuration against service runner schema
+   *
+   *
+   * @param config - Takes a service config object of type IConfig 
+   */
   public validateConfig(config: any) {
     ajv.validate(metaSchema, config);
     if (ajv.errors && ajv.errors.length > 0) {
@@ -46,10 +62,18 @@ export class Config {
     }
   }
 
-  public extendConfig(config: any, other: any): any {
+  /**
+   * Returns the templated config of a service for a given OS.
+   *
+   *
+   * @param serviceName - Name of the service 
+   * @param os - Operating system name 
+   * @returns The config of a service scoped by OS and service name 
+   */
+  public extendConfig(config: IConfig, other: any): IConfig {
     const mergedConfig = _.cloneDeep(config);
     other.services.forEach((svc: any) => {
-      const serviceIdx = config.services.findIndex((s: IServiceEnv) => s.name === svc.name);
+      const serviceIdx = config.services.findIndex((s: IServiceConfig) => s.name === svc.name);
       if (serviceIdx > -1) {
         const service = mergedConfig.services[serviceIdx];
         svc.environments.every((env: any) => {

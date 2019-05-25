@@ -16,6 +16,12 @@ const fsMkdir = promisify(mkdir);
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
 
 // Note this might be problematic if executed serially
+/**
+ * Returns a free TCP Port.
+ *
+ *
+ * @returns a free TCP Port 
+ */
 export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
   const server = net.createServer();
   server.on("error", reject);
@@ -26,7 +32,12 @@ export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
     });
   });
 });
-
+/**
+ * Returns a free UDP Port.
+ *
+ *
+ * @returns a free TCP Port 
+ */
 export const getAvailableUDPPort = () => new Promise((resolve, reject) => {
 
   const socket = dgram.createSocket("udp4");
@@ -44,7 +55,11 @@ export enum OSTypes {
   WINDOWS = "windows",
   LINUX = "linux",
 }
-
+/**
+ * Gets current platform and maps node OS type to logical os type.
+ *
+ *
+ */
 export const getOS = (): OSTypes => {
   switch (process.platform) {
     case "darwin": return OSTypes.OSX;
@@ -56,6 +71,16 @@ export const getOS = (): OSTypes => {
   }
 };
 
+/**
+ * Downloads a uri resource and writes it to a given directory. It returns
+ * the final path of the resource
+ *
+ * @param uri - URI of the resource 
+ * @param dir - Directory to download to 
+ * @param name - Name of the subdir 
+ * @param timeout - Timeout of the 2min for the download resource before failure
+ * @returns The config of a service scoped by OS and service name 
+ */
 export const downloadAsset = async (uri: string, dir: string,
   name: string, timeout: number = 120000): Promise<string> => {
   await fsMkdir(dir, { recursive: true });
@@ -90,6 +115,13 @@ export const downloadAsset = async (uri: string, dir: string,
   });
 };
 
+/**
+ * Extract an asset to a destination
+ *
+ * @param srcPath - The path of the resource  
+ * @param srcDest - The path to extract the resource to 
+ * @returns The success or failure of the extraction 
+ */
 export const extractAsset = async (srcPath: string, srcDest: string): Promise<boolean> => {
   const ext = path.extname(srcPath);
   switch (ext) {
