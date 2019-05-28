@@ -9,5 +9,25 @@
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+  },
+  "typedocOptions": {
+    "name": "jade-service-runner",
+    "mode": "file",
+    "src": [ "./src/index.ts", "./src/cli/index.ts" ],
+    "out": "docs",
+    "includeDeclarations": false,
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "hideGenerator": true,
+    "listInvalidSymbolLinks": true,
+    "readme": "./README.md",
+    "exclude": [
+      "node_modules",
+      "docs",
+      "build",
+      "jest.config.js",
+      "src/**/*.test.ts"
+    ],
   }
 }
