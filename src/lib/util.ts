@@ -176,7 +176,7 @@ const extractZipFile = async (srcPath: string, destPath: string): Promise<boolea
         if (err) { throw err; }
         const filter = new Transform();
         filter._transform = (chunk, encoding, cb) => {
-          cb(null, chunk);
+          cb(undefined, chunk);
         };
         filter._flush = (cb) => {
           cb();
