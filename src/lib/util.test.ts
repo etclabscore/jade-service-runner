@@ -104,8 +104,8 @@ describe("downloadAsset", () => {
   });
 
   afterAll((done) => {
-    testServer.close(done)
-  })
+    testServer.close(done);
+  });
 
   afterAll(async () => {
     await rmDir(TEST_DATA_DIR);

@@ -47,12 +47,11 @@ describe("configuration test", () => {
   };
 
   it("should construct valid configuration object", () => {
-    // @ts-ignore
-    new Config({});
+    new Config({}); // tslint:disable-line
   });
 
   it("should support valid config extension", () => {
-    new Config(mockConfig);
+    new Config(mockConfig); // tslint:disable-line
   });
 
   it("should retrieve service info", () => {

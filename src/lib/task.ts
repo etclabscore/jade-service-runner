@@ -1,9 +1,9 @@
 /**
  * TaskManager and TaskProcessManager launch and manage services, keeping services that have been
  * launched alive, until the ServiceRunner process is killed.
- * 
+ *
  * TaskManager exposes the public interfaces for starting and listing active services
- * 
+ *
  * TaskProcessManager keeps a record of processes launched, and processes installed. In addition,
  * prior to launching the services, the TaskProcessManager handles resolving any templated
  * service configuration, allocating dynamic ports for services.
@@ -44,12 +44,12 @@ export class TaskManager {
 
   /**
    * Starts an installed service using the service configuration and manifest entry, and
-   * returns service configuration information. 
+   * returns service configuration information.
    *
    *
-   * @param serviceName - Name of the service 
-   * @param version - Version of the service 
-   * @param env - Environment 
+   * @param serviceName - Name of the service
+   * @param version - Version of the service
+   * @param env - Environment
    * @returns The rendered version of the service configuration
    */
   public async startService(serviceName: string, version: string, env: string) {
@@ -72,10 +72,10 @@ export class TaskManager {
     return this.manager.launchTask(taskService);
   }
   /**
-  * Returns a list of currently active services 
-  *
-  * @returns The active list of services
-  */
+   * Returns a list of currently active services
+   *
+   * @returns The active list of services
+   */
   public listActiveServices() {
     const services: ITaskService[] = [];
     this.manager.activeTaskMap.forEach((v) => {
@@ -107,28 +107,13 @@ export class TaskProcessManager {
     this.activeTaskMap = new Map<string, ITaskService>();
   }
 
-  // NOTE makes assumption that setup tasks don't fail
-  private async spawnSeqCommands(cmds: ISequenceCmd[]) {
-    cmds.forEach(async (cmd) => {
-      await new Promise((resolve) => {
-        const child = spawn(cmd.cmd, cmd.args);
-        child.on("error", (err) => {
-          throw err;
-        });
-        child.on("exit", () => {
-          resolve();
-        });
-      });
-    });
-  }
-
   /**
-   * Launches a service, writing the service to an in memory map of active and templated processes. 
+   * Launches a service, writing the service to an in memory map of active and templated processes.
    * It spawns new tasks, and catches errors and SIGTERM signals to then re spawn itself. It
    * returns a fully rendered config
    *
-   * @param service - Configuration for a templated service 
-   * @returns The rendered configuration for a service 
+   * @param service - Configuration for a templated service
+   * @returns The rendered configuration for a service
    */
   public async launchTask(service: ITaskService): Promise<ITaskService> {
 
@@ -159,6 +144,21 @@ export class TaskProcessManager {
     renderedService.running = true;
     logger.info(`Launched service with ${JSON.stringify(renderedService)}`);
     return renderedService;
+  }
+
+  // NOTE makes assumption that setup tasks don't fail
+  private async spawnSeqCommands(cmds: ISequenceCmd[]) {
+    cmds.forEach(async (cmd) => {
+      await new Promise((resolve) => {
+        const child = spawn(cmd.cmd, cmd.args);
+        child.on("error", (err) => {
+          throw err;
+        });
+        child.on("exit", () => {
+          resolve();
+        });
+      });
+    });
   }
 
   private async getFreePorts(): Promise<IDynamicPorts> {

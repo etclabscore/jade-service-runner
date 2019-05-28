@@ -1,7 +1,7 @@
 /**
- * The Repo is a storage layer that specifies where, 
- * services are installed and keeps a record of the services and 
- * versions installed, by writing them to a manifest file 
+ * The Repo is a storage layer that specifies where,
+ * services are installed and keeps a record of the services and
+ * versions installed, by writing them to a manifest file
  */
 import fs, { ensureDirSync, ensureDir } from "fs-extra";
 import { IService } from "./service";
@@ -50,7 +50,7 @@ export class Repo {
    * Validates a manifest.
    *
    *
-   * @param manifest - Name of the service 
+   * @param manifest - Name of the service
    */
   public validateManifest(manifest: IManifest) {
     ajv.validate(mfSchema, manifest);
@@ -65,9 +65,9 @@ export class Repo {
    * It extracts the assets, places them into a services directory,
    * and writes the final location of the service to the manifest file.
    *
-   * @param service - Service that contains the OS,env scoped service spec 
-   * @param assetPaths - The paths where the dowloaded service assets are store 
-   * @returns  
+   * @param service - Service that contains the OS,env scoped service spec
+   * @param assetPaths - The paths where the dowloaded service assets are store
+   * @returns
    */
   public async addService(service: IService, assetPaths: string[]): Promise<string> {
     const manifest = await this.getManifest();
@@ -101,12 +101,12 @@ export class Repo {
   }
 
   /**
-   * Checks for a service in the manifest file 
+   * Checks for a service in the manifest file
    *
    *
-   * @param serviceName - Name of the service 
-   * @param version - Version of the service 
-   * @returns The manifest entry of the service 
+   * @param serviceName - Name of the service
+   * @param version - Version of the service
+   * @returns The manifest entry of the service
    */
   public async getServiceEntry(serviceName: string, version: string): Promise<IServiceEntry | undefined> {
     const manifest = await this.getManifest();
@@ -117,9 +117,9 @@ export class Repo {
     return exists;
   }
   /**
-   *  /returns the manifest 
+   *  /returns the manifest
    *
-   * @returns The manifest 
+   * @returns The manifest
    */
   public async getManifest(): Promise<IManifest> {
     const mfFile = await fs.readFile(this.path);

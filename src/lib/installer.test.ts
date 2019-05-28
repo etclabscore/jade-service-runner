@@ -47,8 +47,7 @@ describe("Installer ", () => {
 
   it("should construct an installation object", () => {
     const config = new Config({});
-    // @ts-ignore
-    new Installer(config, getOS(), repo);
+    new Installer(config, getOS(), repo);// tslint:disable-line
   });
 
   it("should not install asset twice", async () => {

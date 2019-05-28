@@ -1,5 +1,5 @@
 /**
- * Installer - downloads and installs services on an OS basis to a repository 
+ * Installer - downloads and installs services on an OS basis to a repository
  */
 import { Config } from "./config";
 import { OSTypes, downloadAsset } from "./util";
@@ -22,12 +22,12 @@ export class Installer {
   }
 
   /**
-   * Install service by service name and version 
+   * Install service by service name and version
    * including downloading, extracting service assets
    * and adding the assets to the repository manifest
    *
-   * @param serviceName - Name of the service 
-   * @param version - Version of the service 
+   * @param serviceName - Name of the service
+   * @param version - Version of the service
    */
   public async install(serviceName: string, version: string) {
     logger.info(`Installing: ${serviceName} - ${version}`);
@@ -40,11 +40,11 @@ export class Installer {
   }
 
   /**
-   * Downloads service assets 
+   * Downloads service assets
    *
    *
-   * @param service -  Service configuration 
-   * @param version - Version of the service 
+   * @param service -  Service configuration
+   * @param version - Version of the service
    */
   public async download(service: IService): Promise<string[]> {
     return Promise.all(service.assets.map((asset) => {

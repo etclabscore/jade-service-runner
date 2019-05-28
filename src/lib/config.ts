@@ -1,5 +1,5 @@
 /**
- * Config handles validation and extension of service runner default config  
+ * Config handles validation and extension of service runner default config
  */
 import Ajv from "ajv";
 const ajv = new Ajv();
@@ -52,7 +52,7 @@ export class Config {
    * Validates a service configuration against service runner schema
    *
    *
-   * @param config - Takes a service config object of type IConfig 
+   * @param config - Takes a service config object of type IConfig
    */
   public validateConfig(config: any) {
     ajv.validate(metaSchema, config);
@@ -66,9 +66,9 @@ export class Config {
    * Returns the templated config of a service for a given OS.
    *
    *
-   * @param serviceName - Name of the service 
-   * @param os - Operating system name 
-   * @returns The config of a service scoped by OS and service name 
+   * @param serviceName - Name of the service
+   * @param os - Operating system name
+   * @returns The config of a service scoped by OS and service name
    */
   public extendConfig(config: IConfig, other: any): IConfig {
     const mergedConfig = _.cloneDeep(config);

@@ -16,11 +16,11 @@ describe("TaskManager", () => {
   let server: http.Server;
   beforeAll(async () => {
     server = await mockServer("fixtures/testService.zip");
-  })
+  });
 
   afterAll((done) => {
-    server.close(done)
-  })
+    server.close(done);
+  });
 
   beforeEach(async () => {
     repoDir = fs.mkdtempSync("test-repo-task");
