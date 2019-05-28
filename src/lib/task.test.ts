@@ -32,7 +32,7 @@ describe("TaskManager", () => {
     const config: Config = new Config(mockConfig);
     const repo = new Repo(repoDir);
     await repo.init();
-    new TaskManager(repo, config);
+    new TaskManager(repo, config);// tslint:disable-line 
   });
   it("should start a service", async () => {
     // NOT temporarily disables this test for windows
