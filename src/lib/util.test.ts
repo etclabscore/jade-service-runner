@@ -99,12 +99,15 @@ describe("downloadAsset", () => {
   });
 
   beforeEach(async () => {
-    ensureDir(`${TEST_DATA_DIR}`);
+    await ensureDir(`${TEST_DATA_DIR}`);
     downloadDir = await fs.mkdtemp(`${TEST_DATA_DIR}/test-download`);
   });
 
+  afterAll((done) => {
+    testServer.close(done)
+  })
+
   afterAll(async () => {
-    await promisify(testServer.close)();
     await rmDir(TEST_DATA_DIR);
   });
 

@@ -14,9 +14,16 @@ const rmDir = promisify(rimraf);
 describe("TaskManager", () => {
   let repoDir: string;
   let server: http.Server;
+  beforeAll(async () => {
+    server = await mockServer("fixtures/testService.zip");
+  })
+
+  afterAll((done) => {
+    server.close(done)
+  })
+
   beforeEach(async () => {
     repoDir = fs.mkdtempSync("test-repo-task");
-    server = await mockServer("fixtures/testService.zip");
   });
   afterEach(async () => {
     await rmDir(repoDir);
