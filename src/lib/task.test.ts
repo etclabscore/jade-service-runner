@@ -35,7 +35,7 @@ describe("TaskManager", () => {
     new TaskManager(repo, config);// tslint:disable-line 
   });
   it("should start a service", async () => {
-    // NOT temporarily disables this test for windows
+    // NOTE temporarily disables this test for windows
     if (getOS() !== OSTypes.WINDOWS) {
       const config = new Config(mockConfig);
       const { port } = server.address() as AddressInfo;
