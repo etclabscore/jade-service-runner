@@ -2,21 +2,21 @@
 Supported by [ETC Labs](https://www.etclabs.org/)
 
 
-# An JSON-RPC process manager for OpenRPC supported projects
+# Jade Service Runner - A JSON-RPC Service Manager 
 
-## Problem Statement
-Developers need a reliable way to access JSON-RPC based services that run locally on an individual user machines. It is difficult for users to provide 
-a consistent and informative interface to access these services. Jade Service Runner is an OpenRPC based service, that clients can install to install, run, and manage their OpenRPC based projects. 
+Service Runner is an opinionated JSON-RPC service manager, that provides daemonization, installation, and discovery for JSON-RPC based services. 
 
-## Better Dapp Development
-The goal of this project is improve the dApp development cycle associated with relying on locally running JSON-RPC services. To do this effectively, Jade Service Runner supports the following:
+Service Runner helps developers gain access to a user's locally run services. It provides users with a management and installation tool, that allows developers to discover  services and reliably request access to those services.
+
+## Better dApp Development
+Service Runner improves the dApp development cycle, by reducing the number of steps required for running services that are local to the user, in addition to  associated with relying on locally running JSON-RPC services. To do this effectively, Jade Service Runner supports the following:
   - Allows dApp developers to specify what services they'd like to use
   - Provides defaults for the services to run  
+  - Provices users with an easy installation path
   - Provides reliable discovery of pre-existing services run by the service runner 
   - Provides OpenRPC interface to the Service Runnner functionality, as well as the underlying services
   - Allows dApp developers the ability to retrieve reliable JSON-RPC connection information from the service
-  - Provide typed interfaces to develop applications against
-  - Provides easy user installation.
+  - Provides typed interfaces to develop applications against
 
 ## Getting Started
 ---------------
