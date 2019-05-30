@@ -3,8 +3,8 @@
  */
 import { Installer } from "../lib/installer";
 import { TaskManager } from "../lib/task";
-import { IMethodMapping } from "@open-rpc/server-js/build/router";
 import { makeLogger } from "../lib/logging";
+import { TInstallService, TListInstalledServices, TListRunningServices, TStartService } from '../generated-types';
 const logger = makeLogger("ServiceRunner", "Routes");
 
 /**
@@ -15,7 +15,15 @@ const logger = makeLogger("ServiceRunner", "Routes");
  * @param taskManager - TaskManager for launching services
  * @returns The config of a service scoped by OS and service name
  */
-export const methods = (installer: Installer, taskManager: TaskManager): IMethodMapping => {
+
+export type TServiceMethodMapping = {
+  installService: TInstallService,
+  listInstalledServices: TListInstalledServices,
+  listRunningServices: TListRunningServices,
+  startService: TStartService
+}
+
+export const methods = (installer: Installer, taskManager: TaskManager): TServiceMethodMapping => {
 
   return {
 
@@ -28,6 +36,7 @@ export const methods = (installer: Installer, taskManager: TaskManager): IMethod
         logger.error(`Could not install ${name} ${e}`);
         throw e;
       }
+      return true
     },
     listInstalledServices: async () => {
       const mf = await installer.repo.getManifest();
