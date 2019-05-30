@@ -19,6 +19,10 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
+    "@open-rpc/generator-client": "file:open-rpc-generator-client-1.0.34.tgz",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
     "@types/body-parser": "^1.17.0",
     "@types/commander": "^2.12.2",
     "@types/connect": "^3.4.32",
@@ -38,8 +42,13 @@
   },
   "scripts": {
     "test": "npx jest",
+    "generator-client": "open-rpc-generator-client",
     "build": "npx tsc && npm run build:docs",
+    "build:typings": "npm run typings",
+    "build:client": "npm run generator-client -- --ts-name=@etclabscore/jade-service-runner --rs-name=jade-service-runner -o build/client",
     "build:docs": "typedoc",
+    "publish": "npm run publish:typescript && npm run publish:rust",
+    "publish:typescript": "cd build/client/typescript && npm publish --dry-run --access=public",
     "start": "npm run build && node build/src/cli/index.js",
     "start:client": "node build/client.js",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
