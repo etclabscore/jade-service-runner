@@ -2,7 +2,9 @@
   "name": "@etclabscore/jade-service-runner",
   "version": "0.0.0-development",
   "description": "![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png) Supported by [ETC Labs](https://www.etclabs.org/)",
-  "main": "index.js",
+  "bin": {
+    "jade-service-runner": "build/src/cli/index.js"
+  }
   "dependencies": {
     "@open-rpc/client-js": "^1.0.1",
     "@open-rpc/generator-client": "^1.9.3",
