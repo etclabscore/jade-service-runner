@@ -1,58 +1,118 @@
 {
   "$schema": "./lib/service-runner-schema.json",
-  "services": [{
-    "name": "multi-geth",
-    "rpcPort":"${DYNAMIC_TCP_PORT_1}",
-    "version": "1.8.5",
-    "environments": [{
-        "name": "mainnet",
-        "args": {
-          "start": ["--datadir","${SERVICE_DIR}/multi-geth/1.8.5", "--rpcport", "${DYNAMIC_TCP_PORT_1}", "--rpc"],
-          "stop": [],
-          "teardown":[]
-        }
-      },
-      {
-        "name": "gorli",
-        "args": {
-          "start": [],
-          "stop": [],
-          "teardown":[] 
-        }
-      },
-      {
-        "name": "rinkeby",
-        "args": {
-          "start": [],
-          "stop": [],
-          "teardown": [] 
-        }
-      }
-    ],
-    "os": {
-      "osx": {
-        "commands": {
-          "setup": [
-            {
-              "cmd": "chmod",
-              "args": ["+x", "${SERVICE_DIR}/geth"]
-            }
-          ],
-          "start": "${SERVICE_DIR}/geth",
-          "stop": "",
-          "teardown": ""
+  "services": [
+    {
+      "name": "multi-geth",
+      "rpcPort": "${DYNAMIC_TCP_PORT_1}",
+      "version": "1.9.0",
+      "environments": [
+        {
+          "name": "mainnet",
+          "args": {
+            "start": [
+              "--classic",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/classic",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpc"
+            ],
+            "stop": [],
+            "teardown": []
+          }
         },
-        "assets": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-osx.zip"]
-      },
-      "linux": {
-        "commands": {
-          "setup": [],
-          "start": "geth",
-          "stop": "",
-          "teardown": ""
+        {
+          "name": "kotti",
+          "args": {
+            "start": [
+              "--kotti",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/kotti",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpc"
+            ],
+            "stop": [],
+            "teardown": []
+          }
         },
-        "assets": ["https://github.com/multi-geth/multi-geth/releases/download/v1.8.27/multi-geth-linux.zip"]
+        {
+          "name": "ethereum",
+          "args": {
+            "start": [
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/ethereum",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpc"
+            ],
+            "stop": [],
+            "teardown": []
+          }
+        },
+        {
+          "name": "goerli",
+          "args": {
+            "start": [
+              "--goerli",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/goerli",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpc"
+            ],
+            "stop": [],
+            "teardown": []
+          }
+        },
+        {
+          "name": "rinkeby",
+          "args": {
+            "start": [
+              "--rinkeby",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpc"
+            ],
+            "stop": [],
+            "teardown": []
+          }
+        }
+      ],
+      "os": {
+        "osx": {
+          "commands": {
+            "setup": [
+              {
+                "cmd": "chmod",
+                "args": [
+                  "+x",
+                  "${SERVICE_DIR}/geth"
+                ]
+              }
+            ],
+            "start": "${SERVICE_DIR}/geth",
+            "stop": "",
+            "teardown": ""
+          },
+          "assets": [
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.0/multi-geth-osx.zip"
+          ]
+        },
+        "linux": {
+          "commands": {
+            "setup": [],
+            "start": "geth",
+            "stop": "",
+            "teardown": ""
+          },
+          "assets": [
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.0/multi-geth-linux.zip"
+          ]
+        }
       }
     }
-  }]
+  ]
 }
