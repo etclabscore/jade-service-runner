@@ -61,7 +61,7 @@ erpc.getBalance("0x0DEADBEEF");
 to run the service runner:
 
 ```shell
-etclabscore-jade-service-runner
+jade-service-runner
 ```
 
 # Contributing
