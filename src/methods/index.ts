@@ -4,7 +4,8 @@
 import { Installer } from "../lib/installer";
 import { TaskManager } from "../lib/task";
 import { makeLogger } from "../lib/logging";
-import { TInstallService, TListInstalledServices, TListRunningServices, TStartService } from '../generated-types';
+import { InstallService, ListInstalledServices, ListRunningServices, StartService } from "../generated-types";
+import { IMethodMapping } from "@open-rpc/server-js/build/router";
 const logger = makeLogger("ServiceRunner", "Routes");
 
 /**
@@ -16,14 +17,14 @@ const logger = makeLogger("ServiceRunner", "Routes");
  * @returns The config of a service scoped by OS and service name
  */
 
-export type TServiceMethodMapping = {
-  installService: TInstallService,
-  listInstalledServices: TListInstalledServices,
-  listRunningServices: TListRunningServices,
-  startService: TStartService
+export interface IServiceMethodMapping extends IMethodMapping {
+  installService: InstallService;
+  listInstalledServices: ListInstalledServices;
+  listRunningServices: ListRunningServices;
+  startService: StartService;
 }
 
-export const methods = (installer: Installer, taskManager: TaskManager): TServiceMethodMapping => {
+export const methods = (installer: Installer, taskManager: TaskManager): IServiceMethodMapping => {
 
   return {
 
@@ -36,7 +37,7 @@ export const methods = (installer: Installer, taskManager: TaskManager): TServic
         logger.error(`Could not install ${name} ${e}`);
         throw e;
       }
-      return true
+      return true;
     },
     listInstalledServices: async () => {
       const mf = await installer.repo.getManifest();
