@@ -10,14 +10,14 @@
 				{
 					"name": "serviceName",
 					"schema": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"required": true
 				},
 				{
 					"name": "version",
 					"schema": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"required": true
 				}
@@ -25,7 +25,7 @@
 			"result": {
 				"name": "installSuccess",
 				"schema": {
-						"$ref": "#/components/schemas/RPCBoolean"
+					"type": "boolean"
 				}
 			}
 		},
@@ -35,17 +35,15 @@
 			"result": {
 				"name": "installedServices",
 				"schema": {
-					"title": "InstalledServiceArray",
 					"type": "array",
 					"items": {
-						"title": "InstalledService",
 						"type": "object",
 						"properties": {
 							"name": {
-								"$ref": "#/components/schemas/RPCString"
+								"type": "string"
 							},
 							"version": {
-								"$ref": "#/components/schemas/RPCString"
+								"type": "string"
 							}
 						}
 					}
@@ -58,7 +56,6 @@
 			"result": {
 				"name": "runningServices",
 				"schema": {
-					"title": "TaskServiceArray",
 					"type": "array",
 					"items": {
 						"$ref": "#/components/schemas/TaskService"
@@ -72,21 +69,21 @@
 				{
 					"name": "name",
 					"schema": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"required": true
 				},
 				{
 					"name": "version",
 					"schema": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"required": true
 				},
 				{
 					"name": "environment",
 					"schema": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"required": true
 				}
@@ -102,30 +99,23 @@
 	],
 	"components": {
 		"schemas": {
-			"RPCStringArray": {
+			"StringArray": {
 				"type": "array",
-				 "title":"RPCStringArray",
 				"items": {
-					"$ref": "#/components/schemas/RPCString"
+					"type": "string"
 				}
 			},
-			"RPCString": {
-				"title": "RPCString",
-				"type": "string"
-			},
-			"RPCBoolean": {
-				"title": "RPCBoolean",
-				"type": "boolean"
-			},
 			"SeqCommand": {
-				"title": "SeqCommand",
 				"type": "object",
 				"properties": {
 					"cmd": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"args": {
-						"$ref": "#/components/schemas/RPCStringArray"
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
 					}
 				},
 				"required": [
@@ -134,17 +124,16 @@
 				]
 			},
 			"EnvArgs": {
-				"title": "EnvArgs",
 				"type": "object",
 				"properties": {
 					"start": {
-						"$ref": "#/components/schemas/RPCStringArray"
+						"$ref": "#/components/schemas/StringArray"
 					},
 					"stop": {
-						"$ref": "#/components/schemas/RPCStringArray"
+						"$ref": "#/components/schemas/StringArray"
 					},
 					"teardown": {
-						"$ref": "#/components/schemas/RPCStringArray"
+						"$ref": "#/components/schemas/StringArray"
 					}
 				},
 				"required": [
@@ -154,24 +143,22 @@
 				]
 			},
 			"Commands": {
-				"title": "Commands",
 				"type": "object",
 				"properties": {
 					"setup": {
-						"title": "SeqCommandArray",
 						"type": "array",
 						"items": {
 							"$ref": "#/components/schemas/SeqCommand"
 						}
 					},
 					"start": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"stop": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"teardown": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					}
 				},
 				"required": [
@@ -183,23 +170,22 @@
 			},
 			"TaskService": {
 				"description": "An object that describes an instance of a service",
-				"title": "TaskService",
 				"type": "object",
 				"properties": {
 					"env": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"rpcPort": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"name": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"version": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"path": {
-						"$ref": "#/components/schemas/RPCString"
+						"type": "string"
 					},
 					"commands": {
 						"$ref": "#/components/schemas/Commands"
@@ -208,7 +194,7 @@
 						"$ref": "#/components/schemas/EnvArgs"
 					},
 					"running": {
-						"$ref": "#/components/schemas/RPCBoolean"
+						"type": "boolean"
 					}
 				},
 				"required": [
