@@ -1,3 +1,14 @@
+## [1.0.1](https://github.com/etclabscore/jade-service-runner/compare/1.0.0...1.0.1) (2019-06-01)
+
+
+### Bug Fixes
+
+* add jade logo ([81345ee](https://github.com/etclabscore/jade-service-runner/commit/81345ee))
+* bump openrpc version ([75a2dc6](https://github.com/etclabscore/jade-service-runner/commit/75a2dc6))
+* clean after build ([6729be1](https://github.com/etclabscore/jade-service-runner/commit/6729be1))
+* release clients seperately ([206f37e](https://github.com/etclabscore/jade-service-runner/commit/206f37e))
+* watch out badges coming thru ([2611c47](https://github.com/etclabscore/jade-service-runner/commit/2611c47))
+
 # 1.0.0 (2019-06-01)
 
 
