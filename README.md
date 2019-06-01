@@ -68,8 +68,8 @@ jade-service-runner
 
 Currently it supports `multi-geth` with the following environments:
 
+- `mainnet (ETC)`
 - `kotti`
-- `mainnet`
 - `ethereum`
 - `goerli`
 - `rinkeby`
