@@ -36,9 +36,14 @@ Service Runner improves the dApp development cycle, by reducing the number of st
 Install `jade-service-runner` using npm
 
 ```shell
-npm install jade-service-runner
-npm install jade-service-runner-client
+npm install -g @etclabscore/jade-service-runner
 ```
+
+It also has a javascript client:
+```
+npm install @etclabscore/jade-service-runner-client
+```
+
 Then require it into any module.
 
 ```js
@@ -53,8 +58,9 @@ const erpc = new ERPC(serviceConfig);
 erpc.getBalance("0x0DEADBEEF");
 ```
 
+to run the service runner:
+
 ```shell
-npm install -g @etclabscore/jade-service-runner
 etclabscore-jade-service-runner
 ```
 
