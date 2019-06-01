@@ -1,5 +1,5 @@
 {
-  "name": "jade-service-runner",
+  "name": "@etclabscore/jade-service-runner",
   "version": "1.0.0",
   "description": "![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png) Supported by [ETC Labs](https://www.etclabs.org/)",
   "main": "index.js",
