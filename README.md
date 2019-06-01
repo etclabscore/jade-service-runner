@@ -38,7 +38,7 @@ const successful = await serviceRunner.installService(serviceName);
 if (successful === false) throw new Error('Service not installed')
 const serviceConfig = serviceRunner.start(serviceName, 'kotti');
 const erpc = new ERPC(serviceConfig);
-rpc.getBalance("0x0DEADBEEF");
+erpc.getBalance("0x0DEADBEEF");
 ```
 
 To run the service runner.
