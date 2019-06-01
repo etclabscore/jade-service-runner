@@ -107,7 +107,18 @@
 erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 				<p>to run the service runner:</p>
 				<pre><code class="language-shell">jade-service-runner</code></pre>
-				<h1 id="contributing">Contributing</h1>
+				<h2 id="supported-services">Supported Services</h2>
+				<p>Currently it supports <code>multi-geth</code> with the following environments:</p>
+				<ul>
+					<li><code>mainnet (ETC)</code></li>
+					<li><code>kotti</code></li>
+					<li><code>ethereum</code></li>
+					<li><code>goerli</code></li>
+					<li><code>rinkeby</code></li>
+				</ul>
+				<h2 id="extending-services">Extending services</h2>
+				<p>You can extend jade-service-runner with your own configuration via the command line interface</p>
+				<pre><code>jade-service-runner -c extended-jade-service-runner-<span class="hljs-built_in">config</span>.json</code></pre><h1 id="contributing">Contributing</h1>
 				<p>How to contribute, build and release are outlined in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>, <a href="BUILDING.md">BUILDING.md</a> and <a href="RELEASING.md">RELEASING.md</a> respectively. Commits in this repository follow the <a href="CONVENTIONAL_COMMITS.md">CONVENTIONAL_COMMITS.md</a> specification.</p>
 			</div>
 		</div>
