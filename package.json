@@ -47,7 +47,7 @@
     "build:typings": "npm run typings",
     "build:client": "npm run generator-client -- --ts-name=@etclabscore/jade-service-runner --rs-name=jade-service-runner -o build/client",
     "build:docs": "typedoc",
-    "publish": "npm run publish:typescript && npm run publish:rust",
+    "publish": "npm run publish:typescript",
     "publish:typescript": "cd build/client/typescript && npm publish --access=public",
     "start": "npm run build && node build/src/cli/index.js",
     "start:client": "node build/client.js",
