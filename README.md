@@ -31,29 +31,14 @@ Then require it into any module.
 
 ```js
 const { ServiceRunner } = require('service-runner-client');
-const EthereumJSONRPClient = require('ethereum-json-rpc-spec');
-const client = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
-client.installService("multi-geth", "1.8.5")
-  .then(() => client.listInstalledServices())
-  .then(() => client.listRunningServices())
-  .then(console.log)
-  .then(() => client.startService("multi-geth", "1.8.5", "mainnet"))
-  .then((multiGethConfig)=>{
-  })
-  .then(() => client.listRunningServices())
-  .then(console.log)
-  .catch((e) => {
-    console.log(e);
-    throw e;
-  });
-const { MultiGeth } = require('@multi-geth/types');
-const serviceRunner = new ServiceRunner(new );
-const serviceName='multi-geth';
+const ERPC = require('ethereum-json-rpc-spec');
+const serviceRunner = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
+const serviceName = 'multi-geth';
 const successful = await serviceRunner.installService(serviceName);
-if(successful === false) throw new Error('Service not installed')
+if (successful === false) throw new Error('Service not installed')
 const serviceConfig = serviceRunner.start(serviceName, 'kotti');
-const multiGeth = new MultiGeth(serviceConfig);
-multiGeth.getBalance("0x0DEADBEEF")
+const erpc = new ERPC(serviceConfig);
+rpc.getBalance("0x0DEADBEEF");
 ```
 
 To run the service runner.
