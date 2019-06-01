@@ -1,3 +1,16 @@
+## [1.0.4](https://github.com/etclabscore/jade-service-runner/compare/1.0.3...1.0.4) (2019-06-01)
+
+
+### Bug Fixes
+
+* bin incorrect ([edaedef](https://github.com/etclabscore/jade-service-runner/commit/edaedef))
+* bump open rpc ([eaf7413](https://github.com/etclabscore/jade-service-runner/commit/eaf7413))
+* cors domains ([563e749](https://github.com/etclabscore/jade-service-runner/commit/563e749))
+* install instructions ([7ab6cf6](https://github.com/etclabscore/jade-service-runner/commit/7ab6cf6))
+* install instructions ([8f97d05](https://github.com/etclabscore/jade-service-runner/commit/8f97d05))
+* missing comma ([25c3cfa](https://github.com/etclabscore/jade-service-runner/commit/25c3cfa))
+* update instructions ([6b900c8](https://github.com/etclabscore/jade-service-runner/commit/6b900c8))
+
 ## [1.0.3](https://github.com/etclabscore/jade-service-runner/compare/1.0.2...1.0.3) (2019-06-01)
 
 
