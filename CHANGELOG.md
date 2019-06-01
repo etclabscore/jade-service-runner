@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/etclabscore/jade-service-runner/compare/1.0.6...1.0.7) (2019-06-01)
+
+
+### Bug Fixes
+
+* cli add shebang ([2a09212](https://github.com/etclabscore/jade-service-runner/commit/2a09212))
+
 ## [1.0.6](https://github.com/etclabscore/jade-service-runner/compare/1.0.5...1.0.6) (2019-06-01)
 
 
