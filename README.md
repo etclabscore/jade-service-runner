@@ -1,11 +1,20 @@
-![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png)
-Supported by [ETC Labs](https://www.etclabs.org/)
+# Jade Service Runner - A JSON-RPC Service Manager
 
 <p align="center">
 <img height="300" src="https://user-images.githubusercontent.com/364566/58745852-a0469e00-840b-11e9-8a1c-4babeca3496b.png" />
 </p>
 
-# Jade Service Runner - A JSON-RPC Service Manager
+<center>
+  <span>
+    <img alt="CircleCI branch" src="https://img.shields.io/circleci/project/github/etclabscore/jade-service-runner/master.svg">
+    <img src="https://codecov.io/gh/etclabscore/jade-service-runner/branch/master/graph/badge.svg" />
+    <img alt="Dependabot status" src="https://api.dependabot.com/badges/status?host=github&repo=etclabscore/jade-service-runner" />
+    <img alt="Chat on Discord" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" />
+    <img alt="npm" src="https://img.shields.io/npm/dt/@etclabscore/jade-service-runner.svg" />
+    <img alt="GitHub release" src="https://img.shields.io/github/release/etclabscore/jade-service-runner.svg" />
+    <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/etclabscore/jade-service-runner/latest.svg" />
+  </span>
+</center>
 
 Service Runner is an opinionated JSON-RPC service manager, that provides daemonization, installation, and discovery for JSON-RPC based services.
 
