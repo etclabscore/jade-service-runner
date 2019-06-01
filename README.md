@@ -53,18 +53,9 @@ const erpc = new ERPC(serviceConfig);
 erpc.getBalance("0x0DEADBEEF");
 ```
 
-To run the service runner.
-Download and install the binary [here](https://here)
-
 ```shell
-./jade-service-runner
-```
-
-or
-
-```shell
-cd  $PATH/jade-service-runner
-npx jade-service-runner
+npm install -g @etclabscore/jade-service-runner
+etclabscore-jade-service-runner
 ```
 
 # Contributing
