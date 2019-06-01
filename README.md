@@ -36,7 +36,7 @@ const serviceRunner = new ServiceRunner('localhost','8585');
 const serviceName='multi-geth';
 const successful = await serviceRunner.installService(serviceName);
 if(successful === false) throw new Error('Service not installed')
-const serviceConfig = serviceRunner.start(serviceName, 'gorli');
+const serviceConfig = serviceRunner.start(serviceName, 'kotti');
 const multiGeth = new MultiGeth(serviceConfig);
 multiGeth.getBalance("0x0DEADBEEF")
 ```
