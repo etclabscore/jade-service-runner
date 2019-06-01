@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@open-rpc/client-js": "^1.0.1",
+    "@open-rpc/generator-client": "^1.9.3",
     "@open-rpc/server-js": "^1.1.2",
     "@open-rpc/typings": "^1.3.0",
     "commander": "^2.20.0",
@@ -20,7 +21,6 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
-    "@open-rpc/generator-client": "^1.9.2",
     "@qiwi/semantic-release-gh-pages-plugin": "^1.9.1",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/commit-analyzer": "^6.1.0",
@@ -48,6 +48,7 @@
     "build:code": "tsc",
     "build:typings": "open-rpc-typings --output-ts src/generated-types",
     "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o build/generated-client",
+    "build:semiclean": "rm -rf build/generated-client/rust",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
     "publish:typescript": "cd build/generated-client/typescript && npm publish --access=public",
@@ -69,7 +70,8 @@
   },
   "files": [
     "build",
-    "!build/*.test.*"
+    "!build/*.test.*",
+    "!build/generated-client"
   ],
   "homepage": "https://github.com/etclabscore/jade-service-runner#readme"
 }
