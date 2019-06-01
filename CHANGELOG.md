@@ -1,3 +1,13 @@
+## [1.0.6](https://github.com/etclabscore/jade-service-runner/compare/1.0.5...1.0.6) (2019-06-01)
+
+
+### Bug Fixes
+
+* **README:** add supported services ([778025f](https://github.com/etclabscore/jade-service-runner/commit/778025f))
+* bin permissions for executable ([b936428](https://github.com/etclabscore/jade-service-runner/commit/b936428))
+* ETC mainnet ([fed1e2e](https://github.com/etclabscore/jade-service-runner/commit/fed1e2e))
+* extended json file ([5ee1cef](https://github.com/etclabscore/jade-service-runner/commit/5ee1cef))
+
 ## [1.0.4](https://github.com/etclabscore/jade-service-runner/compare/1.0.3...1.0.4) (2019-06-01)
 
 
