@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/etclabscore/jade-service-runner/compare/1.0.1...1.0.2) (2019-06-01)
+
+
+### Bug Fixes
+
+* doing it live ([7b0b4ab](https://github.com/etclabscore/jade-service-runner/commit/7b0b4ab))
+
 ## [1.0.1](https://github.com/etclabscore/jade-service-runner/compare/1.0.0...1.0.1) (2019-06-01)
 
 
