@@ -13,9 +13,11 @@
               "--classic",
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/classic",
+              "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpc"
+              "--rpccorsdomain", 
+              "*"
             ],
             "stop": [],
             "teardown": []
@@ -28,9 +30,13 @@
               "--kotti",
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/kotti",
+              "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpc"
+              "--rpcaddr",
+              "localhost",
+              "--rpccorsdomain",
+              "*"
             ],
             "stop": [],
             "teardown": []
@@ -42,9 +48,11 @@
             "start": [
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/ethereum",
+              "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpc"
+              "--rpccorsdomain",
+              "*"
             ],
             "stop": [],
             "teardown": []
@@ -57,9 +65,11 @@
               "--goerli",
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/goerli",
+              "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpc"
+              "--rpccorsdomain",
+              "*"
             ],
             "stop": [],
             "teardown": []
@@ -72,9 +82,11 @@
               "--rinkeby",
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby",
+              "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpc"
+              "--rpccorsdomain",
+              "*"
             ],
             "stop": [],
             "teardown": []
