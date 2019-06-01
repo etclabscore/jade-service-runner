@@ -93,9 +93,9 @@
 				<h2 id="getting-started">Getting Started</h2>
 				<hr>
 				<p>Install <code>jade-service-runner</code> using npm</p>
-				<pre><code class="language-shell">npm install jade-service-runner
-npm install jade-service-runner-client</code></pre>
-				<p>Then require it into any module.</p>
+				<pre><code class="language-shell">npm install -g @etclabscore/jade-service-runner</code></pre>
+				<p>It also has a javascript client:</p>
+				<pre><code><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">install</span> @<span class="hljs-keyword">etclabscore</span>/<span class="hljs-keyword">jade</span>-<span class="hljs-keyword">service</span>-<span class="hljs-keyword">runner</span>-<span class="hljs-keyword">client</span></code></pre><p>Then require it into any module.</p>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/jade-service-runner-client'</span>);
 <span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/ethereum-json-rpc'</span>);
 <span class="hljs-keyword">const</span> serviceRunner = <span class="hljs-keyword">new</span> ServiceRunner({ <span class="hljs-attr">transport</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">"http"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">8002</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">"localhost"</span> } });
@@ -105,12 +105,8 @@ npm install jade-service-runner-client</code></pre>
 <span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">'kotti'</span>);
 <span class="hljs-keyword">const</span> erpc = <span class="hljs-keyword">new</span> ERPC(serviceConfig);
 erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
-				<p>To run the service runner.
-				Download and install the binary <a href="https://here">here</a></p>
-				<pre><code class="language-shell">./jade-service-runner</code></pre>
-				<p>or</p>
-				<pre><code class="language-shell">cd  $PATH/jade-service-runner
-npx jade-service-runner</code></pre>
+				<p>to run the service runner:</p>
+				<pre><code class="language-shell">jade-service-runner</code></pre>
 				<h1 id="contributing">Contributing</h1>
 				<p>How to contribute, build and release are outlined in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>, <a href="BUILDING.md">BUILDING.md</a> and <a href="RELEASING.md">RELEASING.md</a> respectively. Commits in this repository follow the <a href="CONVENTIONAL_COMMITS.md">CONVENTIONAL_COMMITS.md</a> specification.</p>
 			</div>
