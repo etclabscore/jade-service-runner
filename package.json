@@ -4,8 +4,9 @@
   "description": "![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png) Supported by [ETC Labs](https://www.etclabs.org/)",
   "main": "index.js",
   "dependencies": {
-    "@open-rpc/typings": "^1.3.0",
+    "@open-rpc/client-js": "^1.0.1",
     "@open-rpc/server-js": "^1.1.2",
+    "@open-rpc/typings": "^1.3.0",
     "commander": "^2.20.0",
     "follow-redirects": "^1.7.0",
     "fs-extra": "^8.0.1",
@@ -19,7 +20,7 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
-    "@open-rpc/generator-client": "^1.9.0",
+    "@open-rpc/generator-client": "^1.9.2",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/github": "^5.2.10",
@@ -41,13 +42,13 @@
   "scripts": {
     "test": "npx jest",
     "generator-client": "open-rpc-generator-client",
-    "build": "npm run build:code && npm run build:docs",
+    "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs",
     "build:code": "npx tsc",
     "build:typings": "npx open-rpc-typings --output-ts src/generated-types",
     "build:client": "npm run generator-client -- --ts-name=@etclabscore/jade-service-runner --rs-name=jade-service-runner -o src/generated-client",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
-    "publish:typescript": "cd build/client/typescript && npm publish --access=public",
+    "publish:typescript": "cd src/generated-client/typescript && npm publish --access=public",
     "start": "npm run build && node build/src/cli/index.js",
     "start:client": "node build/client.js",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
