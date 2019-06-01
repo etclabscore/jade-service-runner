@@ -40,17 +40,17 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "test": "npx jest",
     "generator-client": "open-rpc-generator-client",
     "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs",
-    "build:code": "npx tsc",
-    "build:typings": "npx open-rpc-typings --output-ts src/generated-types",
+    "build:code": "npm tsc",
+    "build:typings": "npm open-rpc-typings --output-ts src/generated-types",
     "build:client": "npm run generator-client -- --ts-name=@etclabscore/jade-service-runner --rs-name=jade-service-runner -o src/generated-client",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
     "publish:typescript": "cd src/generated-client/typescript && npm publish --access=public",
     "start": "npm run build && node build/src/cli/index.js",
     "start:client": "node build/client.js",
+    "test": "npm run test:lint && npm run test:unit",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "test:lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "test:unit": "jest --coverage"
