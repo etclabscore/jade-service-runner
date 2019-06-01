@@ -47,7 +47,7 @@
     "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs",
     "build:code": "tsc",
     "build:typings": "open-rpc-typings --output-ts src/generated-types",
-    "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o build/generated-client",
+    "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o build/generated-client && npm run build:semiclean",
     "build:semiclean": "rm -rf build/generated-client/rust",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
