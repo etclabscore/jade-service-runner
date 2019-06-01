@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "description": "![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png) Supported by [ETC Labs](https://www.etclabs.org/)",
   "bin": {
-    "jade-service-runner": "build/src/cli/index.js"
+    "jade-service-runner": "./build/src/cli/index.js"
   },
   "dependencies": {
     "@open-rpc/client-js": "^1.0.1",
