@@ -6,10 +6,12 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     "@semantic-release/github",
-    "@semantic-release/git"
+    "@semantic-release/git",
+    "@semantic-release/npm"
   ],
   "verifyConditions": [
     "@semantic-release/changelog",
+    "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/github",
     "@qiwi/semantic-release-gh-pages-plugin"
@@ -19,9 +21,10 @@
     {
       "path": "@qiwi/semantic-release-gh-pages-plugin",
       "msg": "github pages release",
-      "src": "docs",
+      "src": "docs/",
       "branch": "gh-pages"
-    }
+    },
+    "@semantic-release/npm"
   ],
   "success": [
     "@semantic-release/github"
