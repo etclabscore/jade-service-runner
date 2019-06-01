@@ -64,6 +64,23 @@ to run the service runner:
 jade-service-runner
 ```
 
+## Supported Services
+
+Currently it supports `multi-geth` with the following environments:
+
+- `mainnet (ETC)`
+- `kotti`
+- `ethereum`
+- `goerli`
+- `rinkeby`
+
+## Extending services
+You can extend jade-service-runner with your own configuration via the command line interface
+
+```
+jade-service-runner -c extended-jade-service-runner-config.json
+```
+
 # Contributing
 
 How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUTING.md), [BUILDING.md](BUILDING.md) and [RELEASING.md](RELEASING.md) respectively. Commits in this repository follow the [CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md) specification.
