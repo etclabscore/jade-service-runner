@@ -25,14 +25,32 @@ Install `jade-service-runner` using npm
 
 ```shell
 npm install jade-service-runner 
+npm install jade-service-runner-client
 ```
 Then require it into any module.
  
 <!-- runkit:activate -->
 ```js
-const { ServiceRunner } = require('immutable');
+const { ServiceRunner } = require('service-runner-client');
+const EthereumJSONRPClient = require('ethereum-json-rpc-spec');
+const client = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
+client.installService("multi-geth", "1.8.5")
+  .then(() => client.listInstalledServices())
+  .then(() => client.listRunningServices())
+  .then(console.log)
+  .then(() => client.startService("multi-geth", "1.8.5", "mainnet"))
+  .then((multiGethConfig)=>{
+    
+  })
+  .then(() => client.listRunningServices())
+  .then(console.log)
+  .catch((e) => {
+    console.log(e);
+    throw e;
+  });
+```
 const { MultiGeth } = require('@multi-geth/types');
-const serviceRunner = new ServiceRunner('localhost','8585');
+const serviceRunner = new ServiceRunner(new );
 const serviceName='multi-geth';
 const successful = await serviceRunner.installService(serviceName);
 if(successful === false) throw new Error('Service not installed')
