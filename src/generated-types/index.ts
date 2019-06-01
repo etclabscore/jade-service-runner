@@ -1,47 +1,47 @@
-export type StringWxzVcTo3 = string;
-export type BooleanQg3XFxa5 = boolean;
-export interface ObjectVZsrKceH {
-  name?: StringWxzVcTo3;
-  version?: StringWxzVcTo3;
+export type RPCString = string;
+export type RPCBoolean = boolean;
+export interface InstalledService {
+  name?: RPCString;
+  version?: RPCString;
   [k: string]: any;
 }
-export type ArrayKvcc3Slb = ObjectVZsrKceH[];
-export type ArrayFoEQPbEQ = StringWxzVcTo3[];
-export interface ObjectD8RkBGZG {
-  cmd: StringWxzVcTo3;
-  args: ArrayFoEQPbEQ;
+export type InstalledServiceArray = InstalledService[];
+export type RPCStringArray = RPCString[];
+export interface SeqCommand {
+  cmd: RPCString;
+  args: RPCStringArray;
   [k: string]: any;
 }
-export type ArrayQfe0DQgu = ObjectD8RkBGZG[];
-export interface ObjectHuetvW0J {
-  setup: ArrayQfe0DQgu;
-  start: StringWxzVcTo3;
-  stop: StringWxzVcTo3;
-  teardown: StringWxzVcTo3;
+export type SeqCommandArray = SeqCommand[];
+export interface Commands {
+  setup: SeqCommandArray;
+  start: RPCString;
+  stop: RPCString;
+  teardown: RPCString;
   [k: string]: any;
 }
-export interface ObjectHqcFUS7M {
-  start: ArrayFoEQPbEQ;
-  stop: ArrayFoEQPbEQ;
-  teardown: ArrayFoEQPbEQ;
+export interface EnvArgs {
+  start: RPCStringArray;
+  stop: RPCStringArray;
+  teardown: RPCStringArray;
   [k: string]: any;
 }
 /**
  * An object that describes an instance of a service
  */
-export interface ObjectB03Ky6YK {
-  env: StringWxzVcTo3;
-  rpcPort: StringWxzVcTo3;
-  name: StringWxzVcTo3;
-  version: StringWxzVcTo3;
-  path: StringWxzVcTo3;
-  commands: ObjectHuetvW0J;
-  args: ObjectHqcFUS7M;
-  running: BooleanQg3XFxa5;
+export interface TaskService {
+  env: RPCString;
+  rpcPort: RPCString;
+  name: RPCString;
+  version: RPCString;
+  path: RPCString;
+  commands: Commands;
+  args: EnvArgs;
+  running: RPCBoolean;
   [k: string]: any;
 }
-export type ArrayQv89Khbj = ObjectB03Ky6YK[];
-export type InstallService = (serviceName: StringWxzVcTo3, version: StringWxzVcTo3) => Promise<BooleanQg3XFxa5>;
-export type ListInstalledServices = () => Promise<ArrayKvcc3Slb>;
-export type ListRunningServices = () => Promise<ArrayQv89Khbj>;
-export type StartService = (name: StringWxzVcTo3, version: StringWxzVcTo3, environment: StringWxzVcTo3) => Promise<ObjectB03Ky6YK>;
+export type TaskServiceArray = TaskService[];
+export type InstallService = (serviceName: RPCString, version: RPCString) => Promise<RPCBoolean>;
+export type ListInstalledServices = () => Promise<InstalledServiceArray>;
+export type ListRunningServices = () => Promise<TaskServiceArray>;
+export type StartService = (name: RPCString, version: RPCString, environment: RPCString) => Promise<TaskService>;
