@@ -1,0 +1,228 @@
+{
+	"info": {
+		"title": "ServiceRunner",
+		"version": "0.0.0-development"
+	},
+	"methods": [
+		{
+			"name": "installService",
+			"params": [
+				{
+					"name": "serviceName",
+					"schema": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"required": true
+				},
+				{
+					"name": "version",
+					"schema": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"required": true
+				}
+			],
+			"result": {
+				"name": "installSuccess",
+				"schema": {
+						"$ref": "#/components/schemas/RPCBoolean"
+				}
+			}
+		},
+		{
+			"name": "listInstalledServices",
+			"params": [],
+			"result": {
+				"name": "installedServices",
+				"schema": {
+					"title": "InstalledServiceArray",
+					"type": "array",
+					"items": {
+						"title": "InstalledService",
+						"type": "object",
+						"properties": {
+							"name": {
+								"$ref": "#/components/schemas/RPCString"
+							},
+							"version": {
+								"$ref": "#/components/schemas/RPCString"
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "listRunningServices",
+			"params": [],
+			"result": {
+				"name": "runningServices",
+				"schema": {
+					"title": "TaskServiceArray",
+					"type": "array",
+					"items": {
+						"$ref": "#/components/schemas/TaskService"
+					}
+				}
+			}
+		},
+		{
+			"name": "startService",
+			"params": [
+				{
+					"name": "name",
+					"schema": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"required": true
+				},
+				{
+					"name": "version",
+					"schema": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"required": true
+				},
+				{
+					"name": "environment",
+					"schema": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"required": true
+				}
+			],
+			"result": {
+				"name": "serviceConfig",
+				"schema": {
+					"$ref": "#/components/schemas/TaskService"
+				},
+				"required": true
+			}
+		}
+	],
+	"components": {
+		"schemas": {
+			"RPCStringArray": {
+				"type": "array",
+				 "title":"RPCStringArray",
+				"items": {
+					"$ref": "#/components/schemas/RPCString"
+				}
+			},
+			"RPCString": {
+				"title": "RPCString",
+				"type": "string"
+			},
+			"RPCBoolean": {
+				"title": "RPCBoolean",
+				"type": "boolean"
+			},
+			"SeqCommand": {
+				"title": "SeqCommand",
+				"type": "object",
+				"properties": {
+					"cmd": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"args": {
+						"$ref": "#/components/schemas/RPCStringArray"
+					}
+				},
+				"required": [
+					"cmd",
+					"args"
+				]
+			},
+			"EnvArgs": {
+				"title": "EnvArgs",
+				"type": "object",
+				"properties": {
+					"start": {
+						"$ref": "#/components/schemas/RPCStringArray"
+					},
+					"stop": {
+						"$ref": "#/components/schemas/RPCStringArray"
+					},
+					"teardown": {
+						"$ref": "#/components/schemas/RPCStringArray"
+					}
+				},
+				"required": [
+					"start",
+					"stop",
+					"teardown"
+				]
+			},
+			"Commands": {
+				"title": "Commands",
+				"type": "object",
+				"properties": {
+					"setup": {
+						"title": "SeqCommandArray",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/SeqCommand"
+						}
+					},
+					"start": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"stop": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"teardown": {
+						"$ref": "#/components/schemas/RPCString"
+					}
+				},
+				"required": [
+					"setup",
+					"start",
+					"stop",
+					"teardown"
+				]
+			},
+			"TaskService": {
+				"description": "An object that describes an instance of a service",
+				"title": "TaskService",
+				"type": "object",
+				"properties": {
+					"env": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"rpcPort": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"name": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"version": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"path": {
+						"$ref": "#/components/schemas/RPCString"
+					},
+					"commands": {
+						"$ref": "#/components/schemas/Commands"
+					},
+					"args": {
+						"$ref": "#/components/schemas/EnvArgs"
+					},
+					"running": {
+						"$ref": "#/components/schemas/RPCBoolean"
+					}
+				},
+				"required": [
+					"env",
+					"rpcPort",
+					"name",
+					"version",
+					"path",
+					"commands",
+					"args",
+					"running"
+				]
+			}
+		}
+	},
+	"openrpc": "1.0.0-rc0"
+}
