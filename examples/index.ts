@@ -1,4 +1,4 @@
-import ServiceRunner from "../src/generated-client/typescript/src";
+import ServiceRunner from "../build/generated-client/typescript";
 const client = new ServiceRunner({
   transport: {
     type: "http",

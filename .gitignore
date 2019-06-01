@@ -5,4 +5,3 @@ services
 coverage
 build
 docs
-src/generated-client

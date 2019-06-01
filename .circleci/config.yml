@@ -53,7 +53,7 @@ jobs:
       - run: npm run build
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/jade-service-runner/build/typescript/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/jade-service-runner/build/generated-client/typescript/.npmrc
       - run: npx semantic-release
       - run: npm run publish
 

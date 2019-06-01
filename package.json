@@ -43,16 +43,16 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "test": "npx jest",
     "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs",
-    "build:code": "npx tsc",
-    "build:typings": "npx open-rpc-typings --output-ts src/generated-types",
-    "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o src/generated-client",
+    "build:code": "tsc",
+    "build:typings": "open-rpc-typings --output-ts src/generated-types",
+    "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o build/generated-client",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
-    "publish:typescript": "cd src/generated-client/typescript && npm publish --access=public",
+    "publish:typescript": "cd build/generated-client/typescript && npm publish --access=public",
     "start": "npm run build && node build/src/cli/index.js",
     "start:client": "node build/client.js",
+    "test": "npm run test:lint && npm run test:unit",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "test:lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "test:unit": "jest --coverage"
@@ -62,7 +62,7 @@
     "url": "git+https://github.com/etclabscore/jade-service-runner.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/etclabscore/jade-service-runner/issues"
   },
