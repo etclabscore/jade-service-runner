@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/etclabscore/jade-service-runner/compare/1.0.7...1.0.8) (2019-06-01)
+
+
+### Bug Fixes
+
+* bump to 1.0.8 ([5a166f3](https://github.com/etclabscore/jade-service-runner/commit/5a166f3))
+* revert openrpc without titles ([8f4ac46](https://github.com/etclabscore/jade-service-runner/commit/8f4ac46))
+
 ## [1.0.7](https://github.com/etclabscore/jade-service-runner/compare/1.0.6...1.0.7) (2019-06-01)
 
 
