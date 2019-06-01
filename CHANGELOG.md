@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/etclabscore/jade-service-runner/compare/1.0.2...1.0.3) (2019-06-01)
+
+
+### Bug Fixes
+
+* bump rpc version ([0ef7479](https://github.com/etclabscore/jade-service-runner/commit/0ef7479))
+* remove extra publish ([1668331](https://github.com/etclabscore/jade-service-runner/commit/1668331))
+
 ## [1.0.2](https://github.com/etclabscore/jade-service-runner/compare/1.0.1...1.0.2) (2019-06-01)
 
 
