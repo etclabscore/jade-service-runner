@@ -1,6 +1,9 @@
 ![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png)
 Supported by [ETC Labs](https://www.etclabs.org/)
 
+<p align="center">
+<img height="300" src="https://user-images.githubusercontent.com/364566/58745852-a0469e00-840b-11e9-8a1c-4babeca3496b.png" />
+</p>
 
 # Jade Service Runner - A JSON-RPC Service Manager
 
