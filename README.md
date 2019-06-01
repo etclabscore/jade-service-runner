@@ -31,7 +31,7 @@ Then require it into any module.
 
 ```js
 const { ServiceRunner } = require('service-runner-client');
-const ERPC = require('ethereum-json-rpc-spec');
+const ERPC = require('@etclabscore/ethereum-json-rpc');
 const serviceRunner = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
 const serviceName = 'multi-geth';
 const successful = await serviceRunner.installService(serviceName);
