@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import program from "commander";
 import fs from "fs-extra";
 const version = require("../../../package.json").version; // tslint:disable-line
