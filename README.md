@@ -81,6 +81,10 @@ You can extend jade-service-runner with your own configuration via the command l
 jade-service-runner -c extended-jade-service-runner-config.json
 ```
 
+## JSON-RPC API Documentation
+
+You can view the API documentation [here](https://playground.open-rpc.org/?uiSchema[appBar][ui:title]=Jade%20Service%20Runner&uiSchema[appBar][ui:logoUrl]=https://user-images.githubusercontent.com/364566/58745852-a0469e00-840b-11e9-8a1c-4babeca3496b.png&uiSchema[appBar][ui:splitView]=false)
+
 # Contributing
 
 How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUTING.md), [BUILDING.md](BUILDING.md) and [RELEASING.md](RELEASING.md) respectively. Commits in this repository follow the [CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md) specification.
