@@ -78,7 +78,7 @@ Currently it supports `multi-geth` with the following environments:
 You can extend jade-service-runner with your own configuration via the command line interface
 
 ```
-jade-service-runner -c jade-service-runner-config.json
+jade-service-runner -c extended-jade-service-runner-config.json
 ```
 
 # Contributing
