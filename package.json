@@ -40,11 +40,11 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "test": "npx jest",
+    "test": "jest",
     "generator-client": "open-rpc-generator-client",
     "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs",
-    "build:code": "npx tsc",
-    "build:typings": "npx open-rpc-typings --output-ts src/generated-types",
+    "build:code": "tsc",
+    "build:typings": "open-rpc-typings --output-ts src/generated-types",
     "build:client": "npm run generator-client -- --ts-name=@etclabscore/jade-service-runner --rs-name=jade-service-runner -o src/generated-client",
     "build:docs": "typedoc",
     "publish": "npm run publish:typescript",
