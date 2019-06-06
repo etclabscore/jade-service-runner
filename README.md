@@ -1,7 +1,7 @@
 # Jade Service Runner - A JSON-RPC Service Manager
 
 <p align="center">
-<img height="300" src="https://user-images.githubusercontent.com/364566/58745852-a0469e00-840b-11e9-8a1c-4babeca3496b.png" />
+<img height="256" width="256" src="https://github.com/etclabscore/jade-media-assets/raw/master/jade-logo-light/jade-logo-light%20(PNG)/256x256.png" />
 </p>
 
 <center>
