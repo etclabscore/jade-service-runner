@@ -83,7 +83,8 @@ jade-service-runner -c extended-jade-service-runner-config.json
 
 ## JSON-RPC API Documentation
 
-You can view the API documentation [here](https://playground.open-rpc.org/?uiSchema[appBar][ui:title]=Jade%20Service%20Runner&uiSchema[appBar][ui:logoUrl]=https://user-images.githubusercontent.com/364566/58745852-a0469e00-840b-11e9-8a1c-4babeca3496b.png&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[methods][ui:title]=&schemaUrl=https://raw.githubusercontent.com/etclabscore/jade-service-runner/master/openrpc.json).
+You can view the API documentation [here](https://playground.open-rpc.org/?uiSchema[appBar][ui:title]=Jade%20Service%20Runner&uiSchema[appBar][ui:logoUrl]=https://github.com/etclabscore/jade-media-assets/raw/master/jade-logo-light/jade-logo-light%20(PNG)/48x48.png&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[methods][ui:title]=&schemaUrl=https://raw.githubusercontent.com/etclabscore/jade-service-runner/master/openrpc.json).
+
 
 # Contributing
 
