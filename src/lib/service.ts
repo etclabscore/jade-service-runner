@@ -1,3 +1,6 @@
+import { StrictEventEmitter } from "strict-event-emitter-types";
+import { EventEmitter } from "events";
+
 export interface IService {
   name: string;
   rpcPort: string;
@@ -6,10 +9,19 @@ export interface IService {
   commands: ICommands;
   assets: string[];
 }
+
+export interface IHealth {
+  port: string;
+  proto: string;
+  retries: number;
+  interval: number;
+}
+
 export interface IConfig {
   "$schema": string;
   services: IServiceConfig[];
 }
+
 export interface IServiceConfig {
   name: string;
   rpcPort: string;
@@ -30,6 +42,7 @@ export interface IServiceOSConfig {
 export interface IServiceEnv {
   name: string;
   args: IEnvArgs;
+  health?: IHealth;
 }
 
 export interface IEnvArgs {
@@ -50,3 +63,29 @@ export interface ISequenceCmd {
   cmd: string;
   args: string[];
 }
+
+export interface TaskNotificationEvents {
+  launched: (service: ITaskService) => void;
+  terminated: (service: ITaskService) => void;
+  pending: (service: ActiveTaskService) => void;
+}
+
+export interface ITaskService {
+  env: string;
+  rpcPort: string;
+  name: string;
+  version: string;
+  path: string;
+  commands: ICommands;
+  health?: IHealth;
+  args: IEnvArgs;
+  notifications: StrictEventEmitter<EventEmitter, TaskNotificationEvents>;
+}
+
+export interface ActiveTaskService extends ITaskService {
+  state: TaskState;
+  pid?: number;
+}
+
+export type TaskState = "running" | "stopped" | "pending";
+export type TaskStatus = "spec" | TaskState;

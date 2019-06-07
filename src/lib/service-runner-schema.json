@@ -16,6 +16,23 @@
         "type": "string"
       }
     },
+    "health": {
+      "type": "object",
+      "port": {
+        "type": "string"
+      },
+      "interval": {
+        "type": "number"
+      },
+      "retries": {
+        "type": "number"
+      },
+      "proto": {
+        "type": "string",
+        "oneOf":["udp","tcp"]
+      },
+      "required":["interval", "retries", "port", "proto"]
+    },
     "commandArgs": {
         "start": {
           "$ref": "#/definitions/args"
@@ -78,6 +95,9 @@
         },
         "args": {
           "$ref": "#/definitions/commandArgs"
+        },
+        "health": {
+          "$ref": "#/definitions/health"
         }
       },
       "required": ["name"]

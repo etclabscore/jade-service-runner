@@ -17,6 +17,7 @@
     "lodash": "^4.17.11",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
+    "strict-event-emitter-types": "^2.0.0",
     "tar-fs": "^2.0.0",
     "typedoc": "^0.14.2",
     "winston": "^3.2.1",

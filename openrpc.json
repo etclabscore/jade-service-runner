@@ -193,8 +193,8 @@
 					"args": {
 						"$ref": "#/components/schemas/EnvArgs"
 					},
-					"running": {
-						"type": "boolean"
+					"state": {
+						"type": "string"
 					}
 				},
 				"required": [
