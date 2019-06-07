@@ -1,3 +1,11 @@
+## [1.0.10](https://github.com/etclabscore/jade-service-runner/compare/1.0.9...1.0.10) (2019-06-07)
+
+
+### Bug Fixes
+
+* bump openrpc ([9328093](https://github.com/etclabscore/jade-service-runner/commit/9328093))
+* commandline arg passing and error logging ([ed2daab](https://github.com/etclabscore/jade-service-runner/commit/ed2daab))
+
 ## [1.0.9](https://github.com/etclabscore/jade-service-runner/compare/1.0.8...1.0.9) (2019-06-07)
 
 
