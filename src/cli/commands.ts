@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import _ from "lodash";
 import { Config } from "../lib/config";
-import { makeLogger } from "src/lib/logging";
+import { makeLogger } from "../lib/logging";
 import { Command } from "commander";
 import { ServiceRunnerServer } from "../";
 const logger = makeLogger("ServiceRunner", "Commands");
@@ -20,7 +20,7 @@ const parseCommands = async (prog: Command) => {
   if (prog.config) { extendedConfig = await fs.readJSON(prog.config); }
   if (prog.dir) { dir = prog.dir; }
   if (prog.port) { port = prog.port; }
-  return {port, dir, test: prog.test && !_.isEmpty(prog.config), extendedConfig};
+  return {port, dir, test: prog.test, extendedConfig};
 };
 
 const testConfiguration = async (extendedConfig: any) => {

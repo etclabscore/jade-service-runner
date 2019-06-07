@@ -72,6 +72,7 @@ export class Config {
    */
   public extendConfig(config: IConfig, other: any): IConfig {
     const mergedConfig = _.cloneDeep(config);
+    try {
     other.services.forEach((svc: any) => {
       const serviceIdx = config.services.findIndex((s: IServiceConfig) => s.name === svc.name);
       if (serviceIdx > -1) {
@@ -90,6 +91,10 @@ export class Config {
     });
     this.validateConfig(mergedConfig);
     return mergedConfig;
+    } catch (e) {
+      logger.error("Could not parse config");
+      throw e;
+    }
   }
 
 }
