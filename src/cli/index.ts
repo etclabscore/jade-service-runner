@@ -12,7 +12,6 @@ program
   .option(
     "-c, --config <configFile>",
     "JSON file path pointing to a service runner config file",
-    "./build/src/service-runner-config.json",
   )
   .option(
     "-d, --dir <directory>",
@@ -33,7 +32,7 @@ program
       await startServiceRunner(program);
     } catch (e) {
       logger.error("Could not start service runner.");
-      logger.error(e);
+      logger.debug(e.stack);
     }
   })
   .parse(process.argv);
