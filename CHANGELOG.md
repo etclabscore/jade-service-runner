@@ -1,3 +1,16 @@
+## [1.0.9](https://github.com/etclabscore/jade-service-runner/compare/1.0.8...1.0.9) (2019-06-07)
+
+
+### Bug Fixes
+
+* add playground docs link ([76b75e8](https://github.com/etclabscore/jade-service-runner/commit/76b75e8))
+* **logo:** use new logo asset url ([d19f18c](https://github.com/etclabscore/jade-service-runner/commit/d19f18c))
+* **README:** API documentation link ([91c4a14](https://github.com/etclabscore/jade-service-runner/commit/91c4a14))
+* **README:** update logo in docs link ([7400c83](https://github.com/etclabscore/jade-service-runner/commit/7400c83))
+* bump to 1.0.9 ([7c86da4](https://github.com/etclabscore/jade-service-runner/commit/7c86da4))
+* commandline argument passing ([189f5af](https://github.com/etclabscore/jade-service-runner/commit/189f5af)), closes [#32](https://github.com/etclabscore/jade-service-runner/issues/32)
+* punctuation ([785ba45](https://github.com/etclabscore/jade-service-runner/commit/785ba45))
+
 ## [1.0.8](https://github.com/etclabscore/jade-service-runner/compare/1.0.7...1.0.8) (2019-06-01)
 
 
