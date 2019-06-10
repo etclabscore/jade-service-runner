@@ -1,7 +1,7 @@
 {
 	"info": {
 		"title": "ServiceRunner",
-		"version": "1.0.10"
+		"version": "1.0.12"
 	},
 	"methods": [
 		{
@@ -193,8 +193,8 @@
 					"args": {
 						"$ref": "#/components/schemas/EnvArgs"
 					},
-					"running": {
-						"type": "boolean"
+					"state": {
+						"type": "string"
 					}
 				},
 				"required": [

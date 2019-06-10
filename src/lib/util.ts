@@ -15,6 +15,36 @@ const logger = makeLogger("ServiceRunner", "Util");
 const fsMkdir = promisify(mkdir);
 const openZip = promisify(yauzl.open) as (path: string, options: yauzl.Options) => Promise<ZipFile | undefined>;
 
+interface IDynamicPorts {
+  DYNAMIC_TCP_PORT_1: number;
+  DYNAMIC_TCP_PORT_2: number;
+  DYNAMIC_TCP_PORT_3: number;
+  DYNAMIC_UDP_PORT_1: number;
+  DYNAMIC_UDP_PORT_2: number;
+  DYNAMIC_UDP_PORT_3: number;
+}
+
+// Note this might be problematic if there are collisions
+/**
+ * Returns a set of TCP and UDP Ports.
+ *
+ *
+ * @returns a set of free TCP and UDP Ports
+ */
+export async function getFreePorts(): Promise < IDynamicPorts > {
+  const tcpPorts = [1, 2, 3].map(() => getAvailableTCPPort());
+  const udpPorts = [1, 2, 3].map(() => getAvailableUDPPort());
+
+  const availPorts = await Promise.all([...tcpPorts, ...udpPorts]) as number[];
+  return {
+    DYNAMIC_TCP_PORT_1: availPorts[1],
+    DYNAMIC_TCP_PORT_2: availPorts[2],
+    DYNAMIC_TCP_PORT_3: availPorts[3],
+    DYNAMIC_UDP_PORT_1: availPorts[4],
+    DYNAMIC_UDP_PORT_2: availPorts[5],
+    DYNAMIC_UDP_PORT_3: availPorts[6],
+  };
+}
 // Note this might be problematic if executed serially
 /**
  * Returns a free TCP Port.
