@@ -24,7 +24,7 @@ Service Runner helps developers gain access to a user's locally run services. It
 Service Runner improves the dApp development cycle, by reducing the number of steps required for running services that are local to the user, in addition to  associated with relying on locally running JSON-RPC services. To do this effectively, Jade Service Runner supports the following:
   - Allows dApp developers to specify what services they'd like to use
   - Provides defaults for the services to run
-  - Provices users with an easy installation path
+  - Provides users with an easy installation path
   - Provides reliable discovery of pre-existing services run by the service runner
   - Provides OpenRPC interface to the Service Runnner functionality, as well as the underlying services
   - Allows dApp developers the ability to retrieve reliable JSON-RPC connection information from the service
