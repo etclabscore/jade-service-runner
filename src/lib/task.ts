@@ -64,7 +64,7 @@ export class TaskManager {
     return new Promise((resolve) => {
       logger.debug(`Launching ${taskService.name} in ${taskService.env}`);
       // NOTE notification listener may need to be removed pending downstream behavior
-      taskService.notifications.on("launched", (service) => {
+      taskService.notifications.once("launched", (service) => {
         logger.debug(`Launched ${service.name} in ${service.env}`);
         resolve(service);
       });
