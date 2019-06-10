@@ -38,7 +38,7 @@ export class TaskProcessManager {
     return new Promise((resolve) => {
       const pendingTask: events.PendingTaskEvent = { name: "pending", service };
       this.notifications.emit(pendingTask);
-      service.notifications.on("launched", (svc) => {
+      service.notifications.once("launched", (svc) => {
         resolve(svc);
       });
     });
