@@ -12,7 +12,38 @@ import { renderService } from "./serviceTemplate";
 import { makeLogger } from "./logging";
 
 const logger = makeLogger("ServiceRunner", "TaskProcessManager");
-
+/**
+ * TaskProcessManager provides an internal interface to manage services that are requested. It
+ * acts as a process manager and provides hooks for downstream components to subscribe to events,
+ * that pretain to specific tasks.  When a service is launched it starts at the beginning of a state machine,
+ * that most likely transitions as follows.
+ *
+ * ### Simple Process state machine:
+ * **PendingTaskEvent** => **LaunchTaskEvent** => **ExitTaskEvent**;
+ *
+ * The state transitions are handled by a sink called processManagerTask(), which consumes the process events on the EventBus
+ * to handle state transitions.
+ *
+ * ### The Events:
+ *
+ *  **PendingTaskEvent** : signals an unresolved templated service that is up for launching. This is pushed onto
+ * the event bus, and then written the service config cache and the active service cache. It is written in the
+ * service running cache with the state pending. A corresponding event is pushed onto the services individual
+ * notification queue. So downstream components can recieve this signal.
+ *
+ *  **LaunchTaskEvent**: signals a resolved template service that is ready to launch. This is pushed on to the event bus
+ * and handled by the sink called processManagerTask(), which consumes the launch events. It then spawns a new process
+ * with any additional features, and updates the service state in the active service cache. A corresponding event is pushed onto the services individual
+ * notification queue. So downstream components can recieve this signal.
+ *
+ * **ExitTaskEvent**: signals a resolved template service that was terminated for some reason. This event is pushed on the eventbus
+ * and then handled by the sink called processManagerTask(), which consumes the exit events.It then updates the service state in the active service cache. A corresponding event is pushed onto the services individual
+ * notification queue. So downstream components can recieve this signal. TBD in future this might emit a launch event.
+ *
+ * **ConsoleTaskEvent**: signals an event  that occurs do to some stdout/stderr activity coming from the service, this is then forward to any
+ * downstream components taht wich to receive this signal, via the service notifications queue.
+ *
+ */
 export class TaskProcessManager {
 
   public taskMap: Map<string, ITaskService>;

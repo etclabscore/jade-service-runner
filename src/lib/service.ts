@@ -64,12 +64,17 @@ export interface ISequenceCmd {
   args: string[];
 }
 
+/**
+ * TaskNotifcationEvents are a set of service specific events that can be subscribed to.
+ */
 export interface TaskNotificationEvents {
   launched: (service: ITaskService) => void;
   terminated: (service: ITaskService) => void;
   pending: (service: ActiveTaskService) => void;
 }
-
+/*
+ * ITaskService describes a service description that can be used to render a process, then subsequently launch a process.
+*/
 export interface ITaskService {
   env: string;
   rpcPort: string;
@@ -81,7 +86,9 @@ export interface ITaskService {
   args: IEnvArgs;
   notifications: StrictEventEmitter<EventEmitter, TaskNotificationEvents>;
 }
-
+/**
+ * ActiveTaskService describes a service description that is currently running, including its resolved parameters if templated parameters were used.
+ */
 export interface ActiveTaskService extends ITaskService {
   state: TaskState;
   pid?: number;
