@@ -10,6 +10,7 @@ import http from "http";
 import { IServiceConfig } from "./service";
 import { getOS, OSTypes } from "./util";
 import { Installer } from "./installer";
+import { kill } from "process";
 const rmDir = promisify(rimraf);
 describe("TaskManager", () => {
   let repoDir: string;
@@ -53,6 +54,8 @@ describe("TaskManager", () => {
       expect(serviceConfig).toBeDefined();
       await new Promise((resolve) => {
         setTimeout(() => {
+          const pid = serviceConfig.pid;
+          if (pid) { kill(pid); }
           resolve();
         }, 3000);
       });
