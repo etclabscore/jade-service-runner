@@ -24,7 +24,8 @@ const parseCommands = async (prog: Command) => {
 };
 
 const testConfiguration = async (extendedConfig: any) => {
-  const cfg = new Config(extendedConfig);
+  // tslint:disable-next-line:no-unused-expression
+  new Config(extendedConfig);
   logger.info(`Configuration is valid!`);
 };
 

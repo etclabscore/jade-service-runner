@@ -22,7 +22,7 @@ export async function renderService(service: ITaskService): Promise<ActiveTaskSe
   logger.debug(`rendering service config for ${service.name}`);
   const ports = await getFreePorts();
   const SERVICE_DIR = service.path;
-  const dynamicVar = { ...ports, SERVICE_DIR };
+  const dynamicVar = { ...ports, SERVICE_DIR};
   const renderArgs = (cmds: string[]) => cmds.map((cmd) => template(cmd)({ ...dynamicVar }));
   const renderCmd = (cmd: string) => template(cmd)({ ...dynamicVar });
   const renderSequenceCmd = (seqCmds: ISequenceCmd[]) => seqCmds.map((cmd) => {
