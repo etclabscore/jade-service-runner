@@ -1,5 +1,6 @@
 import { StrictEventEmitter } from "strict-event-emitter-types";
 import { EventEmitter } from "events";
+import { ChildProcessWithoutNullStreams } from "child_process";
 
 export interface IService {
   name: string;
@@ -12,7 +13,7 @@ export interface IService {
 
 export interface IHealth {
   port: string;
-  proto: string;
+  protocol: "udp" | "tcp";
   retries: number;
   interval: number;
 }
@@ -69,7 +70,8 @@ export interface ISequenceCmd {
  */
 export interface TaskNotificationEvents {
   launched: (service: ITaskService) => void;
-  terminated: (service: ITaskService) => void;
+  stopped: (service: ActiveTaskService) => void;
+  terminated: (service: ActiveTaskService) => void;
   pending: (service: ActiveTaskService) => void;
 }
 /*
@@ -91,7 +93,7 @@ export interface ITaskService {
  */
 export interface ActiveTaskService extends ITaskService {
   state: TaskState;
-  pid?: number;
+  process?: ChildProcessWithoutNullStreams;
 }
 
 export type TaskState = "running" | "stopped" | "pending";

@@ -5,7 +5,7 @@ import Ajv from "ajv";
 const ajv = new Ajv();
 import metaSchema from "./service-runner-schema.json";
 import defaultConfig from "../service-runner-config.json";
-import { IConfig, IService, IServiceConfig, IServiceOSConfig, IServiceEnv } from "./service";
+import { IConfig, IService, IServiceConfig, IServiceOSConfig } from "./service";
 import _ from "lodash";
 import { makeLogger } from "./logging";
 const logger = makeLogger("ServiceRunner", "Config");
@@ -18,7 +18,7 @@ export class Config {
       this.validateConfig(defaultConfig);
       this.config = _.cloneDeep(defaultConfig) as IConfig;
     } else {
-      this.config = this.extendConfig(defaultConfig, config) as IConfig;
+      this.config = this.extendConfig(defaultConfig as IConfig, config) as IConfig;
     }
   }
 
