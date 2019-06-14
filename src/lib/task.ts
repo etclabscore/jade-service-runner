@@ -51,10 +51,11 @@ export class TaskManager {
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry === undefined) { throw new Error("Service does not exists in repo"); }
     const { rpcPort, commands, environments } = this.config.getService(serviceName, getOS());
-    const { args } = environments.find((e) => e.name === env) as IServiceEnv;
+    const { args, health } = environments.find((e) => e.name === env) as IServiceEnv;
 
     const taskService = {
       env,
+      health,
       version: serviceEntry.version,
       name: serviceName,
       args,
@@ -74,6 +75,31 @@ export class TaskManager {
     });
 
   }
+
+  /**
+   * Starts an installed service using the service configuration and manifest entry, and
+   * returns service configuration information.
+   *
+   *
+   * @param serviceName - Name of the service
+   * @param version - Version of the service
+   * @param env - Environment
+   * @returns void
+   */
+  public async stopService(serviceName: string, version: string, env: string): Promise<ActiveTaskService | undefined> {
+    logger.debug(`stopping task ${serviceName} - ${version} - ${env}`);
+    const serviceTask = this.manager.getService(serviceName, version, env);
+    if (serviceTask === undefined) {
+      logger.error(`Service tag not found task ${serviceName} - ${version} - ${env}`);
+      return;
+    }
+    if (serviceTask.active === undefined) {
+      logger.error(`Active service tag not found task ${serviceName} - ${version} - ${env}`);
+      return;
+    }
+    return this.manager.stopTask(serviceTask.active);
+  }
+
   /**
    * Returns a list of currently active services
    *

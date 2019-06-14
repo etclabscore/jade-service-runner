@@ -4,7 +4,7 @@ import {Logger} from "winston";
 /*
  TaskEvent describes the union type of all process management related tasks
 */
-export type TaskEvent = LaunchTaskEvent | PendingTaskEvent | ConsoleTaskEvent | HealthTaskEvent | ErrorTaskEvent | ExitTaskEvent;
+export type TaskEvent = LaunchTaskEvent | PendingTaskEvent | ConsoleTaskEvent | HealthTaskEvent | ErrorTaskEvent | ExitTaskEvent | TerminateTaskEvent | StopTaskEvent;
 
 /*
  * PendingTaskEvent describes a task that has been created, and rendered, but has not been launched.
@@ -36,12 +36,10 @@ export interface ConsoleTaskEvent {
  */
 export interface HealthTaskEvent {
   name: "health";
-  retries: number;
   logger: Logger;
   service: ActiveTaskService;
-  interval: NodeJS.Timeout;
 }
-/*
+/**
  * ErrorTaskEvent describes an event that occurs when a fatal error has occured with a task that is not related to an exit.
  */
 export interface ErrorTaskEvent {
@@ -50,7 +48,25 @@ export interface ErrorTaskEvent {
   logger: Logger;
   service: ITaskService;
 }
-/*
+/**
+ * StopTaskEvent describes an event that triggers a task to terminate.
+ */
+
+export type StopTaskReason = "health" | "unknown";
+export interface StopTaskEvent {
+  name: "stop";
+  reason: StopTaskReason;
+  logger: Logger;
+  service: ActiveTaskService;
+}
+/**
+ * TerminateTaskEvent describes an event that occurs when a tasks exits.
+ */
+export interface TerminateTaskEvent {
+  name: "terminate";
+  service: ActiveTaskService;
+}
+/**
  * ExitTaskEvent describes an event that occurs when a tasks exits.
  */
 export interface ExitTaskEvent {

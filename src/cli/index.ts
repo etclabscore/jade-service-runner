@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import program, { Command } from "commander";
-import fs from "fs-extra";
+import program from "commander";
 const version = require("../../../package.json").version; // tslint:disable-line
 import { makeLogger } from "../lib/logging";
 import { startServiceRunner } from "./commands";

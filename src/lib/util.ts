@@ -8,7 +8,7 @@ import tar from "tar-fs";
 import zlib from "zlib";
 import request from "request";
 import net, { AddressInfo } from "net";
-import dgram from "dgram";
+import dgram, { Socket } from "dgram";
 import { makeLogger } from "./logging";
 const logger = makeLogger("ServiceRunner", "Util");
 
@@ -23,7 +23,55 @@ interface IDynamicPorts {
   DYNAMIC_UDP_PORT_2: number;
   DYNAMIC_UDP_PORT_3: number;
 }
+type Protocol = "udp" | "tcp";
+const SOCKET_CONNECTIVITY_TIMEOUT = 5000;
+/**
+ * Returns true or false if port cannot be connected to. For services support RPC discover
+ * isUp will check the RPC discover response to verify connectivity across protocols.
+ * For services without RPC discover, service will just test raw connectivity with TCP.
+ * and port availibility with UDP.
+ *
+ * For UDP an unavailable port implies connectivity.
+ *
+ * @returns true if the port is able to be connected to, false otherwise
+ */
+export async function isUp(port: number, protocol: Protocol): Promise<boolean> {
+  switch (protocol) {
+    case "tcp":
+      try {
+        await tcpSocketTest(port);
+        return true;
+      } catch (e) {
+        logger.error(e.message);
+        return false;
+      }
+    case "udp":
+      try {
+        await getAvailableUDPPort(port);
+        return false;
+      } catch (e) {
+        logger.error(e.message);
+        return true;
+      }
+  }
+}
 
+function tcpSocketTest(port: number): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const socket = new net.Socket();
+    const handleError = (err: Error) => {
+      logger.error(err);
+      socket.destroy();
+      reject(err);
+    };
+    socket.once("error", handleError);
+    socket.once("timeout", handleError);
+    socket.setTimeout(SOCKET_CONNECTIVITY_TIMEOUT);
+    socket.connect(port, "localhost", () => {
+      resolve();
+    });
+  });
+}
 // Note this might be problematic if there are collisions
 /**
  * Returns a set of TCP and UDP Ports.
@@ -52,10 +100,10 @@ export async function getFreePorts(): Promise < IDynamicPorts > {
  *
  * @returns a free TCP Port
  */
-export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
+export const getAvailableTCPPort = (testPort: number = 0) => new Promise((resolve, reject) => {
   const server = net.createServer();
   server.on("error", reject);
-  server.listen(0, () => {
+  server.listen(testPort, () => {
     const { port } = server.address() as AddressInfo;
     server.close(() => {
       resolve(port);
@@ -68,12 +116,12 @@ export const getAvailableTCPPort = () => new Promise((resolve, reject) => {
  *
  * @returns a free TCP Port
  */
-export const getAvailableUDPPort = () => new Promise((resolve, reject) => {
+export const getAvailableUDPPort = (testPort: number = 0) => new Promise((resolve, reject) => {
 
   const socket = dgram.createSocket("udp4");
-  socket.bind({ port: 0 }, () => {
+  socket.on("error", reject);
+  socket.bind({ port: testPort }, () => {
     const { port } = socket.address() as AddressInfo;
-    socket.on("error", reject);
     socket.close(() => {
       resolve(port);
     });

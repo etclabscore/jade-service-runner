@@ -1,5 +1,6 @@
 import fs from "fs-extra";
 import http from "http";
+import dgram from "dgram";
 // construct extension for 2 new test services
 export const mockServer = (file: string): Promise<http.Server> => {
   return new Promise((resolve: (value: http.Server) => void) => {
@@ -18,6 +19,17 @@ export const mockServer = (file: string): Promise<http.Server> => {
     testServer.listen(0, () => { resolve(testServer); });
   });
 };
+
+export const mockUDPServer = (): Promise<dgram.Socket> => {
+  const server = dgram.createSocket("udp4");
+  return new Promise((resolve) => {
+    server.on("listening", () => {
+      resolve(server);
+    });
+    server.bind(0);
+  });
+};
+
 export const mockConfig: any = {
   services: [
     {
@@ -31,6 +43,12 @@ export const mockConfig: any = {
             start: ["--datadir", "${SERVICE_DIR}/datadir"],
             stop: [],
             teardown: [],
+          },
+          health: {
+            interval: 500,
+            retries: 2,
+            port: "${DYNAMIC_TCP_PORT_1}",
+            protocol: "tcp",
           },
         }],
       os: {
