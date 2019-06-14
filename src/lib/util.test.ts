@@ -1,4 +1,4 @@
-import { extractAsset, downloadAsset } from "./util";
+import {isUp, extractAsset, downloadAsset, getFreePorts } from "./util";
 import fs, { ensureDir } from "fs-extra";
 import net from "net";
 import { createServer } from "http";
@@ -7,6 +7,9 @@ import crypto from "crypto";
 import _ from "lodash";
 import rimraf from "rimraf";
 import { promisify } from "util";
+import { mockUDPServer } from "../../fixtures/src/util";
+import dgram from "dgram";
+
 const rmDir = promisify(rimraf);
 const TEST_DATA_DIR = "./test-data";
 describe("extract asset ", () => {
@@ -62,13 +65,14 @@ describe("extract asset ", () => {
 
 describe("downloadAsset", () => {
   let testServer: http.Server;
+  let testUDPServer: dgram.Socket;
   let testBuffer: Buffer;
   let downloadDir: string;
 
   beforeAll(async () => {
     await fs.ensureDir(`${TEST_DATA_DIR}`);
     testBuffer = crypto.randomBytes(200);
-    return new Promise((resolve) => {
+    await new Promise((resolve) => {
       testServer = createServer((req, res) => {
         if (!req.url) { throw new Error("Request missing url"); }
         if (req.url.search("download") > 0) {
@@ -96,6 +100,7 @@ describe("downloadAsset", () => {
       });
       testServer.listen(0, resolve);
     });
+    testUDPServer = await mockUDPServer();
   });
 
   beforeEach(async () => {
@@ -104,7 +109,9 @@ describe("downloadAsset", () => {
   });
 
   afterAll((done) => {
-    testServer.close(done);
+    testUDPServer.close(() => {
+      testServer.close(done);
+    });
   });
 
   afterAll(async () => {
@@ -146,4 +153,21 @@ describe("downloadAsset", () => {
     }
   });
 
+  it("should check for tcp endpoint being up", async () => {
+    const {port} = testServer.address() as net.AddressInfo;
+    const ports = await getFreePorts();
+    let up = await isUp(port, "tcp");
+    expect(up).toBe(true);
+    up = await isUp(ports.DYNAMIC_TCP_PORT_1, "tcp");
+    expect(up).toBe(false);
+  });
+
+  it("should check for udp endpoint being up", async () => {
+    const {port} = testUDPServer.address() as net.AddressInfo;
+    const ports = await getFreePorts();
+    let up = await isUp(port, "udp");
+    expect(up).toBe(true);
+    up = await isUp(ports.DYNAMIC_UDP_PORT_1, "udp");
+    expect(up).toBe(false);
+  });
 });

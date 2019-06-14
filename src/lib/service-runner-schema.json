@@ -27,11 +27,11 @@
       "retries": {
         "type": "number"
       },
-      "proto": {
+      "protocol": {
         "type": "string",
         "oneOf":["udp","tcp"]
       },
-      "required":["interval", "retries", "port", "proto"]
+      "required":["interval", "retries", "port", "protocol"]
     },
     "commandArgs": {
         "start": {
