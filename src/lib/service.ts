@@ -1,100 +1,37 @@
 import { StrictEventEmitter } from "strict-event-emitter-types";
 import { EventEmitter } from "events";
 import { ChildProcessWithoutNullStreams } from "child_process";
-
-export interface IService {
-  name: string;
-  rpcPort: string;
-  version: string;
-  environments: IServiceEnv[];
-  commands: ICommands;
-  assets: string[];
-}
-
-export interface IHealth {
-  port: string;
-  protocol: "udp" | "tcp";
-  retries: number;
-  interval: number;
-}
-
-export interface IConfig {
-  "$schema": string;
-  services: IServiceConfig[];
-}
-
-export interface IServiceConfig {
-  name: string;
-  rpcPort: string;
-  environments: IServiceEnv[];
-  os: {
-    [key: string]: IServiceOSConfig | undefined,
-    osx?: IServiceOSConfig,
-    windows?: IServiceOSConfig,
-    linux?: IServiceOSConfig,
-  };
-  version: string;
-}
-export interface IServiceOSConfig {
-  commands: ICommands;
-  assets: string[];
-}
-
-export interface IServiceEnv {
-  name: string;
-  args: IEnvArgs;
-  health?: IHealth;
-}
-
-export interface IEnvArgs {
-  start: string[];
-  stop: string[];
-  teardown: string[];
-}
-
-export interface ICommands {
-
-  setup: ISequenceCmd[];
-  start: string;
-  stop: string;
-  teardown: string;
-}
-
-export interface ISequenceCmd {
-  cmd: string;
-  args: string[];
-}
-
+import {Health, Commands, EnvArgs} from "./config";
 /**
- * TaskNotifcationEvents are a set of service specific events that can be subscribed to.
+ * ServiceNotifcationEvents are a set of service specific events that can be subscribed to.
  */
-export interface TaskNotificationEvents {
-  launched: (service: ITaskService) => void;
-  stopped: (service: ActiveTaskService) => void;
-  terminated: (service: ActiveTaskService) => void;
-  pending: (service: ActiveTaskService) => void;
+export interface ServiceNotificationEvents {
+  launched: (service: ServiceSpec) => void;
+  stopped: (service: ActiveServiceSpec) => void;
+  terminated: (service: ActiveServiceSpec) => void;
+  pending: (service: ActiveServiceSpec) => void;
 }
 /*
- * ITaskService describes a service description that can be used to render a process, then subsequently launch a process.
+ * ServiceSpec describes a service description that can be used to render a process, then subsequently launch a process.
 */
-export interface ITaskService {
+export interface ServiceSpec {
   env: string;
   rpcPort: string;
   name: string;
   version: string;
   path: string;
-  commands: ICommands;
-  health?: IHealth;
-  args: IEnvArgs;
-  notifications: StrictEventEmitter<EventEmitter, TaskNotificationEvents>;
+  commands: Commands;
+  health?: Health;
+  args: EnvArgs;
+  notifications: StrictEventEmitter<EventEmitter, ServiceNotificationEvents>;
 }
 /**
- * ActiveTaskService describes a service description that is currently running, including its resolved parameters if templated parameters were used.
+ * ActiveServicSpec describes a service description that is currently running, including its resolved parameters if templated parameters were used.
  */
-export interface ActiveTaskService extends ITaskService {
-  state: TaskState;
+export interface ActiveServiceSpec extends ServiceSpec {
+  state: ServiceState;
   process?: ChildProcessWithoutNullStreams;
 }
 
-export type TaskState = "running" | "stopped" | "pending";
-export type TaskStatus = "spec" | TaskState;
+export type ServiceState = "running" | "stopped" | "pending";
+export type ServiceStatus = "spec" | ServiceState;

@@ -1,9 +1,8 @@
 /**
  * Installer - downloads and installs services on an OS basis to a repository
  */
-import { Config } from "./config";
+import { Config, Service } from "./config";
 import { OSTypes, downloadAsset } from "./util";
-import { IService } from "./service";
 import { Repo } from "./repo";
 import url from "url";
 
@@ -46,7 +45,7 @@ export class Installer {
    * @param service -  Service configuration
    * @param version - Version of the service
    */
-  public async download(service: IService): Promise<string[]> {
+  public async download(service: Service): Promise<string[]> {
     return Promise.all(service.assets.map((asset) => {
       const parsedUrl = url.parse(asset);
       if (parsedUrl === undefined || parsedUrl.pathname === undefined) {

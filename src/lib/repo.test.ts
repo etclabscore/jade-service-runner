@@ -1,10 +1,10 @@
-import { Repo, REPO_MANIFEST, IManifest } from "./repo";
+import { Repo, REPO_MANIFEST} from "./repo";
 import fs, { stat, mkdtempSync } from "fs-extra";
 import rimraf from "rimraf";
 import { promisify } from "util";
-import { IService } from "./service";
+import { Service } from "./config";
 const rmdir = promisify(rimraf);
-const mockService: IService = {
+const mockService: Service = {
   name: "testService",
   version: "1.0.0",
   rpcPort: "8000",
@@ -39,7 +39,7 @@ describe("repo services storage", () => {
     await stat(`${repoDir}/${REPO_MANIFEST}`);
   });
 
-  it.only("should add a service into manifest file and return writing path", async () => {
+  it("should add a service into manifest file and return writing path", async () => {
     const repo = new Repo(repoDir);
     await repo.init();
     const path = await repo.addService(mockService, ["fixtures/test-package.zip"]);

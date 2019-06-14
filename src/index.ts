@@ -1,7 +1,7 @@
 import { Config } from "./lib/config";
 import { Repo } from "./lib/repo";
 import { Installer } from "./lib/installer";
-import { TaskManager } from "./lib/task";
+import { ServiceManager } from "./lib/serviceManager";
 import { getOS } from "./lib/util";
 import { Router, Server } from "@open-rpc/server-js";
 import { OpenRPC } from "@open-rpc/meta-schema";
@@ -18,19 +18,19 @@ export class ServiceRunnerServer {
   public repo: Repo;
   public port: string;
   public installer: Installer;
-  public taskManager: TaskManager;
+  public serviceManager: ServiceManager;
 
   constructor(config: any, repoDir: string, port: string) {
     this.config = new Config(config);
     this.repo = new Repo(repoDir);
     this.installer = new Installer(this.config, getOS(), this.repo);
-    this.taskManager = new TaskManager(this.repo, this.config);
+    this.serviceManager = new ServiceManager(this.repo, this.config);
     this.port = port;
   }
 
   public async start() {
     await this.repo.init();
-    const methodMapping = methods(this.installer, this.taskManager);
+    const methodMapping = methods(this.installer, this.serviceManager);
     const router = new Router(openRPC, methodMapping);
     const options = {
       methodMapping,

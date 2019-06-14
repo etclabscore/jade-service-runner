@@ -4,8 +4,8 @@
  */
 import { makeLogger } from "./logging";
 import { template } from "lodash";
-import {ITaskService, ActiveTaskService} from "./service";
-import {ISequenceCmd, IHealth } from "./service";
+import {ServiceSpec, ActiveServiceSpec} from "./service";
+import {SequenceCmd, Health } from "./config";
 import { getFreePorts } from "./util";
 
 const logger = makeLogger("ServiceRunner", "RenderServiceTemplate");
@@ -18,14 +18,14 @@ const logger = makeLogger("ServiceRunner", "RenderServiceTemplate");
  * @param service - Templated spec of the service
  * @returns The rendered version of the service configuration
  */
-export async function renderService(service: ITaskService): Promise<ActiveTaskService> {
+export async function renderService(service: ServiceSpec): Promise<ActiveServiceSpec> {
   logger.debug(`rendering service config for ${service.name}`);
   const ports = await getFreePorts();
   const SERVICE_DIR = service.path;
   const dynamicVar = { ...ports, SERVICE_DIR};
   const renderArgs = (cmds: string[]) => cmds.map((cmd) => template(cmd)({ ...dynamicVar }));
   const renderCmd = (cmd: string) => template(cmd)({ ...dynamicVar });
-  const renderSequenceCmd = (seqCmds: ISequenceCmd[]) => seqCmds.map((cmd) => {
+  const renderSequenceCmd = (seqCmds: SequenceCmd[]) => seqCmds.map((cmd) => {
     return {
       args: renderArgs(cmd.args),
       cmd: renderCmd(cmd.cmd),
@@ -44,7 +44,7 @@ export async function renderService(service: ITaskService): Promise<ActiveTaskSe
     stop: renderArgs(service.args.stop),
     teardown: renderArgs(service.args.teardown),
   };
-  let health: IHealth | undefined;
+  let health: Health | undefined;
   if (service.health) {
     health = {
       ...service.health,
