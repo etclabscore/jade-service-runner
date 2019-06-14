@@ -58,7 +58,7 @@
 				"schema": {
 					"type": "array",
 					"items": {
-						"$ref": "#/components/schemas/TaskService"
+						"$ref": "#/components/schemas/Service"
 					}
 				}
 			}
@@ -91,7 +91,7 @@
 			"result": {
 				"name": "serviceConfig",
 				"schema": {
-					"$ref": "#/components/schemas/TaskService"
+					"$ref": "#/components/schemas/Service"
 				},
 				"required": true
 			}
@@ -168,7 +168,7 @@
 					"teardown"
 				]
 			},
-			"TaskService": {
+			"Service": {
 				"description": "An object that describes an instance of a service",
 				"type": "object",
 				"properties": {

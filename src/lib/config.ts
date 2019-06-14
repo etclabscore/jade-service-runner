@@ -5,20 +5,82 @@ import Ajv from "ajv";
 const ajv = new Ajv();
 import metaSchema from "./service-runner-schema.json";
 import defaultConfig from "../service-runner-config.json";
-import { IConfig, IService, IServiceConfig, IServiceOSConfig } from "./service";
 import _ from "lodash";
 import { makeLogger } from "./logging";
 const logger = makeLogger("ServiceRunner", "Config");
 
+export interface Service {
+  name: string;
+  rpcPort: string;
+  version: string;
+  environments: ServiceEnv[];
+  commands: Commands;
+  assets: string[];
+}
+
+export interface Health {
+  port: string;
+  protocol: "udp" | "tcp";
+  retries: number;
+  interval: number;
+}
+
+export interface ServiceRunner {
+  "$schema": string;
+  services: Services[];
+}
+
+export interface Services {
+  name: string;
+  rpcPort: string;
+  environments: ServiceEnv[];
+  os: {
+    [key: string]: ServiceOS | undefined,
+    osx?: ServiceOS,
+    windows?: ServiceOS,
+    linux?: ServiceOS,
+  };
+  version: string;
+}
+export interface ServiceOS {
+  commands: Commands;
+  assets: string[];
+}
+
+export interface ServiceEnv {
+  name: string;
+  args: EnvArgs;
+  health?: Health;
+}
+
+export interface EnvArgs {
+  start: string[];
+  stop: string[];
+  teardown: string[];
+}
+
+export interface Commands {
+
+  setup: SequenceCmd[];
+  start: string;
+  stop: string;
+  teardown: string;
+}
+
+export interface SequenceCmd {
+  cmd: string;
+  args: string[];
+}
+
 export class Config {
-  public config: IConfig;
+  public config: ServiceRunner;
 
   constructor(config: any) {
     if (_.isEmpty(config) === true) {
       this.validateConfig(defaultConfig);
-      this.config = _.cloneDeep(defaultConfig) as IConfig;
+      this.config = _.cloneDeep(defaultConfig) as ServiceRunner;
     } else {
-      this.config = this.extendConfig(defaultConfig as IConfig, config) as IConfig;
+      this.config = this.extendConfig(defaultConfig as ServiceRunner, config) as ServiceRunner;
     }
   }
 
@@ -30,15 +92,15 @@ export class Config {
    * @param os - Operating system name
    * @returns The config of a service scoped by OS and service name
    */
-  public getService(serviceName: string, os: string): IService {
-    const services = this.config.services.find((s: IServiceConfig) => s.name === serviceName) as IServiceConfig;
+  public getService(serviceName: string, os: string): Service {
+    const services = this.config.services.find((s: Services) => s.name === serviceName) as Services;
     if (services === undefined || services.os.hasOwnProperty(os) === false) {
       const errMsg = `Could not find service ${serviceName} with ${os}`;
       logger.error(errMsg);
       throw new Error(errMsg);
     }
     const { rpcPort, name, environments, version } = services;
-    const { commands, assets } = services.os[os] as IServiceOSConfig;
+    const { commands, assets } = services.os[os] as ServiceOS;
     return {
       rpcPort,
       name,
@@ -52,7 +114,7 @@ export class Config {
    * Validates a service configuration against service runner schema
    *
    *
-   * @param config - Takes a service config object of type IConfig
+   * @param config - Takes a service config object of type ServiceRunnerConfig
    */
   public validateConfig(config: any) {
     ajv.validate(metaSchema, config);
@@ -70,11 +132,11 @@ export class Config {
    * @param os - Operating system name
    * @returns The config of a service scoped by OS and service name
    */
-  public extendConfig(config: IConfig, other: any): IConfig {
+  public extendConfig(config: ServiceRunner, other: any): ServiceRunner {
     const mergedConfig = _.cloneDeep(config);
     try {
     other.services.forEach((svc: any) => {
-      const serviceIdx = config.services.findIndex((s: IServiceConfig) => s.name === svc.name);
+      const serviceIdx = config.services.findIndex((s: Services) => s.name === svc.name);
       if (serviceIdx > -1) {
         const service = mergedConfig.services[serviceIdx];
         svc.environments.every((env: any) => {

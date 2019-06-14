@@ -2,7 +2,7 @@
  * This handles the routing for the RPC server, exposing the methods that the server handles
  */
 import { Installer } from "../lib/installer";
-import { TaskManager } from "../lib/task";
+import { ServiceManager } from "../lib/serviceManager";
 import { makeLogger } from "../lib/logging";
 import { InstallService, ListInstalledServices, ListRunningServices, StartService } from "../generated-types";
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
@@ -13,18 +13,18 @@ const logger = makeLogger("ServiceRunner", "Routes");
  *
  *
  * @param installer - Installer for installing services
- * @param taskManager - TaskManager for launching services
+ * @param serviceManager - ServiceManager for launching services
  * @returns The config of a service scoped by OS and service name
  */
 
-export interface IServiceMethodMapping extends IMethodMapping {
+export interface ServiceMethodMapping extends IMethodMapping {
   installService: InstallService;
   listInstalledServices: ListInstalledServices;
   listRunningServices: ListRunningServices;
   startService: StartService;
 }
 
-export const methods = (installer: Installer, taskManager: TaskManager): IServiceMethodMapping => {
+export const methods = (installer: Installer, serviceManager: ServiceManager): ServiceMethodMapping => {
 
   return {
 
@@ -46,12 +46,12 @@ export const methods = (installer: Installer, taskManager: TaskManager): IServic
     },
 
     listRunningServices: async () => {
-      return taskManager.listActiveServices();
+      return serviceManager.listActiveServices();
     },
 
     startService: async (name: string, version: string, env: string) => {
       logger.info(`starting service ${name}`);
-      const service = await taskManager.startService(name, version, env);
+      const service = await serviceManager.startService(name, version, env);
       logger.info(`started service ${service.name}`);
       return service;
     },
