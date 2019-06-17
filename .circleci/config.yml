@@ -55,7 +55,8 @@ jobs:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/jade-service-runner/build/generated-client/typescript/.npmrc
       - run: cd build/generated-client/typescript && npm publish --access=public
-      - run: npx semantic-release
+      - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @qiwi/semantic-release-gh-pages-plugin
+      - run: ./node_modules/.bin/semantic-release
 
 workflows:
   version: 2
