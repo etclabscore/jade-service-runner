@@ -10,13 +10,13 @@ jest.mock("./util");
 
 import rimraf from "rimraf";
 import { promisify } from "util";
-import { IService } from "./service";
+import { Service } from "./config";
 const rmdir = promisify(rimraf);
 
 describe("Installer ", () => {
   let repoDir: string;
   let repo: Repo;
-  const mockService: IService = {
+  const mockService: Service = {
     name: "mock",
     rpcPort: "80",
     version: "1.0.0",

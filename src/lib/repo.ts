@@ -4,7 +4,7 @@
  * versions installed, by writing them to a manifest file
  */
 import fs, { ensureDirSync, ensureDir } from "fs-extra";
-import { IService } from "./service";
+import { Service } from "./config";
 import path from "path";
 import { extractAsset } from "./util";
 import mfSchema from "./service-runner-manifest-schema.json";
@@ -69,7 +69,7 @@ export class Repo {
    * @param assetPaths - The paths where the dowloaded service assets are store
    * @returns
    */
-  public async addService(service: IService, assetPaths: string[]): Promise<string> {
+  public async addService(service: Service, assetPaths: string[]): Promise<string> {
     const manifest = await this.getManifest();
     let exists;
     if (manifest.services) {

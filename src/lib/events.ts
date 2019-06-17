@@ -1,94 +1,94 @@
-import {ITaskService, ActiveTaskService} from "./service";
+import {ServiceSpec, ActiveServiceSpec} from "./service";
 import EventEmitter from "events";
 import {Logger} from "winston";
 /*
- TaskEvent describes the union type of all process management related tasks
+ ServiceEvent describes the union type of all process management related events
 */
-export type TaskEvent = LaunchTaskEvent | PendingTaskEvent | ConsoleTaskEvent | HealthTaskEvent | ErrorTaskEvent | ExitTaskEvent | TerminateTaskEvent | StopTaskEvent;
+export type ServiceEvent = LaunchServiceEvent | PendingServiceEvent | ConsoleServiceEvent | HealthServiceEvent | ErrorServiceEvent | ExitServiceEvent | TerminateServiceEvent | StopServiceEvent;
 
 /*
- * PendingTaskEvent describes a task that has been created, and rendered, but has not been launched.
+ * PendingServiceEvent describes a service that has been created, and rendered, but has not been launched.
 */
-export interface PendingTaskEvent {
+export interface PendingServiceEvent {
   name: "pending";
-  service: ITaskService;
+  service: ServiceSpec;
 }
 /*
- * LaunchTaskEvent describes an event that occurs when a task has been created, and template converted but has not been launched.
+ * LaunchServiceEvent describes an event that occurs when a service has been created, and template converted but has not been launched.
 */
-export interface LaunchTaskEvent {
+export interface LaunchServiceEvent {
   name: "launch";
-  service: ActiveTaskService;
+  service: ActiveServiceSpec;
   logger: Logger;
 }
 /*
- * ConsoleTaskEvent describes an event that occurs when a task has output on stdout or stderr.
+ * ConsoleServiceEvent describes an event that occurs when a service has output on stdout or stderr.
  */
-export interface ConsoleTaskEvent {
+export interface ConsoleServiceEvent {
   name: "console";
   stdout?: string;
   stderr?: string;
   logger: Logger;
-  service: ITaskService;
+  service: ServiceSpec;
 }
 /*
- * HealthTaskEvent describes an event that occurs when a healthcheck is required to be prefored.
+ * HealthServiceEvent describes an event that occurs when a healthcheck is required to be prefored.
  */
-export interface HealthTaskEvent {
+export interface HealthServiceEvent {
   name: "health";
   logger: Logger;
-  service: ActiveTaskService;
+  service: ActiveServiceSpec;
 }
 /**
- * ErrorTaskEvent describes an event that occurs when a fatal error has occured with a task that is not related to an exit.
+ * ErrorServiceEvent describes an event that occurs when a fatal error has occured with a service that is not related to an exit.
  */
-export interface ErrorTaskEvent {
+export interface ErrorServiceEvent {
   name: "error";
   error: Error;
   logger: Logger;
-  service: ITaskService;
+  service: ServiceSpec;
 }
 /**
- * StopTaskEvent describes an event that triggers a task to terminate.
+ * StopServiceEvent describes an event that triggers a service to terminate.
  */
 
-export type StopTaskReason = "health" | "unknown";
-export interface StopTaskEvent {
+export type StopServiceReason = "health" | "unknown";
+export interface StopServiceEvent {
   name: "stop";
-  reason: StopTaskReason;
+  reason: StopServiceReason;
   logger: Logger;
-  service: ActiveTaskService;
+  service: ActiveServiceSpec;
 }
 /**
- * TerminateTaskEvent describes an event that occurs when a tasks exits.
+ * TerminateServiceEvent describes an event that occurs when a service is terminated.
  */
-export interface TerminateTaskEvent {
+export interface TerminateServiceEvent {
   name: "terminate";
-  service: ActiveTaskService;
+  service: ActiveServiceSpec;
 }
 /**
- * ExitTaskEvent describes an event that occurs when a tasks exits.
+ * ExitServiceEvent describes an event that occurs when a service exits.
  */
-export interface ExitTaskEvent {
+export interface ExitServiceEvent {
   name: "exit";
   error?: Error;
   code: number;
   logger: Logger;
-  service: ActiveTaskService;
+  service: ActiveServiceSpec;
 }
 /**
  * EventBus is a message bus for internal notifications related to process management
- * The intent is that EventBus is utilized by TaskProcessManager to handle process state transitions
+ * The intent is that EventBus is utilized by ServiceProcessManager to handle process state transitions
  * and is the only source of a process state transition.
  */
 export class EventBus {
   private static QUEUE_NAME = "INTERNAL_NOTIFICATIONS";
   private bus: EventEmitter;
-  constructor(handler: (event: TaskEvent) => void, bus: EventEmitter = new EventEmitter()) {
+  constructor(handler: (event: ServiceEvent) => void, bus: EventEmitter = new EventEmitter()) {
     this.bus = bus;
     this.bus.addListener(EventBus.QUEUE_NAME, handler);
   }
-  public emit(event: TaskEvent) {
+  public emit(event: ServiceEvent) {
     this.bus.emit(EventBus.QUEUE_NAME, event);
   }
 }
