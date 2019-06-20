@@ -48,9 +48,9 @@ export async function isUp(port: number, protocol: Protocol): Promise<boolean> {
     case "udp":
       try {
         await getAvailableUDPPort(port);
+        logger.error(`Port is still available`);
         return false;
       } catch (e) {
-        logger.error(e.message);
         return true;
       }
   }
@@ -60,7 +60,7 @@ function tcpSocketTest(port: number): Promise<void> {
   return new Promise((resolve, reject) => {
     const socket = new net.Socket();
     const handleError = (err: Error) => {
-      logger.error(err);
+      logger.debug(err);
       socket.destroy();
       reject(err);
     };
