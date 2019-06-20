@@ -1,3 +1,23 @@
+# [1.1.0](https://github.com/etclabscore/jade-service-runner/compare/1.0.10...1.1.0) (2019-06-20)
+
+
+### Bug Fixes
+
+* **README:** provides typo ([13447b7](https://github.com/etclabscore/jade-service-runner/commit/13447b7))
+* convert health check logging to debug ([885ce16](https://github.com/etclabscore/jade-service-runner/commit/885ce16))
+* downstream initial notification to use once ([6b8bed9](https://github.com/etclabscore/jade-service-runner/commit/6b8bed9))
+* remove deps ([3ebb4c6](https://github.com/etclabscore/jade-service-runner/commit/3ebb4c6))
+* semantic release in ci only ([dc7761f](https://github.com/etclabscore/jade-service-runner/commit/dc7761f))
+* service specific notification to only trigger once ([a6dcd73](https://github.com/etclabscore/jade-service-runner/commit/a6dcd73))
+* start service returns existing running service ([74ac72a](https://github.com/etclabscore/jade-service-runner/commit/74ac72a))
+
+
+### Features
+
+* add dev environment for multi-geth ([be6bc86](https://github.com/etclabscore/jade-service-runner/commit/be6bc86))
+* add health check support to service runnner ([bc577d6](https://github.com/etclabscore/jade-service-runner/commit/bc577d6))
+* refactor tasks to support nofications and ([a655ab3](https://github.com/etclabscore/jade-service-runner/commit/a655ab3))
+
 ## [1.0.10](https://github.com/etclabscore/jade-service-runner/compare/1.0.9...1.0.10) (2019-06-07)
 
 
