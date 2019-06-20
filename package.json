@@ -53,6 +53,10 @@
     "test:lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "test:unit": "jest --coverage"
   },
+  "engines": {
+    "node": ">=10.15.0",
+    "npm": ">=6.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/etclabscore/jade-service-runner.git"
