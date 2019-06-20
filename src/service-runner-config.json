@@ -22,8 +22,8 @@
             "teardown": []
           },
           "health": {
-           "interval": 5000, 
-           "retries": 2,
+           "interval": 20000, 
+           "retries": 5,
            "port": "${DYNAMIC_TCP_PORT_1}",
            "protocol": "tcp"
            }
@@ -47,8 +47,31 @@
             "teardown": []
           },
           "health": {
-           "interval": 5000, 
-           "retries": 2,
+           "interval": 20000, 
+           "retries": 5,
+           "port": "${DYNAMIC_TCP_PORT_1}",
+           "protocol": "tcp"
+           }
+        },
+        {
+          "name": "dev",
+          "args": {
+            "start": [
+              "--dev",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.0/dev",
+              "--rpc",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpccorsdomain", 
+              "*"
+            ],
+            "stop": [],
+            "teardown": []
+          },
+          "health": {
+           "interval": 20000, 
+           "retries": 5,
            "port": "${DYNAMIC_TCP_PORT_1}",
            "protocol": "tcp"
            }
@@ -69,8 +92,8 @@
             "teardown": []
           },
           "health": {
-           "interval": 5000, 
-           "retries": 2,
+           "interval": 20000, 
+           "retries": 5,
            "port": "${DYNAMIC_TCP_PORT_1}",
            "protocol": "tcp"
            }
@@ -92,8 +115,8 @@
             "teardown": []
           },
           "health": {
-           "interval": 5000, 
-           "retries": 2,
+           "interval": 20000, 
+           "retries": 5,
            "port": "${DYNAMIC_TCP_PORT_1}",
            "protocol": "tcp"
            }
@@ -115,8 +138,8 @@
             "teardown": []
           },
           "health": {
-           "interval": 5000, 
-           "retries": 2,
+           "interval": 20000, 
+           "retries": 5,
            "port": "${DYNAMIC_TCP_PORT_1}",
            "protocol": "tcp"
            }
