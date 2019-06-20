@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TaskProcessManager | jade-service-runner</title>
+	<title>Services | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="taskprocessmanager.html">TaskProcessManager</a>
+					<a href="services.html">Services</a>
 				</li>
 			</ul>
-			<h1>Class TaskProcessManager</h1>
+			<h1>Interface Services</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TaskProcessManager</span>
+						<span class="target">Services</span>
 					</li>
 				</ul>
 			</section>
@@ -77,105 +77,77 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="taskprocessmanager.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="taskprocessmanager.html#activetaskmap" class="tsd-kind-icon">active<wbr>Task<wbr>Map</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="taskprocessmanager.html#taskmap" class="tsd-kind-icon">task<wbr>Map</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="taskprocessmanager.html#launchtask" class="tsd-kind-icon">launch<wbr>Task</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#environments" class="tsd-kind-icon">environments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#os" class="tsd-kind-icon">os</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Task<wbr>Process<wbr>Manager<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="taskprocessmanager.html" class="tsd-signature-type">TaskProcessManager</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/task.ts#L104">src/lib/task.ts:104</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="taskprocessmanager.html" class="tsd-signature-type">TaskProcessManager</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="activetaskmap" class="tsd-anchor"></a>
-					<h3>active<wbr>Task<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">active<wbr>Task<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ITaskService</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="environments" class="tsd-anchor"></a>
+					<h3>environments</h3>
+					<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <a href="serviceenv.html" class="tsd-signature-type">ServiceEnv</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/task.ts#L104">src/lib/task.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L36">src/lib/config.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="taskmap" class="tsd-anchor"></a>
-					<h3>task<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">task<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ITaskService</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/task.ts#L103">src/lib/task.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L34">src/lib/config.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="launchtask" class="tsd-anchor"></a>
-					<h3>launch<wbr>Task</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">launch<wbr>Task<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ITaskService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITaskService</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/task.ts#L118">src/lib/task.ts:118</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Launches a service, writing the service to an in memory map of active and templated processes.
-										It spawns new tasks, and catches errors and SIGTERM signals to then re spawn itself. It
-									returns a fully rendered config</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>service: <span class="tsd-signature-type">ITaskService</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Configuration for a templated service</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITaskService</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The rendered configuration for a service</p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="os" class="tsd-anchor"></a>
+					<h3>os</h3>
+					<div class="tsd-signature tsd-kind-icon">os<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L37">src/lib/config.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="serviceos.html" class="tsd-signature-type">ServiceOS</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rpcport" class="tsd-anchor"></a>
+					<h3>rpc<wbr>Port</h3>
+					<div class="tsd-signature tsd-kind-icon">rpc<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L35">src/lib/config.ts:35</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L43">src/lib/config.ts:43</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -191,20 +163,23 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="taskprocessmanager.html" class="tsd-kind-icon">Task<wbr>Process<wbr>Manager</a>
+					<li class="current tsd-kind-interface">
+						<a href="services.html" class="tsd-kind-icon">Services</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="taskprocessmanager.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="services.html#environments" class="tsd-kind-icon">environments</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="taskprocessmanager.html#activetaskmap" class="tsd-kind-icon">active<wbr>Task<wbr>Map</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="services.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="taskprocessmanager.html#taskmap" class="tsd-kind-icon">task<wbr>Map</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="services.html#os" class="tsd-kind-icon">os</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="taskprocessmanager.html#launchtask" class="tsd-kind-icon">launch<wbr>Task</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="services.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="services.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

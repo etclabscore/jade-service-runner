@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ISequenceCmd | jade-service-runner</title>
+	<title>ErrorServiceEvent | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="isequencecmd.html">ISequenceCmd</a>
+					<a href="errorserviceevent.html">ErrorServiceEvent</a>
 				</li>
 			</ul>
-			<h1>Interface ISequenceCmd</h1>
+			<h1>Interface ErrorServiceEvent</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>ErrorServiceEvent describes an event that occurs when a fatal error has occured with a service that is not related to an exit.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ISequenceCmd</span>
+						<span class="target">ErrorServiceEvent</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +86,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isequencecmd.html#args" class="tsd-kind-icon">args</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isequencecmd.html#cmd" class="tsd-kind-icon">cmd</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="errorserviceevent.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="errorserviceevent.html#logger" class="tsd-kind-icon">logger</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="errorserviceevent.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="errorserviceevent.html#service" class="tsd-kind-icon">service</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,22 +98,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="args" class="tsd-anchor"></a>
-					<h3>args</h3>
-					<div class="tsd-signature tsd-kind-icon">args<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
+					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Error</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L51">src/lib/service.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L47">src/lib/events.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cmd" class="tsd-anchor"></a>
-					<h3>cmd</h3>
-					<div class="tsd-signature tsd-kind-icon">cmd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="logger" class="tsd-anchor"></a>
+					<h3>logger</h3>
+					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L50">src/lib/service.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L48">src/lib/events.ts:48</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"error"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L46">src/lib/events.ts:46</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="service" class="tsd-anchor"></a>
+					<h3>service</h3>
+					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="servicespec.html" class="tsd-signature-type">ServiceSpec</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L49">src/lib/events.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,13 +152,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="isequencecmd.html" class="tsd-kind-icon">ISequence<wbr>Cmd</a>
+						<a href="errorserviceevent.html" class="tsd-kind-icon">Error<wbr>Service<wbr>Event</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isequencecmd.html#args" class="tsd-kind-icon">args</a>
+								<a href="errorserviceevent.html#error" class="tsd-kind-icon">error</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isequencecmd.html#cmd" class="tsd-kind-icon">cmd</a>
+								<a href="errorserviceevent.html#logger" class="tsd-kind-icon">logger</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="errorserviceevent.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="errorserviceevent.html#service" class="tsd-kind-icon">service</a>
 							</li>
 						</ul>
 					</li>

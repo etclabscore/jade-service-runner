@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IServiceOSConfig | jade-service-runner</title>
+	<title>EnvArgs | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iserviceosconfig.html">IServiceOSConfig</a>
+					<a href="envargs.html">EnvArgs</a>
 				</li>
 			</ul>
-			<h1>Interface IServiceOSConfig</h1>
+			<h1>Interface EnvArgs</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IServiceOSConfig</span>
+						<span class="target">EnvArgs</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceosconfig.html#assets" class="tsd-kind-icon">assets</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceosconfig.html#commands" class="tsd-kind-icon">commands</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="envargs.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="envargs.html#stop" class="tsd-kind-icon">stop</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="envargs.html#teardown" class="tsd-kind-icon">teardown</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,22 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="assets" class="tsd-anchor"></a>
-					<h3>assets</h3>
-					<div class="tsd-signature tsd-kind-icon">assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="start" class="tsd-anchor"></a>
+					<h3>start</h3>
+					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L27">src/lib/service.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L57">src/lib/config.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="commands" class="tsd-anchor"></a>
-					<h3>commands</h3>
-					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <a href="icommands.html" class="tsd-signature-type">ICommands</a></div>
+					<a name="stop" class="tsd-anchor"></a>
+					<h3>stop</h3>
+					<div class="tsd-signature tsd-kind-icon">stop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L26">src/lib/service.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L58">src/lib/config.ts:58</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="teardown" class="tsd-anchor"></a>
+					<h3>teardown</h3>
+					<div class="tsd-signature tsd-kind-icon">teardown<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L59">src/lib/config.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,13 +134,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iserviceosconfig.html" class="tsd-kind-icon">IServiceOSConfig</a>
+						<a href="envargs.html" class="tsd-kind-icon">Env<wbr>Args</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceosconfig.html#assets" class="tsd-kind-icon">assets</a>
+								<a href="envargs.html#start" class="tsd-kind-icon">start</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceosconfig.html#commands" class="tsd-kind-icon">commands</a>
+								<a href="envargs.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="envargs.html#teardown" class="tsd-kind-icon">teardown</a>
 							</li>
 						</ul>
 					</li>

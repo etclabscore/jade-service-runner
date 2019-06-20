@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IServiceConfig | jade-service-runner</title>
+	<title>Service | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iserviceconfig.html">IServiceConfig</a>
+					<a href="service.html">Service</a>
 				</li>
 			</ul>
-			<h1>Interface IServiceConfig</h1>
+			<h1>Interface Service</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IServiceConfig</span>
+						<span class="target">Service</span>
 					</li>
 				</ul>
 			</section>
@@ -79,11 +79,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceconfig.html#environments" class="tsd-kind-icon">environments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceconfig.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceconfig.html#os" class="tsd-kind-icon">os</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceconfig.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iserviceconfig.html#version" class="tsd-kind-icon">version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#assets" class="tsd-kind-icon">assets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#commands" class="tsd-kind-icon">commands</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#environments" class="tsd-kind-icon">environments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="service.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,12 +93,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="environments" class="tsd-anchor"></a>
-					<h3>environments</h3>
-					<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <a href="iserviceenv.html" class="tsd-signature-type">IServiceEnv</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="assets" class="tsd-anchor"></a>
+					<h3>assets</h3>
+					<div class="tsd-signature tsd-kind-icon">assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L16">src/lib/service.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L18">src/lib/config.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="commands" class="tsd-anchor"></a>
+					<h3>commands</h3>
+					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <a href="commands.html" class="tsd-signature-type">Commands</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L17">src/lib/config.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="environments" class="tsd-anchor"></a>
+					<h3>environments</h3>
+					<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <a href="serviceenv.html" class="tsd-signature-type">ServiceEnv</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L16">src/lib/config.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -107,27 +128,9 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L14">src/lib/service.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L13">src/lib/config.ts:13</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="os" class="tsd-anchor"></a>
-					<h3>os</h3>
-					<div class="tsd-signature tsd-kind-icon">os<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L17">src/lib/service.ts:17</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="iserviceosconfig.html" class="tsd-signature-type">IServiceOSConfig</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="rpcport" class="tsd-anchor"></a>
@@ -135,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">rpc<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L15">src/lib/service.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L14">src/lib/config.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L23">src/lib/service.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L15">src/lib/config.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,22 +167,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iserviceconfig.html" class="tsd-kind-icon">IService<wbr>Config</a>
+						<a href="service.html" class="tsd-kind-icon">Service</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceconfig.html#environments" class="tsd-kind-icon">environments</a>
+								<a href="service.html#assets" class="tsd-kind-icon">assets</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceconfig.html#name" class="tsd-kind-icon">name</a>
+								<a href="service.html#commands" class="tsd-kind-icon">commands</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceconfig.html#os" class="tsd-kind-icon">os</a>
+								<a href="service.html#environments" class="tsd-kind-icon">environments</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceconfig.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
+								<a href="service.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iserviceconfig.html#version" class="tsd-kind-icon">version</a>
+								<a href="service.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="service.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

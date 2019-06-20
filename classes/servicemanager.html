@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Repo | jade-service-runner</title>
+	<title>ServiceManager | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="repo.html">Repo</a>
+					<a href="servicemanager.html">ServiceManager</a>
 				</li>
 			</ul>
-			<h1>Class Repo</h1>
+			<h1>Class ServiceManager</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Repo</span>
+						<span class="target">ServiceManager</span>
 					</li>
 				</ul>
 			</section>
@@ -79,24 +79,24 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="repo.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="servicemanager.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="repo.html#dir" class="tsd-kind-icon">dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="repo.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicemanager.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicemanager.html#manager" class="tsd-kind-icon">manager</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicemanager.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicemanager.html#repo" class="tsd-kind-icon">repo</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="repo.html#addservice" class="tsd-kind-icon">add<wbr>Service</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="repo.html#getmanifest" class="tsd-kind-icon">get<wbr>Manifest</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="repo.html#getserviceentry" class="tsd-kind-icon">get<wbr>Service<wbr>Entry</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="repo.html#init" class="tsd-kind-icon">init</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="repo.html#validatemanifest" class="tsd-kind-icon">validate<wbr>Manifest</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="servicemanager.html#listactiveservices" class="tsd-kind-icon">list<wbr>Active<wbr>Services</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="servicemanager.html#startservice" class="tsd-kind-icon">start<wbr>Service</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="servicemanager.html#stopservice" class="tsd-kind-icon">stop<wbr>Service</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,22 +108,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Repo<span class="tsd-signature-symbol">(</span>dir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="repo.html" class="tsd-signature-type">Repo</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Service<wbr>Manager<span class="tsd-signature-symbol">(</span>repo<span class="tsd-signature-symbol">: </span><a href="repo.html" class="tsd-signature-type">Repo</a>, config<span class="tsd-signature-symbol">: </span><a href="config.html" class="tsd-signature-type">Config</a>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/serviceoptions.html" class="tsd-signature-type">ServiceOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="servicemanager.html" class="tsd-signature-type">ServiceManager</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L33">src/lib/repo.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L28">src/lib/serviceManager.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>dir: <span class="tsd-signature-type">string</span></h5>
+									<h5>repo: <a href="repo.html" class="tsd-signature-type">Repo</a></h5>
+								</li>
+								<li>
+									<h5>config: <a href="config.html" class="tsd-signature-type">Config</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/serviceoptions.html" class="tsd-signature-type">ServiceOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="repo.html" class="tsd-signature-type">Repo</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="servicemanager.html" class="tsd-signature-type">ServiceManager</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -131,22 +137,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="dir" class="tsd-anchor"></a>
-					<h3>dir</h3>
-					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="config" class="tsd-anchor"></a>
+					<h3>config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="config.html" class="tsd-signature-type">Config</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L32">src/lib/repo.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L26">src/lib/serviceManager.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="path" class="tsd-anchor"></a>
-					<h3>path</h3>
-					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="manager" class="tsd-anchor"></a>
+					<h3>manager</h3>
+					<div class="tsd-signature tsd-kind-icon">manager<span class="tsd-signature-symbol">:</span> <a href="serviceprocessmanager.html" class="tsd-signature-type">ServiceProcessManager</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L33">src/lib/repo.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L28">src/lib/serviceManager.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="options" class="tsd-anchor"></a>
+					<h3>options</h3>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/serviceoptions.html" class="tsd-signature-type">ServiceOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L27">src/lib/serviceManager.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="repo" class="tsd-anchor"></a>
+					<h3>repo</h3>
+					<div class="tsd-signature tsd-kind-icon">repo<span class="tsd-signature-symbol">:</span> <a href="repo.html" class="tsd-signature-type">Repo</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L25">src/lib/serviceManager.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -154,83 +180,45 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="addservice" class="tsd-anchor"></a>
-					<h3>add<wbr>Service</h3>
+					<a name="listactiveservices" class="tsd-anchor"></a>
+					<h3>list<wbr>Active<wbr>Services</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Service<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../interfaces/service.html" class="tsd-signature-type">Service</a>, assetPaths<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">list<wbr>Active<wbr>Services<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L72">src/lib/repo.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L111">src/lib/serviceManager.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>It writes a service to disk and to the manifest file.
-										It extracts the assets, places them into a services directory,
-									and writes the final location of the service to the manifest file.</p>
+									<p>Returns a list of currently active services</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>service: <a href="../interfaces/service.html" class="tsd-signature-type">Service</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Service that contains the OS,env scoped service spec</p>
-									</div>
-								</li>
-								<li>
-									<h5>assetPaths: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The paths where the dowloaded service assets are store</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The active list of services</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getmanifest" class="tsd-anchor"></a>
-					<h3>get<wbr>Manifest</h3>
+					<a name="startservice" class="tsd-anchor"></a>
+					<h3>start<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Manifest<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/imanifest.html" class="tsd-signature-type">IManifest</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Service<span class="tsd-signature-symbol">(</span>serviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, env<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L124">src/lib/repo.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L47">src/lib/serviceManager.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p> /returns the manifest</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/imanifest.html" class="tsd-signature-type">IManifest</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The manifest</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getserviceentry" class="tsd-anchor"></a>
-					<h3>get<wbr>Service<wbr>Entry</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Service<wbr>Entry<span class="tsd-signature-symbol">(</span>serviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IServiceEntry</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L111">src/lib/repo.ts:111</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks for a service in the manifest file</p>
+									<p>Starts an installed service using the service configuration and manifest entry, and
+									returns service configuration information.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -247,57 +235,60 @@
 										<p>Version of the service</p>
 									</div>
 								</li>
+								<li>
+									<h5>env: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Environment</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IServiceEntry</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The manifest entry of the service</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The rendered version of the service configuration</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="init" class="tsd-anchor"></a>
-					<h3>init</h3>
+					<a name="stopservice" class="tsd-anchor"></a>
+					<h3>stop<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">stop<wbr>Service<span class="tsd-signature-symbol">(</span>serviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, env<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L38">src/lib/repo.ts:38</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="validatemanifest" class="tsd-anchor"></a>
-					<h3>validate<wbr>Manifest</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Manifest<span class="tsd-signature-symbol">(</span>manifest<span class="tsd-signature-symbol">: </span><a href="../interfaces/imanifest.html" class="tsd-signature-type">IManifest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/repo.ts#L55">src/lib/repo.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/serviceManager.ts#L92">src/lib/serviceManager.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Validates a manifest.</p>
+									<p>Starts an installed service using the service configuration and manifest entry, and
+									returns service configuration information.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>manifest: <a href="../interfaces/imanifest.html" class="tsd-signature-type">IManifest</a></h5>
+									<h5>serviceName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Name of the service</p>
 									</div>
 								</li>
+								<li>
+									<h5>version: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Version of the service</p>
+									</div>
+								</li>
+								<li>
+									<h5>env: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Environment</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>void</p>
 						</li>
 					</ul>
 				</section>
@@ -316,31 +307,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="repo.html" class="tsd-kind-icon">Repo</a>
+						<a href="servicemanager.html" class="tsd-kind-icon">Service<wbr>Manager</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="repo.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="servicemanager.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="repo.html#dir" class="tsd-kind-icon">dir</a>
+								<a href="servicemanager.html#config" class="tsd-kind-icon">config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="repo.html#path" class="tsd-kind-icon">path</a>
+								<a href="servicemanager.html#manager" class="tsd-kind-icon">manager</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="servicemanager.html#options" class="tsd-kind-icon">options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="servicemanager.html#repo" class="tsd-kind-icon">repo</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="repo.html#addservice" class="tsd-kind-icon">add<wbr>Service</a>
+								<a href="servicemanager.html#listactiveservices" class="tsd-kind-icon">list<wbr>Active<wbr>Services</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="repo.html#getmanifest" class="tsd-kind-icon">get<wbr>Manifest</a>
+								<a href="servicemanager.html#startservice" class="tsd-kind-icon">start<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="repo.html#getserviceentry" class="tsd-kind-icon">get<wbr>Service<wbr>Entry</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="repo.html#init" class="tsd-kind-icon">init</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="repo.html#validatemanifest" class="tsd-kind-icon">validate<wbr>Manifest</a>
+								<a href="servicemanager.html#stopservice" class="tsd-kind-icon">stop<wbr>Service</a>
 							</li>
 						</ul>
 					</li>

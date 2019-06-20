@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ObjectVZsrKceH | jade-service-runner</title>
+	<title>ServiceMethodMapping | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,27 +54,62 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="objectvzsrkceh.html">ObjectVZsrKceH</a>
+					<a href="servicemethodmapping.html">ServiceMethodMapping</a>
 				</li>
 			</ul>
-			<h1>Interface ObjectVZsrKceH</h1>
+			<h1>Interface ServiceMethodMapping</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Returns the MethodMapping for the RPC Server essentially the routes.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ObjectVZsrKceH</span>
+						<span class="tsd-signature-type">IMethodMapping</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ServiceMethodMapping</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-kind-interface">
 				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>k: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>methodName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">function</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Returns the MethodMapping for the RPC Server essentially the routes.</p>
+					</div>
+				</div>
+				<ul class="tsd-parameters">
+					<li class="tsd-parameter-siganture">
+						<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+							<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">any</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -83,8 +118,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectvzsrkceh.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectvzsrkceh.html#version" class="tsd-kind-icon">version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="servicemethodmapping.html#installservice" class="tsd-kind-icon">install<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="servicemethodmapping.html#listinstalledservices" class="tsd-kind-icon">list<wbr>Installed<wbr>Services</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="servicemethodmapping.html#listrunningservices" class="tsd-kind-icon">list<wbr>Running<wbr>Services</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="servicemethodmapping.html#startservice" class="tsd-kind-icon">start<wbr>Service</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,22 +130,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
+					<a name="installservice" class="tsd-anchor"></a>
+					<h3>install<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">install<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="../globals.html#installservice" class="tsd-signature-type">InstallService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/generated-types/index.ts#L4">src/generated-types/index.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/methods/index.ts#L21">src/methods/index.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="version" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
+					<a name="listinstalledservices" class="tsd-anchor"></a>
+					<h3>list<wbr>Installed<wbr>Services</h3>
+					<div class="tsd-signature tsd-kind-icon">list<wbr>Installed<wbr>Services<span class="tsd-signature-symbol">:</span> <a href="../globals.html#listinstalledservices" class="tsd-signature-type">ListInstalledServices</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/generated-types/index.ts#L5">src/generated-types/index.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/methods/index.ts#L22">src/methods/index.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="listrunningservices" class="tsd-anchor"></a>
+					<h3>list<wbr>Running<wbr>Services</h3>
+					<div class="tsd-signature tsd-kind-icon">list<wbr>Running<wbr>Services<span class="tsd-signature-symbol">:</span> <a href="../globals.html#listrunningservices" class="tsd-signature-type">ListRunningServices</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/methods/index.ts#L23">src/methods/index.ts:23</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="startservice" class="tsd-anchor"></a>
+					<h3>start<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">start<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="../globals.html#startservice" class="tsd-signature-type">StartService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/methods/index.ts#L24">src/methods/index.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,13 +184,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="objectvzsrkceh.html" class="tsd-kind-icon">ObjectVZsr<wbr>KceH</a>
+						<a href="servicemethodmapping.html" class="tsd-kind-icon">Service<wbr>Method<wbr>Mapping</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectvzsrkceh.html#name" class="tsd-kind-icon">name</a>
+								<a href="servicemethodmapping.html#installservice" class="tsd-kind-icon">install<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectvzsrkceh.html#version" class="tsd-kind-icon">version</a>
+								<a href="servicemethodmapping.html#listinstalledservices" class="tsd-kind-icon">list<wbr>Installed<wbr>Services</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="servicemethodmapping.html#listrunningservices" class="tsd-kind-icon">list<wbr>Running<wbr>Services</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="servicemethodmapping.html#startservice" class="tsd-kind-icon">start<wbr>Service</a>
 							</li>
 						</ul>
 					</li>

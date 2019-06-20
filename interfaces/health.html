@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ObjectB03Ky6YK | jade-service-runner</title>
+	<title>Health | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,39 +54,23 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="objectb03ky6yk.html">ObjectB03Ky6YK</a>
+					<a href="health.html">Health</a>
 				</li>
 			</ul>
-			<h1>Interface ObjectB03Ky6YK</h1>
+			<h1>Interface Health</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>An object that describes an instance of a service</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ObjectB03Ky6YK</span>
+						<span class="target">Health</span>
 					</li>
 				</ul>
-			</section>
-			<section class="tsd-panel tsd-kind-interface">
-				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>k: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>An object that describes an instance of a service</p>
-					</div>
-				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -95,14 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#args" class="tsd-kind-icon">args</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#commands" class="tsd-kind-icon">commands</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#env" class="tsd-kind-icon">env</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#path" class="tsd-kind-icon">path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#running" class="tsd-kind-icon">running</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="objectb03ky6yk.html#version" class="tsd-kind-icon">version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="health.html#interval" class="tsd-kind-icon">interval</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="health.html#port" class="tsd-kind-icon">port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="health.html#protocol" class="tsd-kind-icon">protocol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="health.html#retries" class="tsd-kind-icon">retries</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,82 +91,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="args" class="tsd-anchor"></a>
-					<h3>args</h3>
-					<div class="tsd-signature tsd-kind-icon">args<span class="tsd-signature-symbol">:</span> <a href="objecthqcfus7m.html" class="tsd-signature-type">ObjectHqcFUS7M</a></div>
+					<a name="interval" class="tsd-anchor"></a>
+					<h3>interval</h3>
+					<div class="tsd-signature tsd-kind-icon">interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L39">src/generated-types/index.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L25">src/lib/config.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="commands" class="tsd-anchor"></a>
-					<h3>commands</h3>
-					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <a href="objecthuetvw0j.html" class="tsd-signature-type">ObjectHuetvW0J</a></div>
+					<a name="port" class="tsd-anchor"></a>
+					<h3>port</h3>
+					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L38">src/generated-types/index.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L22">src/lib/config.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="env" class="tsd-anchor"></a>
-					<h3>env</h3>
-					<div class="tsd-signature tsd-kind-icon">env<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
+					<a name="protocol" class="tsd-anchor"></a>
+					<h3>protocol</h3>
+					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"udp"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tcp"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L33">src/generated-types/index.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L23">src/lib/config.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
+					<a name="retries" class="tsd-anchor"></a>
+					<h3>retries</h3>
+					<div class="tsd-signature tsd-kind-icon">retries<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L35">src/generated-types/index.ts:35</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="path" class="tsd-anchor"></a>
-					<h3>path</h3>
-					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L37">src/generated-types/index.ts:37</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rpcport" class="tsd-anchor"></a>
-					<h3>rpc<wbr>Port</h3>
-					<div class="tsd-signature tsd-kind-icon">rpc<wbr>Port<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L34">src/generated-types/index.ts:34</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="running" class="tsd-anchor"></a>
-					<h3>running</h3>
-					<div class="tsd-signature tsd-kind-icon">running<span class="tsd-signature-symbol">:</span> <a href="../globals.html#booleanqg3xfxa5" class="tsd-signature-type">BooleanQg3XFxa5</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L40">src/generated-types/index.ts:40</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="version" class="tsd-anchor"></a>
-					<h3>version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <a href="../globals.html#stringwxzvcto3" class="tsd-signature-type">StringWxzVcTo3</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/generated-types/index.ts#L36">src/generated-types/index.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/config.ts#L24">src/lib/config.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,31 +145,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="objectb03ky6yk.html" class="tsd-kind-icon">Object<wbr>B03<wbr>Ky6YK</a>
+						<a href="health.html" class="tsd-kind-icon">Health</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#args" class="tsd-kind-icon">args</a>
+								<a href="health.html#interval" class="tsd-kind-icon">interval</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#commands" class="tsd-kind-icon">commands</a>
+								<a href="health.html#port" class="tsd-kind-icon">port</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#env" class="tsd-kind-icon">env</a>
+								<a href="health.html#protocol" class="tsd-kind-icon">protocol</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#path" class="tsd-kind-icon">path</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#running" class="tsd-kind-icon">running</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="objectb03ky6yk.html#version" class="tsd-kind-icon">version</a>
+								<a href="health.html#retries" class="tsd-kind-icon">retries</a>
 							</li>
 						</ul>
 					</li>

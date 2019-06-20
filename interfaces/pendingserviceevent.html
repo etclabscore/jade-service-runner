@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IService | jade-service-runner</title>
+	<title>PendingServiceEvent | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iservice.html">IService</a>
+					<a href="pendingserviceevent.html">PendingServiceEvent</a>
 				</li>
 			</ul>
-			<h1>Interface IService</h1>
+			<h1>Interface PendingServiceEvent</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IService</span>
+						<span class="target">PendingServiceEvent</span>
 					</li>
 				</ul>
 			</section>
@@ -79,12 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#assets" class="tsd-kind-icon">assets</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#commands" class="tsd-kind-icon">commands</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#environments" class="tsd-kind-icon">environments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iservice.html#version" class="tsd-kind-icon">version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pendingserviceevent.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pendingserviceevent.html#service" class="tsd-kind-icon">service</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,62 +89,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="assets" class="tsd-anchor"></a>
-					<h3>assets</h3>
-					<div class="tsd-signature tsd-kind-icon">assets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L7">src/lib/service.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="commands" class="tsd-anchor"></a>
-					<h3>commands</h3>
-					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <a href="icommands.html" class="tsd-signature-type">ICommands</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L6">src/lib/service.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="environments" class="tsd-anchor"></a>
-					<h3>environments</h3>
-					<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <a href="iserviceenv.html" class="tsd-signature-type">IServiceEnv</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L5">src/lib/service.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"pending"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L2">src/lib/service.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L13">src/lib/events.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rpcport" class="tsd-anchor"></a>
-					<h3>rpc<wbr>Port</h3>
-					<div class="tsd-signature tsd-kind-icon">rpc<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="service" class="tsd-anchor"></a>
+					<h3>service</h3>
+					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="servicespec.html" class="tsd-signature-type">ServiceSpec</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L3">src/lib/service.ts:3</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="version" class="tsd-anchor"></a>
-					<h3>version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/86f6f0a/src/lib/service.ts#L4">src/lib/service.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/bc74608/src/lib/events.ts#L14">src/lib/events.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,25 +123,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iservice.html" class="tsd-kind-icon">IService</a>
+						<a href="pendingserviceevent.html" class="tsd-kind-icon">Pending<wbr>Service<wbr>Event</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#assets" class="tsd-kind-icon">assets</a>
+								<a href="pendingserviceevent.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#commands" class="tsd-kind-icon">commands</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#environments" class="tsd-kind-icon">environments</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iservice.html#version" class="tsd-kind-icon">version</a>
+								<a href="pendingserviceevent.html#service" class="tsd-kind-icon">service</a>
 							</li>
 						</ul>
 					</li>
