@@ -63,6 +63,11 @@ export class ServiceManager {
       notifications: new EventEmitter(),
     };
 
+    const svc = this.manager.getService(serviceName, version, env);
+    if (svc && svc.active && svc.active.state === "running") {
+      return svc.active;
+    }
+
     return new Promise((resolve) => {
       logger.debug(`Launching ${service.name} in ${service.env}`);
       service.notifications.once("launched", (svc) => {
