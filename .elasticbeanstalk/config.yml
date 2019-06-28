@@ -1,0 +1,9 @@
+branch-defaults:
+  master:
+    environment: JadeServiceRunner-env
+global:
+  application_name: Jade Service Runner
+  default_ec2_keyname: JADE_SERVICE_RUNNER_USER
+  default_platform: Node.js
+  default_region: us-west-1
+  sc: git
