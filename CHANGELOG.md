@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/etclabscore/jade-service-runner/compare/1.1.1...1.1.2) (2019-06-29)
+
+
+### Bug Fixes
+
+* **circleci:** use newer python image ([c54632a](https://github.com/etclabscore/jade-service-runner/commit/c54632a))
+
 ## [1.1.1](https://github.com/etclabscore/jade-service-runner/compare/1.1.0...1.1.1) (2019-06-29)
 
 
