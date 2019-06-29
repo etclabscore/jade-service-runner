@@ -61,7 +61,7 @@ jobs:
   release_elasticbeanstalk:
     <<: *defaults
     docker:
-      - image: circleci/python:3.6.4
+      - image: circleci/python:3.7-stretch
     steps:
       - checkout
       - run:
