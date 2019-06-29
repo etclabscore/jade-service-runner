@@ -1,0 +1,10 @@
+.vscode
+.DS_Store
+examples
+fixtures
+node_modules
+build
+services
+coverage
+docs
+*.test.*

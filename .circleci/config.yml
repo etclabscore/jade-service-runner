@@ -57,6 +57,25 @@ jobs:
       - run: cd build/generated-client/typescript && npm publish --access=public
       - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @qiwi/semantic-release-gh-pages-plugin
       - run: ./node_modules/.bin/semantic-release
+      
+  release_elasticbeanstalk:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Deploying
+          command: eb deploy JadeServiceRunner-env
+
 
 workflows:
   version: 2
@@ -74,6 +93,10 @@ workflows:
           type: approval
           requires:
             - build
+      - release_elasticbeanstalk:
+          filters: *filter-only-master
+          requires:
+            - release
       - release:
           filters: *filter-only-master
           requires:
