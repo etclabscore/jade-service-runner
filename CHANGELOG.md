@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/etclabscore/jade-service-runner/compare/1.1.0...1.1.1) (2019-06-29)
+
+
+### Bug Fixes
+
+* add aws eb deploy ([6993f6c](https://github.com/etclabscore/jade-service-runner/commit/6993f6c))
+* **aws eb:** add websocket config ([daf39ef](https://github.com/etclabscore/jade-service-runner/commit/daf39ef))
+* **circleci:** add release job for elasticbeanstalk ([7adbea2](https://github.com/etclabscore/jade-service-runner/commit/7adbea2))
+* bump openrpc version ([0c4b970](https://github.com/etclabscore/jade-service-runner/commit/0c4b970))
+* setup for deploy ([3b34002](https://github.com/etclabscore/jade-service-runner/commit/3b34002))
+
 # [1.1.0](https://github.com/etclabscore/jade-service-runner/compare/1.0.10...1.1.0) (2019-06-20)
 
 
