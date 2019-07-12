@@ -3,7 +3,9 @@ import _ from "lodash";
 import { Config } from "../lib/config";
 import { makeLogger } from "../lib/logging";
 import { Command } from "commander";
-import { ServiceRunnerServer } from "../";
+import { ConnectionInfo } from "../lib/connection";
+import { startServiceRunner } from "..";
+import { ServiceRunnerServer } from "../lib/serviceRunnerServer";
 const logger = makeLogger("ServiceRunner", "Commands");
 
 interface ParsedCommands {
@@ -20,7 +22,7 @@ const parseCommands = async (prog: Command) => {
   if (prog.config) { extendedConfig = await fs.readJSON(prog.config); }
   if (prog.dir) { dir = prog.dir; }
   if (prog.port) { port = prog.port; }
-  return {port, dir, test: prog.test, extendedConfig};
+  return { port, dir, test: prog.test, extendedConfig };
 };
 
 const testConfiguration = async (extendedConfig: any) => {
@@ -29,18 +31,18 @@ const testConfiguration = async (extendedConfig: any) => {
   logger.info(`Configuration is valid!`);
 };
 
-const launchCommands = async ({port, dir, extendedConfig}: ParsedCommands) => {
-    const serviceRunnerServer = new ServiceRunnerServer(extendedConfig, dir, port);
-    logger.info(`Service Runner starting on ${port}`);
-    const started = serviceRunnerServer.start();
-    logger.info(`Service Runner started on ${port}`);
-    return started;
+const launchCommands = async ({ port, dir, extendedConfig }: ParsedCommands): Promise<ServiceRunnerServer> => {
+  const connections = new Set<ConnectionInfo>([{ host: "localhost", port: parseInt(port, 10), protocol: "http" }]);
+  return startServiceRunner(connections, dir, extendedConfig);
 };
-
-export const startServiceRunner = async (program: any): Promise<void> => {
+/**
+ * startServiceRunnerFromCLI launches the service runner with command line arguments
+ * @param program - are the commandline arguments
+ */
+export const startServiceRunnerFromCLI = async (program: any): Promise<void> => {
   const commands = await parseCommands(program);
   if (commands.test) {
     return testConfiguration(commands.extendedConfig);
   }
-  return launchCommands(commands);
+  launchCommands(commands);
 };

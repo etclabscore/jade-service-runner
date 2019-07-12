@@ -11,7 +11,7 @@ describe("configuration test", () => {
         name: "multi-geth",
         environments: [
           {
-            name: "dev",
+            name: "test-dev",
             args: {
               start: ["--datadir ${svc_runner_data_path}/multi-geth"],
               stop: [],
@@ -58,8 +58,7 @@ describe("configuration test", () => {
     const cfg = new Config(mockConfig);
     const svc = cfg.getService("multi-geth", "osx");
     expect(svc.name === "multi-geth").toBe(true);
-    expect(svc.environments.length).toBe(6);
-    expect(svc.environments.find((env: any) => env.name === "dev"));
+    expect(svc.environments.find((env: any) => env.name === "test-dev"));
     const defaultService = defaultConfig.services.find((service: any) => service.name === "multi-geth") as any;
     expect(_.isEqual(svc.commands, defaultService.os.osx.commands)).toBe(true);
   });

@@ -135,24 +135,24 @@ export class Config {
   public extendConfig(config: ServiceRunner, other: any): ServiceRunner {
     const mergedConfig = _.cloneDeep(config);
     try {
-    other.services.forEach((svc: any) => {
-      const serviceIdx = config.services.findIndex((s: Services) => s.name === svc.name);
-      if (serviceIdx > -1) {
-        const service = mergedConfig.services[serviceIdx];
-        svc.environments.every((env: any) => {
-          const duplicateEnv = service.environments.find((e: any) => e.name === env.name);
-          if (duplicateEnv) {
-            const errMsg = `Environment name ${duplicateEnv.name} already exists choose unique name`;
-            throw new Error(errMsg);
-          }
-        });
-        service.environments = service.environments.concat(svc.environments);
-      } else {
-        mergedConfig.services.push(svc);
-      }
-    });
-    this.validateConfig(mergedConfig);
-    return mergedConfig;
+      other.services.forEach((svc: any) => {
+        const serviceIdx = config.services.findIndex((s: Services) => s.name === svc.name);
+        if (serviceIdx > -1) {
+          const service = mergedConfig.services[serviceIdx];
+          svc.environments.every((env: any) => {
+            const duplicateEnv = service.environments.find((e: any) => e.name === env.name);
+            if (duplicateEnv) {
+              const errMsg = `Environment name ${duplicateEnv.name} already exists choose unique name`;
+              throw new Error(errMsg);
+            }
+          });
+          service.environments = service.environments.concat(svc.environments);
+        } else {
+          mergedConfig.services.push(svc);
+        }
+      });
+      this.validateConfig(mergedConfig);
+      return mergedConfig;
     } catch (e) {
       logger.error("Could not parse config");
       throw e;

@@ -1,4 +1,4 @@
-import {isUp, extractAsset, downloadAsset, getFreePorts } from "./util";
+import { isUp, extractAsset, downloadAsset, getFreePorts } from "./util";
 import fs, { ensureDir } from "fs-extra";
 import net from "net";
 import { createServer } from "http";
@@ -121,9 +121,9 @@ describe("downloadAsset", () => {
   it("should download asset", async () => {
     const { port } = testServer.address() as net.AddressInfo;
     const url = `http://localhost:${port}/download.zip`;
-    await downloadAsset(url, downloadDir, "test.zip");
-    expect(fs.existsSync(`${downloadDir}/test.zip`)).toBe(true);
-    const content = fs.readFileSync(`${downloadDir}/test.zip`);
+    await downloadAsset(url, downloadDir);
+    expect(fs.existsSync(`${downloadDir}/download.zip`)).toBe(true);
+    const content = fs.readFileSync(`${downloadDir}/download.zip`);
     expect(_.isEqual(testBuffer, content)).toBe(true);
   });
 
@@ -132,7 +132,7 @@ describe("downloadAsset", () => {
     const url = `http://localhost:${port}/bad_response.zip`;
     let res: string | undefined;
     try {
-      res = await downloadAsset(url, downloadDir, "test.zip");
+      res = await downloadAsset(url, downloadDir);
       throw new Error("test failure");
     } catch (e) {
       expect(e.message).toContain("Could not fetch");
@@ -145,7 +145,7 @@ describe("downloadAsset", () => {
     const url = `http://localhost:${port}/timeout.zip`;
     let res: string | undefined;
     try {
-      res = await downloadAsset(url, downloadDir, "test.zip", 1000);
+      res = await downloadAsset(url, downloadDir, 1000);
       throw new Error("test failure");
     } catch (e) {
       expect(e.message).toContain("Could not fetch");
@@ -154,7 +154,7 @@ describe("downloadAsset", () => {
   });
 
   it("should check for tcp endpoint being up", async () => {
-    const {port} = testServer.address() as net.AddressInfo;
+    const { port } = testServer.address() as net.AddressInfo;
     const ports = await getFreePorts();
     let up = await isUp(port, "tcp");
     expect(up).toBe(true);
@@ -163,7 +163,7 @@ describe("downloadAsset", () => {
   });
 
   it("should check for udp endpoint being up", async () => {
-    const {port} = testUDPServer.address() as net.AddressInfo;
+    const { port } = testUDPServer.address() as net.AddressInfo;
     const ports = await getFreePorts();
     let up = await isUp(port, "udp");
     expect(up).toBe(true);

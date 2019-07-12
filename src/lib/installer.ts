@@ -7,6 +7,7 @@ import { Repo } from "./repo";
 import url from "url";
 
 import { makeLogger } from "./logging";
+import fs from "fs-extra";
 const logger = makeLogger("ServiceRunner", "Installer");
 
 export class Installer {
@@ -46,19 +47,9 @@ export class Installer {
    * @param version - Version of the service
    */
   public async download(service: Service): Promise<string[]> {
-    return Promise.all(service.assets.map((asset) => {
-      const parsedUrl = url.parse(asset);
-      if (parsedUrl === undefined || parsedUrl.pathname === undefined) {
-        const err = new Error(`Could not parse download url`);
-        logger.error(err);
-        throw err;
-      }
-      const pathParts = parsedUrl.pathname.split("/");
-      const tailPart = pathParts.pop();
-      let fileName = "";
-      if (tailPart) { fileName = tailPart; }
+    return Promise.all(service.assets.map(async (asset) => {
       logger.debug(`Downloading ${asset}`);
-      return downloadAsset(asset, this.repo.dir, fileName);
+      return downloadAsset(asset, this.repo.dir);
     }));
   }
 }

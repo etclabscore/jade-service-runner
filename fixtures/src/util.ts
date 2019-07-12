@@ -1,13 +1,16 @@
 import fs from "fs-extra";
 import http from "http";
 import dgram from "dgram";
+import WebSocket from "ws";
+import { Server } from "@open-rpc/server-js";
+
 // construct extension for 2 new test services
 export const mockServer = (file: string): Promise<http.Server> => {
   return new Promise((resolve: (value: http.Server) => void) => {
     const testServer = http.createServer((req, res) => {
-      const rs = fs.createReadStream(file);
       if (!req.url) { throw new Error("Request missing url"); }
       if (req.url.search("download") > 0) {
+        const rs = fs.createReadStream(file);
         res.writeHead(200, { "Content-Type": "application/binary" });
         rs.pipe(res);
         rs.on("close", () => {
@@ -15,8 +18,25 @@ export const mockServer = (file: string): Promise<http.Server> => {
         });
         return;
       }
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.write(JSON.stringify({ test: "payload" }));
+      res.end(null);
+      return;
     });
     testServer.listen(0, () => { resolve(testServer); });
+  });
+};
+export interface MockWSDesc {
+  server: http.Server;
+  wsServer: WebSocket.Server;
+}
+export const mockWSServer = (): Promise<MockWSDesc> => {
+  return new Promise((resolve) => {
+    const server = http.createServer();
+    const wsServer = new WebSocket.Server({ server: server as http.Server });
+    server.listen(0, () => {
+      resolve({ server, wsServer });
+    });
   });
 };
 

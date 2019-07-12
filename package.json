@@ -2,14 +2,15 @@
   "name": "@etclabscore/jade-service-runner",
   "version": "0.0.0-development",
   "description": "![](https://www.etclabs.org/dist/resources/images/v2/logo-top.png) Supported by [ETC Labs](https://www.etclabs.org/)",
+  "main": "build/src/index.js",
   "bin": {
     "jade-service-runner": "./build/src/cli/index.js"
   },
   "dependencies": {
-    "@open-rpc/client-js": "^1.0.1",
-    "@open-rpc/generator-client": "^1.9.3",
-    "@open-rpc/server-js": "^1.1.2",
-    "@open-rpc/typings": "^1.3.0",
+    "@open-rpc/client-js": "^1.1.0",
+    "@open-rpc/generator-client": "^1.10.0",
+    "@open-rpc/server-js": "^1.3.0",
+    "@open-rpc/typings": "^1.4.3",
     "@qiwi/semantic-release-gh-pages-plugin": "^1.10.0",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "^6.2.0",
@@ -17,11 +18,17 @@
     "@semantic-release/github": "^5.4.0",
     "@semantic-release/npm": "^5.1.13",
     "@semantic-release/release-notes-generator": "^7.2.1",
+    "@types/node": "^12.6.8",
+    "@types/node-fetch": "^2.3.7",
+    "@types/ws": "^6.0.1",
+    "body-parser": "^1.19.0",
     "commander": "^2.20.0",
+    "connect": "^3.7.0",
     "follow-redirects": "^1.7.0",
     "fs-extra": "^8.0.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
+    "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.18",
@@ -29,6 +36,7 @@
     "tar-fs": "^2.0.0",
     "typedoc": "^0.14.2",
     "winston": "^3.2.1",
+    "ws": "^7.1.0",
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
@@ -42,17 +50,22 @@
     "@types/rimraf": "^2.0.2",
     "@types/tar-fs": "^1.16.1",
     "@types/yauzl": "^2.9.1",
+    "@types/yazl": "^2.4.1",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "webpack": "^4.37.0",
+    "webpack-cli": "^3.3.6",
+    "yazl": "^2.5.1"
   },
   "scripts": {
-    "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:docs && chmod +x build/src/cli/index.js",
+    "build": "npm run build:typings && npm run build:client && npm run build:code && npm run build:integration && npm run build:docs && chmod +x build/src/cli/index.js",
     "build:code": "tsc",
     "build:typings": "open-rpc-typings --output-ts src/generated-types",
     "build:client": "open-rpc-generator-client --ts-name=@etclabscore/jade-service-runner-client --rs-name=jade-service-runner-client -o build/generated-client && npm run build:semiclean",
     "build:semiclean": "rm -rf build/generated-client/rust",
+    "build:integration": "webpack --config fixtures/webpack.config.js",
     "build:docs": "typedoc",
     "start": "npm run build:code && node build/src/cli/index.js -p $PORT",
     "start:client": "node build/client.js",
@@ -79,5 +92,9 @@
     "!build/*.test.*",
     "!build/generated-client"
   ],
-  "homepage": "https://github.com/etclabscore/jade-service-runner#readme"
+  "homepage": "https://github.com/etclabscore/jade-service-runner#readme",
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1",
+    "utf-8-validate": "^5.0.2"
+  }
 }

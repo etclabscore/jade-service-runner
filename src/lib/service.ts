@@ -1,7 +1,7 @@
 import { StrictEventEmitter } from "strict-event-emitter-types";
 import { EventEmitter } from "events";
 import { ChildProcessWithoutNullStreams } from "child_process";
-import {Health, Commands, EnvArgs} from "./config";
+import { Health, Commands, EnvArgs } from "./config";
 /**
  * ServiceNotifcationEvents are a set of service specific events that can be subscribed to.
  */

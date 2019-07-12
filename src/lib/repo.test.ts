@@ -1,4 +1,4 @@
-import { Repo, REPO_MANIFEST} from "./repo";
+import { Repo, REPO_MANIFEST } from "./repo";
 import fs, { stat, mkdtempSync } from "fs-extra";
 import rimraf from "rimraf";
 import { promisify } from "util";
