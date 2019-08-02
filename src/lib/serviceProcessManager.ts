@@ -14,6 +14,7 @@ import { kill } from "process";
 import { renderService } from "./serviceTemplate";
 import { makeLogger } from "./logging";
 import * as util from "./util";
+import { EventEmitter } from "events";
 
 const logger = makeLogger("ServiceRunner", "ServiceProcessManager");
 /**
@@ -76,12 +77,12 @@ interface ServiceDesc {
 
 const printActiveServiceCache = (activeServiceCache: Map<string, ActiveServiceSpec>) => {
   activeServiceCache.forEach((s, hash) => {
-      let pid: number = -1;
-      if (s.process) {
-        pid = s.process.pid;
-      }
-      logger.debug(`${s.state.toUpperCase()}     pid: ${pid} status: ${s.state} hash:${hash}`);
-    });
+    let pid: number = -1;
+    if (s.process) {
+      pid = s.process.pid;
+    }
+    logger.debug(`${s.state.toUpperCase()}     pid: ${pid} status: ${s.state} hash:${hash}`);
+  });
 };
 
 const DEFAULT_SERVICE_RESTART_DELAY = 5000;
@@ -89,6 +90,7 @@ export class ServiceProcessManager {
 
   public serviceCache: Map<string, ServiceSpec>;
   public activeServiceCache: Map<string, ActiveServiceSpec>;
+  private externalNotifications: events.ExternalServiceNotifications;
   private notifications: events.EventBus;
   private healthCache: Map<number, Health>;
   constructor() {
@@ -96,6 +98,11 @@ export class ServiceProcessManager {
     this.activeServiceCache = new Map<string, ActiveServiceSpec>();
     this.healthCache = new Map<number, Health>();
     this.notifications = new events.EventBus(this.processServiceEvents.bind(this));
+    this.externalNotifications = new EventEmitter();
+  }
+
+  public subscribe(type: "launched" | "terminated", handler: (notify: events.ExternalServiceNotification) => void) {
+    this.externalNotifications.on(type, handler);
   }
 
   /**
@@ -133,7 +140,7 @@ export class ServiceProcessManager {
     if (spec === undefined) {
       return;
     }
-    return {active, spec};
+    return { active, spec };
   }
 
   /**
@@ -153,6 +160,14 @@ export class ServiceProcessManager {
     });
   }
 
+  public async checkServiceHealth(service: ActiveServiceSpec): Promise<boolean> {
+    if (service.health === undefined) {
+      return true;
+    }
+    const port = parseInt(service.health.port, 10);
+    return util.isUp(port, service.health.protocol);
+  }
+
   private handleConsoleEvent(event: events.ConsoleServiceEvent) {
     if (event.stderr) {
       logger.error(`stderr: ${event.stderr}`);
@@ -163,7 +178,7 @@ export class ServiceProcessManager {
   }
 
   private handleStopEvent(event: events.StopServiceEvent) {
-    const { service, reason} = event;
+    const { service, reason } = event;
     const { process } = service;
     const stopMsg = `${service.name}: child process triggered to stop for: ${reason}`;
     logger.debug(`${stopMsg} ${reason}`);
@@ -180,7 +195,7 @@ export class ServiceProcessManager {
   }
 
   private handleExitEvent(event: events.ExitServiceEvent) {
-    const {service, error} = event;
+    const { service, error } = event;
     const exitMsg = `${service.name}: child process exited`;
     const serviceID = this.serviceHash(service);
     // service has already been removed already
@@ -200,6 +215,9 @@ export class ServiceProcessManager {
     this.cleanupService(service);
     const relaunchDelay = service.health ? service.health.interval : DEFAULT_SERVICE_RESTART_DELAY;
     service.notifications.emit("stopped", service);
+    const { rpcPort, env, version, name } = service;
+    // TODO require protocol needs protocol
+    this.externalNotifications.emit("terminated", { protocol: "http", rpcPort, env, version, name });
     setTimeout(() => {
       const serviceSpec = this.serviceCache.get(serviceID) as ServiceSpec;
       this.notifications.emit({ name: "pending", service: serviceSpec });
@@ -226,16 +244,46 @@ export class ServiceProcessManager {
     child.on("error", (err) => {
       this.notifications.emit({ name: "exit", error: err, code: -1, logger: childLogger, service });
     });
-    logger.info(`launched service ${service.name} version: ${service.version}  environment: ${service.env}`);
 
     service.process = child;
-    this.setServiceCacheEntry(service, "running");
-    service.notifications.emit("launched", service);
+    const spec = this.setServiceCacheEntry(service, "running") as ActiveServiceSpec;
+    const retries = 5;
     this.sendHealthEvent(service);
+    await this.initialHealthCheck(spec);
+    // Launch event is only emitted when the initial health check is verified if it exists
+    logger.info(`launched service ${service.name} version: ${service.version}  environment: ${service.env}`);
+    service.notifications.emit("launched", service);
+    // TODO require protocol needs protocol
+    const { rpcPort, env, version, name } = service;
+    this.externalNotifications.emit("launched", { protocol: "http", rpcPort, env, version, name });
+  }
+
+  // An exponential backoff for initial service bootup that is bound by users health check params.
+  private async initialHealthCheck(service: ActiveServiceSpec) {
+    if (service.health) {
+      const terminalTimestamp = Date.now() + service.health.retries * service.health.interval;
+      await new Promise((resolve) => {
+
+        const backOff = (n: number) => {
+          const timeout = n === -1 ? 0 : Math.pow(2, n) * 500 + Math.random() * 1000;
+          logger.debug(`initial health check in ${timeout}ms ${terminalTimestamp} < ${Date.now()}`);
+          setTimeout(async () => {
+            const health = await this.checkServiceHealth(service);
+            if (health === false && terminalTimestamp > Date.now()) {
+              backOff(n + 1);
+            } else {
+              logger.debug(`initialization health check complete: ${health}`);
+              resolve();
+            }
+          }, timeout);
+        };
+        backOff(-1);
+      });
+    }
   }
 
   private sendHealthEvent(service: ActiveServiceSpec, healthStatus?: Health) {
-    const defaultHealth = { retries: 0, timestamp: Date.now()};
+    const defaultHealth = { retries: 0, timestamp: Date.now() };
     const health = healthStatus ? healthStatus : defaultHealth;
     if (service.health !== undefined && service.state === "running") {
       const process = service.process as ChildProcessWithoutNullStreams;
@@ -245,16 +293,8 @@ export class ServiceProcessManager {
     }
   }
 
-  private async checkServiceHealth(service: ActiveServiceSpec): Promise<boolean> {
-    if (service.health === undefined) {
-      return true;
-    }
-    const port = parseInt(service.health.port, 10);
-    return util.isUp(port, service.health.protocol);
-  }
-
   private async handleTerminateEvent(event: events.TerminateServiceEvent) {
-    const {service} = event;
+    const { service } = event;
     const process = service.process as ChildProcessWithoutNullStreams;
     // disable any handlers attached to the process;
     process.removeAllListeners();
@@ -265,7 +305,7 @@ export class ServiceProcessManager {
 
   private async handleHealthEvent(event: events.HealthServiceEvent) {
     const { process } = event.service;
-    const health  = event.service.health as config.Health;
+    const health = event.service.health as config.Health;
     let success = false;
     const timestamp = Date.now();
     if (process) {
@@ -288,7 +328,7 @@ export class ServiceProcessManager {
         // restart failing process
         this.notifications.emit({ name: "stop", service: event.service, logger: event.logger, reason: "health" });
         return;
-       }
+      }
       // schedule next health request
       this.sendHealthEvent(event.service, newHealth);
 
@@ -350,21 +390,21 @@ export class ServiceProcessManager {
     });
   }
 
-private setServiceCacheEntry(service: ServiceSpec, status: ServiceStatus) {
-  if (status === "spec") {
-    this.addServiceSpec(service);
-    return;
+  private setServiceCacheEntry(service: ServiceSpec, status: ServiceStatus): ActiveServiceSpec | ServiceSpec {
+    if (status === "spec") {
+      this.addServiceSpec(service);
+      return service;
+    }
+    const activeService = service as ActiveServiceSpec;
+    activeService.state = status;
+    this.addActiveServiceSpec(activeService);
+    return activeService;
   }
-  const activeService = service as ActiveServiceSpec;
-  activeService.state = status;
-  this.addActiveServiceSpec(activeService);
-  return;
-}
 
   private addServiceSpec(service: ServiceSpec) {
     const hash = this.serviceHash(service);
     if (this.serviceCache.has(hash)) {
-      return;
+      return service;
     }
     this.serviceCache.set(hash, service);
   }

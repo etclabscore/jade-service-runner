@@ -23,7 +23,7 @@ describe("ServiceManager", () => {
     service: ActiveServiceSpec;
     serviceManager: ServiceManager;
   }
-  type TransitionType  = keyof ServiceNotificationEvents;
+  type TransitionType = keyof ServiceNotificationEvents;
   interface LifeCyleTestType {
     state: TransitionType;
     service: ServiceSpec | ActiveServiceSpec;
@@ -113,7 +113,7 @@ describe("ServiceManager", () => {
       const serviceConfig = await createTestService();
       const { service } = serviceConfig;
       const restartSeq: TransitionType[] = ["stopped", "pending", "launched"];
-
+      // Note we must account for launch stability check
       const healthSeq = [true];
       const hc = healthCheck(healthSeq);
 
@@ -123,13 +123,13 @@ describe("ServiceManager", () => {
       const prom = testLifeCycle(restartSeq, service);
       await new Promise((resolve) => {
         setTimeout(async () => {
-           const proc = service.process as ChildProcessWithoutNullStreams;
-           // tslint:disable-next-line:no-console
-           kill(proc.pid, "SIGTERM");
-           const events = await prom;
-           expect(_.isEqual(events.map((e) => e.state), restartSeq)).toBe(true);
-           await serviceConfig.serviceManager.stopService("testService", "1.0.0", "test");
-           resolve();
+          const proc = service.process as ChildProcessWithoutNullStreams;
+          // tslint:disable-next-line:no-console
+          kill(proc.pid, "SIGTERM");
+          const events = await prom;
+          expect(_.isEqual(events.map((e) => e.state), restartSeq)).toBe(true);
+          await serviceConfig.serviceManager.stopService("testService", "1.0.0", "test");
+          resolve();
         }, 3000);
       });
     }
@@ -138,7 +138,7 @@ describe("ServiceManager", () => {
   it("should handle health check failure and reboot service", async () => {
     // The health check sequence should result in a successful run then failure and reboot
 
-    const healthSeq = [true, true, false, false, true];
+    const healthSeq = [true, true, true, false, false, true];
     const hc = healthCheck(healthSeq);
     // being bad here and shimming the mock in
     // @ts-ignore
@@ -150,12 +150,12 @@ describe("ServiceManager", () => {
       const prom = testLifeCycle(restartSeq, service);
       await new Promise((resolve) => {
         setTimeout(async () => {
-           const events = await prom;
-           expect(_.isEqual(events.map((e) => e.state), restartSeq)).toBe(true);
-           await serviceConfig.serviceManager.stopService("testService", "1.0.0", "test");
-           resolve();
+          const events = await prom;
+          expect(_.isEqual(events.map((e) => e.state), restartSeq)).toBe(true);
+          await serviceConfig.serviceManager.stopService("testService", "1.0.0", "test");
+          resolve();
         }, 2000);
       });
     }
-  }, 10000);
+  }, 30000);
 });

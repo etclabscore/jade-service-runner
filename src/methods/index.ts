@@ -8,6 +8,13 @@ import { InstallService, ListInstalledServices, ListRunningServices, StartServic
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
 const logger = makeLogger("ServiceRunner", "Routes");
 
+export interface ServiceMethodMapping extends IMethodMapping {
+  installService: InstallService;
+  listInstalledServices: ListInstalledServices;
+  listRunningServices: ListRunningServices;
+  startService: StartService;
+}
+
 /**
  * Returns the MethodMapping for the RPC Server essentially the routes.
  *
@@ -16,14 +23,6 @@ const logger = makeLogger("ServiceRunner", "Routes");
  * @param serviceManager - ServiceManager for launching services
  * @returns The config of a service scoped by OS and service name
  */
-
-export interface ServiceMethodMapping extends IMethodMapping {
-  installService: InstallService;
-  listInstalledServices: ListInstalledServices;
-  listRunningServices: ListRunningServices;
-  startService: StartService;
-}
-
 export const methods = (installer: Installer, serviceManager: ServiceManager): ServiceMethodMapping => {
 
   return {
@@ -40,8 +39,10 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
       return true;
     },
     listInstalledServices: async () => {
+      logger.debug("listing installed services");
       const mf = await installer.repo.getManifest();
       if (mf.services === undefined) { return []; }
+      logger.debug("got services and returning");
       return mf.services.map((service) => ({ name: service.name, version: service.version }));
     },
 

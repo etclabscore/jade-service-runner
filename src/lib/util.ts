@@ -1,5 +1,5 @@
 import path from "path";
-import { ensureDirSync, createReadStream, createWriteStream } from "fs-extra";
+import { copyFile, ensureDirSync, createReadStream, createWriteStream } from "fs-extra";
 import { mkdir } from "fs";
 import { Readable, Writable, Transform } from "stream";
 import { promisify } from "util";
@@ -10,6 +10,8 @@ import request from "request";
 import net, { AddressInfo } from "net";
 import dgram, { Socket } from "dgram";
 import { makeLogger } from "./logging";
+import url from "url";
+
 const logger = makeLogger("ServiceRunner", "Util");
 
 const fsMkdir = promisify(mkdir);
@@ -23,7 +25,8 @@ interface IDynamicPorts {
   DYNAMIC_UDP_PORT_2: number;
   DYNAMIC_UDP_PORT_3: number;
 }
-type Protocol = "udp" | "tcp";
+
+export type Protocol = "udp" | "tcp" | "ws" | "http" | "https" | "wss";
 const SOCKET_CONNECTIVITY_TIMEOUT = 5000;
 /**
  * Returns true or false if port cannot be connected to. For services support RPC discover
@@ -53,6 +56,8 @@ export async function isUp(port: number, protocol: Protocol): Promise<boolean> {
       } catch (e) {
         return true;
       }
+    default:
+      throw new Error("Unsupported healthcheck protocol");
   }
 }
 
@@ -79,7 +84,7 @@ function tcpSocketTest(port: number): Promise<void> {
  *
  * @returns a set of free TCP and UDP Ports
  */
-export async function getFreePorts(): Promise < IDynamicPorts > {
+export async function getFreePorts(): Promise<IDynamicPorts> {
   const tcpPorts = [1, 2, 3].map(() => getAvailableTCPPort());
   const udpPorts = [1, 2, 3].map(() => getAvailableUDPPort());
 
@@ -100,7 +105,7 @@ export async function getFreePorts(): Promise < IDynamicPorts > {
  *
  * @returns a free TCP Port
  */
-export const getAvailableTCPPort = (testPort: number = 0) => new Promise((resolve, reject) => {
+export const getAvailableTCPPort = (testPort: number = 0): Promise<number> => new Promise((resolve, reject) => {
   const server = net.createServer();
   server.on("error", reject);
   server.listen(testPort, () => {
@@ -159,10 +164,25 @@ export const getOS = (): OSTypes => {
  * @param timeout - Timeout of the 2min for the download resource before failure
  * @returns The config of a service scoped by OS and service name
  */
-export const downloadAsset = async (uri: string, dir: string,
-                                    name: string, timeout: number = 120000): Promise<string> => {
+export const downloadAsset = async (assetURI: string, dir: string, timeout: number = 120000): Promise<string> => {
+  const uri = url.parse(assetURI);
+  if (uri === undefined || uri.pathname === undefined) {
+    const err = new Error(`Could not parse download url`);
+    logger.error(err);
+    throw err;
+  }
+
+  const pathParts = uri.pathname.split("/");
+  const tailPart = pathParts.pop();
+  let fileName = "";
+  if (tailPart) { fileName = tailPart; }
   await fsMkdir(dir, { recursive: true });
-  const downloadPath = `${dir}/${name}`;
+  const downloadPath = `${dir}/${fileName}`;
+
+  if (uri.protocol === "file:") {
+    await copyFile(uri.pathname, downloadPath);
+    return downloadPath;
+  }
   return new Promise((resolve: (p: string) => void, reject) => {
     const file = createWriteStream(downloadPath);
     file.on("finish", () => {

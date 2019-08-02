@@ -4,8 +4,8 @@
  */
 import { makeLogger } from "./logging";
 import { template } from "lodash";
-import {ServiceSpec, ActiveServiceSpec} from "./service";
-import {SequenceCmd, Health } from "./config";
+import { ServiceSpec, ActiveServiceSpec } from "./service";
+import { SequenceCmd, Health } from "./config";
 import { getFreePorts } from "./util";
 
 const logger = makeLogger("ServiceRunner", "RenderServiceTemplate");
@@ -22,7 +22,7 @@ export async function renderService(service: ServiceSpec): Promise<ActiveService
   logger.debug(`rendering service config for ${service.name}`);
   const ports = await getFreePorts();
   const SERVICE_DIR = service.path;
-  const dynamicVar = { ...ports, SERVICE_DIR};
+  const dynamicVar = { ...ports, SERVICE_DIR };
   const renderArgs = (cmds: string[]) => cmds.map((cmd) => template(cmd)({ ...dynamicVar }));
   const renderCmd = (cmd: string) => template(cmd)({ ...dynamicVar });
   const renderSequenceCmd = (seqCmds: SequenceCmd[]) => seqCmds.map((cmd) => {

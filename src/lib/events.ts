@@ -1,6 +1,28 @@
-import {ServiceSpec, ActiveServiceSpec} from "./service";
+import { ServiceSpec, ActiveServiceSpec } from "./service";
+import { StrictEventEmitter } from "strict-event-emitter-types";
 import EventEmitter from "events";
-import {Logger} from "winston";
+import { Logger } from "winston";
+import { Protocol } from "./util";
+/**
+ * ExternalServiceNotification - describes notifications that are meant for use outside of the internal
+ * service process management
+ */
+export interface ExternalServiceNotification {
+  protocol: Protocol;
+  rpcPort: string;
+  version: string;
+  name: string;
+  env: string;
+}
+/**
+ * ExternalServiceNotificationEvents - describes notifications that are meant for use outside of the internal
+ * service process management, ex. its useful for the proxy router to subscribe to these events
+ */
+export interface ExternalServiceNotificationEvents {
+  launched: (notification: ExternalServiceNotification) => void;
+  terminated: (notification: ExternalServiceNotification) => void;
+}
+export type ExternalServiceNotifications = StrictEventEmitter<EventEmitter, ExternalServiceNotificationEvents>;
 /*
  ServiceEvent describes the union type of all process management related events
 */

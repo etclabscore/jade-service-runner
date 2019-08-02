@@ -12,6 +12,7 @@ import { ActiveServiceSpec } from "./service";
 
 import { makeLogger } from "./logging";
 import { EventEmitter } from "events";
+import * as events from "./events";
 export interface ServiceOptions {
   intervalMS: number;
 }
@@ -26,14 +27,19 @@ export class ServiceManager {
   public config: Config;
   public options: ServiceOptions | undefined;
   public manager: ServiceProcessManager;
+  public notifications: events.ExternalServiceNotifications;
 
   constructor(repo: Repo, config: Config, options?: ServiceOptions) {
     this.repo = repo;
     this.config = config;
     this.options = options;
     this.manager = new ServiceProcessManager();
-  }
+    this.notifications = new EventEmitter();
 
+    // setup external service notifications that with an abstraction away from the process manager's external events
+    this.manager.subscribe("launched", (notification) => { this.notifications.emit("launched", notification); });
+    this.manager.subscribe("terminated", (notification) => { this.notifications.emit("terminated", notification); });
+  }
   /**
    * Starts an installed service using the service configuration and manifest entry, and
    * returns service configuration information.
@@ -70,9 +76,9 @@ export class ServiceManager {
 
     return new Promise((resolve) => {
       logger.debug(`Launching ${service.name} in ${service.env}`);
-      service.notifications.once("launched", (svc) => {
-        logger.debug(`Launched ${svc.name} in ${svc.env}`);
-        resolve(svc);
+      service.notifications.once("launched", (svcDesc) => {
+        logger.debug(`Launched ${svcDesc.name} in ${svcDesc.env}`);
+        resolve(svcDesc);
       });
       this.manager.launchService(service);
     });

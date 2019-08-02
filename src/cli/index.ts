@@ -2,7 +2,7 @@
 import program from "commander";
 const version = require("../../../package.json").version; // tslint:disable-line
 import { makeLogger } from "../lib/logging";
-import { startServiceRunner } from "./commands";
+import { startServiceRunnerFromCLI } from "./commands";
 import _ from "lodash";
 
 const logger = makeLogger("ServiceRunner", "CLI");
@@ -28,7 +28,7 @@ program
   )
   .action(async () => {
     try {
-      await startServiceRunner(program);
+      await startServiceRunnerFromCLI(program);
     } catch (e) {
       logger.error("Could not start service runner.");
       logger.debug(e.stack);
