@@ -15,8 +15,10 @@ export const httpBackend = async (connectionInfo: ConnectionInfo, response: Resp
   const send = (data: any, headers: http.IncomingHttpHeaders, method: string): Promise<http.IncomingMessage> => {
     return new Promise((resolve) => {
       logger.debug(`making request to backend on port ${port} with ${JSON.stringify(data)}`);
+      const requestData = JSON.stringify(data);
+      const requestHeaders = Object.assign({}, headers, { "content-length": `${requestData.length}` });
       const request = http.request(`http://${host}:${port}/`, {
-        headers,
+        headers: requestHeaders,
         method,
       }, (res) => {
         logger.debug(`returning a response`);
@@ -31,7 +33,7 @@ export const httpBackend = async (connectionInfo: ConnectionInfo, response: Resp
         response.emit("error", connectionError(jsonRpcErrors.GATEWAY_ERROR, id, "Request failure", err, logger));
         resolve();
       });
-      request.write(JSON.stringify(data));
+      request.write(requestData);
       request.end();
     });
   };
