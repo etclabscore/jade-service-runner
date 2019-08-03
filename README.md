@@ -91,5 +91,5 @@ You can view the API documentation [here](https://playground.open-rpc.org/?uiSch
 How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUTING.md), [BUILDING.md](BUILDING.md) and [RELEASING.md](RELEASING.md) respectively. Commits in this repository follow the [CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md) specification.
 
 # Resources
-- [https://jade.builders/](jade.builders)
-- [https://github.com/etclabscore/jade](etclabscore/jade)
+- [jade.builders](https://jade.builders/)
+- [tclabscore/jade](ehttps://github.com/etclabscore/jade)
