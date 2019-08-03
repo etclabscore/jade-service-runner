@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Installer | jade-service-runner</title>
+	<title>Router | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,35 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="installer.html">Installer</a>
+					<a href="router.html">Router</a>
 				</li>
 			</ul>
-			<h1>Class Installer</h1>
+			<h1>Class Router</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Router - is the class that routes services via /serviceName/enviornment/version pattern
+							the pattern can be made to be dynamic in the future by extending the resolution function to support
+						fuzzy paths.</p>
+						<a href="#lifecycle" id="lifecycle" style="color: inherit; text-decoration: none;">
+							<h3>LifeCycle</h3>
+						</a>
+						<p> <strong>LaunchServiceNotification</strong> =&gt; Adds service to routing table
+						<strong>TerminatedSErviceNotification</strong> =&gt; Removes service from routing table</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Installer</span>
+						<span class="target">Router</span>
 					</li>
 				</ul>
 			</section>
@@ -79,22 +93,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="installer.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="router.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="installer.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="installer.html#os" class="tsd-kind-icon">os</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="installer.html#repo" class="tsd-kind-icon">repo</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="router.html#table" class="tsd-kind-icon">table</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="installer.html#download" class="tsd-kind-icon">download</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="installer.html#install" class="tsd-kind-icon">install</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="router.html#addserviceroute" class="tsd-kind-icon">add<wbr>Service<wbr>Route</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="router.html#handlenewservice" class="tsd-kind-icon">handle<wbr>New<wbr>Service</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="router.html#handleterminatedservice" class="tsd-kind-icon">handle<wbr>Terminated<wbr>Service</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="router.html#resolve" class="tsd-kind-icon">resolve</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="router.html#rmserviceroute" class="tsd-kind-icon">rm<wbr>Service<wbr>Route</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,28 +121,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Installer<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="config.html" class="tsd-signature-type">Config</a>, os<span class="tsd-signature-symbol">: </span><a href="../enums/ostypes.html" class="tsd-signature-type">OSTypes</a>, repo<span class="tsd-signature-symbol">: </span><a href="repo.html" class="tsd-signature-type">Repo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="installer.html" class="tsd-signature-type">Installer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Router<span class="tsd-signature-symbol">(</span>serviceNotifications<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">events.ExternalServiceNotifications</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="router.html" class="tsd-signature-type">Router</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L17">src/lib/installer.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L23">src/lib/router.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <a href="config.html" class="tsd-signature-type">Config</a></h5>
-								</li>
-								<li>
-									<h5>os: <a href="../enums/ostypes.html" class="tsd-signature-type">OSTypes</a></h5>
-								</li>
-								<li>
-									<h5>repo: <a href="repo.html" class="tsd-signature-type">Repo</a></h5>
+									<h5>serviceNotifications: <span class="tsd-signature-type">events.ExternalServiceNotifications</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="installer.html" class="tsd-signature-type">Installer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="router.html" class="tsd-signature-type">Router</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -135,32 +144,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="config.html" class="tsd-signature-type">Config</a></div>
+					<a name="table" class="tsd-anchor"></a>
+					<h3>table</h3>
+					<div class="tsd-signature tsd-kind-icon">table<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">RoutingInfo</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L15">src/lib/installer.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="os" class="tsd-anchor"></a>
-					<h3>os</h3>
-					<div class="tsd-signature tsd-kind-icon">os<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L16">src/lib/installer.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="repo" class="tsd-anchor"></a>
-					<h3>repo</h3>
-					<div class="tsd-signature tsd-kind-icon">repo<span class="tsd-signature-symbol">:</span> <a href="repo.html" class="tsd-signature-type">Repo</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L17">src/lib/installer.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L22">src/lib/router.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,72 +157,147 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="download" class="tsd-anchor"></a>
-					<h3>download</h3>
+					<a name="addserviceroute" class="tsd-anchor"></a>
+					<h3>add<wbr>Service<wbr>Route</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../interfaces/service.html" class="tsd-signature-type">Service</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Service<wbr>Route<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, routeInfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RoutingInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L49">src/lib/installer.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L75">src/lib/router.ts:75</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Downloads service assets</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>service: <a href="../interfaces/service.html" class="tsd-signature-type">Service</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Service configuration</p>
-									</div>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>routeInfo: <span class="tsd-signature-type">RoutingInfo</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="install" class="tsd-anchor"></a>
-					<h3>install</h3>
+					<a name="handlenewservice" class="tsd-anchor"></a>
+					<h3>handle<wbr>New<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">install<span class="tsd-signature-symbol">(</span>serviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>New<wbr>Service<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/installer.ts#L32">src/lib/installer.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L35">src/lib/router.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Install service by service name and version
-										including downloading, extracting service assets
-									and adding the assets to the repository manifest</p>
+									<p>handleNewService - adds service to routing table</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>serviceName: <span class="tsd-signature-type">string</span></h5>
+									<h5>event: <a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Name of the service</p>
-									</div>
-								</li>
-								<li>
-									<h5>version: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Version of the service</p>
+										<p>details what new service was started</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="handleterminatedservice" class="tsd-anchor"></a>
+					<h3>handle<wbr>Terminated<wbr>Service</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Terminated<wbr>Service<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L50">src/lib/router.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>handleTermiantedService - removes service from routing table</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>details what new service was terminated</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="resolve" class="tsd-anchor"></a>
+					<h3>resolve</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">resolve<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RoutingInfo</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L65">src/lib/router.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>resolve - resolves url paths into their corresponding services</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the request url made by client</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RoutingInfo</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="rmserviceroute" class="tsd-anchor"></a>
+					<h3>rm<wbr>Service<wbr>Route</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">rm<wbr>Service<wbr>Route<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, routeInfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RoutingInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/router.ts#L80">src/lib/router.ts:80</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>routeInfo: <span class="tsd-signature-type">RoutingInfo</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -252,25 +316,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="installer.html" class="tsd-kind-icon">Installer</a>
+						<a href="router.html" class="tsd-kind-icon">Router</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="installer.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="router.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="installer.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="installer.html#os" class="tsd-kind-icon">os</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="installer.html#repo" class="tsd-kind-icon">repo</a>
+								<a href="router.html#table" class="tsd-kind-icon">table</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="installer.html#download" class="tsd-kind-icon">download</a>
+								<a href="router.html#addserviceroute" class="tsd-kind-icon">add<wbr>Service<wbr>Route</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="installer.html#install" class="tsd-kind-icon">install</a>
+								<a href="router.html#handlenewservice" class="tsd-kind-icon">handle<wbr>New<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="router.html#handleterminatedservice" class="tsd-kind-icon">handle<wbr>Terminated<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="router.html#resolve" class="tsd-kind-icon">resolve</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="router.html#rmserviceroute" class="tsd-kind-icon">rm<wbr>Service<wbr>Route</a>
 							</li>
 						</ul>
 					</li>

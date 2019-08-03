@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ServiceRunnerServer | jade-service-runner</title>
+	<title>ConnectionManager | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="servicerunnerserver.html">ServiceRunnerServer</a>
+					<a href="connectionmanager.html">ConnectionManager</a>
 				</li>
 			</ul>
-			<h1>Class ServiceRunnerServer</h1>
+			<h1>Class ConnectionManager</h1>
 		</div>
 	</div>
 </header>
@@ -67,17 +67,34 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>ServiceRunnerServer - is an encapsulation of the core service runner functionality
-							It instantiates the service runner server. The service runner server itself is run
-						behind the ProxyServer, from the &quot;/&quot; route</p>
+						<p>ConnectionManager - is a manager that manages incoming connections and helps route requests to the proper services</p>
+						<a href="#connectionmanager-overview-" id="connectionmanager-overview-" style="color: inherit; text-decoration: none;">
+							<h3>ConnectionManager Overview :</h3>
+						</a>
 					</div>
+					<a href="#architecture" id="architecture" style="color: inherit; text-decoration: none;">
+						<h4>Architecture</h4>
+					</a>
+					<p><strong>Frontends</strong> - are external ports used to connect to all services following a specific protocol
+						<strong>Backends</strong> - are internal client connections for json-rpc services
+						<strong>ConnectionManager</strong> - is a message queue that routes data about the connections between the frontend and backend
+					<strong>Frontend</strong>(external ports)&gt; <strong>ConnectionManager</strong> -&gt; <strong>Backend</strong>(connections to services) -&gt; <strong>Services</strong></p>
+					<a href="#initialization" id="initialization" style="color: inherit; text-decoration: none;">
+						<h4>Initialization</h4>
+					</a>
+					<p><strong>SetupAllFrontends</strong> - setups external facing ports
+					<strong>SetupListenersForBackends</strong> - handle incoming request to point to specific services by creating new connections for those services</p>
+					<a href="#request-flow" id="request-flow" style="color: inherit; text-decoration: none;">
+						<h4>Request flow</h4>
+					</a>
+					<p><strong>InitialIncomingRequest</strong> =&gt; <strong>Frontend</strong> =&gt; <strong>ConnectionManager</strong> =&gt; <strong>CreateBackend</strong> =&gt; <strong>RecieveRequest</strong> =&gt; <strong>ForwardToServiceUsingBackend</strong>;</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ServiceRunnerServer</span>
+						<span class="target">ConnectionManager</span>
 					</li>
 				</ul>
 			</section>
@@ -88,23 +105,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="servicerunnerserver.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicerunnerserver.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicerunnerserver.html#installer" class="tsd-kind-icon">installer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicerunnerserver.html#port" class="tsd-kind-icon">port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicerunnerserver.html#repo" class="tsd-kind-icon">repo</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="servicerunnerserver.html#servicemanager" class="tsd-kind-icon">service<wbr>Manager</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="connectionmanager.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="servicerunnerserver.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="connectionmanager.html#cleanup" class="tsd-kind-icon">cleanup</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="connectionmanager.html#forwardrequest" class="tsd-kind-icon">forward<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="connectionmanager.html#manageconnections" class="tsd-kind-icon">manage<wbr>Connections</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="connectionmanager.html#setupconnections" class="tsd-kind-icon">setup<wbr>Connections</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,106 +126,117 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Service<wbr>Runner<wbr>Server<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, repoDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="servicerunnerserver.html" class="tsd-signature-type">ServiceRunnerServer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Connection<wbr>Manager<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/connectioninfo.html" class="tsd-signature-type">ConnectionInfo</a><span class="tsd-signature-symbol">&gt;</span>, router<span class="tsd-signature-symbol">: </span><a href="router.html" class="tsd-signature-type">Router</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="connectionmanager.html" class="tsd-signature-type">ConnectionManager</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L26">src/lib/serviceRunnerServer.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connectionManager.ts#L30">src/lib/connectionManager.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <span class="tsd-signature-type">any</span></h5>
+									<h5>base: <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/connectioninfo.html" class="tsd-signature-type">ConnectionInfo</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>repoDir: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>port: <span class="tsd-signature-type">string</span></h5>
+									<h5>router: <a href="router.html" class="tsd-signature-type">Router</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="servicerunnerserver.html" class="tsd-signature-type">ServiceRunnerServer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="connectionmanager.html" class="tsd-signature-type">ConnectionManager</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="config.html" class="tsd-signature-type">Config</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L22">src/lib/serviceRunnerServer.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="installer" class="tsd-anchor"></a>
-					<h3>installer</h3>
-					<div class="tsd-signature tsd-kind-icon">installer<span class="tsd-signature-symbol">:</span> <a href="installer.html" class="tsd-signature-type">Installer</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L25">src/lib/serviceRunnerServer.ts:25</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="port" class="tsd-anchor"></a>
-					<h3>port</h3>
-					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L24">src/lib/serviceRunnerServer.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="repo" class="tsd-anchor"></a>
-					<h3>repo</h3>
-					<div class="tsd-signature tsd-kind-icon">repo<span class="tsd-signature-symbol">:</span> <a href="repo.html" class="tsd-signature-type">Repo</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L23">src/lib/serviceRunnerServer.ts:23</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="servicemanager" class="tsd-anchor"></a>
-					<h3>service<wbr>Manager</h3>
-					<div class="tsd-signature tsd-kind-icon">service<wbr>Manager<span class="tsd-signature-symbol">:</span> <a href="servicemanager.html" class="tsd-signature-type">ServiceManager</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L26">src/lib/serviceRunnerServer.ts:26</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="start" class="tsd-anchor"></a>
-					<h3>start</h3>
+					<a name="cleanup" class="tsd-anchor"></a>
+					<h3>cleanup</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">cleanup<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceRunnerServer.ts#L39">src/lib/serviceRunnerServer.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connectionManager.ts#L109">src/lib/connectionManager.ts:109</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="forwardrequest" class="tsd-anchor"></a>
+					<h3>forward<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">forward<wbr>Request<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="../globals.html#requestspec" class="tsd-signature-type">RequestSpec</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connectionManager.ts#L55">src/lib/connectionManager.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>start - Launches the service runner</p>
+									<p>forwardRequest - routes all request</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>request: <a href="../globals.html#requestspec" class="tsd-signature-type">RequestSpec</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a connection obj that makes it possible forward both request and response</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="manageconnections" class="tsd-anchor"></a>
+					<h3>manage<wbr>Connections</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">manage<wbr>Connections<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connectionManager.ts#L74">src/lib/connectionManager.ts:74</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>manageConnections - setups backends aka new connections for incoming request and determines
+										if request to services are routeable, as well as setups request forwarding
+									making it possible to potentially add permissions here based on routes or method routing</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setupconnections" class="tsd-anchor"></a>
+					<h3>setup<wbr>Connections</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Connections<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connectionManager.ts#L39">src/lib/connectionManager.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -234,28 +255,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="servicerunnerserver.html" class="tsd-kind-icon">Service<wbr>Runner<wbr>Server</a>
+						<a href="connectionmanager.html" class="tsd-kind-icon">Connection<wbr>Manager</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#installer" class="tsd-kind-icon">installer</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#port" class="tsd-kind-icon">port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#repo" class="tsd-kind-icon">repo</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#servicemanager" class="tsd-kind-icon">service<wbr>Manager</a>
+								<a href="connectionmanager.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="servicerunnerserver.html#start" class="tsd-kind-icon">start</a>
+								<a href="connectionmanager.html#cleanup" class="tsd-kind-icon">cleanup</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="connectionmanager.html#forwardrequest" class="tsd-kind-icon">forward<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="connectionmanager.html#manageconnections" class="tsd-kind-icon">manage<wbr>Connections</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="connectionmanager.html#setupconnections" class="tsd-kind-icon">setup<wbr>Connections</a>
 							</li>
 						</ul>
 					</li>

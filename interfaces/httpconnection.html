@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Services | jade-service-runner</title>
+	<title>HttpConnection | jade-service-runner</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="services.html">Services</a>
+					<a href="httpconnection.html">HttpConnection</a>
 				</li>
 			</ul>
-			<h1>Interface Services</h1>
+			<h1>Interface HttpConnection</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>HttpConnection is a http connection type</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Services</span>
+						<span class="target">HttpConnection</span>
 					</li>
 				</ul>
 			</section>
@@ -79,11 +86,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#environments" class="tsd-kind-icon">environments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#os" class="tsd-kind-icon">os</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="services.html#version" class="tsd-kind-icon">version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="httpconnection.html#conn" class="tsd-kind-icon">conn</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="httpconnection.html#host" class="tsd-kind-icon">host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="httpconnection.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,60 +97,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="environments" class="tsd-anchor"></a>
-					<h3>environments</h3>
-					<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <a href="serviceenv.html" class="tsd-signature-type">ServiceEnv</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="conn" class="tsd-anchor"></a>
+					<h3>conn</h3>
+					<div class="tsd-signature tsd-kind-icon">conn<span class="tsd-signature-symbol">:</span> <a href="httpconnect.html" class="tsd-signature-type">HttpConnect</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/config.ts#L36">src/lib/config.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connection.ts#L124">src/lib/connection.ts:124</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="host" class="tsd-anchor"></a>
+					<h3>host</h3>
+					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"localhost"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/config.ts#L34">src/lib/config.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connection.ts#L125">src/lib/connection.ts:125</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="os" class="tsd-anchor"></a>
-					<h3>os</h3>
-					<div class="tsd-signature tsd-kind-icon">os<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"http"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/config.ts#L37">src/lib/config.ts:37</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="serviceos.html" class="tsd-signature-type">ServiceOS</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rpcport" class="tsd-anchor"></a>
-					<h3>rpc<wbr>Port</h3>
-					<div class="tsd-signature tsd-kind-icon">rpc<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/config.ts#L35">src/lib/config.ts:35</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="version" class="tsd-anchor"></a>
-					<h3>version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/config.ts#L43">src/lib/config.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/connection.ts#L123">src/lib/connection.ts:123</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,22 +141,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="services.html" class="tsd-kind-icon">Services</a>
+						<a href="httpconnection.html" class="tsd-kind-icon">Http<wbr>Connection</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="services.html#environments" class="tsd-kind-icon">environments</a>
+								<a href="httpconnection.html#conn" class="tsd-kind-icon">conn</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="services.html#name" class="tsd-kind-icon">name</a>
+								<a href="httpconnection.html#host" class="tsd-kind-icon">host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="services.html#os" class="tsd-kind-icon">os</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="services.html#rpcport" class="tsd-kind-icon">rpc<wbr>Port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="services.html#version" class="tsd-kind-icon">version</a>
+								<a href="httpconnection.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>

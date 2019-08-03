@@ -92,8 +92,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serviceprocessmanager.html#checkservicehealth" class="tsd-kind-icon">check<wbr>Service<wbr>Health</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serviceprocessmanager.html#getservice" class="tsd-kind-icon">get<wbr>Service</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serviceprocessmanager.html#launchservice" class="tsd-kind-icon">launch<wbr>Service</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serviceprocessmanager.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serviceprocessmanager.html#terminateservice" class="tsd-kind-icon">terminate<wbr>Service</a></li>
 							</ul>
 						</section>
@@ -112,7 +114,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L93">src/lib/serviceProcessManager.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L95">src/lib/serviceProcessManager.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="serviceprocessmanager.html" class="tsd-signature-type">ServiceProcessManager</a></h4>
@@ -128,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">active<wbr>Service<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L91">src/lib/serviceProcessManager.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L92">src/lib/serviceProcessManager.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -138,13 +140,36 @@
 					<div class="tsd-signature tsd-kind-icon">service<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/servicespec.html" class="tsd-signature-type">ServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L90">src/lib/serviceProcessManager.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L91">src/lib/serviceProcessManager.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="checkservicehealth" class="tsd-anchor"></a>
+					<h3>check<wbr>Service<wbr>Health</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Service<wbr>Health<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L163">src/lib/serviceProcessManager.ts:163</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>service: <a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getservice" class="tsd-anchor"></a>
 					<h3>get<wbr>Service</h3>
@@ -155,7 +180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L126">src/lib/serviceProcessManager.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L133">src/lib/serviceProcessManager.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,7 +227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L108">src/lib/serviceProcessManager.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L115">src/lib/serviceProcessManager.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -226,6 +251,50 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="subscribe" class="tsd-anchor"></a>
+					<h3>subscribe</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"launched"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"terminated"</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L104">src/lib/serviceProcessManager.ts:104</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">"launched"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"terminated"</span></h5>
+								</li>
+								<li>
+									<h5>handler: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>notify<span class="tsd-signature-symbol">: </span><a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>notify: <a href="../interfaces/externalservicenotification.html" class="tsd-signature-type">ExternalServiceNotification</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="terminateservice" class="tsd-anchor"></a>
 					<h3>terminate<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -235,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/b36c5e2/src/lib/serviceProcessManager.ts#L145">src/lib/serviceProcessManager.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/31e381b/src/lib/serviceProcessManager.ts#L152">src/lib/serviceProcessManager.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -284,10 +353,16 @@
 								<a href="serviceprocessmanager.html#servicecache" class="tsd-kind-icon">service<wbr>Cache</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="serviceprocessmanager.html#checkservicehealth" class="tsd-kind-icon">check<wbr>Service<wbr>Health</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="serviceprocessmanager.html#getservice" class="tsd-kind-icon">get<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="serviceprocessmanager.html#launchservice" class="tsd-kind-icon">launch<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="serviceprocessmanager.html#subscribe" class="tsd-kind-icon">subscribe</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="serviceprocessmanager.html#terminateservice" class="tsd-kind-icon">terminate<wbr>Service</a>
@@ -313,6 +388,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
