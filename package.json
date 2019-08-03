@@ -31,10 +31,10 @@
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^15.13.19",
     "strict-event-emitter-types": "^2.0.0",
     "tar-fs": "^2.0.0",
-    "typedoc": "^0.14.2",
+    "typedoc": "^0.15.0",
     "winston": "^3.2.1",
     "ws": "^7.1.0",
     "yauzl": "^2.10.0"
