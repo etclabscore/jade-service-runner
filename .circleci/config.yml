@@ -50,12 +50,8 @@ jobs:
             curl -sSL "https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v10.15.3-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
       - run: npm install
-      - run: npm run build
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/jade-service-runner/build/generated-client/typescript/.npmrc
-      - run: cd build/generated-client/typescript && npm publish --access=public
-      - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @qiwi/semantic-release-gh-pages-plugin
+      - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @qiwi/semantic-release-gh-pages-plugin @open-rpc/semantic-release-plugin
+      - run: git checkout .
       - run: ./node_modules/.bin/semantic-release
       
   release_elasticbeanstalk:

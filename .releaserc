@@ -16,7 +16,17 @@
     "@semantic-release/github",
     "@qiwi/semantic-release-gh-pages-plugin"
   ],
+  "prepare": [
+    "@semantic-release/changelog",
+    "@open-rpc/semantic-release-plugin"
+  ],
   "publish": [
+    [
+      "@semantic-release/exec",
+      {
+          "publishCmd": "./publish.sh"
+      }
+    ],
     "@semantic-release/github",
     {
       "path": "@qiwi/semantic-release-gh-pages-plugin",
