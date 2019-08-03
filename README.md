@@ -92,4 +92,4 @@ How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUT
 
 # Resources
 - [jade.builders](https://jade.builders/)
-- [etclabscore/jade](ehttps://github.com/etclabscore/jade)
+- [etclabscore/jade](https://github.com/etclabscore/jade)
