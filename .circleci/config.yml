@@ -52,6 +52,7 @@ jobs:
       - run: npm install
       - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/exec @qiwi/semantic-release-gh-pages-plugin @open-rpc/semantic-release-plugin
       - run: git checkout .
+      - run: npm run build:docs
       - run: ./node_modules/.bin/semantic-release
       
   release_elasticbeanstalk:
