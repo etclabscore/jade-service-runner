@@ -10,7 +10,15 @@
     "@semantic-release/npm"
   ],
   "verifyConditions": [
+    [
+      "@semantic-release/exec",
+      {
+        "verifyCmd": "./verifyConditions.sh",
+        "env": {}
+      }
+    ],
     "@semantic-release/changelog",
+    "@open-rpc/semantic-release-plugin",
     "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/github",
