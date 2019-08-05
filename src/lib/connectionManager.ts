@@ -60,8 +60,12 @@ export class ConnectionManager {
       case "http":
         const response = await request.conn.send(request.payload.body, request.payload.headers, request.payload.method);
         const { statusCode, statusMessage, headers } = response;
+        let payloadStr = "";
         response.on("data", (data) => {
-          request.conn.respond({ headers, statusCode, reason: statusMessage, payload: data });
+         payloadStr += data.toString("utf-8");
+        });
+        response.on("end", () => {
+          request.conn.respond({ headers, statusCode, reason: statusMessage, payload: payloadStr });
         });
         return;
     }
