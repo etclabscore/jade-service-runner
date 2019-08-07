@@ -2,10 +2,11 @@ import { Frontend } from "./types";
 import http from "http";
 import { HttpDataResponse, ResponseBus, ConnectionBus } from "../connection";
 import { EventEmitter } from "events";
-import connect from "connect";
+import connect, { HandleFunction } from "connect";
 import { json as jsonParser } from "body-parser";
 import { JSONRpcError, statusCode } from "../jsonRpcError";
 import { makeLogger } from "../logging";
+import cors = require("cors");
 const logger = makeLogger("ServiceRunner", "httpFrontend");
 
 const httpClientError = (jsonError: JSONRpcError, response: http.ServerResponse) => {
@@ -67,6 +68,8 @@ const httpProxy = (connectionBus: ConnectionBus) => {
  */
 export const httpFrontend: Frontend = (connectionInfo, connectionBus) => {
   const app = connect();
+  const corsOptions = { origin: "*" } as cors.CorsOptions;
+  app.use(cors(corsOptions) as HandleFunction);
   app.use(jsonParser());
   app.use(httpProxy(connectionBus));
   const server = http.createServer(app);
