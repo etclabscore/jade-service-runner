@@ -167,8 +167,16 @@
         },
         "linux": {
           "commands": {
-            "setup": [],
-            "start": "geth",
+            "setup": [
+              {
+                "cmd": "chmod",
+                "args": [
+                  "+x",
+                  "${SERVICE_DIR}/geth"
+                ]
+              }
+            ],
+            "start": "${SERVICE_DIR}/geth",
             "stop": "",
             "teardown": ""
           },
