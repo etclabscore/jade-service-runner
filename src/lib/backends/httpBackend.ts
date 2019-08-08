@@ -16,7 +16,7 @@ export const httpBackend = async (connectionInfo: ConnectionInfo, response: Resp
     return new Promise((resolve) => {
       logger.debug(`making request to backend on port ${port} with ${JSON.stringify(data)}`);
       const requestData = JSON.stringify(data);
-      const requestHeaders = Object.assign({}, headers, { "content-length": `${requestData.length}` });
+      const requestHeaders = Object.assign({}, headers, { "content-length": `${requestData.length}`, "host": `${host}:${port}` });
       const request = http.request(`http://${host}:${port}/`, {
         headers: requestHeaders,
         method,
