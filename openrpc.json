@@ -30,6 +30,55 @@
 			}
 		},
 		{
+			"name": "listServices",
+			"params": [
+				{
+					"name": "filter",
+					"schema": {
+						"type": "string",
+						"enum": [
+							"all",
+							"running",
+							"available",
+							"installed"
+						]
+					},
+					"required": true
+				}
+			],
+			"result": {
+				"name": "listedServices",
+				"schema": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"version": {
+								"type": "string"
+							},
+							"enviornments": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"state": {
+								"type": "string",
+								"enum": [
+									"active",
+									"available",
+									"installed"
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
 			"name": "listInstalledServices",
 			"params": [],
 			"result": {

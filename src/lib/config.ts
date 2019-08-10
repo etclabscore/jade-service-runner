@@ -18,6 +18,12 @@ export interface Service {
   assets: string[];
 }
 
+export interface ServiceDesc {
+  name: string;
+  version: string;
+  environments: string[];
+}
+
 export interface Health {
   port: string;
   protocol: "udp" | "tcp";
@@ -42,6 +48,7 @@ export interface Services {
   };
   version: string;
 }
+
 export interface ServiceOS {
   commands: Commands;
   assets: string[];
@@ -109,6 +116,15 @@ export class Config {
       assets,
       version,
     };
+  }
+
+  public getAvailableServices(os: string): ServiceDesc[] {
+    const services = this.config.services.filter((service) => service.os.hasOwnProperty(os) === true);
+    return services.map((service) => {
+      const { name, version } = service;
+      const environments = service.environments.map((env) => env.name);
+      return { name, environments, version };
+    });
   }
   /**
    * Validates a service configuration against service runner schema
