@@ -54,8 +54,8 @@ jobs:
       - run: git checkout .
       - run: npm run build:docs
       - run: ./node_modules/.bin/semantic-release
-      
-  release_elasticbeanstalk:
+
+  release_staging:
     <<: *defaults
     docker:
       - image: circleci/python:3.7-stretch
@@ -70,9 +70,32 @@ jobs:
             sudo pip install --upgrade setuptools
             sudo pip install awsebcli --upgrade
       - run:
-          name: Deploying
-          command: eb deploy JadeServiceRunner-env
+          name: Ensure Stack
+          command: cd cfn && init-staging.sh
+      - run:
+          name: Deploying Staging
+          command: eb deploy jade-service-runner-staging
 
+  release_production:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Ensure Stack
+          command: cd cfn && init-production.sh
+      - run:
+          name: Deploying Production
+          command: eb deploy jade-service-runner-production
 
 workflows:
   version: 2
@@ -85,16 +108,29 @@ workflows:
     jobs:
       - build:
           filters: *filter-only-master
+      - release_staging:
+          filters: *filter-only-master
+          requires:
+            - build
       - hold:
           filters: *filter-only-master
           type: approval
           requires:
             - build
-      - release_elasticbeanstalk:
-          filters: *filter-only-master
-          requires:
-            - release
       - release:
           filters: *filter-only-master
           requires:
             - hold
+      - release_staging:
+          filters: *filter-only-master
+          requires:
+            - release
+      - post_staging_hold:
+          filters: *filter-only-master
+          type: approval
+          requires:
+            - release_staging
+      - release_production:
+          filters: *filter-only-master
+          requires:
+            - post_staging_hold
