@@ -68,13 +68,13 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade
+            sudo pip install awscli --upgrade
       - run:
           name: Ensure Stack
           command: cd cfn && ./init-staging.sh && cd ..
       - run:
           name: Deploying Staging
-          command: eb deploy jade-service-runner-staging
+          command: aws eb deploy jade-service-runner-staging
 
   release_production:
     <<: *defaults
@@ -89,13 +89,13 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade
+            sudo pip install awscli --upgrade
       - run:
           name: Ensure Stack
           command: cd cfn && ./init-production.sh && cd ..
       - run:
           name: Deploying Production
-          command: eb deploy jade-service-runner-production
+          command: aws eb deploy jade-service-runner-production
 
 workflows:
   version: 2
@@ -124,7 +124,7 @@ workflows:
       - release_staging:
           filters: *filter-only-master
           requires:
-            - release
+            - hold
       - post_staging_hold:
           filters: *filter-only-master
           type: approval
