@@ -75,6 +75,8 @@ jobs:
       - run:
           name: Deploying Staging
           command: aws eb deploy jade-service-runner-staging
+          no_output_timeout: '30m'
+
 
   release_production:
     <<: *defaults
@@ -96,6 +98,7 @@ jobs:
       - run:
           name: Deploying Production
           command: aws eb deploy jade-service-runner-production
+          no_output_timeout: '30m'
 
 workflows:
   version: 2
