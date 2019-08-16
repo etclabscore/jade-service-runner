@@ -6,5 +6,6 @@ aws cloudformation create-stack \
     --parameters file://cfn/staging-launch-params.json \
     --capabilities CAPABILITY_IAM \
     --disable-rollback
+    --region us-west-2
 
 aws cloudformation wait stack-create-complete --stack-name jade-service-runner-staging-beanstalk-stack
