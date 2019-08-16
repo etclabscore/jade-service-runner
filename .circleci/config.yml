@@ -94,7 +94,7 @@ jobs:
             sudo pip install awscli --upgrade
       - run:
           name: Ensure Stack
-          command: ./cfn/init-production.sh || true
+          command: ./cfn/init-production.sh
       - run:
           name: Deploying Production
           command: aws elasticbeanstalk deploy jade-service-runner-production
