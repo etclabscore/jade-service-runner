@@ -148,8 +148,11 @@
               "--rinkeby",
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby",
+<<<<<<< HEAD
               "--ipcpath",
               "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby/geth.ipc",
+=======
+>>>>>>> fix: config to set ipcpath and discovery port
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
