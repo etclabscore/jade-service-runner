@@ -71,7 +71,7 @@ jobs:
             sudo pip install awsebcli --upgrade
       - run:
           name: Ensure Stack
-          command: cd cfn && init-staging.sh && cd ..
+          command: cd cfn && ./init-staging.sh && cd ..
       - run:
           name: Deploying Staging
           command: eb deploy jade-service-runner-staging
@@ -92,7 +92,7 @@ jobs:
             sudo pip install awsebcli --upgrade
       - run:
           name: Ensure Stack
-          command: cd cfn && init-production.sh
+          command: cd cfn && ./init-production.sh && cd ..
       - run:
           name: Deploying Production
           command: eb deploy jade-service-runner-production
