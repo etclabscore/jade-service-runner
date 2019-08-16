@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "ApplicationName",
+    "ParameterValue": "jade-service-runner"
+  },
+  {
+    "ParameterKey": "KeyPairName",
+    "ParameterValue": "jade-deployer"
+  },
+  {
+    "ParameterKey": "InstanceType",
+    "ParameterValue": "t2.small"
+  },
+  {
+    "ParameterKey": "DomainName",
+    "ParameterValue": "services.jade.builders"
+  },
+  {
+    "ParameterKey": "HostedZoneId",
+    "ParameterValue": "Z1CQOPXXVJG4MC"
+  },
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "staging"
+  }
+]

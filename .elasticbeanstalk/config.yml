@@ -1,12 +1,5 @@
-branch-defaults:
-  fix/aws-eb-deploy:
-    environment: null
-    group_suffix: null
-  master:
-    environment: JadeServiceRunner-env
 global:
   application_name: jade-service-runner
   default_ec2_keyname: jade-deployer
-  default_platform: Node.js
   default_region: us-west-2
   sc: git
