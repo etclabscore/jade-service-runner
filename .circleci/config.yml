@@ -71,7 +71,7 @@ jobs:
             sudo pip install awscli --upgrade
       - run:
           name: Ensure Stack
-          command: cd cfn && ./init-staging.sh && cd ..
+          command: ./cfn/init-staging.sh
       - run:
           name: Deploying Staging
           command: aws eb deploy jade-service-runner-staging
@@ -92,7 +92,7 @@ jobs:
             sudo pip install awscli --upgrade
       - run:
           name: Ensure Stack
-          command: cd cfn && ./init-production.sh && cd ..
+          command: ./cfn/init-production.sh
       - run:
           name: Deploying Production
           command: aws eb deploy jade-service-runner-production
