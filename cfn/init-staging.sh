@@ -8,4 +8,6 @@ aws cloudformation create-stack \
     --disable-rollback \
     --region us-west-2
 
-aws cloudformation wait stack-create-complete --stack-name jade-service-runner-staging-beanstalk-stack
+aws cloudformation wait stack-create-complete \
+    --stack-name jade-service-runner-staging-beanstalk-stack \
+    --region us-west-2
