@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +e
+
 aws cloudformation create-stack \
     --stack-name jade-service-runner-staging-beanstalk-stack \
     --template-body file://cfn/jade-service-runner.cfn.json \

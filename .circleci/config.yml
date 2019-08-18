@@ -74,7 +74,7 @@ jobs:
           command: ./cfn/init-staging.sh
       - run:
           name: Deploying Staging
-          command: aws eb deploy jade-service-runner-staging
+          command: aws elasticbeanstalk deploy jade-service-runner-staging
           no_output_timeout: '30m'
 
 
@@ -97,7 +97,7 @@ jobs:
           command: ./cfn/init-production.sh
       - run:
           name: Deploying Production
-          command: aws eb deploy jade-service-runner-production
+          command: aws elasticbeanstalk deploy jade-service-runner-production
           no_output_timeout: '30m'
 
 workflows:
