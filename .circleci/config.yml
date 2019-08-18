@@ -69,12 +69,13 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
             sudo pip install awscli --upgrade
+            sudo pip install awsebcli --upgrade
       - run:
           name: Ensure Stack
           command: ./cfn/init-staging.sh
       - run:
           name: Deploying Staging
-          command: aws elasticbeanstalk deploy jade-service-runner-staging
+          command: eb deploy jade-service-runner-staging
           no_output_timeout: '30m'
 
 
@@ -92,12 +93,13 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
             sudo pip install awscli --upgrade
+            sudo pip install awsebcli --upgrade
       - run:
           name: Ensure Stack
           command: ./cfn/init-production.sh
       - run:
           name: Deploying Production
-          command: aws elasticbeanstalk deploy jade-service-runner-production
+          command: eb deploy jade-service-runner-production
           no_output_timeout: '30m'
 
 workflows:
