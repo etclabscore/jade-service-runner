@@ -172,6 +172,11 @@
             "Namespace": "aws:elasticbeanstalk:container:nodejs",
             "OptionName": "NodeCommand",
             "Value": "npm run startaws"
+          },
+          {
+            "Namespace": "aws:elasticbeanstalk:container:nodejs",
+            "OptionName": "ProxyServer",
+            "Value": "None"
           }
         ]
       }
