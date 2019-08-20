@@ -202,6 +202,11 @@
             "Namespace": "aws:elasticbeanstalk:container:nodejs",
             "OptionName": "ProxyServer",
             "Value": "none"
+          },
+          {
+            "Namespace": "aws:elasticbeanstalk:application:environment",
+            "OptionName": "NPM_USE_PRODUCTION",
+            "Value": false
           }
         ]
       }

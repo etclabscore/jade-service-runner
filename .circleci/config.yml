@@ -72,6 +72,7 @@ jobs:
       - run:
           name: Ensure Base
           command: ./cfn/init-base.sh
+          no_output_timeout: '30m'
 
   ensure_production_stacks:
     <<: *defaults
@@ -90,6 +91,7 @@ jobs:
       - run:
           name: Ensure Production
           command: ./cfn/init-production.sh
+          no_output_timeout: '30m'
 
   ensure_staging_stacks:
     <<: *defaults
@@ -108,6 +110,7 @@ jobs:
       - run:
           name: Ensure Staging
           command: ./cfn/init-staging.sh
+          no_output_timeout: '30m'
 
   release_staging:
     <<: *defaults
@@ -123,12 +126,10 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
             sudo pip install awsebcli --upgrade
-      - run: npm install
       - run:
           name: Deploying Staging
           command: eb deploy jade-service-runner-staging
           no_output_timeout: '30m'
-
 
   release_production:
     <<: *defaults
@@ -144,7 +145,6 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
             sudo pip install awsebcli --upgrade
-      - run: npm install
       - run:
           name: Deploying Production
           command: eb deploy jade-service-runner-production
