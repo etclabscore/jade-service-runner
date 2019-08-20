@@ -13,7 +13,7 @@
   },
   {
     "ParameterKey": "DomainName",
-    "ParameterValue": "staging-services.jade.builders"
+    "ParameterValue": "services.jade.builders"
   },
   {
     "ParameterKey": "HostedZoneId",
