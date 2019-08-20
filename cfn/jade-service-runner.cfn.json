@@ -126,13 +126,6 @@
         "HostedZoneId": { "Ref": "HostedZoneId" }
       }
     },
-    "EBApplication": {
-      "Type": "AWS::ElasticBeanstalk::Application",
-      "Properties": {
-        "ApplicationName": { "Ref": "ApplicationName" },
-        "Description": { "Ref": "ApplicationName" }
-      }
-    },
     "EBConfigurationTemplate": {
       "Type" : "AWS::ElasticBeanstalk::ConfigurationTemplate",
       "Properties" : {
@@ -212,7 +205,7 @@
     "RolePolicies": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "EbApp",
+        "PolicyName": { "Fn::Join": [ ["-"], ["EbApp", { "Ref": "ApplicationName" }, { "Ref": "EnvironmentName" }] ]},
         "PolicyDocument": {
           "Statement": [{
             "Effect": "Allow",
@@ -244,22 +237,6 @@
         "HostedZoneId": { "Ref": "HostedZoneId" },
         "Name": { "Ref": "DomainName" },
         "Type": "A"
-      }
-    }
-  },
-  "Outputs": {
-    "URL": {
-      "Description": "URL of the AWS Elastic Beanstalk Environment",
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "http://",
-            {
-              "Fn::GetAtt": ["EBEnvironment", "EndpointURL"]
-            }
-          ]
-        ]
       }
     }
   }
