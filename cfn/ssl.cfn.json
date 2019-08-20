@@ -1,14 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
-    "ApplicationName": {
-      "Description": "The name of the Elastic Beanstalk Application",
-      "Type": "String"
-    },
-    "KeyPairName": {
-      "Description": "The Key Pair to launch instances with",
-      "Type": "String"
-    },
     "DomainName": {
       "Description": "The domain name that you wish to use for this SSL certificate",
       "Type": "String"
@@ -16,41 +8,6 @@
     "HostedZoneId": {
       "Description": "The hosted zone ID of the route53 record set for the above DomainName parameter",
       "Type": "String"
-    },
-    "InstanceType": {
-      "Description": "The Key Pair to launch instances with",
-      "Type": "String",
-      "Default": "t2.micro",
-      "AllowedValues": ["t2.micro", "t2.small", "t2.medium", "t2.large"]
-    },
-    "EnvironmentName": {
-      "Type": "String",
-      "Default": "Development"
-    }
-  },
-  "Mappings" : {
-    "HostedZoneIdByRegion" : {
-      "us-east-1": { "id": "Z35SXDOTRQ7X7K" },
-      "us-east-2": { "id": "Z3AADJGX6KTTL2" },
-      "us-west-1": { "id": "Z368ELLRRE2KJ0" },
-      "us-west-2": { "id": "Z1H1FL5HABSF5" },
-      "ap-east-1": { "id": "Z3DQVH9N71FHZ0" },
-      "ap-south-1": { "id": "ZP97RAFLXTNZK" },
-      "ap-northeast-3": { "id": "Z5LXEXXYW11ES" },
-      "ap-northeast-2": { "id": "ZWKZPGTI48KDX" },
-      "ap-southeast-1": { "id": "Z1LMS91P8CMLE5" },
-      "ap-southeast-2": { "id": "Z1GM3OXH4ZPM65" },
-      "ap-northeast-1": { "id": "Z14GRHDCWA56QT" },
-      "ca-central-1": { "id": "ZQSVJUPU6J1EY" },
-      "cn-north-1": { "id": "Z3BX2TMKNYI13Y" },
-      "cn-northwest-1": { "id": "Z3BX2TMKNYI13Y" },
-      "eu-central-1": { "id": "Z215JYRZR1TBD5" },
-      "eu-west-1": { "id": "Z32O12XQLNTSW2" },
-      "eu-west-2": { "id": "ZHURV8PSTC4K8" },
-      "eu-west-3": { "id": "Z3Q77PNBQS71R4" },
-      "eu-north-1": { "id": "Z23TAZ6LKFMNIO" },
-      "me-south-1": { "id": "ZS929ML54UICD" },
-      "sa-east-1": { "id": "Z2P70J7HTTTPLU" }
     }
   },
   "Resources": {
@@ -125,119 +82,12 @@
         "DomainName": { "Ref": "DomainName" },
         "HostedZoneId": { "Ref": "HostedZoneId" }
       }
-    },
-    "EBConfigurationTemplate": {
-      "Type" : "AWS::ElasticBeanstalk::ConfigurationTemplate",
-      "Properties" : {
-        "ApplicationName" : { "Ref": "ApplicationName" },
-        "SolutionStackName": "64bit Amazon Linux 2018.03 v4.10.1 running Node.js",
-        "OptionSettings": [
-          {
-            "Namespace": "aws:autoscaling:launchconfiguration",
-            "OptionName": "EC2KeyName",
-            "Value": {
-              "Ref" : "KeyPairName"
-            }
-          },
-          {
-            "Namespace": "aws:autoscaling:launchconfiguration",
-            "OptionName": "IamInstanceProfile",
-            "Value": {
-              "Ref": "EbAppInstanceProfile"
-            }
-          },
-          {
-            "Namespace": "aws:autoscaling:launchconfiguration",
-            "OptionName": "InstanceType",
-            "Value": {
-              "Ref": "InstanceType"
-            }
-          },
-          {
-            "Namespace": "aws:elb:loadbalancer",
-            "OptionName": "LoadBalancerHTTPPort",
-            "Value": 80
-          },
-          {
-            "Namespace": "aws:elb:loadbalancer",
-            "OptionName": "LoadBalancerHTTPSPort",
-            "Value": 443
-          },
-          {
-            "Namespace": "aws:elb:loadbalancer",
-            "OptionName": "SSLCertificateId",
-            "Value": { "Ref": "AutoCertificate" }
-          },
-          {
-            "Namespace": "aws:elasticbeanstalk:container:nodejs",
-            "OptionName": "NodeCommand",
-            "Value": "npm run startaws"
-          }
-        ]
-      }
-    },
-    "EBEnvironment": {
-      "Type": "AWS::ElasticBeanstalk::Environment",
-      "Properties": {
-        "EnvironmentName" : { "Fn::Join": ["-", [ { "Ref": "ApplicationName" }, { "Ref": "EnvironmentName" } ]] },
-        "Description": { "Fn::Join": [ " ", [ "The", { "Ref": "EnvironmentName" }, "Environment" ] ] },
-        "ApplicationName" : { "Ref": "ApplicationName" },
-        "TemplateName": { "Ref": "EBConfigurationTemplate" },
-        "Tier": {
-          "Name": "WebServer",
-          "Type": "Standard"
-        }
-      }
-    },
-    "EbAppRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "Path": "/",
-        "AssumeRolePolicyDocument": {
-          "Statement": [{
-            "Effect": "Allow",
-            "Principal": { "Service": ["ec2.amazonaws.com"] },
-            "Action": [ "sts:AssumeRole" ]
-          }]
-        }
-      }
-    },
-    "RolePolicies": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": { "Fn::Join": [ ["-"], ["EbApp", { "Ref": "ApplicationName" }, { "Ref": "EnvironmentName" }] ]},
-        "PolicyDocument": {
-          "Statement": [{
-            "Effect": "Allow",
-            "Action": "*",
-            "Resource": "*"
-          }]
-        },
-        "Roles": [{
-          "Ref": "EbAppRole"
-        }]
-      }
-    },
-    "EbAppInstanceProfile": {
-      "Type": "AWS::IAM::InstanceProfile",
-      "Properties": {
-        "Path": "/",
-        "Roles": [{
-          "Ref": "EbAppRole"
-        }]
-      }
-    },
-    "Route53Alias": {
-      "Type" : "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {"Fn::GetAtt": ["EBEnvironment", "EndpointURL"] },
-          "HostedZoneId": { "Fn::FindInMap": ["HostedZoneIdByRegion", { "Ref": "AWS::Region" }, "id" ] }
-        },
-        "HostedZoneId": { "Ref": "HostedZoneId" },
-        "Name": { "Ref": "DomainName" },
-        "Type": "A"
-      }
+    }
+  },
+  "Outputs": {
+    "CertificateArn": {
+      "Description": "The arn of the created certificate",
+      "Value": { "Ref": "AutoCertificate" }
     }
   }
 }
