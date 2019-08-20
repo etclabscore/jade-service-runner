@@ -205,7 +205,7 @@
     "RolePolicies": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": { "Fn::Join": [ ["-"], ["EbApp", { "Ref": "ApplicationName" }, { "Ref": "EnvironmentName" }] ]},
+        "PolicyName": { "Fn::Join": [ "-", ["EbApp", { "Ref": "ApplicationName" }, { "Ref": "EnvironmentName" }] ]},
         "PolicyDocument": {
           "Statement": [{
             "Effect": "Allow",
