@@ -155,18 +155,43 @@
           },
           {
             "Namespace": "aws:elb:loadbalancer",
-            "OptionName": "LoadBalancerHTTPPort",
-            "Value": 80
-          },
-          {
-            "Namespace": "aws:elb:loadbalancer",
-            "OptionName": "LoadBalancerHTTPSPort",
-            "Value": 443
-          },
-          {
-            "Namespace": "aws:elb:loadbalancer",
             "OptionName": "SSLCertificateId",
             "Value": { "Ref": "AutoCertificate" }
+          },
+          {
+            "Namespace": "aws:elb:listener:443",
+            "OptionName": "InstancePort",
+            "Value": 8081
+          },
+          {
+            "Namespace": "aws:elb:listener:443",
+            "OptionName": "InstanceProtocol",
+            "Value": "HTTP"
+          },
+          {
+            "Namespace": "aws:elb:listener:443",
+            "OptionName": "ListenerProtocol",
+            "Value": "HTTPS"
+          },
+          {
+            "Namespace": "aws:elb:listener:443",
+            "OptionName": "SSLCertificateId",
+            "Value": { "Ref": "AutoCertificate" }
+          },
+          {
+            "Namespace": "aws:elb:listener:80",
+            "OptionName": "InstancePort",
+            "Value": 8081
+          },
+          {
+            "Namespace": "aws:elb:listener:80",
+            "OptionName": "InstanceProtocol",
+            "Value": "HTTP"
+          },
+          {
+            "Namespace": "aws:elb:listener:80",
+            "OptionName": "ListenerProtocol",
+            "Value": "HTTP"
           },
           {
             "Namespace": "aws:elasticbeanstalk:container:nodejs",
@@ -176,7 +201,7 @@
           {
             "Namespace": "aws:elasticbeanstalk:container:nodejs",
             "OptionName": "ProxyServer",
-            "Value": "None"
+            "Value": "none"
           }
         ]
       }

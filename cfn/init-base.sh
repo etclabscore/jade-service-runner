@@ -9,5 +9,5 @@ aws cloudformation create-stack \
     --region us-west-2 || true
 
 aws cloudformation wait stack-create-complete \
-    --stack-name jade-service-runner-base--stack \
+    --stack-name jade-service-runner-base-stack \
     --region us-west-2 || true
