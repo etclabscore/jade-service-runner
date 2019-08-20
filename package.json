@@ -22,7 +22,7 @@
     "@types/node-fetch": "^2.3.7",
     "@types/ws": "^6.0.1",
     "body-parser": "^1.19.0",
-    "commander": "^2.20.0",
+    "commander": "^3.0.0",
     "connect": "^3.7.0",
     "follow-redirects": "^1.7.0",
     "fs-extra": "^8.0.1",
