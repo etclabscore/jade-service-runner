@@ -55,7 +55,7 @@ jobs:
       - run: npm run build:docs
       - run: ./node_modules/.bin/semantic-release
 
-  release_staging:
+  ensure_base_stacks:
     <<: *defaults
     docker:
       - image: circleci/python:3.7-stretch
@@ -69,10 +69,60 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
             sudo pip install awscli --upgrade
-            sudo pip install awsebcli --upgrade
       - run:
-          name: Ensure Stack
+          name: Ensure Base
+          command: ./cfn/init-base.sh
+
+  ensure_production_stacks:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awscli --upgrade
+      - run:
+          name: Ensure Production
+          command: ./cfn/init-production.sh
+
+  ensure_staging_stacks:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awscli --upgrade
+      - run:
+          name: Ensure Staging
           command: ./cfn/init-staging.sh
+
+  release_staging:
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
       - run:
           name: Deploying Staging
           command: eb deploy jade-service-runner-staging
@@ -92,11 +142,7 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install --upgrade setuptools
-            sudo pip install awscli --upgrade
             sudo pip install awsebcli --upgrade
-      - run:
-          name: Ensure Stack
-          command: ./cfn/init-production.sh
       - run:
           name: Deploying Production
           command: eb deploy jade-service-runner-production
@@ -113,29 +159,32 @@ workflows:
     jobs:
       - build:
           filters: *filter-only-master
+      - ensure_base_stacks:
+          filters: *filter-only-master
+      - ensure_production_stacks:
+          filters: *filter-only-master
+          requires:
+            - ensure_base_stacks
+      - ensure_staging_stacks:
+          filters: *filter-only-master
+          requires:
+            - ensure_base_stacks
       - release_staging:
           filters: *filter-only-master
           requires:
+            - ensure_staging_stacks
             - build
       - hold:
           filters: *filter-only-master
           type: approval
           requires:
-            - build
+            - release_staging
+            - ensure_production_stacks
       - release:
           filters: *filter-only-master
           requires:
             - hold
-      - release_staging:
-          filters: *filter-only-master
-          requires:
-            - hold
-      - post_staging_hold:
-          filters: *filter-only-master
-          type: approval
-          requires:
-            - release_staging
       - release_production:
           filters: *filter-only-master
           requires:
-            - post_staging_hold
+            - hold
