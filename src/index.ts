@@ -7,6 +7,7 @@ import { Router } from "./lib/router";
 import { ConnectionInfo } from "./lib/connection";
 export * from "./lib/connection";
 export * from "./lib/serviceRunnerServer";
+export { getLogStream, JadeLogFormat } from "./lib/logging";
 const logger = makeLogger("ServiceRunner", "startServiceRunner");
 /**
  *
