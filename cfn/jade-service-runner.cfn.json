@@ -207,7 +207,19 @@
             "Namespace": "aws:elasticbeanstalk:application:environment",
             "OptionName": "NPM_USE_PRODUCTION",
             "Value": false
+          },
+          {
+            "Namespace": "aws:elasticbeanstalk:environment:process:default",
+            "OptionName": "Port",
+            "Value": 8081
+          },
+
+          {
+            "Namespace": "aws:elasticbeanstalk:environment:process:default",
+            "OptionName": "Protocol",
+            "Value": "HTTP"
           }
+
         ]
       }
     },
