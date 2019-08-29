@@ -213,13 +213,11 @@
             "OptionName": "Port",
             "Value": 8081
           },
-
           {
             "Namespace": "aws:elasticbeanstalk:environment:process:default",
             "OptionName": "Protocol",
             "Value": "HTTP"
           }
-
         ]
       }
     },
