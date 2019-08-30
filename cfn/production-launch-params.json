@@ -9,7 +9,7 @@
   },
   {
     "ParameterKey": "InstanceType",
-    "ParameterValue": "t2.medium"
+    "ParameterValue": "t2.2xlarge"
   },
   {
     "ParameterKey": "DomainName",
