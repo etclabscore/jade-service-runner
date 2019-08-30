@@ -26,6 +26,11 @@
     "EnvironmentName": {
       "Type": "String",
       "Default": "Development"
+    },
+    "VolumeSize": {
+      "Description": "Size of the elastic block store that you want for each ec2 instance",
+      "Type": "string",
+      "Default": "50"
     }
   },
   "Mappings" : {
@@ -153,6 +158,18 @@
               "Ref": "InstanceType"
             }
           },
+          {
+            "Namespace": "aws:autoscaling:launchconfiguration",
+            "OptionName": "RootVolumeType",
+            "Value": "gp2"
+          },
+          {
+            "Namespace": "aws:autoscaling:launchconfiguration",
+            "OptionName": "RootVolumeSize",
+            "Value": {
+              "Ref": "VolumeSize"
+            }
+          }
           {
             "Namespace": "aws:elb:loadbalancer",
             "OptionName": "SSLCertificateId",
