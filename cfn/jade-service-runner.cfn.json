@@ -29,8 +29,8 @@
     },
     "VolumeSize": {
       "Description": "Size of the elastic block store that you want for each ec2 instance",
-      "Type": "string",
-      "Default": "50"
+      "Type": "number",
+      "Default": 50
     }
   },
   "Mappings" : {
