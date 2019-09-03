@@ -8,6 +8,7 @@ describe("configuration test", () => {
   const mockConfig = {
     services: [
       {
+        version: "1.9.2",
         name: "multi-geth",
         environments: [
           {
@@ -21,6 +22,7 @@ describe("configuration test", () => {
       },
       {
         name: "eth-classic",
+        version: "1.9.2",
         environments: [
           {
             name: "dev",
@@ -56,7 +58,7 @@ describe("configuration test", () => {
 
   it("should retrieve service info", () => {
     const cfg = new Config(mockConfig);
-    const svc = cfg.getService("multi-geth", "osx");
+    const svc = cfg.getService("multi-geth", "1.9.2", "osx");
     expect(svc.name === "multi-geth").toBe(true);
     expect(svc.environments.find((env: any) => env.name === "test-dev"));
     const defaultService = defaultConfig.services.find((service: any) => service.name === "multi-geth") as any;
@@ -84,7 +86,7 @@ describe("configuration test", () => {
 
   it("should retrieve installation information", () => {
     const config = new Config(mockConfig);
-    const service = config.getService("multi-geth", OSTypes.OSX);
+    const service = config.getService("multi-geth", "1.9.2", OSTypes.OSX);
     expect(service.name === "multi-geth").toBe(true);
     expect(service.rpcPort).toEqual("${DYNAMIC_TCP_PORT_1}");
   });

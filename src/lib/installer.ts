@@ -33,7 +33,7 @@ export class Installer {
     logger.info(`Installing: ${serviceName} - ${version}`);
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry) { return; }
-    const service = this.config.getService(serviceName, this.os);
+    const service = this.config.getService(serviceName, version, this.os);
     const downloadPaths = await this.download(service);
     const path = await this.repo.addService(service, downloadPaths);
     logger.info(`Added and installed service(${serviceName}) to path: ${path}`);
