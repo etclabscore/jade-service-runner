@@ -4,16 +4,16 @@
     {
       "name": "multi-geth",
       "rpcPort": "${DYNAMIC_TCP_PORT_1}",
-      "version": "1.9.0",
+      "version": "1.9.2",
       "environments": [{
           "name": "mainnet",
           "args": {
             "start": [
               "--classic",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/classic",
+              "${SERVICE_DIR}/multi-geth/1.9.2/classic",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.0/classic/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/classic/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -38,9 +38,9 @@
             "start": [
               "--kotti",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/kotti",
+              "${SERVICE_DIR}/multi-geth/1.9.2/kotti",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.0/kotti/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/kotti/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -67,9 +67,9 @@
             "start": [
               "--dev",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/dev",
+              "${SERVICE_DIR}/multi-geth/1.9.2/dev",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.0/dev/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/dev/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -93,9 +93,9 @@
           "args": {
             "start": [
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/ethereum",
+              "${SERVICE_DIR}/multi-geth/1.9.2/ethereum",
               "--ethereum",
-              "${SERVICE_DIR}/multi-geth/1.9.0/ethereum/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/ethereum/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -120,9 +120,9 @@
             "start": [
               "--goerli",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/goerli",
+              "${SERVICE_DIR}/multi-geth/1.9.2/goerli",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.0/goerli/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/goerli/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -147,9 +147,9 @@
             "start": [
               "--rinkeby",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby",
+              "${SERVICE_DIR}/multi-geth/1.9.2/rinkeby",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.2/rinkeby/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -186,7 +186,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.0/multi-geth-osx.zip"
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-osx.zip"
           ]
         },
         "linux": {
@@ -205,7 +205,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.0/multi-geth-linux.zip"
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-linux.zip"
           ]
         }
       }
