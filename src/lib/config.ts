@@ -96,11 +96,12 @@ export class Config {
    *
    *
    * @param serviceName - Name of the service
+   * @param ver - Version of the service
    * @param os - Operating system name
    * @returns The config of a service scoped by OS and service name
    */
-  public getService(serviceName: string, os: string): Service {
-    const services = this.config.services.find((s: Services) => s.name === serviceName) as Services;
+  public getService(serviceName: string, ver: string, os: string): Service {
+    const services = this.config.services.find((s: Services) => s.name === serviceName && s.version === ver) as Services;
     if (services === undefined || services.os.hasOwnProperty(os) === false) {
       const errMsg = `Could not find service ${serviceName} with ${os}`;
       logger.error(errMsg);

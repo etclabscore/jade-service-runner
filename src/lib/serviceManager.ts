@@ -54,7 +54,7 @@ export class ServiceManager {
 
     const serviceEntry = await this.repo.getServiceEntry(serviceName, version);
     if (serviceEntry === undefined) { throw new Error("Service does not exists in repo"); }
-    const { rpcPort, commands, environments } = this.config.getService(serviceName, getOS());
+    const { rpcPort, commands, environments } = this.config.getService(serviceName, version, getOS());
     const { args, health } = environments.find((e) => e.name === env) as ServiceEnv;
 
     const service = {
