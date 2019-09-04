@@ -38,7 +38,7 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
     if (mf.services === undefined) { return []; }
     logger.debug("got services and returning");
     return mf.services.map((service) => {
-      const svc = serviceManager.config.getService(service.name, getOS());
+      const svc = serviceManager.config.getService(service.name, service.version, getOS());
       return { state: "installed", name: service.name, version: service.version, environments: svc.environments.map((env) => env.name) };
     });
   };
