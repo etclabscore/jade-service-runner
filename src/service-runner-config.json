@@ -207,6 +207,17 @@
           "assets": [
             "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-linux.zip"
           ]
+        },
+        "windows": {
+          "commands": {
+            "setup": [],
+            "start": "${SERVICE_DIR}/geth.exe",
+            "stop": "",
+            "teardown": ""
+          },
+          "assets": [
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-win64.zip"
+          ]
         }
       }
     }
