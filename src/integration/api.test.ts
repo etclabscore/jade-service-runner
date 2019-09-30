@@ -122,16 +122,8 @@ if (getOS() !== OSTypes.WINDOWS) {
           path: "/simple-math/ws/1.0.0",
         },
       });
-      await sm.transport.connect();
-      const complete = new Promise((resolve) => {
-        sm.transport.onData((response) => {
-          const { result } = JSON.parse(response);
-          expect(result).toEqual(4);
-          resolve();
-        });
-      });
-      await sm.addition(2, 2);
-      await complete;
+      const result = await sm.addition(2, 2);
+      expect(result).toEqual(4);
     }, 10000);
 
   });

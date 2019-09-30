@@ -7,9 +7,9 @@
     "jade-service-runner": "./build/src/cli/index.js"
   },
   "dependencies": {
-    "@open-rpc/client-js": "^1.1.0",
-    "@open-rpc/generator-client": "^1.10.0",
-    "@open-rpc/server-js": "^1.3.0",
+    "@open-rpc/client-js": "^1.2.3",
+    "@open-rpc/generator-client": "^1.12.1",
+    "@open-rpc/server-js": "^1.5.0",
     "@open-rpc/typings": "^1.4.3",
     "body-parser": "^1.19.0",
     "commander": "^2.20.0",
