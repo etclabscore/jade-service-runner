@@ -133,7 +133,7 @@ export class SimpleMath {
     const methodObject = _.find(SimpleMath.openrpcDocument.methods, ({name}) => name === methodName) as MethodObject;
     const notification = methodObject.result ? false : true;
     const openRpcMethodValidationErrors = this.validator.validate(methodName, params);
-    if ( openRpcMethodValidationErrors instanceof MethodNotFoundError || openRpcMethodValidationErrors.length > 0) {
+    if (openRpcMethodValidationErrors instanceof MethodNotFoundError || openRpcMethodValidationErrors.length > 0) {
       return Promise.reject(openRpcMethodValidationErrors);
     }
 
