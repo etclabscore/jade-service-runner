@@ -93,6 +93,9 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#addition" class="tsd-kind-icon">addition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#onerror" class="tsd-kind-icon">on<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#onnotification" class="tsd-kind-icon">on<wbr>Notification</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#setdefaulttimeout" class="tsd-kind-icon">set<wbr>Default<wbr>Timeout</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#startbatch" class="tsd-kind-icon">start<wbr>Batch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#stopbatch" class="tsd-kind-icon">stop<wbr>Batch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simplemath.html#subtraction" class="tsd-kind-icon">subtraction</a></li>
@@ -119,7 +122,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L25">fixtures/src/testService/client.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L26">fixtures/src/testService/client.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">rpc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Client</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L23">fixtures/src/testService/client.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L23">fixtures/src/testService/client.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -151,7 +154,7 @@
 					<div class="tsd-signature tsd-kind-icon">transport<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTTPTransport</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WebSocketTransport</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L24">fixtures/src/testService/client.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L24">fixtures/src/testService/client.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,7 +171,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L90">fixtures/src/testService/client.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L120">fixtures/src/testService/client.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,6 +185,144 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onerror" class="tsd-anchor"></a>
+					<h3>on<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Error<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L67">fixtures/src/testService/client.ts:67</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds an optional JSONRPCError handler to handle receiving errors that cannot be resolved to a specific request</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><p>myClient.onError((err: JSONRPCError)=&gt;console.log(err.message));</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JSONRPCError</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>data: <span class="tsd-signature-type">JSONRPCError</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onnotification" class="tsd-anchor"></a>
+					<h3>on<wbr>Notification</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Notification<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L58">fixtures/src/testService/client.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a JSONRPC notification handler to handle receiving notifications.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><p>myClient.onNotification((data)=&gt;console.log(data));</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>data: <span class="tsd-signature-type">any</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdefaulttimeout" class="tsd-anchor"></a>
+					<h3>set<wbr>Default<wbr>Timeout</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Default<wbr>Timeout<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L79">fixtures/src/testService/client.ts:79</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets a default timeout in ms for all requests excluding notifications.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><p>// 20s timeout
+											myClient.setDefaultTimeout(20000);
+											// Removes timeout from request
+										myClient.setDefaultTimeout(undefined);</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ms: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="startbatch" class="tsd-anchor"></a>
 					<h3>start<wbr>Batch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -191,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L67">fixtures/src/testService/client.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L96">fixtures/src/testService/client.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L83">fixtures/src/testService/client.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L112">fixtures/src/testService/client.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -256,7 +397,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L97">fixtures/src/testService/client.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L128">fixtures/src/testService/client.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -278,16 +419,16 @@
 					<div class="tsd-signature tsd-kind-icon">openrpc<wbr>Document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="openrpcdocument.methods" class="tsd-anchor"></a>
 						<h3>methods</h3>
-						<div class="tsd-signature tsd-kind-icon">methods<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ &quot;name&quot;: &quot;addition&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;a&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }, { &quot;name&quot;: &quot;b&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }], &quot;result&quot;: { &quot;name&quot;: &quot;c&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }, &quot;examples&quot;: [{ &quot;name&quot;: &quot;simpleMathAdditionTwo&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2 }, { &quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2 }], &quot;result&quot;: { &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 } }, { &quot;name&quot;: &quot;simpleMathAdditionFour&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 }, { &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 }], &quot;result&quot;: { &quot;name&quot;: &quot;eight&quot;, &quot;summary&quot;: &quot;its a sample eight&quot;, &quot;description&quot;: &quot;Im not sure how else to say eight&quot;, &quot;value&quot;: 8 } }], &quot;links&quot;: [{ &quot;name&quot;: &quot;subtractionLink&quot;, &quot;description&quot;: &quot;use the parameters from addition for subtraction&quot;, &quot;method&quot;: &quot;subtraction&quot;, &quot;params&quot;: { &quot;a&quot;: &quot;$params.a&quot;, &quot;b&quot;: &quot;$params.b&quot; } }] }, { &quot;name&quot;: &quot;subtraction&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;a&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }, { &quot;name&quot;: &quot;b&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }], &quot;result&quot;: { &quot;name&quot;: &quot;c&quot;, &quot;schema&quot;: { &quot;type&quot;: &quot;integer&quot; } }, &quot;examples&quot;: [{ &quot;name&quot;: &quot;examplesSubtractFourTwo&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 }, { &quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2 }], &quot;result&quot;: { &quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2 } }, { &quot;name&quot;: &quot;examplesSubtractEightFour&quot;, &quot;params&quot;: [{ &quot;name&quot;: &quot;eight&quot;, &quot;summary&quot;: &quot;its a sample eight&quot;, &quot;description&quot;: &quot;Im not sure how else to say eight&quot;, &quot;value&quot;: 8 }, { &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 }], &quot;result&quot;: { &quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4 } }], &quot;links&quot;: [{ &quot;name&quot;: &quot;additionLink&quot;, &quot;description&quot;: &quot;use the parameters from subtraction for addition&quot;, &quot;method&quot;: &quot;addition&quot;, &quot;params&quot;: { &quot;a&quot;: &quot;$params.a&quot;, &quot;b&quot;: &quot;$params.b&quot; } }] }]</span></div>
+						<div class="tsd-signature tsd-kind-icon">methods<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{&quot;name&quot;: &quot;addition&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;a&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}, {&quot;name&quot;: &quot;b&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}], &quot;result&quot;: {&quot;name&quot;: &quot;c&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}, &quot;examples&quot;: [{&quot;name&quot;: &quot;simpleMathAdditionTwo&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2}, {&quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2}], &quot;result&quot;: {&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}}, {&quot;name&quot;: &quot;simpleMathAdditionFour&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}, {&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}], &quot;result&quot;: {&quot;name&quot;: &quot;eight&quot;, &quot;summary&quot;: &quot;its a sample eight&quot;, &quot;description&quot;: &quot;Im not sure how else to say eight&quot;, &quot;value&quot;: 8}}], &quot;links&quot;: [{&quot;name&quot;: &quot;subtractionLink&quot;, &quot;description&quot;: &quot;use the parameters from addition for subtraction&quot;, &quot;method&quot;: &quot;subtraction&quot;, &quot;params&quot;: {&quot;a&quot;: &quot;$params.a&quot;, &quot;b&quot;: &quot;$params.b&quot;}}]}, {&quot;name&quot;: &quot;subtraction&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;a&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}, {&quot;name&quot;: &quot;b&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}], &quot;result&quot;: {&quot;name&quot;: &quot;c&quot;, &quot;schema&quot;: {&quot;type&quot;: &quot;integer&quot;}}, &quot;examples&quot;: [{&quot;name&quot;: &quot;examplesSubtractFourTwo&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}, {&quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2}], &quot;result&quot;: {&quot;name&quot;: &quot;two&quot;, &quot;summary&quot;: &quot;its a sample two&quot;, &quot;description&quot;: &quot;Im not sure how else to say two&quot;, &quot;value&quot;: 2}}, {&quot;name&quot;: &quot;examplesSubtractEightFour&quot;, &quot;params&quot;: [{&quot;name&quot;: &quot;eight&quot;, &quot;summary&quot;: &quot;its a sample eight&quot;, &quot;description&quot;: &quot;Im not sure how else to say eight&quot;, &quot;value&quot;: 8}, {&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}], &quot;result&quot;: {&quot;name&quot;: &quot;four&quot;, &quot;summary&quot;: &quot;its a sample four&quot;, &quot;description&quot;: &quot;Im not sure how else to say four&quot;, &quot;value&quot;: 4}}], &quot;links&quot;: [{&quot;name&quot;: &quot;additionLink&quot;, &quot;description&quot;: &quot;use the parameters from subtraction for addition&quot;, &quot;method&quot;: &quot;addition&quot;, &quot;params&quot;: {&quot;a&quot;: &quot;$params.a&quot;, &quot;b&quot;: &quot;$params.b&quot;}}]}]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -297,17 +438,17 @@
 						<div class="tsd-signature tsd-kind-icon">openrpc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"1.0.0-rc1"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;1.0.0-rc1&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="openrpcdocument.servers" class="tsd-anchor"></a>
 						<h3>servers</h3>
-						<div class="tsd-signature tsd-kind-icon">servers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ &quot;name&quot;: &quot;my simple math server&quot;, &quot;summary&quot;: &quot;simple math server summary&quot;, &quot;description&quot;: &quot;simple math server description&quot;, &quot;url&quot;: &quot;http://${username}.simple-math.example.org:${port}/${basePath}/&quot;, &quot;variables&quot;: { &quot;username&quot;: { &quot;default&quot;: &quot;demo&quot;, &quot;description&quot;: &quot;this is applied to the url as the subdomain&quot; }, &quot;port&quot;: { &quot;default&quot;: &quot;443&quot;, &quot;enum&quot;: [&quot;8545&quot;, &quot;443&quot;] }, &quot;basePath&quot;: { &quot;default&quot;: &quot;jsonrpc&quot; } } }]</span></div>
+						<div class="tsd-signature tsd-kind-icon">servers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{&quot;name&quot;: &quot;my simple math server&quot;, &quot;summary&quot;: &quot;simple math server summary&quot;, &quot;description&quot;: &quot;simple math server description&quot;, &quot;url&quot;: &quot;http://${username}.simple-math.example.org:${port}/${basePath}/&quot;, &quot;variables&quot;: {&quot;username&quot;: {&quot;default&quot;: &quot;demo&quot;, &quot;description&quot;: &quot;this is applied to the url as the subdomain&quot;}, &quot;port&quot;: {&quot;default&quot;: &quot;443&quot;, &quot;enum&quot;: [&quot;8545&quot;, &quot;443&quot;]}, &quot;basePath&quot;: {&quot;default&quot;: &quot;jsonrpc&quot;}}}]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -317,7 +458,7 @@
 						<div class="tsd-signature tsd-kind-icon">components<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -326,7 +467,7 @@
 							<div class="tsd-signature tsd-kind-icon">content<wbr>Descriptors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -335,7 +476,7 @@
 								<div class="tsd-signature tsd-kind-icon">c<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 									</ul>
 								</aside>
 								<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -344,7 +485,7 @@
 									<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;c&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -354,7 +495,7 @@
 									<div class="tsd-signature tsd-kind-icon">schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 									<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -363,7 +504,7 @@
 										<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;integer&quot;</span></div>
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+												<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 											</ul>
 										</aside>
 									</section>
@@ -376,7 +517,7 @@
 							<div class="tsd-signature tsd-kind-icon">examples<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -385,7 +526,7 @@
 								<div class="tsd-signature tsd-kind-icon">integer<wbr>Eight<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 									</ul>
 								</aside>
 								<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -394,7 +535,7 @@
 									<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Im not sure how else to say eight&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -404,7 +545,7 @@
 									<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;eight&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -414,7 +555,7 @@
 									<div class="tsd-signature tsd-kind-icon">summary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;its a sample eight&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -424,7 +565,7 @@
 									<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;8</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -435,7 +576,7 @@
 								<div class="tsd-signature tsd-kind-icon">integer<wbr>Four<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 									</ul>
 								</aside>
 								<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -444,7 +585,7 @@
 									<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Im not sure how else to say four&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -454,7 +595,7 @@
 									<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;four&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -464,7 +605,7 @@
 									<div class="tsd-signature tsd-kind-icon">summary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;its a sample four&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -474,7 +615,7 @@
 									<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -485,7 +626,7 @@
 								<div class="tsd-signature tsd-kind-icon">integer<wbr>Two<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 									</ul>
 								</aside>
 								<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -494,7 +635,7 @@
 									<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Im not sure how else to say two&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -504,7 +645,7 @@
 									<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;two&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -514,7 +655,7 @@
 									<div class="tsd-signature tsd-kind-icon">summary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;its a sample two&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -524,7 +665,7 @@
 									<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -536,7 +677,7 @@
 							<div class="tsd-signature tsd-kind-icon">schemas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 							<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -545,7 +686,7 @@
 								<div class="tsd-signature tsd-kind-icon">Integer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 									</ul>
 								</aside>
 								<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -554,7 +695,7 @@
 									<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;integer&quot;</span></div>
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+											<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 										</ul>
 									</aside>
 								</section>
@@ -567,7 +708,7 @@
 						<div class="tsd-signature tsd-kind-icon">info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -576,7 +717,7 @@
 							<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;A simple math example&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -586,7 +727,7 @@
 							<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Simple Math&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -596,7 +737,7 @@
 							<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;1.0.0&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1a9f7dc/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/a9f537c/fixtures/src/testService/client.ts#L22">fixtures/src/testService/client.ts:22</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -630,6 +771,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="simplemath.html#addition" class="tsd-kind-icon">addition</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="simplemath.html#onerror" class="tsd-kind-icon">on<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="simplemath.html#onnotification" class="tsd-kind-icon">on<wbr>Notification</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="simplemath.html#setdefaulttimeout" class="tsd-kind-icon">set<wbr>Default<wbr>Timeout</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="simplemath.html#startbatch" class="tsd-kind-icon">start<wbr>Batch</a>
