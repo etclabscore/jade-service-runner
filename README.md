@@ -5,7 +5,7 @@
     <img alt="CircleCI branch" src="https://img.shields.io/circleci/project/github/etclabscore/jade-service-runner/master.svg">
     <img src="https://codecov.io/gh/etclabscore/jade-service-runner/branch/master/graph/badge.svg" />
     <img alt="Dependabot status" src="https://api.dependabot.com/badges/status?host=github&repo=etclabscore/jade-service-runner" />
-    <img alt="Chat on Discord" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?link=https://discord.gg/S9AT3X2" />
+    <a target="_blank" href="https://discord.gg/S9AT3X2"><img alt="Chat on Discord" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" /></a>
     <img alt="npm" src="https://img.shields.io/npm/dt/@etclabscore/jade-service-runner.svg" />
     <img alt="GitHub release" src="https://img.shields.io/github/release/etclabscore/jade-service-runner.svg" />
     <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/etclabscore/jade-service-runner/latest.svg" />
