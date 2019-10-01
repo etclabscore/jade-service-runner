@@ -23,7 +23,7 @@
     <br />
     <a href="https://www.youtube.com/watch?v=Y-Wdg1hgMls&t=2660s">View Demo</a>
     ·
-    <a href="https://github.com/etclabscore/jade-service-runner/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/etclabscore/jade-service-runner/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
     ·
     <a href="https://github.com/etclabscore/jade-service-runner/issues/new/choose">Request Feature</a>
   </p>
