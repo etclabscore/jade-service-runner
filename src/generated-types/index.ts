@@ -3,14 +3,14 @@ export type StringFek9G2ZM = "all" | "running" | "available" | "installed";
 export type BooleanQg3XFxa5 = boolean;
 export type ArrayFoEQPbEQ = StringWxzVcTo3[];
 export type StringTLqBBstC = "active" | "available" | "installed";
-export interface ObjectT9Jrtxk4 {
+export interface ObjectTWHiNvMj {
   name?: StringWxzVcTo3;
   version?: StringWxzVcTo3;
-  enviornments?: ArrayFoEQPbEQ;
+  environments: ArrayFoEQPbEQ;
   state?: StringTLqBBstC;
   [k: string]: any;
 }
-export type ArrayLRvfa67I = ObjectT9Jrtxk4[];
+export type ArrayPPoPAFM6 = ObjectTWHiNvMj[];
 export interface ObjectVZsrKceH {
   name?: StringWxzVcTo3;
   version?: StringWxzVcTo3;
@@ -52,7 +52,7 @@ export interface ObjectDLZvXzsu {
 }
 export type ArrayZUy9Ik8E = ObjectDLZvXzsu[];
 export type InstallService = (serviceName: StringWxzVcTo3, version: StringWxzVcTo3) => Promise<BooleanQg3XFxa5>;
-export type ListServices = (filter: StringFek9G2ZM) => Promise<ArrayLRvfa67I>;
+export type ListServices = (filter: StringFek9G2ZM) => Promise<ArrayPPoPAFM6>;
 export type ListInstalledServices = () => Promise<ArrayKvcc3Slb>;
 export type ListRunningServices = () => Promise<ArrayZUy9Ik8E>;
 export type StartService = (name: StringWxzVcTo3, version: StringWxzVcTo3, environment: StringWxzVcTo3) => Promise<ObjectDLZvXzsu>;
