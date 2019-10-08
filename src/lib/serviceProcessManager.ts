@@ -170,10 +170,10 @@ export class ServiceProcessManager {
 
   private handleConsoleEvent(event: events.ConsoleServiceEvent) {
     if (event.stderr) {
-      logger.error(`stderr: ${event.stderr}`);
+      event.logger.error(`stderr: ${event.stderr}`);
     }
     if (event.stdout) {
-      logger.debug(`stdout: ${event.stdout}`);
+      event.logger.debug(`stdout: ${event.stdout}`);
     }
   }
 
@@ -371,7 +371,8 @@ export class ServiceProcessManager {
     await this.setServiceCacheEntry(service, "spec");
     const renderedService = await renderService(service);
     this.setServiceCacheEntry(renderedService, "pending");
-    const serviceLogger = makeLogger(renderedService.name, "Child Service Process");
+    const serviceRoute = `/${renderService.name}/${renderedService.env}/${renderedService.version}`;
+    const serviceLogger = makeLogger(renderedService.name, "Child Service Process", serviceRoute);
     service.notifications.emit("pending", renderedService);
     this.notifications.emit({ service: renderedService, name: "launch", logger: serviceLogger });
   }

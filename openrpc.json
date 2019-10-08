@@ -59,7 +59,7 @@
 							"version": {
 								"type": "string"
 							},
-							"enviornments": {
+							"environments": {
 								"type": "array",
 								"items": {
 									"type": "string"
@@ -73,7 +73,8 @@
 									"installed"
 								]
 							}
-						}
+						},
+						"required": ["environments"]
 					}
 				}
 			}
