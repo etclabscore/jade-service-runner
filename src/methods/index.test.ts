@@ -38,6 +38,7 @@ describe("methods should reflect service runner api", () => {
         teardown: "",
       },
       env: "dev",
+      summary: "development environment",
       name,
       notifications: new EventEmitter(),
       path: "",
@@ -72,6 +73,7 @@ describe("methods should reflect service runner api", () => {
         },
       }],
       name,
+      summary: "short service desc",
       rpcPort: "9999",
       version: "foobar",
     };

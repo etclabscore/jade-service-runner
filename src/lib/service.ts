@@ -18,6 +18,7 @@ export interface ServiceSpec {
   env: string;
   rpcPort: string;
   name: string;
+  summary?: string;
   version: string;
   path: string;
   commands: Commands;

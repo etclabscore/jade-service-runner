@@ -11,6 +11,7 @@ const logger = makeLogger("ServiceRunner", "Config");
 
 export interface Service {
   name: string;
+  summary?: string;
   rpcPort: string;
   version: string;
   environments: ServiceEnv[];
@@ -20,6 +21,7 @@ export interface Service {
 
 export interface ServiceDesc {
   name: string;
+  summary?: string;
   version: string;
   environments: string[];
 }
@@ -40,6 +42,7 @@ export interface Services {
   name: string;
   rpcPort: string;
   environments: ServiceEnv[];
+  summary?: string;
   os: {
     [key: string]: ServiceOS | undefined,
     osx?: ServiceOS,
@@ -56,6 +59,7 @@ export interface ServiceOS {
 
 export interface ServiceEnv {
   name: string;
+  summary?: string;
   args: EnvArgs;
   health?: Health;
 }
@@ -107,10 +111,11 @@ export class Config {
       logger.error(errMsg);
       throw new Error(errMsg);
     }
-    const { rpcPort, name, environments, version } = services;
+    const { rpcPort, name, environments, version, summary} = services;
     const { commands, assets } = services.os[os] as ServiceOS;
     return {
       rpcPort,
+      summary,
       name,
       environments,
       commands,
@@ -122,9 +127,9 @@ export class Config {
   public getAvailableServices(os: string): ServiceDesc[] {
     const services = this.config.services.filter((service) => service.os.hasOwnProperty(os) === true);
     return services.map((service) => {
-      const { name, version } = service;
+      const { name, version, summary} = service;
       const environments = service.environments.map((env) => env.name);
-      return { name, environments, version };
+      return { summary, name, environments, version };
     });
   }
   /**

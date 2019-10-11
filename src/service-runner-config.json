@@ -5,8 +5,10 @@
       "name": "multi-geth",
       "rpcPort": "${DYNAMIC_TCP_PORT_1}",
       "version": "1.9.2",
+      "summary": "An Ethereum Classic and Ethereum client",
       "environments": [{
           "name": "mainnet",
+          "summary": "Ethereum Classic Mainnet",
           "args": {
             "start": [
               "--classic",
@@ -34,6 +36,7 @@
         },
         {
           "name": "kotti",
+          "summary": "Ethereum Classic POA Testnet",
           "args": {
             "start": [
               "--kotti",
@@ -63,6 +66,7 @@
         },
         {
           "name": "dev",
+          "summary": "Local Development Environment",
           "args": {
             "start": [
               "--dev",
@@ -90,6 +94,7 @@
         },
         {
           "name": "ethereum",
+          "summary": "Ethereum Mainnet",
           "args": {
             "start": [
               "--datadir",
@@ -116,6 +121,7 @@
         },
         {
           "name": "goerli",
+          "summary": "Ethereum POA Testnet",
           "args": {
             "start": [
               "--goerli",
@@ -143,6 +149,7 @@
         },
         {
           "name": "rinkeby",
+          "summary": "Ethereum POA Testnet",
           "args": {
             "start": [
               "--rinkeby",
