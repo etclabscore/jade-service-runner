@@ -90,6 +90,12 @@
     "environment": {
       "type": "object",
       "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "A short description of the environment"
+        },
         "name": {
           "type": "string"
         },
@@ -168,6 +174,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160, 
+          "description": "A short description of the service"
         }
       },
       "required": ["os", "environments", "name"]
