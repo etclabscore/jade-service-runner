@@ -65,24 +65,63 @@
 				<a href="#jade-service-runner---a-json-rpc-service-manager" id="jade-service-runner---a-json-rpc-service-manager" style="color: inherit; text-decoration: none;">
 					<h1>Jade Service Runner - A JSON-RPC Service Manager</h1>
 				</a>
+				<!-- project shields -->
+				<span>
+					<img alt="CircleCI branch" src="https://img.shields.io/circleci/project/github/etclabscore/jade-service-runner/master.svg">
+					<img src="https://codecov.io/gh/etclabscore/jade-service-runner/branch/master/graph/badge.svg" />
+					<img alt="Dependabot status" src="https://api.dependabot.com/badges/status?host=github&repo=etclabscore/jade-service-runner" />
+					<a target="_blank" href="https://discord.gg/S9AT3X2"><img alt="Chat on Discord" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" /></a>
+					<img alt="npm" src="https://img.shields.io/npm/dt/@etclabscore/jade-service-runner.svg" />
+					<img alt="GitHub release" src="https://img.shields.io/github/release/etclabscore/jade-service-runner.svg" />
+					<img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/etclabscore/jade-service-runner/latest.svg" />
+				</span>
+				<!-- project logo w/ quick links -->
 				<p align="center">
-					<img height="256" width="256" src="https://github.com/etclabscore/jade-media-assets/raw/master/jade-logo-light/jade-logo-light%20(PNG)/256x256.png" />
+					<img height="256" width="256" src="https://raw.githubusercontent.com/etclabscore/jade-media-assets/master/jade-logo-light/jade-logo-light%20(PNG)/256x256.png" />
 				</p>
 				<center>
-					<span>
-						<img alt="CircleCI branch" src="https://img.shields.io/circleci/project/github/etclabscore/jade-service-runner/master.svg">
-						<img src="https://codecov.io/gh/etclabscore/jade-service-runner/branch/master/graph/badge.svg" />
-						<img alt="Dependabot status" src="https://api.dependabot.com/badges/status?host=github&repo=etclabscore/jade-service-runner" />
-						<img alt="Chat on Discord" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" />
-						<img alt="npm" src="https://img.shields.io/npm/dt/@etclabscore/jade-service-runner.svg" />
-						<img alt="GitHub release" src="https://img.shields.io/github/release/etclabscore/jade-service-runner.svg" />
-						<img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/etclabscore/jade-service-runner/latest.svg" />
-					</span>
+					<h3 align="center">Jade Service Runner</h3>
+					<p align="center">
+						An awesome JSON-RPC service manager!
+						<br />
+						<a href="https://www.youtube.com/watch?v=Y-Wdg1hgMls&t=2660s">View Demo</a>
+						·
+						<a href="https://github.com/etclabscore/jade-service-runner/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+						·
+						<a href="https://github.com/etclabscore/jade-service-runner/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+					</p>
 				</center>
+				<!-- table of contents -->
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of Contents</h2>
+				</a>
+				<ul>
+					<li><a href="#about-the-project">About The Project</a><ul>
+							<li><a href="#better-dapp-development">Better dApp Development</a></li>
+							<li><a href="#supported-services">Supported Services</a></li>
+						</ul>
+					</li>
+					<li><a href="#getting-started">Getting Started</a><ul>
+							<li><a href="#prerequisites">Prerequisites</a></li>
+							<li><a href="#installation">Installation</a></li>
+						</ul>
+					</li>
+					<li><a href="#usage">Usage</a><ul>
+							<li><a href="#json-rpc-api-documentation">JSON-RPC API Documentation</a></li>
+							<li><a href="#extending-services">Extending services</a></li>
+							<li><a href="#contributing">Contributing</a></li>
+							<li><a href="#resources">Resources</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- about the project -->
+				<a href="#about-the-project" id="about-the-project" style="color: inherit; text-decoration: none;">
+					<h2>About The Project</h2>
+				</a>
 				<p>Service Runner is an opinionated JSON-RPC service manager, that provides daemonization, installation, and discovery for JSON-RPC based services.</p>
 				<p>Service Runner helps developers gain access to a user&#39;s locally run services. It provides users with a management and installation tool, that allows developers to discover  services and reliably request access to those services.</p>
 				<a href="#better-dapp-development" id="better-dapp-development" style="color: inherit; text-decoration: none;">
-					<h2>Better dApp Development</h2>
+					<h3>Better dApp Development</h3>
 				</a>
 				<p>Service Runner improves the dApp development cycle, by reducing the number of steps required for running services that are local to the user, in addition to  associated with relying on locally running JSON-RPC services. To do this effectively, Jade Service Runner supports the following:</p>
 				<ul>
@@ -90,31 +129,12 @@
 					<li>Provides defaults for the services to run</li>
 					<li>Provides users with an easy installation path</li>
 					<li>Provides reliable discovery of pre-existing services run by the service runner</li>
-					<li>Provides OpenRPC interface to the Service Runnner functionality, as well as the underlying services</li>
+					<li>Provides OpenRPC interface to the Service Runner functionality, as well as the underlying services</li>
 					<li>Allows dApp developers the ability to retrieve reliable JSON-RPC connection information from the service</li>
 					<li>Provides typed interfaces to develop applications against</li>
 				</ul>
-				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-					<h2>Getting Started</h2>
-				</a>
-				<hr>
-				<p>Install <code>jade-service-runner</code> using npm</p>
-				<pre><code class="language-shell">npm install -g @etclabscore/jade-service-runner</code></pre>
-				<p>It also has a javascript client:</p>
-				<pre><code><span class="hljs-selector-tag">npm</span> <span class="hljs-selector-tag">install</span> @<span class="hljs-keyword">etclabscore</span>/<span class="hljs-keyword">jade</span>-<span class="hljs-keyword">service</span>-<span class="hljs-keyword">runner</span>-<span class="hljs-keyword">client</span></code></pre><p>Then require it into any module.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/jade-service-runner-client'</span>);
-<span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/ethereum-json-rpc'</span>);
-<span class="hljs-keyword">const</span> serviceRunner = <span class="hljs-keyword">new</span> ServiceRunner({ <span class="hljs-attr">transport</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">"http"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">8002</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">"localhost"</span> } });
-<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">'multi-geth'</span>;
-<span class="hljs-keyword">const</span> successful = <span class="hljs-keyword">await</span> serviceRunner.installService(serviceName);
-<span class="hljs-keyword">if</span> (successful === <span class="hljs-literal">false</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Service not installed'</span>)
-<span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">'kotti'</span>);
-<span class="hljs-keyword">const</span> erpc = <span class="hljs-keyword">new</span> ERPC(serviceConfig);
-erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
-				<p>to run the service runner:</p>
-				<pre><code class="language-shell">jade-service-runner</code></pre>
 				<a href="#supported-services" id="supported-services" style="color: inherit; text-decoration: none;">
-					<h2>Supported Services</h2>
+					<h3>Supported Services</h3>
 				</a>
 				<p>Currently it supports <code>multi-geth</code> with the following environments:</p>
 				<ul>
@@ -124,25 +144,65 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 					<li><code>goerli</code></li>
 					<li><code>rinkeby</code></li>
 				</ul>
-				<a href="#extending-services" id="extending-services" style="color: inherit; text-decoration: none;">
-					<h2>Extending services</h2>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
 				</a>
-				<p>You can extend jade-service-runner with your own configuration via the command line interface</p>
-				<pre><code>jade-service-runner -c extended-jade-service-runner-<span class="hljs-built_in">config</span>.json</code></pre>
-				<a href="#json-rpc-api-documentation" id="json-rpc-api-documentation" style="color: inherit; text-decoration: none;">
-					<h2>JSON-RPC API Documentation</h2>
-				</a>
-				<p>You can view the API documentation <a href="https://playground.open-rpc.org/?uiSchema%5BappBar%5D%5Bui:title%5D=Jade%20Service%20Runner&amp;uiSchema%5BappBar%5D%5Bui:logoUrl%5D=https://github.com/etclabscore/jade-media-assets/raw/master/jade-logo-light/jade-logo-light%20(PNG)/48x48.png&amp;uiSchema%5BappBar%5D%5Bui:splitView%5D=false&amp;uiSchema%5BappBar%5D%5Bui:input%5D=false&amp;uiSchema%5Bmethods%5D%5Bui:title%5D=&amp;schemaUrl=https://raw.githubusercontent.com/etclabscore/jade-service-runner/master/openrpc.json">here</a>.</p>
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h1>Contributing</h1>
-				</a>
-				<p>How to contribute, build and release are outlined in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>, <a href="BUILDING.md">BUILDING.md</a> and <a href="RELEASING.md">RELEASING.md</a> respectively. Commits in this repository follow the <a href="CONVENTIONAL_COMMITS.md">CONVENTIONAL_COMMITS.md</a> specification.</p>
-				<a href="#resources" id="resources" style="color: inherit; text-decoration: none;">
-					<h1>Resources</h1>
+				<a href="#prerequisites" id="prerequisites" style="color: inherit; text-decoration: none;">
+					<h3>Prerequisites</h3>
 				</a>
 				<ul>
-					<li><a href="https://jade.builders/">jade.builders</a></li>
-					<li><a href="https://github.com/etclabscore/jade">etclabscore/jade</a></li>
+					<li>node v12.10.0 or greater.</li>
+					<li>npm v6.10.3 or greater.</li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h3>Installation</h3>
+				</a>
+				<p>Install via npm package</p>
+				<pre><code class="language-bash">npm install -g @etclabscore/jade-service-runner</code></pre>
+				<p>Install the JavaScript client:</p>
+				<pre><code class="language-bash">npm install @etclabscore/jade-service-runner-client</code></pre>
+				<p>Then require it into any module.</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/jade-service-runner-client'</span>);
+<span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/ethereum-json-rpc'</span>);
+<span class="hljs-keyword">const</span> serviceRunner = <span class="hljs-keyword">new</span> ServiceRunner({ <span class="hljs-attr">transport</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">"http"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">8002</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">"localhost"</span> } });
+<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">'multi-geth'</span>;
+<span class="hljs-keyword">const</span> successful = <span class="hljs-keyword">await</span> serviceRunner.installService(serviceName);
+<span class="hljs-keyword">if</span> (successful === <span class="hljs-literal">false</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Service not installed'</span>)
+<span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">'kotti'</span>);
+<span class="hljs-keyword">const</span> erpc = <span class="hljs-keyword">new</span> ERPC(serviceConfig);
+erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
+				<p>To run the jade-service-runner:</p>
+				<pre><code class="language-shell">jade-service-runner</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#json-rpc-api-documentation" id="json-rpc-api-documentation" style="color: inherit; text-decoration: none;">
+					<h3>JSON-RPC API Documentation</h3>
+				</a>
+				<p>You can view the API documentation <a href="https://playground.open-rpc.org/?uiSchema%5BappBar%5D%5Bui:title%5D=Jade%20Service%20Runner&amp;uiSchema%5BappBar%5D%5Bui:logoUrl%5D=https://github.com/etclabscore/jade-media-assets/raw/master/jade-logo-light/jade-logo-light%20(PNG)/48x48.png&amp;uiSchema%5BappBar%5D%5Bui:splitView%5D=false&amp;uiSchema%5BappBar%5D%5Bui:input%5D=false&amp;uiSchema%5Bmethods%5D%5Bui:title%5D=&amp;schemaUrl=https://raw.githubusercontent.com/etclabscore/jade-service-runner/master/openrpc.json">here</a>.</p>
+				<a href="#extending-services" id="extending-services" style="color: inherit; text-decoration: none;">
+					<h3>Extending services</h3>
+				</a>
+				<p>You can extend jade-service-runner with your own configuration via the command line interface</p>
+				<pre><code class="language-bash">jade-service-runner -c extended-jade-service-runner-config.json</code></pre>
+				<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
+					<h2>Roadmap</h2>
+				</a>
+				<p>See the <a href="https://github.com/etclabscore/jade-service-runner/issues">open issues</a> for a list of proposed features (and known issues).</p>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>How to contribute, build and release are outlined in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>, <a href="BUILDING.md">BUILDING.md</a> and <a href="RELEASING.md">RELEASING.md</a> respectively. Commits in this repository follow the <a href="CONVENTIONAL_COMMITS.md">CONVENTIONAL_COMMITS.md</a> specification.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>Apache License 2.0</p>
+				<a href="#resources" id="resources" style="color: inherit; text-decoration: none;">
+					<h2>Resources</h2>
+				</a>
+				<ul>
+					<li><a href="https://jade.builders/">Jade.Builders</a></li>
+					<li><a href="https://github.com/etclabscore/jade">Jade Specification</a>  </li>
 				</ul>
 			</div>
 		</div>
