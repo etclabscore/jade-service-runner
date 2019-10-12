@@ -39,7 +39,7 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
     logger.debug("got services and returning");
     return mf.services.map((service) => {
       const svc = serviceManager.config.getService(service.name, service.version, getOS());
-      return { state: "installed", description: svc.summary, name: service.name, version: service.version, environments: svc.environments.map((env) => env.name) };
+      return { state: "installed", summary: svc.summary, name: service.name, version: service.version, environments: svc.environments.map((env) => env.name) };
     });
   };
 
