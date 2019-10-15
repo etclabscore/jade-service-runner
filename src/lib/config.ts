@@ -19,11 +19,17 @@ export interface Service {
   assets: string[];
 }
 
+export interface ServiceEnvironmentDesc {
+
+  name: string;
+  summary?: string;
+}
+
 export interface ServiceDesc {
   name: string;
   summary?: string;
   version: string;
-  environments: string[];
+  environments: ServiceEnvironmentDesc[];
 }
 
 export interface Health {
@@ -128,7 +134,7 @@ export class Config {
     const services = this.config.services.filter((service) => service.os.hasOwnProperty(os) === true);
     return services.map((service) => {
       const { name, version, summary} = service;
-      const environments = service.environments.map((env) => env.name);
+      const environments = service.environments.map((env) => ({ name: env.name, summary: env.summary }));
       return { summary, name, environments, version };
     });
   }
