@@ -20,7 +20,7 @@ describe("methods should reflect service runner api", () => {
   type ServiceType = "available" | "running" | "installed";
 
   const generateService = (id: number, serviceType: ServiceType) => {
-    return { name: `${id}`, environments: ["dev", "prod"], version: "foobar" };
+    return { name: `${id}`, environments: [{ name: "dev", summary: "development" }, { name: "prod" }], version: "foobar" };
   };
 
   const createTestSpecService = (name: string): ActiveServiceSpec => {
@@ -131,7 +131,7 @@ describe("methods should reflect service runner api", () => {
         return createTestSpecService(`${name}`);
       });
     });
-    exServices = testServices.map((s) => Object.assign(s, { state: "running", environments: ["dev"] }));
+    exServices = testServices.map((s) => Object.assign(s, { state: "running", environments: [{ name: "dev"}] }));
     services = await meths.listServices("running");
     expect(_.isEqual(exServices, services));
 

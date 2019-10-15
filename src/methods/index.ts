@@ -3,7 +3,7 @@
  */
 import { Installer } from "../lib/installer";
 import { ServiceManager } from "../lib/serviceManager";
-import { ServiceDesc, Service } from "../lib/config";
+import { ServiceDesc, Service, ServiceEnvironmentDesc } from "../lib/config";
 import { makeLogger } from "../lib/logging";
 import { InstallService, ListInstalledServices, ListRunningServices, StartService, ListServices } from "../generated-types";
 import { IMethodMapping } from "@open-rpc/server-js/build/router";
@@ -30,7 +30,10 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
   const getAvailableServices = async (): Promise<ServiceDesc[]> => {
     logger.debug("listing available services");
     const services = serviceManager.config.getAvailableServices(getOS());
-    return services.map((s) => Object.assign(s, { state: "available" }));
+    const environments = services.map((svc) => {
+      return svc.environments.map((env) => ({ summary: env.summary, name: env.name }));
+    });
+    return services.map((s) => Object.assign(s, { state: "available", environments }));
   };
 
   const getInstalledServices = async (): Promise<ServiceDesc[]> => {
@@ -39,14 +42,17 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
     logger.debug("got services and returning");
     return mf.services.map((service) => {
       const svc = serviceManager.config.getService(service.name, service.version, getOS());
-      return { state: "installed", summary: svc.summary, name: service.name, version: service.version, environments: svc.environments.map((env) => env.name) };
+      const environments = svc.environments.map((env) => ({ summary: env.summary, name: env.name }));
+      return { state: "installed", summary: svc.summary, name: service.name, version: service.version, environments };
     });
   };
 
   const getRunningServices = async (): Promise<ServiceDesc[]> => {
     return serviceManager.listActiveServices().map((service) => {
       const { name, summary, version, env } = service;
-      return { name, summary, state: "running", environments: [env], version };
+      const svc = serviceManager.config.getService(name, version, getOS());
+      const environmentDesc = svc.environments.find((envDesc) => (envDesc.name === env)) as ServiceEnvironmentDesc;
+      return { name, summary, state: "running", environments: [{ name: environmentDesc.name, summary: environmentDesc.summary }], version };
     });
   };
 
