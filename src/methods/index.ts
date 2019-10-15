@@ -30,10 +30,7 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
   const getAvailableServices = async (): Promise<ServiceDesc[]> => {
     logger.debug("listing available services");
     const services = serviceManager.config.getAvailableServices(getOS());
-    const environments = services.map((svc) => {
-      return svc.environments.map((env) => ({ summary: env.summary, name: env.name }));
-    });
-    return services.map((s) => Object.assign(s, { state: "available", environments }));
+    return services.map((s) => Object.assign(s, { state: "available", environments: s.environments.map((env) => ({ summary: env.summary, name: env.name })) }));
   };
 
   const getInstalledServices = async (): Promise<ServiceDesc[]> => {
