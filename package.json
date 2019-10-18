@@ -60,7 +60,7 @@
     "build:integration": "webpack --config fixtures/webpack.config.js",
     "build:docs": "typedoc",
     "startaws": "npm run build:code && node build/src/cli/index.js -p 8081",
-    "start": "npm run build:code && node build/src/cli/index.js -d $PORT",
+    "start": "npm run build:code && node build/src/cli/index.js -d ~/.services/",
     "start:client": "node build/client.js",
     "test": "npm run test:lint && npm run test:unit",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
