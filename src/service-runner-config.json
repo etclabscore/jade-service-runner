@@ -99,7 +99,7 @@
             "start": [
               "--datadir",
               "${SERVICE_DIR}/multi-geth/1.9.2/ethereum",
-              "--ethereum",
+              "--ipcpath",
               "${SERVICE_DIR}/multi-geth/1.9.2/ethereum/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
