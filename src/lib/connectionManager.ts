@@ -5,6 +5,7 @@ import { frontendRegistry } from "./frontends";
 import { Router } from "./router";
 import { RequestSpec, ConnectionBus, Connection, ConnectionInfo, connectionError } from "./connection";
 import { makeLogger } from "./logging";
+import zlib from "zlib";
 
 const logger = makeLogger("ServiceRunner", "ConnectionManager");
 /**
@@ -58,15 +59,37 @@ export class ConnectionManager {
         request.conn.send(request.payload);
         return;
       case "http":
+        const gunzip = zlib.createGunzip();
         const response = await request.conn.send(request.payload.body, request.payload.headers, request.payload.method);
         const { statusCode, statusMessage, headers } = response;
-        let payloadStr = "";
-        response.on("data", (data) => {
-         payloadStr += data.toString("utf-8");
-        });
-        response.on("end", () => {
-          request.conn.respond({ headers, statusCode, reason: statusMessage, payload: payloadStr });
-        });
+
+        console.log("HEADERS", request.payload.headers, request.payload.body, headers);
+        if (response.headers["content-encoding"] === "gzip") {
+          let gunzipString = "";
+
+          gunzip.on("data", (buf) => {
+            gunzipString += buf.toString("utf-8");
+          });
+
+          gunzip.on("end", () => {
+            console.log("END===", gunzipString);
+            zlib.gzip(gunzipString, (err: Error | null, pay: any) => {
+              request.conn.respond({ headers, statusCode, reason: statusMessage, payload: pay.toString() });
+            });
+          });
+
+          response.pipe(gunzip);
+        } else {
+          let payloadStr = "";
+          response.on("data", (data) => {
+            payloadStr += data.toString("utf-8");
+          });
+          response.on("end", () => {
+            request.conn.respond({ headers, statusCode, reason: statusMessage, payload: payloadStr });
+          });
+
+        }
+
         return;
     }
   }

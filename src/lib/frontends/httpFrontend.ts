@@ -6,7 +6,9 @@ import connect, { HandleFunction } from "connect";
 import { json as jsonParser } from "body-parser";
 import { JSONRpcError, statusCode } from "../jsonRpcError";
 import { makeLogger } from "../logging";
+import compression from "compression";
 import cors = require("cors");
+
 const logger = makeLogger("ServiceRunner", "httpFrontend");
 
 const httpClientError = (jsonError: JSONRpcError, response: http.ServerResponse) => {
@@ -70,6 +72,7 @@ export const httpFrontend: Frontend = (connectionInfo, connectionBus) => {
   const app = connect();
   const corsOptions = { origin: "*" } as cors.CorsOptions;
   app.use(cors(corsOptions) as HandleFunction);
+  app.use(compression() as any);
   app.use(jsonParser());
   app.use(httpProxy(connectionBus));
   const server = http.createServer(app);
