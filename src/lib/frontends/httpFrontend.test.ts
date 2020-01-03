@@ -9,6 +9,7 @@ import _ from "lodash";
 import { httpBackend } from "../backends/httpBackend";
 import fetch from "node-fetch";
 import { HttpDataResponse } from "../connection";
+import { Readable } from "stream";
 
 describe("Frontend allows for a connection", () => {
   let httpServiceServer: http.Server;
@@ -24,7 +25,7 @@ describe("Frontend allows for a connection", () => {
     });
   });
 
-  it("should allow http client connection to reach established backend", async () => {
+  it.only("should allow http client connection to reach established backend", async () => {
 
     const address = httpServiceServer.address() as AddressInfo;
     const location = `http://localhost:${address.port}`;
@@ -48,7 +49,12 @@ describe("Frontend allows for a connection", () => {
           const res = await backendClient.conn.send(data.payload.body, data.payload.headers, data.payload.method);
           res.on("data", (d) => {
             const { statusCode, headers } = res;
-            connResponse.emit("response", { headers, reason: "testreason", statusCode, payload: d });
+            const s = new Readable();
+            // tslint:disable-next-line:no-empty
+            s._read = () => { };
+            s.push(d);
+            s.push(null);
+            connResponse.emit("response", { headers, reason: "testreason", statusCode, payload: s });
           });
         }
       });
