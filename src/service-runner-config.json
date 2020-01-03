@@ -4,35 +4,64 @@
     {
       "name": "multi-geth",
       "rpcPort": "${DYNAMIC_TCP_PORT_1}",
-      "version": "1.9.2",
+      "version": "1.9.7",
       "summary": "An Ethereum Classic and Ethereum client",
-      "environments": [{
+      "environments": [
+        {
           "name": "mainnet",
           "summary": "Ethereum Classic Mainnet",
           "args": {
             "start": [
               "--classic",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/classic",
+              "${SERVICE_DIR}/multi-geth/1.9.7/classic",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/classic/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.7/classic/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpccorsdomain", 
+              "--rpccorsdomain",
               "*"
             ],
             "stop": [],
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
+        },
+        {
+          "name": "mordor",
+          "summary": "Ethereum Classic Mordor",
+          "args": {
+            "start": [
+              "--mordor",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.7/mordor",
+              "--ipcpath",
+              "${SERVICE_DIR}/multi-geth/1.9.7/mordor/geth.ipc",
+              "--port",
+              "${DYNAMIC_TCP_PORT_2}",
+              "--rpc",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpccorsdomain",
+              "*"
+            ],
+            "stop": [],
+            "teardown": []
+          },
+          "health": {
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "kotti",
@@ -41,9 +70,9 @@
             "start": [
               "--kotti",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/kotti",
+              "${SERVICE_DIR}/multi-geth/1.9.7/kotti",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/kotti/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.7/kotti/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -58,11 +87,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "dev",
@@ -71,36 +100,9 @@
             "start": [
               "--dev",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/dev",
+              "${SERVICE_DIR}/multi-geth/1.9.7/dev",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/dev/geth.ipc",
-              "--port",
-              "${DYNAMIC_TCP_PORT_2}",
-              "--rpc",
-              "--rpcport",
-              "${DYNAMIC_TCP_PORT_1}",
-              "--rpccorsdomain", 
-              "*"
-            ],
-            "stop": [],
-            "teardown": []
-          },
-          "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
-        },
-        {
-          "name": "ethereum",
-          "summary": "Ethereum Mainnet",
-          "args": {
-            "start": [
-              "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/ethereum",
-              "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/ethereum/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.7/dev/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -113,11 +115,38 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
+        },
+        {
+          "name": "ethereum",
+          "summary": "Ethereum Mainnet",
+          "args": {
+            "start": [
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.7/ethereum",
+              "--ipcpath",
+              "${SERVICE_DIR}/multi-geth/1.9.7/ethereum/geth.ipc",
+              "--port",
+              "${DYNAMIC_TCP_PORT_2}",
+              "--rpc",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpccorsdomain",
+              "*"
+            ],
+            "stop": [],
+            "teardown": []
+          },
+          "health": {
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "goerli",
@@ -126,9 +155,9 @@
             "start": [
               "--goerli",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/goerli",
+              "${SERVICE_DIR}/multi-geth/1.9.7/goerli",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/goerli/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.7/goerli/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -141,11 +170,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "rinkeby",
@@ -154,9 +183,9 @@
             "start": [
               "--rinkeby",
               "--datadir",
-              "${SERVICE_DIR}/multi-geth/1.9.2/rinkeby",
+              "${SERVICE_DIR}/multi-geth/1.9.7/rinkeby",
               "--ipcpath",
-              "${SERVICE_DIR}/multi-geth/1.9.2/rinkeby/geth.ipc",
+              "${SERVICE_DIR}/multi-geth/1.9.7/rinkeby/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -169,11 +198,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         }
       ],
       "os": {
@@ -193,7 +222,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-osx.zip"
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.7/multi-geth-osx.zip"
           ]
         },
         "linux": {
@@ -212,7 +241,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-linux.zip"
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.7/multi-geth-linux.zip"
           ]
         },
         "windows": {
@@ -223,7 +252,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-win64.zip"
+            "https://github.com/multi-geth/multi-geth/releases/download/v1.9.7/multi-geth-win64.zip"
           ]
         }
       }

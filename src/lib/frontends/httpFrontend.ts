@@ -51,11 +51,16 @@ const httpProxy = (connectionBus: ConnectionBus) => {
     connectionBus.emit("establish", { req, res: responseBus, type: "http" });
 
     responseBus.on("response", (data) => {
-      logger.debug(`received response: ${JSON.stringify(data, null, 2)}`);
+      const { headers, reason } = data;
+      logger.debug(`received response: ${JSON.stringify({ headers, statusCode: data.statusCode, reason }, null, 2)}`);
       const status = data.statusCode || 500;
       response.writeHead(status, data.reason, data.headers);
-      response.write(data.payload);
-      response.end(null);
+      data.payload.on("data", (dd: any) => {
+        response.write(dd);
+      });
+      data.payload.on("end", () => {
+        response.end(null);
+      });
     });
   };
 
