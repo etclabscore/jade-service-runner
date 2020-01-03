@@ -6,7 +6,8 @@
       "rpcPort": "${DYNAMIC_TCP_PORT_1}",
       "version": "1.9.7",
       "summary": "An Ethereum Classic and Ethereum client",
-      "environments": [{
+      "environments": [
+        {
           "name": "mainnet",
           "summary": "Ethereum Classic Mainnet",
           "args": {
@@ -21,18 +22,46 @@
               "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpccorsdomain", 
+              "--rpccorsdomain",
               "*"
             ],
             "stop": [],
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
+        },
+        {
+          "name": "mordor",
+          "summary": "Ethereum Classic Mordor",
+          "args": {
+            "start": [
+              "--mordor",
+              "--datadir",
+              "${SERVICE_DIR}/multi-geth/1.9.7/mordor",
+              "--ipcpath",
+              "${SERVICE_DIR}/multi-geth/1.9.7/mordor/geth.ipc",
+              "--port",
+              "${DYNAMIC_TCP_PORT_2}",
+              "--rpc",
+              "--rpcport",
+              "${DYNAMIC_TCP_PORT_1}",
+              "--rpccorsdomain",
+              "*"
+            ],
+            "stop": [],
+            "teardown": []
+          },
+          "health": {
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "kotti",
@@ -58,11 +87,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "dev",
@@ -79,18 +108,18 @@
               "--rpc",
               "--rpcport",
               "${DYNAMIC_TCP_PORT_1}",
-              "--rpccorsdomain", 
+              "--rpccorsdomain",
               "*"
             ],
             "stop": [],
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "ethereum",
@@ -113,11 +142,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "goerli",
@@ -141,11 +170,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         },
         {
           "name": "rinkeby",
@@ -169,11 +198,11 @@
             "teardown": []
           },
           "health": {
-           "interval": 20000, 
-           "retries": 5,
-           "port": "${DYNAMIC_TCP_PORT_1}",
-           "protocol": "tcp"
-           }
+            "interval": 20000,
+            "retries": 5,
+            "port": "${DYNAMIC_TCP_PORT_1}",
+            "protocol": "tcp"
+          }
         }
       ],
       "os": {
