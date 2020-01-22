@@ -29,7 +29,3 @@ Once set up properly it will be building a `workflow` that puts your `release` j
 
 ## Github Releases
 On successfull release, it will create release notes and a new release and publish to github and github pages.
-
-## Github Pages
-
-You can view your deployed react site at the `homepage` url required to be changed in the `package.json` mentioned in the [README.md](README.md)
