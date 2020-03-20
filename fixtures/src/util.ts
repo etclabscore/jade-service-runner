@@ -111,7 +111,7 @@ export const mockConfig: any = {
         {
           name: "dev",
           args: {
-            start: ["--datadir", "multi-geth"],
+            start: ["--datadir", "core-geth"],
             stop: [],
             teardown: [],
           },

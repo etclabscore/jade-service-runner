@@ -8,13 +8,13 @@ describe("configuration test", () => {
   const mockConfig = {
     services: [
       {
-        version: "1.9.7",
-        name: "multi-geth",
+        version: "1.11.2",
+        name: "core-geth",
         environments: [
           {
             name: "test-dev",
             args: {
-              start: ["--datadir ${svc_runner_data_path}/multi-geth"],
+              start: ["--datadir ${svc_runner_data_path}/core-geth"],
               stop: [],
               teardown: [],
             },
@@ -22,12 +22,12 @@ describe("configuration test", () => {
       },
       {
         name: "eth-classic",
-        version: "1.9.7",
+        version: "1.11.2",
         environments: [
           {
             name: "dev",
             args: {
-              start: ["--datadir ${svc_runner_data_path}/multi-geth"],
+              start: ["--datadir ${svc_runner_data_path}/core-geth"],
               stop: [],
               teardown: [],
             },
@@ -56,12 +56,12 @@ describe("configuration test", () => {
     new Config(mockConfig); // tslint:disable-line
   });
 
-  it("should retrieve service info", () => {
+  it.only("should retrieve service info", () => {
     const cfg = new Config(mockConfig);
-    const svc = cfg.getService("multi-geth", "1.9.7", "osx");
-    expect(svc.name === "multi-geth").toBe(true);
+    const svc = cfg.getService("core-geth", "1.11.2", "osx");
+    expect(svc.name === "core-geth").toBe(true);
     expect(svc.environments.find((env: any) => env.name === "test-dev"));
-    const defaultService = defaultConfig.services.find((service: any) => service.name === "multi-geth") as any;
+    const defaultService = defaultConfig.services.find((service: any) => service.name === "core-geth") as any;
     expect(_.isEqual(svc.commands, defaultService.os.osx.commands)).toBe(true);
   });
 
@@ -86,12 +86,12 @@ describe("configuration test", () => {
 
   it("should retrieve installation information", () => {
     const config = new Config(mockConfig);
-    const service = config.getService("multi-geth", "1.9.7", OSTypes.OSX);
-    expect(service.name === "multi-geth").toBe(true);
+    const service = config.getService("core-geth", "1.11.2", OSTypes.OSX);
+    expect(service.name === "core-geth").toBe(true);
     expect(service.rpcPort).toEqual("${DYNAMIC_TCP_PORT_1}");
   });
 
-  it("should properly default configure multi-geth", () => {
+  it("should properly default configure core-geth", () => {
     const config = new Config({});
     const env = config.config.services[0].environments.find((e) => e.name === "mainnet");
     expect(env).toBeDefined();
