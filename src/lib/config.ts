@@ -111,7 +111,7 @@ export class Config {
    * @returns The config of a service scoped by OS and service name
    */
   public getService(serviceName: string, ver: string, os: string): Service {
-    const services = this.config.services.find((s: Services) => s.name === serviceName && s.version === ver) as Services;
+    const services = this.config.services.find((s: Services) => s.name === serviceName) as Services;
     if (services === undefined || services.os.hasOwnProperty(os) === false) {
       const errMsg = `Could not find service ${serviceName} with ${os}`;
       logger.error(errMsg);
@@ -164,7 +164,7 @@ export class Config {
     const mergedConfig = _.cloneDeep(config);
     try {
       other.services.forEach((svc: any) => {
-        const serviceIdx = config.services.findIndex((s: Services) => s.name === svc.name);
+        const serviceIdx = config.services.findIndex((s: Services) => s.name === svc.name && s.version === svc.version);
         if (serviceIdx > -1) {
           const service = mergedConfig.services[serviceIdx];
           svc.environments.every((env: any) => {
