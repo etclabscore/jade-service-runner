@@ -136,7 +136,7 @@
 				<a href="#supported-services" id="supported-services" style="color: inherit; text-decoration: none;">
 					<h3>Supported Services</h3>
 				</a>
-				<p>Currently it supports <code>multi-geth</code> with the following environments:</p>
+				<p>Currently it supports <code>core-geth</code> with the following environments:</p>
 				<ul>
 					<li><code>mainnet (ETC)</code></li>
 					<li><code>kotti</code></li>
@@ -165,7 +165,7 @@
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/jade-service-runner-client'</span>);
 <span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/ethereum-json-rpc'</span>);
 <span class="hljs-keyword">const</span> serviceRunner = <span class="hljs-keyword">new</span> ServiceRunner({ <span class="hljs-attr">transport</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">"http"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">8002</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">"localhost"</span> } });
-<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">'multi-geth'</span>;
+<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">'core-geth'</span>;
 <span class="hljs-keyword">const</span> successful = <span class="hljs-keyword">await</span> serviceRunner.installService(serviceName);
 <span class="hljs-keyword">if</span> (successful === <span class="hljs-literal">false</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Service not installed'</span>)
 <span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">'kotti'</span>);
