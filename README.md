@@ -64,7 +64,7 @@ Service Runner improves the dApp development cycle, by reducing the number of st
 
 ### Supported Services
 
-Currently it supports `multi-geth` with the following environments:
+Currently it supports `core-geth` with the following environments:
 
 - `mainnet (ETC)`
 - `kotti`
@@ -99,7 +99,7 @@ Then require it into any module.
 const { ServiceRunner } = require('@etclabscore/jade-service-runner-client');
 const ERPC = require('@etclabscore/ethereum-json-rpc');
 const serviceRunner = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
-const serviceName = 'multi-geth';
+const serviceName = 'core-geth';
 const successful = await serviceRunner.installService(serviceName);
 if (successful === false) throw new Error('Service not installed')
 const serviceConfig = serviceRunner.start(serviceName, 'kotti');

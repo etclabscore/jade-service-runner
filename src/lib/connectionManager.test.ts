@@ -27,7 +27,7 @@ describe("ConnectionManager tests", () => {
     backendClient = new WebSocket(location);
     serviceNotifications = new EventEmitter();
     connections = new Set<ConnectionInfo>([{ host: "localhost", port: tcpPort, protocol: "ws" }]);
-    serviceEvent = { env: "dev", name: "multi-geth", protocol: "ws", rpcPort: `${address.port}`, version: "1.0.0" };
+    serviceEvent = { env: "dev", name: "core-geth", protocol: "ws", rpcPort: `${address.port}`, version: "1.0.0" };
   });
 
   it("should handle connection life cycle", (done) => {
@@ -37,7 +37,7 @@ describe("ConnectionManager tests", () => {
     serviceNotifications.emit("launched", serviceEvent);
     const connMan = new ConnectionManager(connections, router);
     connMan.setupConnections();
-    const location = `ws://localhost:${tcpPort}/multi-geth/dev/1.0.0`;
+    const location = `ws://localhost:${tcpPort}/core-geth/dev/1.0.0`;
     const client = new WebSocket(location);
     client.on("open", async () => {
       client.send(TEST_MESSAGE);
