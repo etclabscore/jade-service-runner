@@ -31,7 +31,7 @@
     "typedoc": "^0.15.0",
     "@types/node": "^12.6.8",
     "@types/node-fetch": "^2.3.7",
-    "@types/ws": "^6.0.1",
+    "@types/ws": "^7.2.4",
     "@types/body-parser": "^1.17.0",
     "@types/connect": "^3.4.32",
     "@types/cors": "^2.8.4",
