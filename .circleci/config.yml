@@ -30,7 +30,7 @@ jobs:
   build:
     <<: *defaults
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:12.18.4
     steps:
       - checkout
       - restore_cache: *restore-deps-cache
@@ -47,7 +47,7 @@ jobs:
       - run:
           name: "Update Node.js and npm"
           command: |
-            curl -sSL "https://nodejs.org/dist/v12.14.1/node-v12.14.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.14.1-linux-x64/bin/node
+            curl -sSL "https://nodejs.org/dist/v12.18.4/node-v12.18.4-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.18.4-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
       - run: npm install
       - run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/exec @qiwi/semantic-release-gh-pages-plugin @open-rpc/semantic-release-plugin

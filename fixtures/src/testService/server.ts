@@ -1,10 +1,10 @@
-import { OpenRPC } from "@open-rpc/meta-schema";
-import { Server, IServerOptions } from "@open-rpc/server-js";
+import { OpenrpcDocument as OpenRPC } from "@open-rpc/meta-schema";
+import { Server, ServerOptions } from "@open-rpc/server-js";
 export type TestProtocol = "ws" | "http";
 
 export const testServer = (port: number, protocol: TestProtocol, openrpcDocument: OpenRPC, opts: any) => {
 
-  let options = {} as IServerOptions;
+  let options = {} as ServerOptions;
 
   let transportConfigs;
   switch ( protocol) {
@@ -35,6 +35,6 @@ export const testServer = (port: number, protocol: TestProtocol, openrpcDocument
     methodMapping: { mockMode: true },
     openrpcDocument,
     transportConfigs,
-  } as IServerOptions;
+  } as ServerOptions;
   return new Server(options);
 };

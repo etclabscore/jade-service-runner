@@ -4,7 +4,7 @@ import { Installer } from "./installer";
 import { ServiceManager } from "./serviceManager";
 import { getOS } from "./util";
 import { Router, Server } from "@open-rpc/server-js";
-import { OpenRPC } from "@open-rpc/meta-schema";
+import { OpenrpcDocument as OpenRPC } from "@open-rpc/meta-schema";
 import { methods } from "../methods";
 import cors from "cors";
 import { json as jsonParser } from "body-parser";
