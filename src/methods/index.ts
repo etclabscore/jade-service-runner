@@ -6,11 +6,11 @@ import { ServiceManager } from "../lib/serviceManager";
 import { ServiceDesc, Service, ServiceEnvironmentDesc } from "../lib/config";
 import { makeLogger } from "../lib/logging";
 import { InstallService, ListInstalledServices, ListRunningServices, StartService, ListServices } from "../generated-types";
-import { IMethodMapping } from "@open-rpc/server-js/build/router";
+import { MethodMapping } from "@open-rpc/server-js/build/router";
 import { getOS } from "../lib/util";
 const logger = makeLogger("ServiceRunner", "Routes");
 
-export interface ServiceMethodMapping extends IMethodMapping {
+export interface ServiceMethodMapping extends MethodMapping {
   installService: InstallService;
   listServices: ListServices;
   listInstalledServices: ListInstalledServices;
