@@ -96,13 +96,13 @@ npm install @etclabscore/jade-service-runner-client
 Then require it into any module.
 
 ```js
-const { ServiceRunner } = require('@etclabscore/jade-service-runner-client');
-const ERPC = require('@etclabscore/ethereum-json-rpc');
+const { ServiceRunner } = require("@etclabscore/jade-service-runner-client");
+const ERPC = require("@etclabscore/ethereum-json-rpc");
 const serviceRunner = new ServiceRunner({ transport: { type: "http", port: 8002, host: "localhost" } });
-const serviceName = 'core-geth';
-const successful = await serviceRunner.installService(serviceName);
-if (successful === false) throw new Error('Service not installed')
-const serviceConfig = serviceRunner.start(serviceName, 'kotti');
+const serviceName = "core-geth";
+const successful = await serviceRunner.installService(serviceName, "1.11.2");
+if (successful === false) throw new Error("Service not installed")
+const serviceConfig = serviceRunner.start(serviceName, "1.11.2", "kotti");
 const erpc = new ERPC(serviceConfig);
 erpc.getBalance("0x0DEADBEEF");
 ```
