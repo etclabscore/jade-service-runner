@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "@open-rpc/client-js": "^1.2.3",
-    "@open-rpc/generator-client": "^1.12.1",
-    "@open-rpc/server-js": "^1.5.0",
-    "@open-rpc/typings": "^1.4.3",
+    "@open-rpc/generator-client": "^1.14.6",
+    "@open-rpc/server-js": "^1.8.2",
+    "@open-rpc/typings": "^1.11.2",
     "body-parser": "^1.19.0",
     "commander": "^3.0.2",
     "connect": "^3.7.0",
