@@ -1,64 +1,72 @@
-export type StringWxzVcTo3 = string;
-export type StringFek9G2ZM = "all" | "running" | "available" | "installed";
-export type BooleanQg3XFxa5 = boolean;
-export interface ObjectDBzoJtf4 {
-  name: StringWxzVcTo3;
-  summary?: StringWxzVcTo3;
+export type StringDoaGddGA = string;
+export interface ObjectOfStringDoaGddGAStringDoaGddGAKieCSt44 {
+  name: StringDoaGddGA;
+  summary?: StringDoaGddGA;
   [k: string]: any;
 }
-export type ArrayFWi9QNmP = ObjectDBzoJtf4[];
-export type StringTLqBBstC = "active" | "available" | "installed";
-export interface ObjectT84Ta8SE {
-  name?: StringWxzVcTo3;
-  version?: StringWxzVcTo3;
-  environments: ArrayFWi9QNmP;
-  state?: StringTLqBBstC;
+export type UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3 = ObjectOfStringDoaGddGAStringDoaGddGAKieCSt44[];
+export type StringVp8AIgHF = "active" | "available" | "installed";
+export interface ObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3 {
+  name?: StringDoaGddGA;
+  version?: StringDoaGddGA;
+  environments: UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3;
+  state?: StringVp8AIgHF;
   [k: string]: any;
 }
-export type ArrayB39Fjis6 = ObjectT84Ta8SE[];
-export interface ObjectVZsrKceH {
-  name?: StringWxzVcTo3;
-  version?: StringWxzVcTo3;
+export interface ObjectOfStringDoaGddGAStringDoaGddGACmBlIq6J {
+  name?: StringDoaGddGA;
+  version?: StringDoaGddGA;
   [k: string]: any;
 }
-export type ArrayKvcc3Slb = ObjectVZsrKceH[];
-export type ArrayFoEQPbEQ = StringWxzVcTo3[];
-export interface ObjectD8RkBGZG {
-  cmd: StringWxzVcTo3;
-  args: ArrayFoEQPbEQ;
+export type UnorderedSetOfStringDoaGddGADvj0XlFa = StringDoaGddGA[];
+export interface ObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9 {
+  cmd: StringDoaGddGA;
+  args: UnorderedSetOfStringDoaGddGADvj0XlFa;
   [k: string]: any;
 }
-export type ArrayQfe0DQgu = ObjectD8RkBGZG[];
-export interface ObjectHuetvW0J {
-  setup: ArrayQfe0DQgu;
-  start: StringWxzVcTo3;
-  stop: StringWxzVcTo3;
-  teardown: StringWxzVcTo3;
+export type UnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlR = ObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9[];
+export interface ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8G {
+  setup: UnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlR;
+  start: StringDoaGddGA;
+  stop: StringDoaGddGA;
+  teardown: StringDoaGddGA;
   [k: string]: any;
 }
-export interface ObjectHqcFUS7M {
-  start: ArrayFoEQPbEQ;
-  stop: ArrayFoEQPbEQ;
-  teardown: ArrayFoEQPbEQ;
+export interface ObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy {
+  start: UnorderedSetOfStringDoaGddGADvj0XlFa;
+  stop: UnorderedSetOfStringDoaGddGADvj0XlFa;
+  teardown: UnorderedSetOfStringDoaGddGADvj0XlFa;
   [k: string]: any;
 }
 /**
+ *
  * An object that describes an instance of a service
+ *
  */
-export interface ObjectDLZvXzsu {
-  env: StringWxzVcTo3;
-  rpcPort: StringWxzVcTo3;
-  name: StringWxzVcTo3;
-  version: StringWxzVcTo3;
-  path: StringWxzVcTo3;
-  commands: ObjectHuetvW0J;
-  args: ObjectHqcFUS7M;
-  state?: StringWxzVcTo3;
+export interface ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI2 {
+  env: StringDoaGddGA;
+  rpcPort: StringDoaGddGA;
+  name: StringDoaGddGA;
+  version: StringDoaGddGA;
+  path: StringDoaGddGA;
+  commands: ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8G;
+  args: ObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy;
+  state?: StringDoaGddGA;
   [k: string]: any;
 }
-export type ArrayZUy9Ik8E = ObjectDLZvXzsu[];
-export type InstallService = (serviceName: StringWxzVcTo3, version: StringWxzVcTo3) => Promise<BooleanQg3XFxa5>;
-export type ListServices = (filter: StringFek9G2ZM) => Promise<ArrayB39Fjis6>;
-export type ListInstalledServices = () => Promise<ArrayKvcc3Slb>;
-export type ListRunningServices = () => Promise<ArrayZUy9Ik8E>;
-export type StartService = (name: StringWxzVcTo3, version: StringWxzVcTo3, environment: StringWxzVcTo3) => Promise<ObjectDLZvXzsu>;
+export type StringTxhU5DjS = "all" | "running" | "available" | "installed";
+export type BooleanVyG3AETh = boolean;
+export type UnorderedSetOfObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3Zq6QC3T0 = ObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3[];
+export type UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGACmBlIq6JBb6CmGaX = ObjectOfStringDoaGddGAStringDoaGddGACmBlIq6J[];
+export type UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI22VmgfxII = ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI2[];
+/**
+ *
+ * Generated! Represents an alias to any of the provided schemas
+ *
+ */
+export type AnyOfStringDoaGddGAStringDoaGddGAStringTxhU5DjSStringDoaGddGAStringDoaGddGAStringDoaGddGABooleanVyG3AEThUnorderedSetOfObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3Zq6QC3T0UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGACmBlIq6JBb6CmGaXUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI22VmgfxIIObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI2 = StringDoaGddGA | StringTxhU5DjS | BooleanVyG3AETh | UnorderedSetOfObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3Zq6QC3T0 | UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGACmBlIq6JBb6CmGaX | UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI22VmgfxII | ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI2;
+export type InstallService = (serviceName: StringDoaGddGA, version: StringDoaGddGA) => Promise<BooleanVyG3AETh>;
+export type ListServices = (filter: StringTxhU5DjS) => Promise<UnorderedSetOfObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3Zq6QC3T0>;
+export type ListInstalledServices = () => Promise<UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGACmBlIq6JBb6CmGaX>;
+export type ListRunningServices = () => Promise<UnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI22VmgfxII>;
+export type StartService = (name: StringDoaGddGA, version: StringDoaGddGA, environment: StringDoaGddGA) => Promise<ObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAObjectOfStringDoaGddGAStringDoaGddGAStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAUnorderedSetOfStringDoaGddGADvj0XlFaZX45Ehh9Rf17ZTlRF5R1Qy8GObjectOfUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaUnorderedSetOfStringDoaGddGADvj0XlFaMWFrq3Uy6Aw04EI2>;

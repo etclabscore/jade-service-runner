@@ -35,6 +35,6 @@ export const testServer = (port: number, protocol: TestProtocol, openrpcDocument
     methodMapping: { mockMode: true },
     openrpcDocument,
     transportConfigs,
-  } as IServerOptions;
+  } as ServerOptions;
   return new Server(options);
 };
