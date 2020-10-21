@@ -5,7 +5,7 @@ import { Installer } from "../lib/installer";
 import { ServiceManager } from "../lib/serviceManager";
 import { ServiceDesc, Service, ServiceEnvironmentDesc } from "../lib/config";
 import { makeLogger } from "../lib/logging";
-import { InstallService, ListInstalledServices, ListRunningServices, StartService, ListServices } from "../generated-types";
+import { InstallService, ListInstalledServices, ListRunningServices, StartService, ListAvailableServices, ListServices } from "../generated-types";
 import { MethodMapping } from "@open-rpc/server-js/build/router";
 import { getOS } from "../lib/util";
 const logger = makeLogger("ServiceRunner", "Routes");
@@ -13,10 +13,12 @@ const logger = makeLogger("ServiceRunner", "Routes");
 export interface ServiceMethodMapping extends MethodMapping {
   installService: InstallService;
   listServices: ListServices;
+  listAvailableServices: ListAvailableServices;
   listInstalledServices: ListInstalledServices;
   listRunningServices: ListRunningServices;
   startService: StartService;
 }
+
 /**
  * Returns the MethodMapping for the RPC Server essentially the routes.
  *
@@ -44,12 +46,13 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
     });
   };
 
-  const getRunningServices = async (): Promise<ServiceDesc[]> => {
-    return serviceManager.listActiveServices().map((service) => {
-      const { name, summary, version, env } = service;
+  const getRunningServices = async (): Promise<any[]> => {
+    const services = await serviceManager.listActiveServices();
+    return services.map((service) => {
+      const { name, summary, version, env, rpcPort, path, commands, args, state } = service;
       const svc = serviceManager.config.getService(name, version, getOS());
       const environmentDesc = svc.environments.find((envDesc) => (envDesc.name === env)) as ServiceEnvironmentDesc;
-      return { name, summary, state: "running", environments: [{ name: environmentDesc.name, summary: environmentDesc.summary }], version };
+      return { name, summary, version, env, rpcPort, path, commands, args, state, environments: environmentDesc };
     });
   };
 
@@ -66,6 +69,7 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
       }
       return true;
     },
+
     listServices: async (filter) => {
       logger.debug("listing services");
       switch (filter) {
@@ -82,6 +86,11 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
           return getRunningServices();
       }
     },
+
+    listAvailableServices: async () => {
+      return getAvailableServices();
+    },
+
     listInstalledServices: async () => {
       logger.debug("listing installed services");
       const mf = await installer.repo.getManifest();
@@ -91,7 +100,7 @@ export const methods = (installer: Installer, serviceManager: ServiceManager): S
     },
 
     listRunningServices: async () => {
-      return serviceManager.listActiveServices();
+      return getRunningServices();
     },
 
     startService: async (name: string, version: string, env: string) => {
