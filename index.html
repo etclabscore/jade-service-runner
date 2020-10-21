@@ -162,13 +162,13 @@
 				<p>Install the JavaScript client:</p>
 				<pre><code class="language-bash">npm install @etclabscore/jade-service-runner-client</code></pre>
 				<p>Then require it into any module.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/jade-service-runner-client'</span>);
-<span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@etclabscore/ethereum-json-rpc'</span>);
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ServiceRunner } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@etclabscore/jade-service-runner-client"</span>);
+<span class="hljs-keyword">const</span> ERPC = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@etclabscore/ethereum-json-rpc"</span>);
 <span class="hljs-keyword">const</span> serviceRunner = <span class="hljs-keyword">new</span> ServiceRunner({ <span class="hljs-attr">transport</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">"http"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">8002</span>, <span class="hljs-attr">host</span>: <span class="hljs-string">"localhost"</span> } });
-<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">'core-geth'</span>;
-<span class="hljs-keyword">const</span> successful = <span class="hljs-keyword">await</span> serviceRunner.installService(serviceName);
-<span class="hljs-keyword">if</span> (successful === <span class="hljs-literal">false</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Service not installed'</span>)
-<span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">'kotti'</span>);
+<span class="hljs-keyword">const</span> serviceName = <span class="hljs-string">"core-geth"</span>;
+<span class="hljs-keyword">const</span> successful = <span class="hljs-keyword">await</span> serviceRunner.installService(serviceName, <span class="hljs-string">"1.11.2"</span>);
+<span class="hljs-keyword">if</span> (successful === <span class="hljs-literal">false</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Service not installed"</span>)
+<span class="hljs-keyword">const</span> serviceConfig = serviceRunner.start(serviceName, <span class="hljs-string">"1.11.2"</span>, <span class="hljs-string">"kotti"</span>);
 <span class="hljs-keyword">const</span> erpc = <span class="hljs-keyword">new</span> ERPC(serviceConfig);
 erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 				<p>To run the jade-service-runner:</p>
@@ -322,25 +322,28 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 						<a href="interfaces/mockwsdesc.html" class="tsd-kind-icon">MockWSDesc</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objectd8rkbgzg.html" class="tsd-kind-icon">Object<wbr>D8RkBGZG</a>
+						<a href="interfaces/objectofstringdoagddgastringdoagddgacmbliq6j.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGACm<wbr>BlIq6J</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objectdbzojtf4.html" class="tsd-kind-icon">ObjectDBzo<wbr>Jtf4</a>
+						<a href="interfaces/objectofstringdoagddgastringdoagddgakiecst44.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objectdlzvxzsu.html" class="tsd-kind-icon">ObjectDLZv<wbr>Xzsu</a>
+						<a href="interfaces/objectofstringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgaobjectofstringdoagddgastringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlrf5r1qy8gobjectofunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfamwfrq3uy6aw04ei2.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlRF5<wbr>R1Qy8GObject<wbr>OfUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaMWFrq3<wbr>Uy6<wbr>Aw04EI2</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objecthqcfus7m.html" class="tsd-kind-icon">Object<wbr>HqcFUS7M</a>
+						<a href="interfaces/objectofstringdoagddgastringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlrf5r1qy8g.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlRF5<wbr>R1Qy8G</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objecthuetvw0j.html" class="tsd-kind-icon">Object<wbr>Huetv<wbr>W0J</a>
+						<a href="interfaces/objectofstringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3u7akqies.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3<wbr>U7AKQies</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objectt84ta8se.html" class="tsd-kind-icon">Object<wbr>T84<wbr>Ta8SE</a>
+						<a href="interfaces/objectofstringdoagddgastringvp8aighfstringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3yy1blmc3.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Vp8AIgHFString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3YY1BLm<wbr>C3</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/objectvzsrkceh.html" class="tsd-kind-icon">ObjectVZsr<wbr>KceH</a>
+						<a href="interfaces/objectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9.html" class="tsd-kind-icon">Object<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/objectofunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfamwfrq3uy.html" class="tsd-kind-icon">Object<wbr>OfUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaMWFrq3<wbr>Uy</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
@@ -406,28 +409,13 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 						<a href="globals.html#addition" class="tsd-kind-icon">Addition</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arrayb39fjis6" class="tsd-kind-icon">Array<wbr>B39<wbr>Fjis6</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arrayfwi9qnmp" class="tsd-kind-icon">ArrayFWi9QNmP</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arrayfoeqpbeq" class="tsd-kind-icon">Array<wbr>FoEQPbEQ</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arraykvcc3slb" class="tsd-kind-icon">Array<wbr>Kvcc3<wbr>Slb</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arrayqfe0dqgu" class="tsd-kind-icon">Array<wbr>Qfe0DQgu</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#arrayzuy9ik8e" class="tsd-kind-icon">ArrayZUy9<wbr>Ik8E</a>
+						<a href="globals.html#anyofstringdoagddgastringdoagddgastringtxhu5djsstringdoagddgastringdoagddgastringdoagddgabooleanvyg3aethunorderedsetofobjectofstringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3u7akqiesyafk1vhlunorderedsetofobjectofstringdoagddgastringvp8aighfstringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3yy1blmc3zq6qc3t0unorderedsetofobjectofstringdoagddgastringdoagddgacmbliq6jbb6cmgaxunorderedsetofobjectofstringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgaobjectofstringdoagddgastringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlrf5r1qy8gobjectofunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfamwfrq3uy6aw04ei22vmgfxiiobjectofstringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgaobjectofstringdoagddgastringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlrf5r1qy8gobjectofunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfamwfrq3uy6aw04ei2" class="tsd-kind-icon">Any<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Txh<wbr>U5DjSString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGABoolean<wbr>VyG3AETh<wbr>Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3<wbr>U7AKQies<wbr>YaFk1VHLUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Vp8AIgHFString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3YY1BLm<wbr>C3Zq6QC3<wbr>T0Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGACm<wbr>BlIq6JBb6<wbr>CmGaXUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlRF5<wbr>R1Qy8GObject<wbr>OfUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaMWFrq3<wbr>Uy6<wbr>Aw04EI22<wbr>VmgfxIIObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlRF5<wbr>R1Qy8GObject<wbr>OfUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaMWFrq3<wbr>Uy6<wbr>Aw04EI2</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#backend" class="tsd-kind-icon">Backend</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#booleanqg3xfxa5" class="tsd-kind-icon">Boolean<wbr>Qg3XFxa5</a>
+						<a href="globals.html#booleanvyg3aeth" class="tsd-kind-icon">Boolean<wbr>VyG3AETh</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#connection" class="tsd-kind-icon">Connection</a>
@@ -455,6 +443,9 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#integertfib8svh" class="tsd-kind-icon">Integer<wbr>TfIB8<wbr>Svh</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#listavailableservices" class="tsd-kind-icon">List<wbr>Available<wbr>Services</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#listinstalledservices" class="tsd-kind-icon">List<wbr>Installed<wbr>Services</a>
@@ -493,13 +484,13 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 						<a href="globals.html#stopservicereason" class="tsd-kind-icon">Stop<wbr>Service<wbr>Reason</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#stringfek9g2zm" class="tsd-kind-icon">String<wbr>Fek9<wbr>G2ZM</a>
+						<a href="globals.html#stringdoagddga" class="tsd-kind-icon">String<wbr>Doa<wbr>GddGA</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#stringtlqbbstc" class="tsd-kind-icon">StringTLqBBstC</a>
+						<a href="globals.html#stringtxhu5djs" class="tsd-kind-icon">String<wbr>Txh<wbr>U5DjS</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#stringwxzvcto3" class="tsd-kind-icon">String<wbr>Wxz<wbr>VcTo3</a>
+						<a href="globals.html#stringvp8aighf" class="tsd-kind-icon">String<wbr>Vp8AIgHF</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#subtraction" class="tsd-kind-icon">Subtraction</a>
@@ -509,6 +500,27 @@ erpc.getBalance(<span class="hljs-string">"0x0DEADBEEF"</span>);</code></pre>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#testprotocol" class="tsd-kind-icon">Test<wbr>Protocol</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgastringdoagddgacmbliq6jbb6cmgax" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGACm<wbr>BlIq6JBb6<wbr>CmGaX</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgastringdoagddgaobjectofstringdoagddgastringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlrf5r1qy8gobjectofunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfaunorderedsetofstringdoagddgadvj0xlfamwfrq3uy6aw04ei22vmgfxii" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlRF5<wbr>R1Qy8GObject<wbr>OfUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa<wbr>Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaMWFrq3<wbr>Uy6<wbr>Aw04EI22<wbr>VmgfxII</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgastringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3u7akqiesyafk1vhl" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3<wbr>U7AKQies<wbr>YaFk1VHL</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgastringvp8aighfstringdoagddgaunorderedsetofobjectofstringdoagddgastringdoagddgakiecst44uiuksje3yy1blmc3zq6qc3t0" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Vp8AIgHFString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAString<wbr>Doa<wbr>GddGAKieCSt44UIuKSje3YY1BLm<wbr>C3Zq6QC3<wbr>T0</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofobjectofstringdoagddgaunorderedsetofstringdoagddgadvj0xlfazx45ehh9rf17ztlr" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfObject<wbr>OfString<wbr>Doa<wbr>GddGAUnordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFaZX45<wbr>Ehh9<wbr>Rf17ZTlR</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#unorderedsetofstringdoagddgadvj0xlfa" class="tsd-kind-icon">Unordered<wbr>Set<wbr>OfString<wbr>Doa<wbr>GddGADvj0<wbr>XlFa</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#gateway_error" class="tsd-kind-icon">GATEWAY_<wbr>ERROR</a>

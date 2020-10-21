@@ -114,7 +114,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L95">src/lib/serviceProcessManager.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L95">src/lib/serviceProcessManager.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="serviceprocessmanager.html" class="tsd-signature-type">ServiceProcessManager</a></h4>
@@ -130,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">active<wbr>Service<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L92">src/lib/serviceProcessManager.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L92">src/lib/serviceProcessManager.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -140,7 +140,7 @@
 					<div class="tsd-signature tsd-kind-icon">service<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/servicespec.html" class="tsd-signature-type">ServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L91">src/lib/serviceProcessManager.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L91">src/lib/serviceProcessManager.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -157,7 +157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L163">src/lib/serviceProcessManager.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L163">src/lib/serviceProcessManager.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -180,33 +180,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L133">src/lib/serviceProcessManager.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L133">src/lib/serviceProcessManager.ts:133</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a ServiceDesc for a service including both the active running service and original spec</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Service name that corresponds to spec</p>
-									</div>
 								</li>
 								<li>
 									<h5>version: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Service version that corresponds to spec</p>
-									</div>
 								</li>
 								<li>
 									<h5>env: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Service environment name that corresponds to spec</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ServiceDesc</span>
@@ -227,22 +213,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L115">src/lib/serviceProcessManager.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L115">src/lib/serviceProcessManager.ts:115</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Launches a service, generating a pending service event that ultimately triggers writing a resolved service and unresolved template of that service
-									to an internal cache. It is used to spawn a new service, it then returns a fully resolved service that includes a pid.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>service: <a href="../interfaces/servicespec.html" class="tsd-signature-type">ServiceSpec</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Configuration for a templated service</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/servicespec.html" class="tsd-signature-type">ServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -260,7 +237,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L104">src/lib/serviceProcessManager.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L104">src/lib/serviceProcessManager.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -304,21 +281,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/1e90521/src/lib/serviceProcessManager.ts#L152">src/lib/serviceProcessManager.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/etclabscore/jade-service-runner/blob/5a3e98d/src/lib/serviceProcessManager.ts#L152">src/lib/serviceProcessManager.ts:152</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Terminates a service, generating a terminate service event that ultimately triggers permanently stopping a service from running. Until explicitly re-launched.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>service: <a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Configuration for a templated service</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/activeservicespec.html" class="tsd-signature-type">ActiveServiceSpec</a><span class="tsd-signature-symbol">&gt;</span></h4>
