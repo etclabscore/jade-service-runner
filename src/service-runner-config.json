@@ -4,7 +4,7 @@
     {
       "name": "core-geth",
       "rpcPort": "${DYNAMIC_TCP_PORT_1}",
-      "version": "1.11.2",
+      "version": "1.11.15",
       "summary": "An Ethereum Classic and Ethereum client",
       "environments": [
         {
@@ -14,9 +14,9 @@
             "start": [
               "--classic",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/classic",
+              "${SERVICE_DIR}/core-geth/1.11.15/classic",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/classic/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/classic/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -42,9 +42,9 @@
             "start": [
               "--mordor",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/mordor",
+              "${SERVICE_DIR}/core-geth/1.11.15/mordor",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/mordor/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/mordor/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -70,9 +70,9 @@
             "start": [
               "--kotti",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/kotti",
+              "${SERVICE_DIR}/core-geth/1.11.15/kotti",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/kotti/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/kotti/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -100,9 +100,9 @@
             "start": [
               "--dev",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/dev",
+              "${SERVICE_DIR}/core-geth/1.11.15/dev",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/dev/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/dev/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -127,9 +127,9 @@
           "args": {
             "start": [
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/ethereum",
+              "${SERVICE_DIR}/core-geth/1.11.15/ethereum",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/ethereum/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/ethereum/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -155,9 +155,9 @@
             "start": [
               "--goerli",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/goerli",
+              "${SERVICE_DIR}/core-geth/1.11.15/goerli",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/goerli/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/goerli/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -183,9 +183,9 @@
             "start": [
               "--rinkeby",
               "--datadir",
-              "${SERVICE_DIR}/core-geth/1.11.2/rinkeby",
+              "${SERVICE_DIR}/core-geth/1.11.15/rinkeby",
               "--ipcpath",
-              "${SERVICE_DIR}/core-geth/1.11.2/rinkeby/geth.ipc",
+              "${SERVICE_DIR}/core-geth/1.11.15/rinkeby/geth.ipc",
               "--port",
               "${DYNAMIC_TCP_PORT_2}",
               "--rpc",
@@ -222,7 +222,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/etclabscore/core-geth/releases/download/v1.11.2/core-geth-osx-v1.11.2.zip"
+            "https://github.com/etclabscore/core-geth/releases/download/v1.11.15/core-geth-osx-v1.11.15.zip"
           ]
         },
         "linux": {
@@ -241,7 +241,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/etclabscore/core-geth/releases/download/v1.11.2/core-geth-linux-v1.11.2.zip"
+            "https://github.com/etclabscore/core-geth/releases/download/v1.11.15/core-geth-linux-v1.11.15.zip"
           ]
         },
         "windows": {
@@ -252,7 +252,7 @@
             "teardown": ""
           },
           "assets": [
-            "https://github.com/etclabscore/core-geth/releases/download/v1.11.2/core-geth-win64-v1.11.2.zip"
+            "https://github.com/etclabscore/core-geth/releases/download/v1.11.15/core-geth-win64-v1.11.15.zip"
           ]
         }
       }
