@@ -27,7 +27,7 @@ export class ConnectionManager {
   private base: Set<ConnectionInfo>;
   private connectionBus: ConnectionBus;
   private router: Router;
-  private teardown: Array<() => Promise<void>>;
+  private teardown: (() => Promise<void>)[];
 
   constructor(base: Set<ConnectionInfo>, router: Router) {
     this.base = base;

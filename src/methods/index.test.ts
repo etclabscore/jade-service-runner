@@ -101,6 +101,14 @@ describe("methods should reflect service runner api", () => {
     expect(mock.call.length).toBe(1);
   });
 
+  it("should list available services", async () => {
+    const testServices = [1, 2, 3].map((id) => generateService(id, "available"));
+    serviceManager.config.getAvailableServices = jest.fn((x: string): ServiceDesc[] => testServices);
+
+    const services = await meths.listAvailableServices();
+    expect(services).toEqual(testServices);
+  });
+
   it("should list services", async () => {
     let testServices = [1, 2, 3].map((id) => generateService(id, "available"));
     const testSvc = _.cloneDeep(testServices);

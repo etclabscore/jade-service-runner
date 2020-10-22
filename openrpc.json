@@ -6,6 +6,7 @@
 	"methods": [
 		{
 			"name": "installService",
+			"description": "downloads the assets in the assets array of the service config for the particular OS",
 			"params": [
 				{
 					"name": "serviceName",
@@ -26,6 +27,43 @@
 				"name": "installSuccess",
 				"schema": {
 					"type": "boolean"
+				}
+			}
+		},
+		{
+			"name": "listAvailableServices",
+			"params": [],
+			"result": {
+				"name": "listedServices",
+				"schema": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"version": {
+								"type": "string"
+							},
+							"environments": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"summary": {
+											"type": "string"
+										}
+									},
+									"required": ["name"]
+								}
+							}
+						},
+						"required": ["environments"]
+					}
 				}
 			}
 		},
