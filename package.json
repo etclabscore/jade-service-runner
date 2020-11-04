@@ -39,7 +39,7 @@
     "@types/jest": "^24.0.12",
     "@types/lodash": "^4.14.132",
     "@types/request": "^2.48.1",
-    "@types/rimraf": "^2.0.2",
+    "@types/rimraf": "^3.0.0",
     "@types/tar-fs": "^2.0.0",
     "@types/yauzl": "^2.9.1",
     "@types/yazl": "^2.4.1",
