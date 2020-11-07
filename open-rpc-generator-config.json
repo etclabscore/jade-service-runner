@@ -1,0 +1,16 @@
+{
+    "openrpcDocument": "openrpc.json",
+    "outDir": "build/generated-client",
+    "components": [
+        {
+            "type": "client",
+            "name": "@etclabscore/jade-service-runner-client",
+            "language": "typescript"
+        },
+        {
+            "type": "client",
+            "name": "jade-service-runner-client",
+            "language": "rust"
+        }
+    ]
+}
