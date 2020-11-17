@@ -93,44 +93,6 @@ jobs:
           command: ./cfn/init-production.sh
           no_output_timeout: '30m'
 
-  ensure_staging_stacks:
-    <<: *defaults
-    docker:
-      - image: circleci/python:3.7-stretch
-    steps:
-      - checkout
-      - run:
-          name: Installing deployment dependencies
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python-pip python-dev build-essential
-            sudo pip install --upgrade setuptools
-            sudo pip install awscli --upgrade
-      - run:
-          name: Ensure Staging
-          command: ./cfn/init-staging.sh
-          no_output_timeout: '30m'
-
-  release_staging:
-    <<: *defaults
-    docker:
-      - image: circleci/python:3.7-stretch
-    steps:
-      - checkout
-      - run:
-          name: Installing deployment dependencies
-          working_directory: /
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python-pip python-dev build-essential
-            sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade
-      - run:
-          name: Deploying Staging
-          command: eb deploy jade-service-runner-staging
-          no_output_timeout: '30m'
-
   release_production:
     <<: *defaults
     docker:
@@ -167,24 +129,15 @@ workflows:
           filters: *filter-only-master
           requires:
             - ensure_base_stacks
-      - ensure_staging_stacks:
-          filters: *filter-only-master
-          requires:
-            - ensure_base_stacks
       - hold:
           filters: *filter-only-master
           type: approval
           requires:
-            - ensure_staging_stacks
             - ensure_production_stacks
       - release:
           filters: *filter-only-master
           requires:
             - hold
-      - release_staging:
-          filters: *filter-only-master
-          requires:
-            - release
       - release_production:
           filters: *filter-only-master
           requires:
