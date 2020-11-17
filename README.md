@@ -127,6 +127,20 @@ You can extend jade-service-runner with your own configuration via the command l
 jade-service-runner -c extended-jade-service-runner-config.json
 ```
 
+### Deploying to your own AWS account
+
+1. Buy/transfer a domain on/onto route53.
+1. configure cloudformation launch params in cfn/production-launch-params.json
+   a) `HostedZoneId`
+   b) `DomainName`
+2. configure circle ci environment vars:
+   3. AWS_SECRET_ACCESS_KEY
+   4. AWS_ACCESS_KEY_ID
+   5. AWS_REGION
+3. remove deployment to npm from circleci/config.yml OR change package.json name.
+4. (optionally) remove deployment to github from circleci/config.yml. If you want to keep it, add GH_TOKEN to ci env vars.
+5. follow project on circleci, let the release rip!
+
 ## Roadmap
 
 See the [open issues](https://github.com/etclabscore/jade-service-runner/issues) for a list of proposed features (and known issues).
